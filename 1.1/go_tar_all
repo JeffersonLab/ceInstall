@@ -1,0 +1,50 @@
+#!/bin/tcsh -f
+
+# This script will package versions of various software
+# including ceInstall, the scons build model, evio, gemc.
+
+set locald = /opt/projects/ceInstall/devel
+
+
+if($1 == "ceInstall"|| $1 == "bm" || $1 == "evio" || $1 == "gemc" || $1 == "banks" || $1 == "gevio2root") goto $1
+
+# ceInstall
+ceInstall:
+	foreach v (1.0 devel)
+		$locald/go_tar ceInstall $v
+	end
+if($1 == "ceInstall") exit
+
+
+# scons build
+bm:
+	foreach v (1.0 devel)
+		$locald/go_tar bm $v
+	end
+if($1 == "bm") exit
+
+
+# evio
+evio:
+	foreach v (4.0)
+		$locald/go_tar evio $v
+	end
+if($1 == "evio") exit
+
+
+# gemc
+gemc:
+	foreach v (1.8 2.1 devel)
+		$locald/go_tar gemc $v
+	end
+if($1 == "gemc") exit
+
+
+# banks
+banks:
+	foreach v (0.9 devel)
+		$locald/go_tar banks $v
+	end
+if($1 == "banks") exit
+
+

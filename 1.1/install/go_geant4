@@ -1,0 +1,138 @@
+#!/bin/csh -f
+
+# Options
+# not putting geant4 on the repo script because of the data path
+set name     = geant4
+set release  = `./get_coptions release`
+set repo     = `./get_coptions repo`
+set version  = $GEANT4_VERSION
+set filename = geant$GEANT4_VERSION".tar.gz"
+set arch     = `./get_coptions arch`
+set opt      = `./get_coptions copt`
+set cmakev   = `./get_coptions cmakev | awk '{print $1}'`
+# Exit if cmake is not >= 2.8
+if($cmakev != "OK") then
+	./get_coptions cmakev
+	exit
+endif
+
+# Write options on screen
+./get_coptions log $name $version $filename $release $arch $opt
+
+set oarch = ""
+if($arch == "32") then
+	set oarch = ' -DCMAKE_CXX_FLAGS=-m32 -DCPACK_SYSTEM_NAME=$OSRELEASE'
+endif
+echo " > Special Compilation Options: " $oarch 
+echo
+
+# By default data is set to off
+# Getting data from jlab repository
+# Because jlab farm machine are inside firewall
+# and G4 data servers cannot be accessed
+set DATA = 'OFF'
+echo " > Data set to: "$DATA
+
+set cdir    = (`pwd`)
+
+if($1 == "data" || $1 == "src" || $1 == "make") then
+	goto $1
+endif
+
+# data
+data:
+	# Getting data file
+	echo " > Installing geant4 data "$version" - release "$release"."
+
+	rm -rf   $JLAB_ROOT/noarch/$G4DATA_VERSION/data
+	mkdir -p $JLAB_ROOT/noarch/$G4DATA_VERSION/data
+	cd       $JLAB_ROOT/noarch/$G4DATA_VERSION/data
+
+	wget -r -np -nH --cut-dir=5 $repo/geant4_data/$G4VERSION/
+	rm -f index* robots.txt
+
+	set file = (`\ls *.tar.gz`)
+	foreach f ($file)
+		echo Extracting $f
+		tar zxpf $f
+	end
+	rm -f *.tar.gz
+if($1 == "data") exit
+
+
+
+
+# Source Build
+src:
+	# Getting source file
+	echo " > Installing geant4 version "$version" - release "$release". Getting and unpacking" $filename"..."
+
+	rm -rf   $G4ROOT/$G4VERSION
+	mkdir -p $G4ROOT/$G4VERSION/source $G4ROOT/$G4VERSION/build
+
+	# Unpacking file, patching if needed
+	cd $G4ROOT/$G4VERSION/source
+
+	rm -f              $filename
+	wget  $repo/geant4/$filename
+	tar -zxpvf         $filename > /dev/null
+if($1 == "src") exit
+
+
+
+# make
+make:
+
+	set conf_options = ""
+	# Linux Options
+	if (`uname` == "Linux") then
+		set conf_options = '-DGEANT4_USE_OPENGL_X11=ON'
+	endif
+
+	# Compiling
+	cd $G4ROOT/$G4VERSION/build
+	cmake $oarch $conf_options -DCMAKE_INSTALL_PREFIX=$G4ROOT/$G4VERSION \
+    	                       -DGEANT4_USE_GDML=ON \
+							   -DXERCESC_ROOT_DIR=$XERCESCROOT \
+							   -DGEANT4_USE_QT=ON \
+                	           -DQT_QMAKE_EXECUTABLE=$QTDIR/bin/qmake \
+                    	       -DCMAKE_INSTALL_DATAROOTDIR=$JLAB_ROOT/noarch \
+                        	   -DCLHEP_ROOT_DIR=$CLHEP_BASE_DIR \
+                   		       -DGEANT4_INSTALL_DATA=$DATA \
+                        	   -DGEANT4_BUILD_EXAMPLES=OFF \
+							    $G4ROOT/$G4VERSION/source/"geant"$G4VERSION
+
+	echo " > Compiling geant4 source (log will be in "\$G4ROOT/$G4VERSION/"/make_log)..."
+	make $opt          > $G4ROOT/$G4VERSION/make_log
+	make install $opt >> $G4ROOT/$G4VERSION/make_log
+
+	# manually installing config directory
+	# so the examples find it
+	cp -r $G4ROOT/$G4VERSION/source/"geant"$G4VERSION/config $G4ROOT/$G4VERSION
+	# manually making the libmap for the examples
+	cd $G4ROOT/$G4VERSION/source/"geant"$G4VERSION/source
+	make libmap
+
+if($1 == "make") exit
+
+# Cleaning up
+# removing
+# rm -rf $G4ROOT/$G4VERSION/source $G4ROOT/$G4VERSION/build
+
+
+
+
+# Done!
+echo done
+echo
+
+
+
+
+
+
+
+
+
+
+

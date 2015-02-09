@@ -1,0 +1,15 @@
+#!/bin/csh -f
+
+
+# Magnetic Fields Maps Installation
+echo " > Getting maps from the repository."
+mkdir -p $JLAB_ROOT/noarch/data
+cd       $JLAB_ROOT/noarch/data
+rm -rf srr* clas12*
+
+wget http://clasweb.jlab.org/12gev/field_maps/srr-solenoid.dat
+wget http://clasweb.jlab.org/12gev/field_maps/clas12_torus_fieldmap.dat
+echo " > done."
+echo
+
+# Getting the geometry - starting with gemc 2.0 the geometry is versioned internally

@@ -1,0 +1,49 @@
+#!/bin/csh -f
+
+# Options
+set release  = `./get_coptions release`
+set arch     = `./get_coptions arch`
+set opt      = `./get_coptions copt`
+
+# Linking mysql distributions from OS release
+# This needs to be pre-installed
+echo
+echo " > Linking to local mysql distributions"
+
+mkdir -p $JLAB_SOFTWARE/mysql
+if(`uname` == "Darwin") then
+	ln -sfn /sw/include/mysql $JLAB_SOFTWARE/mysql/include
+	if($arch == "32") then
+		ln -sfn /sw/lib/mysql $JLAB_SOFTWARE/mysql/lib
+	endif
+	if($arch == "64") then
+		ln -sfn /sw/lib/mysql $JLAB_SOFTWARE/mysql/lib
+	endif
+endif
+if(`uname` == "Linux") then
+	ln -sfn /usr/include/mysql $JLAB_SOFTWARE/mysql/include
+	if($arch == "32") then
+		ln -sfn /usr/lib/mysql $JLAB_SOFTWARE/mysql/lib
+	endif
+	if($arch == "64") then
+		ln -sfn /usr/lib64/mysql $JLAB_SOFTWARE/mysql/lib
+	endif
+endif
+
+# Linux - Ubuntu line
+if( -f /etc/os-release) then
+	if(`grep Ubuntu /etc/os-release | wc | awk '{print $1}'` != "0") then
+		if($arch == "32") then
+			ln -sfn /usr/lib/xi386-linux-gnu $JLAB_SOFTWARE/mysql/lib
+		endif
+		if($arch == "64") then
+			ln -sfn /usr/lib/x86_64-linux-gnu $JLAB_SOFTWARE/mysql/lib
+		endif
+	endif
+endif
+
+echo "Done."
+echo
+
+
+

@@ -1,0 +1,19 @@
+#!/bin/csh -f
+
+
+# This script runs the scripts that install
+# software packages
+
+
+./go_clhep
+./go_xercesc
+./go_mysql
+./go_qt4
+./go_geant4
+./go_sconsscript
+./go_evio
+./go_gemc
+./go_fields
+./go_root
+
+

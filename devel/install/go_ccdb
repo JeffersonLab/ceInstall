@@ -1,0 +1,50 @@
+#!/bin/csh -f
+
+# Get the ccdb tar file from the ccdb website:
+# https://halldweb1.jlab.org/wiki/index.php/Calibration_Database
+# and copy to:
+# ftp:/u/group/12gev_phys/www/packages/sources/ccdb
+
+# Additional settings at the top of get_coptions
+source get_coptions
+
+# Options, Screen Log, Warnings
+set name     = ccdb
+set release  = `./get_coptions release`
+set repo     = `./get_coptions repo`/ccdb
+set version  = $CCDB_VERSION
+set filename =  ccdb"_"$CCDB_VERSION"-src.tar.gz"
+set arch     = `./get_coptions arch`
+set opt      = `./get_coptions copt`
+./get_coptions log $name $version $filename $release $arch $opt
+
+
+# Build
+# Getting source file
+echo " > Installing ccdb - release "$release". Getting package source from repository..."
+rm -rf   $JLAB_SOFTWARE/ccdb
+mkdir -p $JLAB_SOFTWARE/ccdb
+cd       $JLAB_SOFTWARE/ccdb
+
+rm -f      $filename
+wget $repo/$filename
+tar -zxpvf $filename > /dev/null
+
+
+# Compiling
+echo " > Compiling ccdb source (log will be in "\$JLAB_SOFTWARE/"jana/jana_$CCDB_VERSION/build_log )..."
+cd $JLAB_SOFTWARE/ccdb/ccdb"_"$CCDB_VERSION
+
+
+scons $opt
+
+
+# Removing tar file
+rm -rf $JLAB_SOFTWARE/ccdb/$filename
+
+
+# Done!
+echo done
+echo
+
+

@@ -1,0 +1,10 @@
+#!/bin/tcsh -f
+
+# This script will delete the current version of ceInstall
+# and re-download them
+
+cd $JLAB_ROOT
+rm ceInstall_$JLAB_VERSION.tar.gz
+rm -rf $JLAB_VERSION/ce $JLAB_VERSION/install
+wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_$JLAB_VERSION.tar.gz
+tar -zxpvf ceInstall_$JLAB_VERSION.tar.gz
