@@ -50,7 +50,7 @@
 - added go_qt with instructions on how to install qt from qt website
 - fixed go_tar comand line
 - removed 1.8 from go_tar
-
+- typo on the requirement doc
 
 10/28/14
 - Added CCDB to environment (testing)
