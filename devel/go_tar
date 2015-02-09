@@ -26,7 +26,7 @@ echo
 if($pname == "ceInstall") then
 	cd $locald/ceInstall
 	rm -f ceInstall_$pver.*
-	tar cvf ceInstall_$pver.tar $pver --exclude="go_tar" --exclude="doc" --exclude=".DS_Store"
+	tar cvf ceInstall_$pver.tar  --exclude='go_tar' --exclude="doc" --exclude=".DS_Store" $pver
 	gzip ceInstall_$pver.tar
 	scp ceInstall_$pver.tar.gz $remoted/ceInstall
 	scp $pver/install/install.html $remoted/ceInstall/$pver"_install.html"
@@ -57,18 +57,12 @@ endif
 
 # gemc
 if($pname == "gemc") then
-	if($pver == "1.8") then
-		cd $locald/gemc/releases/$pver
-		scons -c ;
-		cd ../
-	else
-		cd $locald/gemc/releases/$pver/source
-		scons -c ;
-		scp changelog  $remoted/gemc
-		cd ../../
-	endif
+  cd $locald/gemc/releases/$pver/source
+  scons -c ;
+  scp changelog  $remoted/gemc
+  cd ../../
 	rm -rf gemc-$pver.*
-	tar cvf gemc-$pver.tar $pver/* --exclude=".DS_Store" --exclude=".sconsign.dblite" --exclude=".entitlements"
+	tar cvf gemc-$pver.tar  --exclude=".DS_Store" --exclude=".sconsign.dblite" --exclude=".entitlements" $pver/*
 	gzip gemc-$pver.tar
 	scp gemc-$pver.tar.gz $remoted/gemc
 endif
@@ -80,7 +74,7 @@ if($pname == "banks") then
 	scons -c ;
 	cd ../
 	rm -rf banks-$pver.*
-	tar cvf banks-$pver.tar $pver/* --exclude="banks.xcodeproj" --exclude="lib"
+	tar cvf banks-$pver.tar --exclude="banks.xcodeproj" --exclude="lib" $pver/*
 	gzip banks-$pver.tar
 	scp banks-$pver.tar.gz $remoted/banks
 endif
@@ -91,7 +85,7 @@ if($pname == "gemc_evio2root") then
 	cd $locald/gemc_evio2root/
 	scons -c ;
 	rm -rf gemc_evio2root.tar.gz
-	tar cvf gemc_evio2root.tar * --exclude="evio2root" --exclude="make_log"
+	tar cvf gemc_evio2root.tar --exclude="evio2root" --exclude="make_log" *
 	gzip gemc_evio2root.tar
 	scp gemc_evio2root.tar.gz $remoted/gemc_evio2root
 endif

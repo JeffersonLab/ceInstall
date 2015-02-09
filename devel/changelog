@@ -3,6 +3,14 @@
  List of changes for all supported software
 
  -------------------------------------------
+2/9/15
+- first commit to github
+- Removed expat from dependencies
+- Added xcode developers tools installation instructions
+- Distinguishing between devel and 1.2 install instructions
+- Fixed tar command, directory list is at the end
+- Removed gemc 1.8 case
+
 2/3/15
 - added html instructions for the packages installation
 - automatically install instructions when tarballing ceInstall
@@ -40,6 +48,9 @@
 - removed go_qt now obsolete
 - patched go_geant4 for linux with CMAKE_CXX_FLAGS (for cmake < 3)
 - added go_qt with instructions on how to install qt from qt website
+- fixed go_tar comand line
+- removed 1.8 from go_tar
+
 
 10/28/14
 - Added CCDB to environment (testing)
