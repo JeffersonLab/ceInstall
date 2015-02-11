@@ -3,6 +3,9 @@
  List of changes for all supported software
 
  -------------------------------------------
+2/11/15
+- added i686 case for qt path
+
 2/9/15
 - first commit to github
 - Removed expat from dependencies
