@@ -9,7 +9,7 @@
   clhep 2.2.0.5
   qt 5.4
   geant4 10.1 (including data)
-
+  evio 4.4.4
 
 
 2/11/15
