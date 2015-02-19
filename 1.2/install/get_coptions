@@ -1,17 +1,20 @@
 #!/bin/csh -f
 
 
-if($1 == "release"|| $1 == "copt" || $1 == "arch" || $1 == "log"  || $1 == "repo" || $1 == "dir") then
+if($1 == "release"|| $1 == "copt" || $1 == "arch" || $1 == "log"  || $1 == "repo" || $1 == "dir" || $1 == "env") then
 	goto $1
-else
-	alias wget "wget --no-check-certificate"
 endif
+
+# Additional environment
+env:
+	alias wget "wget --no-check-certificate"
+if($1 == "env") exit
 
 
 # Release
 release:
 	set release  = (`../ce/osrelease.pl`)
-# overwriting OSRELEASE if user want to
+	# overwriting OSRELEASE if user want to
 	if($OSRELEASE != $release) then
 		set release = $OSRELEASE
 	endif

@@ -2,7 +2,12 @@
 
 
 # Additional settings at the top of get_coptions
-source get_coptions
+# Get evio from here:
+# https://coda.jlab.org/drupal/content/event-io-evio
+# then replace tne SConstruct there with the sane SConstruct and re-pack
+# can also remove the directory "java"
+
+source get_coptions env
 
 # Options
 set name     = evio
@@ -31,12 +36,13 @@ src:
 
 	# Getting source file
 	echo " > Installing evio version "$version" - release "$release". Getting and unpacking" $filename"..."
-	mkdir -p $EVIO
-	cd $EVIO/..
-	rm -rf   $EVIO
+	rm -rf $EVIO
+	mkdir -p $JLAB_SOFTWARE/evio
+	cd $JLAB_SOFTWARE/evio
 	rm -f      $filename
 	wget $repo/$filename
 	tar -zxpvf $filename > /dev/null
+	mv evio-$EVIO_VERSION $EVIO_VERSION
 if($1 == "src") exit
 
 # make

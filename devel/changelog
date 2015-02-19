@@ -3,6 +3,15 @@
  List of changes for all supported software
 
  -------------------------------------------
+2/19/15
+- fixed wrong log for get_coptions w/o parameters. Now giving "env" argument to it. Fixes for both 1.2 and devel versions
+- devel versions upgrades
+  clhep 2.2.0.5
+  qt 5.4
+  geant4 10.1 (including data)
+
+
+
 2/11/15
 - added i686 case for qt path
 

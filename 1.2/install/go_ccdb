@@ -6,7 +6,7 @@
 # ftp:/u/group/12gev_phys/www/packages/sources/ccdb
 
 # Additional settings at the top of get_coptions
-source get_coptions
+source get_coptions env
 
 # Options, Screen Log, Warnings
 set name     = ccdb

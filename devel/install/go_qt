@@ -1,7 +1,7 @@
 #!/bin/csh -f
 
 # Additional settings at the top of get_coptions
-source get_coptions
+source get_coptions env
 
 # Options, Screen Log, Warnings
 set arch     = `./get_coptions arch`
@@ -42,5 +42,6 @@ echo
 echo $JLAB_SOFTWARE/qt/$QT_VERSION
 echo
 echo and make sure to include the Source Components during the installation process.
+echo We do not need QtWebEngine and the Extras
 echo
 

@@ -13,7 +13,7 @@
 
 
 # Additional settings at the top of get_coptions
-source get_coptions
+source get_coptions env
 
 # Options
 # not putting geant4 on the repo script because of the data path
