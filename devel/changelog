@@ -3,6 +3,11 @@
  List of changes for all supported software
 
  -------------------------------------------
+
+5/4/15
+- root version for devel changed to 5.34.30
+
+
 2/19/15
 - fixed wrong log for get_coptions w/o parameters. Now giving "env" argument to it. Fixes for both 1.2 and devel versions
 - devel versions upgrades

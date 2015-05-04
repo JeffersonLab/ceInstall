@@ -1,22 +1,24 @@
 // The path to JLAB_SOFTWARE is set in each project settings.
 // This file should be included in any project xcode settings
 
+// Notice: to build libraries, use STATIC libraries
+// For some reason building dynamic libraries is so tricky and ask for  dependencies 
 
 // QT
 // the ** indicate all subdirs
 // NOTICE: some qt headers require the include directory
 // but it doesn't come with the normal installation
 // make sure to copy the headers manually
-QT_VERSION = 5.3.2
-QT_SYSTEM  = 5.3
+QT_VERSION = 5.4.0
+QT_SYSTEM  = 5.4
 QT_ARCH    = clang_64
 QTDIR      = $JLAB_SOFTWARE/qt/$QT_VERSION
 QTFRAMES   = $QTDIR/$QT_SYSTEM/$QT_ARCH/lib
-QT_HEADS   = $QTFRAMES/QtCore.framework/Headers $QTFRAMES/QtGui.framework/Headers/ $QTFRAMES/QtWidgets.framework/Headers
+QT_HEADS   = $QTFRAMES/QtCore.framework/Headers $QTFRAMES/QtGui.framework/Headers $QTFRAMES/QtWidgets.framework/Headers
 
 
 // EVIO
-EVIO_VERSION = 4.0
+EVIO_VERSION = 4.4
 EVIO         = $JLAB_SOFTWARE/evio/$EVIO_VERSION
 EVIO_LIBP    = $EVIO/lib
 EVIO_LIBS    =  -levioxx -levio -lexpat
