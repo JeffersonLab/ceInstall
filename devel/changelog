@@ -4,6 +4,10 @@
 
  -------------------------------------------
 
+5/27/15
+- added subversion to red-hat releases in osrelease.pl
+
+
 5/4/15
 - root version for devel changed to 5.34.30
 

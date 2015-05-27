@@ -10,7 +10,7 @@
 # To compile the Geant4 Examples:
 # mkdir example-b1 ; cd example-b1
 # cmake -DGeant4_DIR=$G4ROOT/$G4VERSION/lib/Geant$G4VERSION $G4ROOT/$G4VERSION/examples/basic/B3
-
+# make
 
 # Additional settings at the top of get_coptions
 source get_coptions env
