@@ -62,7 +62,7 @@ if($pname == "gemc") then
   scp changelog  $remoted/gemc
   cd ../../
 	rm -rf gemc-$pver.*
-	tar cvf gemc-$pver.tar  --exclude=".DS_Store" --exclude=".sconsign.dblite" --exclude=".entitlements" $pver/*
+	tar cvf gemc-$pver.tar  --exclude=".DS_Store" --exclude=".sconsign.dblite" --exclude=".git" --exclude=".entitlements" $pver/source $pver/api
 	gzip gemc-$pver.tar
 	scp gemc-$pver.tar.gz $remoted/gemc
 endif

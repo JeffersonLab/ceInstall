@@ -41,7 +41,7 @@ src:
 	cd source
 	rm -f      $filename
 	wget $repo/$filename
-	tar -zxpvf $filename > /dev/null
+	tar -zxpvf $filename >& /dev/null
 if($1 == "src") exit
 
 # make

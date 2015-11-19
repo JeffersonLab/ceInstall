@@ -4,13 +4,32 @@
 
  -------------------------------------------
 
+
+
+7/31/15
+- on mac, using active cpus
+- redirecting untar output to null whenever possible
+- better log for qt installation
+- devel version changes:
+  - clhep to 2.2.08
+  - qt to 5.5
+    Warning:
+    $QTDIR/lib/QtCore.framework/Versions/5/Headers/qobjectdefs.h
+	 Needs to be modified:
+	 #if defined(Q_CC_CLANG) && Q_CC_CLANG >= 306
+	 #  define Q_OBJECT_NO_OVERRIDE_WARNING
+	 //#  define Q_OBJECT_NO_OVERRIDE_WARNING      QT_WARNING_DISABLE_CLANG("-Winconsistent-missing-override")
+	 #else
+	 #  define Q_OBJECT_NO_OVERRIDE_WARNING
+	 #endif
+
+  - geant4 to 4.10.1.p02
+
 5/27/15
 - added subversion to red-hat releases in osrelease.pl
 
-
 5/4/15
 - root version for devel changed to 5.34.30
-
 
 2/19/15
 - fixed wrong log for get_coptions w/o parameters. Now giving "env" argument to it. Fixes for both 1.2 and devel versions
@@ -19,7 +38,6 @@
   qt 5.4
   geant4 10.1 (including data)
   evio 4.4.4
-
 
 2/11/15
 - added i686 case for qt path
@@ -48,13 +66,10 @@
 - adding skipping of certificate check for wget commands
 - releasing JLAB_VERSION 1.2
 - automatic download of qt installer with go_qt
-
-
-
+ 
 1/21/15
 - changed http to https in the jlab path in get_coptions
 - path set even if variables are set manually
-
 
 11/11/14
 - geant4 from 10.00.p02 to 10.00.p03.
@@ -94,9 +109,7 @@
 - system qt4 will now be used instead of re-compiling qt4
 - for Darwin, qt version still 4.8.5
 
-
 10/17/14
-
 - Added "system" option to QT_VERSION
 - Removed all references to "production" versioning
 - The files production.csh and devel.csh will still exist
@@ -108,20 +121,14 @@
 6/13/14
 Compiling gemc shared library by default when installing gemc
 
-
 5/19/14
 JANA env is not actuallly used by jana. JANA_HOME used instead.
-
 
 5/13/14
 xcode configuration for gemc sources fixed
 
 5/8/14
 Protecting against aliased ls (using \ls)
-
-
-
-
 
 6/13/14
 - Completed port of magnetic field
@@ -143,7 +150,6 @@ Protecting against aliased ls (using \ls)
 6/11/14
 - removed unnecessary variables in bst hit process
 - fixed lowercased ec process name
-
 
 6/10/14
 - removed ec material, now in ec package
@@ -201,7 +207,6 @@ Protecting against aliased ls (using \ls)
 - added "-h" option that does the same thing as "-h"
 - fixed integrateRaw to match variables name changes
 
-
 5/28/14
 - added Trimspaces to vector<string> functions
 - run_conditions: get_systems() now returns a map<string, string> : name, factory
@@ -256,13 +261,11 @@ Revision: 1912
 5/12/14
 - Added bst hit process to 2.0
 
-
 5/8/14
 - Fixed warning: no need to print unit warning when a number is zero
 
 5/6/14
 - Material factory: removing map item by key instead of iterator (which caused problems on some compiler).
-
 
 5/2/14
 - Improved log for cases when the variation is changed within the API scripts
@@ -271,7 +274,6 @@ Revision: 1912
 
 5/1/14
 - Added optical properties in gemc
-
 
 4/29/14
 Revision: 1871
@@ -284,26 +286,21 @@ Revision: 1866
 - Added Total Edep, Fastest time, to generated particle information in both EVIO and TXT output factories
 - Added stat, number of volumes hit / detector,  to generated particle information in both EVIO and TXT output factories
 
-
 4/22/2014
 Revision: 1864
-
 - Added original track information to hit: now one can track which original track was responsible
   for hits!
  This must be activated with  SAVE_ALL_MOTHERS, and INTEGRATEDRAW must contain
  the name of the sensitive detector of interest.
 
-
 4/15/2014
 Revision: 1843
-
 - solid pictures resized for better desplayed
 - Reorganized detector information window. Added material, type and dimensions, sensitivity.
 - Materials: if the material file is not found, it's ok - it may be a pre-defined G4 material.
 - default variation is main
 - add check for physics list name
 - add LIV and PEN for EM, add FTFP_BERT_HP for hadron
-
 
 4/2/2014
 - Removing obsolete MATERIALSDB option.
@@ -312,9 +309,7 @@ Revision: 1843
 - Do not open factory connection if no detector needs it
 - Fixed help
 
-
 4/1/2014
-
 - Changed elements, nelements to components, ncomponents
 - Added simple materials from MYSQL factory in addition to the CPP factory:
   1. molecular. Example:

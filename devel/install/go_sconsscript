@@ -23,7 +23,7 @@ cd       $JLAB_ROOT/$JLAB_VERSION/scons_bm/
 
 rm -f       $filename
 wget  $repo/$filename
-tar -zxpvf  $filename > /dev/null
+tar -zxpvf  $filename >& /dev/null
 
 echo "Done."
 echo

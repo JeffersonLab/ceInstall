@@ -29,7 +29,7 @@ wget $repo/$filename
 chmod u+x $filename
 
 echo
-echo Please install qt using the qt installer:
+echo Please install qt using the qt installer by typing:
 echo
      if($system == "Mac") then
 	echo open $filename
@@ -37,11 +37,12 @@ else if($system == "Mac") then
 	echo ./$filename
 endif
 echo
+echo Follow the installator instructions. You can skip the creation of a qt account.
 echo Make sure that the installation location is:
 echo
 echo $JLAB_SOFTWARE/qt/$QT_VERSION
 echo
 echo and make sure to include the Source Components during the installation process.
-echo We do not need QtWebEngine and the Extras
+echo We do not need QtWebEngine and the Extras, or any of the commercial packages (like Qt3D)
 echo
 

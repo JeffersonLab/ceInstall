@@ -63,7 +63,7 @@ data:
 	set file = (`\ls *.tar.gz`)
 	foreach f ($file)
 		echo Extracting $f
-		tar zxpf $f
+		tar zxpf $f >& /dev/null
 	end
 	rm -f *.tar.gz
 if($1 == "data") exit
@@ -84,7 +84,7 @@ src:
 
 	rm -f              $filename
 	wget  $repo/geant4/$filename
-	tar -zxpvf         $filename > /dev/null
+	tar -zxpvf         $filename >& /dev/null
 if($1 == "src") exit
 
 

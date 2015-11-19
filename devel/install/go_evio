@@ -41,7 +41,7 @@ src:
 	cd $JLAB_SOFTWARE/evio
 	rm -f      $filename
 	wget $repo/$filename
-	tar -zxpvf $filename > /dev/null
+	tar -zxpvf $filename >& /dev/null
 	mv evio-$EVIO_VERSION $EVIO_VERSION
 if($1 == "src") exit
 

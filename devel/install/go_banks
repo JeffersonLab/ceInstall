@@ -32,7 +32,7 @@ cd       $JLAB_SOFTWARE/banks
 
 rm         $filename
 wget $repo/$filename
-tar -zxpvf $filename > /dev/null
+tar -zxpvf $filename >& /dev/null
 
 
 # Compiling

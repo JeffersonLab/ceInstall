@@ -28,7 +28,7 @@ cd       $JLAB_SOFTWARE/ccdb
 
 rm -f      $filename
 wget $repo/$filename
-tar -zxpvf $filename > /dev/null
+tar -zxpvf $filename >& /dev/null
 
 
 # Compiling

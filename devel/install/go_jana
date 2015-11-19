@@ -38,7 +38,7 @@ cd $JLAB_SOFTWARE/jana/jana"_"$JANA_VERSION
 
 setenv BMS_OSNAME $OSRELEASE
 
-scons $opt install > build_log
+scons $opt install >& build_log
 
 mv $BMS_OSNAME/* $JLAB_SOFTWARE/jana/$JANA_VERSION
 
