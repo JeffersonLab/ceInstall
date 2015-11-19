@@ -1,0 +1,153 @@
+#!/bin/csh -f
+
+# More geant4 build options:
+# http://geant4.web.cern.ch/geant4/UserDocumentation/UsersGuides/InstallationGuide/html/ch02s03.html
+#
+# Added includes manually for cmake 2.8.
+# cmake 3.0 can accept directives where the include dirs are separated by semi-colon
+
+
+# To compile the Geant4 Examples:
+# mkdir example-b1 ; cd example-b1
+# cmake -DGeant4_DIR=$G4ROOT/$G4VERSION/lib/Geant$G4VERSION $G4ROOT/$G4VERSION/examples/basic/B3
+# make
+
+# Additional settings at the top of get_coptions
+source get_coptions env
+
+# Options
+# not putting geant4 on the repo script because of the data path
+set name     = geant4
+set release  = `./get_coptions release`
+set repo     = `./get_coptions repo`
+set version  = $GEANT4_VERSION
+set filename = geant$GEANT4_VERSION".tar.gz"
+set arch     = `./get_coptions arch`
+set opt      = `./get_coptions copt`
+
+# Write options on screen
+./get_coptions log $name $version $filename $release $arch $opt
+
+set oarch = ""
+if($arch == "32") then
+	set oarch = ' -DCMAKE_CXX_FLAGS=-m32 -DCPACK_SYSTEM_NAME=$OSRELEASE'
+endif
+echo " > Special Compilation Options: " $oarch 
+echo
+
+# By default data is set to off
+# Getting data from jlab repository
+# Because jlab farm machine are inside firewall
+# and G4 data servers cannot be accessed
+set DATA = 'OFF'
+echo " > Data set to: "$DATA
+
+set cdir    = (`pwd`)
+
+if($1 == "data" || $1 == "src" || $1 == "make") then
+	goto $1
+endif
+
+# data
+data:
+	# Getting data file
+	echo " > Installing geant4 data "$version" - release "$release"."
+
+	rm -rf   $JLAB_ROOT/noarch/$G4DATA_VERSION/data
+	mkdir -p $JLAB_ROOT/noarch/$G4DATA_VERSION/data
+	cd       $JLAB_ROOT/noarch/$G4DATA_VERSION/data
+
+	wget -r -np -nH --cut-dir=5 $repo/geant4_data/$G4VERSION/
+	rm -f index* robots.txt
+
+	set file = (`\ls *.tar.gz`)
+	foreach f ($file)
+		echo Extracting $f
+		tar zxpf $f >& /dev/null
+	end
+	rm -f *.tar.gz
+if($1 == "data") exit
+
+
+
+
+# Source Build
+src:
+	# Getting source file
+	echo " > Installing geant4 version "$version" - release "$release". Getting and unpacking" $filename"..."
+
+	rm -rf   $G4ROOT/$G4VERSION
+	mkdir -p $G4ROOT/$G4VERSION/source $G4ROOT/$G4VERSION/build
+
+	# Unpacking file, patching if needed
+	cd $G4ROOT/$G4VERSION/source
+
+	rm -f              $filename
+	wget  $repo/geant4/$filename
+	tar -zxpvf         $filename >& /dev/null
+if($1 == "src") exit
+
+
+
+# make
+make:
+
+	set conf_options = ""
+	set x11_option   = ""
+	# Linux Options
+	if (`uname` == "Linux") then
+		set x11_option = "-DGEANT4_USE_OPENGL_X11=ON"
+		set opt1 = `echo -I$QTDIR/include`
+		set opt2 = `echo -I$QTDIR/include/QtOpenGL`
+		set opt3 = `echo -I$QTDIR/include/QtWidgets`
+		set opt4 = `echo -I$QTDIR/include/QtGui`
+		set opt5 = `echo -I$QTDIR/include/QtCore`
+		set opt6 = `echo -I$QTDIR/include/QtPrintSupport`
+		set opt7 = ' -W -Wall -pedantic -Wno-non-virtual-dtor -Wno-long-long -Wwrite-strings -Wpointer-arith -Woverloaded-virtual -pipe'
+		set conf_options = "$opt1 $opt2 $opt3 $opt4 $opt5 $opt6 $opt7"
+	endif
+
+	# Compiling
+	cd $G4ROOT/$G4VERSION/build
+	cmake $oarch $x11_option    -DCMAKE_INSTALL_PREFIX=$G4ROOT/$G4VERSION \
+								-DGEANT4_USE_GDML=ON \
+								-DXERCESC_ROOT_DIR=$XERCESCROOT \
+								-DGEANT4_USE_QT=ON \
+								-DQT_QMAKE_EXECUTABLE=$QTDIR/bin/qmake \
+								-DCMAKE_INSTALL_DATAROOTDIR=$JLAB_ROOT/noarch \
+								-DCLHEP_ROOT_DIR=$CLHEP_BASE_DIR \
+								-DGEANT4_INSTALL_DATA=$DATA \
+								-DGEANT4_BUILD_EXAMPLES=OFF \
+								-DCMAKE_CXX_FLAGS="$conf_options" \
+							    $G4ROOT/$G4VERSION/source/"geant"$G4VERSION
+
+	echo " > Compiling geant4 source (log will be in "\$G4ROOT/$G4VERSION/"make_log)..."
+	make $opt          > $G4ROOT/$G4VERSION/make_log
+	make install $opt >> $G4ROOT/$G4VERSION/make_log
+
+	# Copying the examples
+	cp -r $G4ROOT/$G4VERSION/source/"geant"$G4VERSION/examples $G4ROOT/$G4VERSION
+
+
+if($1 == "make") exit
+
+# Cleaning up
+rm -rf $G4ROOT/$G4VERSION/source $G4ROOT/$G4VERSION/build
+
+
+
+
+# Done!
+echo done
+echo
+
+
+
+
+
+
+
+
+
+
+

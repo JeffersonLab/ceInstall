@@ -1,0 +1,48 @@
+#!/bin/csh -f
+
+# Additional settings at the top of get_coptions
+source get_coptions env
+
+# Options, Screen Log, Warnings
+set arch     = `./get_coptions arch`
+set release  = `./get_coptions release`
+set repo     = `./get_coptions repo`/qt
+
+set system = ""
+set filename = ""
+if(`echo $release | grep mac   | wc | awk '{print $1}'` == "1") then
+	set filename = "qt-opensource-mac-x64-clang-"$QT_VERSION".dmg"
+	set system = "Mac"
+else if(`echo $release | grep Linux | wc | awk '{print $1}'` == "1") then
+	if($arch == "32") then
+		set filename = "qt-opensource-linux-x86-"$QT_VERSION".run"
+	else
+		set filename = "qt-opensource-linux-x64-"$QT_VERSION".run"
+	endif
+	set system = "Linux"
+endif
+
+echo
+echo $system detected. Downloading $filename
+
+wget $repo/$filename
+chmod u+x $filename
+
+echo
+echo Please install qt using the qt installer by typing:
+echo
+     if($system == "Mac") then
+	echo open $filename
+else if($system == "Mac") then
+	echo ./$filename
+endif
+echo
+echo Follow the installator instructions. You can skip the creation of a qt account.
+echo Make sure that the installation location is:
+echo
+echo $JLAB_SOFTWARE/qt/$QT_VERSION
+echo
+echo and make sure to include the Source Components during the installation process.
+echo We do not need QtWebEngine and the Extras, or any of the commercial packages (like Qt3D)
+echo
+

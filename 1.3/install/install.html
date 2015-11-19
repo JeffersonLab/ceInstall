@@ -1,0 +1,186 @@
+<html>
+	
+<br>
+<h2> Software installation instructions </h2>
+ 
+ These instructions are verified on:
+<ul> Linux:</ul>
+<ul>
+	<li> CentOS 6.5</li>
+	<li> Ubuntu 12.04</li>
+	<li> Fedora 20</li>
+</ul>
+
+<ul> Mac:</ul>
+<ul>
+	<li>  Mountain Lion</li>
+	<li> Yosemite</li>
+</ul>
+
+<hr>
+
+ <h2> General Requirements:</h2>
+ 
+ <ul>
+	 <li> about 4GB of disk space</li>
+	 <li> csh shell </li>
+	 <li> cmake >= 2.8 (for clhep and geant4)</li>
+	 <li> network connection to dwonload packages during installation</li>
+	 <li> wget, scons, mysql</li>
+ </ul>
+
+
+<ul>
+  <h3> MAC OS specific requirements</h3>
+  <i> Starting with Yosemite, the software to install packages is <a href="http://brew.sh"> homebrew</a>.
+       You can install packages with commands like: </i>
+  <pre> brew install wget. </pre>
+	<ul>
+    <li>xcode and developers tools. Both can be installed, each with the line (you have to run it twice):
+      <pre> xcode-select -install </pre>
+    </li>
+	</ul>
+
+</ul>
+
+<ul>
+	<h3> Ubuntu (Debian-line) specific requirements</h3>
+	<i> These can be installed with apt-get like this:  </i>
+	<pre> apt-get install libmysqlclient. </pre>
+	<ul>
+		<li> g++ </li>
+		<li> libmysqlclient </li>
+		<li> ibmysqlclient-dev</li>
+		<li> libx11-dev</li>
+		<li> libxext</li>
+		<li> libxext-dev</li>
+		<li> libglu1-mesa-dev</li>
+		<li> libxt-dev</li>
+		<li> libxmu-dev</li>
+		<li> llibexpat1-dev</li>
+		<li> libglib-dev</li>
+	</ul>
+</ul>
+
+<ul>
+	<h3> Fedora (red-hat line) specific requirements</h3>
+	<i> These can be installed with yum like this:  </i>
+	<pre> yum install community-mysql. </pre>
+	<ul>
+		<li> gcc-c++ </li>
+		<li> community-mysql </li>
+		<li> community-mysql-devel</li>
+		<li> libx11-devel</li>
+		<li> libGLU-devel</li>
+		<li> libXt-devel</li>
+		<li> libXmu-devel</li>
+		<li> expat1-devel</li>
+	</ul>
+</ul>
+<br>
+<hr>
+
+<h2> Installation:</h2>
+
+
+<ol>
+	<li>
+		Choose a place to install the software, and a JLAB_VERSION.<br>
+		 A common location choice is <b>/opt/jlab_software</b>. JLAB_VERSION can be <b>1.1</b>, <b>1.2</b>,
+		 or <b>"devel"</b>.
+		 <br><br>
+	 
+		 Set the environment variable accordingly:
+
+         <pre>
+setenv JLAB_ROOT /opt/jlab_software
+setenv JLAB_VERSION devel
+		 </pre>
+	</li>
+	
+	
+	
+	<li>Get the installation scripts:
+	<pre>
+cd $JLAB_ROOT
+wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_$JLAB_VERSION.tar.gz
+tar -zxpvf ceInstall_$JLAB_VERSION.tar.gz
+	</pre>
+
+	</li>
+
+	<li>
+		From now on you can use these lines to set up the environment. Remember to cleanup your login scripts
+		to avoid conflicts.
+	<pre>
+setenv JLAB_ROOT /opt/jlab_software
+setenv JLAB_VERSION devel
+source $JLAB_ROOT/$JLAB_VERSION/ce/jlab.csh
+	</pre>
+
+	</li>
+	
+	<li>Start a new shell. Now you should see a log similar to this
+		<pre>
+> Common Environment Version: <devel>  (Tue, 3 Feb 2015)
+> Running as ungaro on Maurizios-Mac-Pro.local
+> OS Release:    Darwin_macosx10.8-x86_64-gcc4.2.1
+> JLAB_ROOT set to:     /opt/jlab_software
+> /opt/jlab_software/devel/Darwin_macosx10.8-x86_64-gcc4.2.1 is not a directory. Creating it.
+				
+? Attention: No CLHEP installation found.
+? Attention: No XERCES installation found.
+? Attention: No mysql installation found.
+? Attention: No QTDIR installation found.
+? Attention: No GEANT4 installation found.
+? Attention: No ROOT installation found.
+? Attention: No GEMC installation found.
+? Attention: No JANA installation found.
+? Attention: No Scons Script installation found.
+? Attention: No EVIO installation found.
+? Attention: No BANKS installation found.
+		</pre>
+		
+	</li>
+	If you do, great. You're ready to run the installation scripts<br><br>
+
+
+	<li>
+		Run the installation scripts for the packages you wish to install:
+		<pre>
+cd $JLAB_ROOT/$JLAB_VERSION/install
+			
+./go_clhep
+./go_xercesc
+./go_mysql
+./go_qt
+./go_geant4
+./go_sconsscript
+./go_evio
+./go_gemc
+./go_fields
+./go_root
+./go_banks
+./go_jana
+		</pre>
+		
+	</li>
+</ol>
+
+
+
+
+
+
+
+
+</html>
+
+
+
+
+
+
+
+
+
