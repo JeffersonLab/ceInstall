@@ -3,7 +3,7 @@
 # First argument is package name
 # Second argument is version
 
-if($#argv != 2) then
+if($#argv != 2 && $1 != doc) then
 	echo " "
 	echo "Usage:   "
 	echo  "  >> go_tar package version"
@@ -88,6 +88,12 @@ if($pname == "gemc_evio2root") then
 	tar cvf gemc_evio2root.tar --exclude="evio2root" --exclude="make_log" *
 	gzip gemc_evio2root.tar
 	scp gemc_evio2root.tar.gz $remoted/gemc_evio2root
+endif
+
+
+# scons scripts
+if($pname == "doc") then
+	scp install/install.html $remoted/ceInstall
 endif
 
 
