@@ -43,6 +43,6 @@ echo
 echo $JLAB_SOFTWARE/qt/$QT_VERSION
 echo
 echo and make sure to include the Source Components during the installation process.
-echo We do not need QtWebEngine and the Extras, or any of the commercial packages (like Qt3D)
+echo We do not need QtWebEngine and the Extras, or any of the commercial packages \(like Qt3D\)
 echo
 
