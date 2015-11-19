@@ -4,7 +4,20 @@
 
  -------------------------------------------
 
+11/19/15
+Freeze JLAB_VERSION devel to 1.3:
 
+ - DEFAULT_CLHEP_VERSION    = 2.2.0.8
+ - DEFAULT_QT_VERSION       = 5.5.0
+ - DEFAULT_XERCESC_VERSION  = 3.1.1
+ - DEFAULT_GEANT4_VERSION   = 4.10.01.p02
+ - DEFAULT_GEMC_VERSION     = 2.3
+ - DEFAULT_JANA_VERSION     = 0.7.2
+ - DEFAULT_ROOT_VERSION     = 5.34.30
+ - DEFAULT_BANKS_VERSION    = 1.2
+ - DEFAULT_SCONS_BM_VERSION = 1.3
+ - DEFAULT_EVIO_VERSION     = 4.4.4
+ - DEFAULT_CCDB_VERSION     = 1.03
 
 7/31/15
 - on mac, using active cpus
