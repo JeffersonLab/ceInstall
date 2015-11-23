@@ -11,6 +11,14 @@ set version  = $CLHEP_VERSION
 set filename =  clhep"-"$CLHEP_VERSION".tgz"
 set arch     = `./get_coptions arch`
 set opt      = `./get_coptions copt`
+set cmakev   = `./get_coptions cmakev | awk '{print $1}'`
+
+# Exit if cmake is not >= 2.8
+if($cmakev != "OK") then
+	./get_coptions cmakev
+	exit
+endif
+
 
 # Write options on screen
 ./get_coptions log $name $version $filename $release $arch $opt

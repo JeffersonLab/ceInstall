@@ -1,7 +1,7 @@
 #!/bin/csh -f
 
 
-if($1 == "release"|| $1 == "copt" || $1 == "arch" || $1 == "log"  || $1 == "repo" || $1 == "dir" || $1 == "env") then
+if($1 == "release"|| $1 == "copt" || $1 == "arch" || $1 == "log"  || $1 == "repo" || $1 == "dir" || $1 == "env" || $1 == "cmakev") then
 	goto $1
 endif
 
@@ -67,4 +67,18 @@ if($1 == "dir") exit
 
 
 
+# check the cmake version
+# Issue warning if it's not >= 2.8
+cmakev:
+	set cmake_version = `cmake --version | awk '{print $3}'`
+	set cmake_mainversion = `cmake --version | awk '{print $3}' | awk -F. '{print $1}'`
+	set cmake_subversion = `cmake --version | awk '{print $3}' | awk -F. '{print $2}' | awk -F- '{print $1}'`
+	if($cmake_mainversion <2) then
+		echo cmake version is $cmake_version, 2.8 or higher is needed
+	else if($cmake_mainversion == 2 && $cmake_subversion < 8) then
+		echo cmake version is $cmake_version, 2.8 or higher is needed
+	else
+		echo OK with cmake version $cmake_version
+	endif
+if($1 == "cmakev") exit
 

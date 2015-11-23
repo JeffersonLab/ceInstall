@@ -34,16 +34,14 @@ rm         $filename
 wget $repo/$filename
 tar -zxpvf $filename >& /dev/null
 
+# temp link of io and api/perl
+# for backward compatibility
+cd $JLAB_SOFTWARE/gemc/$GEMC_VERSION/
+ln -s api/perl io
 
 # Compiling
-# different structure for gemc < 2
-if($GEMC_VERSION == "1.8") then
-	cd $JLAB_SOFTWARE/gemc/$GEMC_VERSION
-	echo " > Compiling gemc source (log will be in "\$JLAB_SOFTWARE/"gemc/$GEMC_VERSION/build_log )..."
-else
-	cd $JLAB_SOFTWARE/gemc/$GEMC_VERSION/source
-	echo " > Compiling gemc source (log will be in "\$JLAB_SOFTWARE/"gemc/$GEMC_VERSION/source/build_log )..."
-endif
+cd $JLAB_SOFTWARE/gemc/$GEMC_VERSION/source
+echo " > Compiling gemc source (log will be in "\$GEMC"/source/build_log )..."
 
 scons $opt $ooarch  LIBRARY="shared" > build_log
 
