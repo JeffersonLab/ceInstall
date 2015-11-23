@@ -5,7 +5,7 @@
  -------------------------------------------
 
 11/23/15
-- re-implemented cmake version checking
+- re-implemented cmake version checking (fixed initial typo)
 - no need for gemc 1.8 compatibility check anymore
 
 
