@@ -71,7 +71,6 @@ if($1 == "dir") exit
 # Issue warning if it's not >= 2.8
 cmakev:
 	set cmake_version     = `cmake --version | head -1 | awk '{print $3}' | awk -F- '{print $1}' | awk -F. '{print $1"."$2}'`
-	echo $cmake_version
 	if( `echo "$cmake_version < 2.8" | bc `) then
 		echo cmake version is $cmake_version, 2.8 or higher is needed
 	else
