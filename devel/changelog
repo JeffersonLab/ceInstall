@@ -7,6 +7,7 @@
 11/24/15
 - switched to the latest version of root5: 5.34.34
 - switched to the latest version of ccdb: 1.05
+- switched to the latest version of jana: 0.7.3
 
 11/23/15
 - re-implemented cmake version checking (fixed initial typo)
