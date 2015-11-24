@@ -4,6 +4,9 @@
 
  -------------------------------------------
 
+11/24/15
+- switched to the latest version of root5: 5.34.34
+
 11/23/15
 - re-implemented cmake version checking (fixed initial typo)
 - no need for gemc 1.8 compatibility check anymore
