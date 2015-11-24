@@ -97,6 +97,9 @@ if($pname == "doc") then
 endif
 
 
+# To prepare the ccdb package:
+# tar cvf ccdb_1.05-src.tar --exclude="ccdb_1.05/.svn" ccdb_1.05
+
 echo
 echo
 
