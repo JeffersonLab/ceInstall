@@ -2,7 +2,7 @@
 
 # Get date from:
 # svn info https://phys12svn.jlab.org/repos/ceInstall/$JLAB_VERSION/ce | grep "Last Changed Date"
-set CE_DATE = "(Mon, 20 Oct 2014)"
+set CE_DATE = "(Mon, 30 Nov 2015)"
 
 
 # Software packages

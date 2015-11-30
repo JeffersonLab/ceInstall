@@ -42,7 +42,6 @@ echo Make sure that the installation location is:
 echo
 echo $JLAB_SOFTWARE/qt/$QT_VERSION
 echo
-echo and make sure to include only the clang64 and Source Components during the installation process.
-echo We do not need QtWebEngine and the Extras, or any of the commercial packages \(like Qt3D, Qt Script, etc\)
+echo and make sure to include the Source Components during the installation process.
 echo
 
