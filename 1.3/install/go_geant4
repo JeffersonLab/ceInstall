@@ -125,14 +125,14 @@ make:
 	make $opt          > $G4ROOT/$G4VERSION/make_log
 	make install $opt >> $G4ROOT/$G4VERSION/make_log
 
-	# Copying the examples
+	# Copying the source code
 	cp -r $G4ROOT/$G4VERSION/source/"geant"$G4VERSION/examples $G4ROOT/$G4VERSION
 
 
 if($1 == "make") exit
 
 # Cleaning up
-rm -rf $G4ROOT/$G4VERSION/source $G4ROOT/$G4VERSION/build
+rm -rf $G4ROOT/$G4VERSION/build
 
 
 

@@ -67,7 +67,7 @@ if($pname == "gemc") then
 		cd ../../
 	endif
 	rm -rf gemc-$pver.*
-	tar cvf gemc-$pver.tar $pver/* --exclude=".DS_Store" --exclude=".sconsign.dblite" --exclude=".entitlements"
+	tar cvf gemc-$pver.tar $pver/*
 	gzip gemc-$pver.tar
 	scp gemc-$pver.tar.gz $remoted/gemc
 endif

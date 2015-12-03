@@ -3,6 +3,14 @@
  List of changes for all supported software
 
  -------------------------------------------
+12/2/15
+- do not remove geant4 source upon installation
+
+
+11/30/15
+- improved instructions on go_qt
+- fixed date for this release
+- improved installation instructions
 
 11/24/15
 - switched to the latest version of root5: 5.34.34
