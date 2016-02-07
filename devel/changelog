@@ -4,6 +4,13 @@
 
  -------------------------------------------
 
+2/6/16
+- removed old version of fedora
+- removed SunOs - aww aww...
+- default compiler for mac is clang not gcc anymore
+- for red-hat line, script should now be general, assuming the format will not change
+
+
 12/3/15
 - changed ccdb naming conventions
 
