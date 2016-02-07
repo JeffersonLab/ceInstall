@@ -14,7 +14,7 @@ endif
 
 set pname   = $1
 set pver    = $2
-set remoted = "ftp:/u/group/12gev_phys/www/packages/sources"
+set remoted = "ftp.jlab.org:/u/group/12gev_phys/www/packages/sources"
 set locald  = /opt/projects
 
 echo

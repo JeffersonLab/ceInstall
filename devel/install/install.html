@@ -1,6 +1,5 @@
 <html>
 	
-<br>
 <h2> Software installation instructions </h2>
  
  These instructions are verified on:
@@ -17,6 +16,7 @@
     <li> El Capitan</li>
 </ul>
 
+Please send any corrections to <a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">Maurizio Ungaro</a>.
 <hr>
 
  <h2> General Requirements:</h2>
@@ -110,7 +110,7 @@ tar -zxpvf ceInstall_$JLAB_VERSION.tar.gz
 		to avoid conflicts.
 	<pre>
 setenv JLAB_ROOT /opt/jlab_software
-setenv JLAB_VERSION devel
+setenv JLAB_VERSION 1.3
 source $JLAB_ROOT/$JLAB_VERSION/ce/jlab.csh
 	</pre>
 
@@ -118,11 +118,11 @@ source $JLAB_ROOT/$JLAB_VERSION/ce/jlab.csh
 	
 	<li>Start a new shell. Now you should see a log similar to this
 		<pre>
-> Common Environment Version: <devel>  (Tue, 3 Feb 2015)
+> Common Environment Version: <1.3>  (Tue, 3 Feb 2015)
 > Running as ungaro on Maurizios-Mac-Pro.local
-> OS Release:    Darwin_macosx10.8-x86_64-gcc4.2.1
+> OS Release:    Darwin__macosx10.11-x86_64-clang7.0.2
 > JLAB_ROOT set to:     /opt/jlab_software
-> /opt/jlab_software/devel/Darwin_macosx10.8-x86_64-gcc4.2.1 is not a directory. Creating it.
+> /opt/jlab_software/1.3/Darwin__macosx10.11-x86_64-clang7.0.2 is not a directory. Creating it.
 				
 ? Attention: No CLHEP installation found.
 ? Attention: No XERCES installation found.
@@ -147,7 +147,7 @@ source $JLAB_ROOT/$JLAB_VERSION/ce/jlab.csh
 
 
 	<li>
-		Run the installation scripts for the packages you wish to install:
+		You can choose the packages you wish to install by executing the corresponding script:
 		<pre>
 cd $JLAB_ROOT/$JLAB_VERSION/install
 			
