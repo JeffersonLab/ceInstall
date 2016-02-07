@@ -4,16 +4,17 @@
 <h2> Software installation instructions </h2>
  
  These instructions are verified on:
-<ul> Linux:</ul>
+<ul> <b>Linux:</b></ul>
 <ul>
 	<li> CentOS 6.5</li>
 	<li> Ubuntu 12.04</li>
 	<li> Fedora 21</li>
 </ul>
 
-<ul> Mac:</ul>
+<ul> <b>Mac:</b></ul>
 <ul>
 	<li> Yosemite</li>
+    <li> El Capitan</li>
 </ul>
 
 <hr>
@@ -88,7 +89,8 @@
 
          <pre>
 setenv JLAB_ROOT /opt/jlab_software
-setenv JLAB_VERSION devel
+setenv JLAB_VERSION 1.3
+mkdir -p $JLAB_ROOT/$JLAB_VERSION
 		 </pre>
 	</li>
 	
@@ -136,7 +138,12 @@ source $JLAB_ROOT/$JLAB_VERSION/ce/jlab.csh
 		</pre>
 		
 	</li>
-	If you do, great. You're ready to run the installation scripts<br><br>
+	If you do, great. You're ready to run the installation scripts<br>
+    Notice: if you already have some existing environment variable, you may want to
+    clear it or use the option "overwrite":<br>
+    <pre>
+        source $JLAB_ROOT/$JLAB_VERSION/ce/jlab.csh overwrite
+    </pre>
 
 
 	<li>
