@@ -1,8 +1,13 @@
 #!/bin/csh -f
 
+setenv overwrite "no"
+if($1 == "overwrite") then
+	setenv overwrite "yes"
+endif
+
 # Get date from:
-# svn info https://phys12svn.jlab.org/repos/ceInstall/$JLAB_VERSION/ce | grep "Last Changed Date"
-set CE_DATE = "(Mon, 30 Nov 2015)"
+# git log -1
+set CE_DATE = "(Sat Feb 6 2016)"
 
 
 # Software packages

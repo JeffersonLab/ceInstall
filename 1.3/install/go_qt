@@ -25,11 +25,12 @@ endif
 echo
 echo $system detected. Downloading $filename
 
+rm $filename
 wget $repo/$filename
 chmod u+x $filename
 
 echo
-echo Please install qt using the qt installer by typing:
+echo Please execute:
 echo
      if($system == "Mac") then
 	echo open $filename
@@ -37,11 +38,11 @@ else if($system == "Linux") then
 	echo ./$filename
 endif
 echo
-echo Follow the installator instructions. You can skip the creation of a qt account.
-echo Make sure that the installation location is:
+echo Then follow the installation instructions. You can skip the creation of a qt account.
+echo Make sure to clear the installation location and use this instead:
 echo
 echo $JLAB_SOFTWARE/qt/$QT_VERSION
 echo
-echo and make sure to include the Source Components during the installation process.
+echo Make sure to include the Source Components during the installation process. Extras are not needed.
 echo
 

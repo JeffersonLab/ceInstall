@@ -3,7 +3,7 @@
 # First argument is package name
 # Second argument is version
 
-if($#argv != 2) then
+if($#argv != 2 && $1 != doc) then
 	echo " "
 	echo "Usage:   "
 	echo  "  >> go_tar package version"
@@ -14,7 +14,7 @@ endif
 
 set pname   = $1
 set pver    = $2
-set remoted = "ftp:/u/group/12gev_phys/www/packages/sources"
+set remoted = "ftp.jlab.org:/u/group/12gev_phys/www/packages/sources"
 set locald  = /opt/projects
 
 echo
@@ -90,6 +90,15 @@ if($pname == "gemc_evio2root") then
 	scp gemc_evio2root.tar.gz $remoted/gemc_evio2root
 endif
 
+
+# scons scripts
+if($pname == "doc") then
+	scp install/install.html $remoted/ceInstall
+endif
+
+
+# To prepare the ccdb package:
+# tar cvf ccdb_1.05-src.tar --exclude="ccdb_1.05/.svn" ccdb_1.05
 
 echo
 echo

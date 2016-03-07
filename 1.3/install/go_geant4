@@ -8,7 +8,7 @@
 
 
 # To compile the Geant4 Examples:
-# mkdir example-b1 ; cd example-b1
+# mkdir example-b3 ; cd example-b3
 # cmake -DGeant4_DIR=$G4ROOT/$G4VERSION/lib/Geant$G4VERSION $G4ROOT/$G4VERSION/examples/basic/B3
 # make
 
