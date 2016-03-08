@@ -57,9 +57,19 @@ if ($uname eq 'Linux')
 	elsif (-e '/etc/redhat-release')
 	{
 		my $releaseString = `cat /etc/redhat-release`;
-        $releaseString =~ s/release//;
-        my @releaseN = split " ", $releaseString;
-        $release = $releaseN[0].$releaseN[1];
+		if    ($releaseString =~ /^CentOS.*/)     { $release = 'CentOS'; }
+		elsif ($releaseString =~ /^Red.*/)        { $release = 'RedHat'; }
+		elsif ($releaseString =~ /^Scientific.*/) { $release = 'SL'; }
+		
+		# get everything after release
+		my @releaseN = split /release/, $releaseString;
+		# there may be a version in parenthesis
+		my @releaseNs = split /\(/, $releaseN[1];
+		# getting just the number
+		my $relVersion = $releaseNs[0];
+		# remove spaces at the beginning and end
+		$relVersion =~ s/^\s+|\s+$//g;
+		$release = $release.$relVersion;
 	}
 	### Ubuntu
 	elsif (-e '/etc/lsb-release')
@@ -75,7 +85,7 @@ if ($uname eq 'Linux')
 	###
 	else
 	{
-        print STDERR "unrecognized Linux release\n";
+		print STDERR "unrecognized Linux release\n";
 		$release = 'linuxUnknown';
 	}
     my $compV = qx(gcc -dumpversion);

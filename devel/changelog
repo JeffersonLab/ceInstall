@@ -4,6 +4,9 @@
 
  -------------------------------------------
 
+3/8/16
+ - fixing osrelease for red hat strings
+
 3/7/16
  - updating G4 to 10.1.p03 for JLAB_VERSION 1.3
  - updated 1.3 version to reflect devel changes
