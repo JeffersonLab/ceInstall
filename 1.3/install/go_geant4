@@ -9,7 +9,7 @@
 
 # To compile the Geant4 Examples:
 # mkdir example-b3 ; cd example-b3
-# cmake -DGeant4_DIR=$G4ROOT/$G4VERSION/lib/Geant$G4VERSION $G4ROOT/$G4VERSION/examples/basic/B3
+# cmake -DGeant4_DIR=$G4INSTALL/lib/Geant$G4VERSION $G4INSTALL/examples/basic/B3
 # make
 
 # Additional settings at the top of get_coptions
@@ -42,6 +42,9 @@ echo
 set DATA = 'OFF'
 echo " > Data set to: "$DATA
 
+rm -rf   $G4INSTALL
+
+
 set cdir    = (`pwd`)
 
 if($1 == "data" || $1 == "src" || $1 == "make") then
@@ -53,9 +56,8 @@ data:
 	# Getting data file
 	echo " > Installing geant4 data "$version" - release "$release"."
 
-	rm -rf   $G4ROOT/$G4VERSION/data
-	mkdir -p $G4ROOT/$G4VERSION/data
-	cd       $G4ROOT/$G4VERSION/data
+	mkdir -p $G4INSTALL/data/$G4DATA_VERSION/data
+	cd       $G4INSTALL/data/$G4DATA_VERSION/data
 
 	wget -r -np -nH --cut-dir=5 $repo/geant4_data/$G4VERSION/
 	rm -f index* robots.txt
@@ -76,11 +78,11 @@ src:
 	# Getting source file
 	echo " > Installing geant4 version "$version" - release "$release". Getting and unpacking" $filename"..."
 
-	rm -rf   $G4ROOT/$G4VERSION
-	mkdir -p $G4ROOT/$G4VERSION/source $G4ROOT/$G4VERSION/build
+	rm -rf   $G4INSTALL
+	mkdir -p $G4INSTALL/source $G4INSTALL/build
 
 	# Unpacking file, patching if needed
-	cd $G4ROOT/$G4VERSION/source
+	cd $G4INSTALL/source
 
 	rm -f              $filename
 	wget  $repo/geant4/$filename
@@ -108,31 +110,31 @@ make:
 	endif
 
 	# Compiling
-	cd $G4ROOT/$G4VERSION/build
-	cmake $oarch $x11_option    -DCMAKE_INSTALL_PREFIX=$G4ROOT/$G4VERSION \
+	cd $G4INSTALL/build
+	cmake $oarch $x11_option    -DCMAKE_INSTALL_PREFIX=$G4INSTALL \
 								-DGEANT4_USE_GDML=ON \
 								-DXERCESC_ROOT_DIR=$XERCESCROOT \
 								-DGEANT4_USE_QT=ON \
 								-DQT_QMAKE_EXECUTABLE=$QTDIR/bin/qmake \
-								-DCMAKE_INSTALL_DATAROOTDIR=$JLAB_ROOT/$G4VERSION/data \
+								-DCMAKE_INSTALL_DATAROOTDIR=$G4INSTALL/data \
 								-DCLHEP_ROOT_DIR=$CLHEP_BASE_DIR \
 								-DGEANT4_INSTALL_DATA=$DATA \
 								-DGEANT4_BUILD_EXAMPLES=OFF \
 								-DCMAKE_CXX_FLAGS="$conf_options" \
-							    $G4ROOT/$G4VERSION/source/"geant"$G4VERSION
+							    $G4INSTALL/source/"geant"$G4VERSION
 
-	echo " > Compiling geant4 source (log will be in "\$G4ROOT/$G4VERSION/"make_log)..."
-	make $opt          > $G4ROOT/$G4VERSION/make_log
-	make install $opt >> $G4ROOT/$G4VERSION/make_log
+	echo " > Compiling geant4 source (log will be in "\$G4INSTALL/"make_log)..."
+	make $opt          > $G4INSTALL/make_log
+	make install $opt >> $G4INSTALL/make_log
 
 	# Copying the source code
-	cp -r $G4ROOT/$G4VERSION/source/"geant"$G4VERSION/examples $G4ROOT/$G4VERSION
+	cp -r $G4INSTALL/source/"geant"$G4VERSION/examples $G4INSTALL
 
 
 if($1 == "make") exit
 
 # Cleaning up
-rm -rf $G4ROOT/$G4VERSION/build
+rm -rf $G4INSTALL/build
 
 
 
