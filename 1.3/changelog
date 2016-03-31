@@ -4,42 +4,51 @@
 
  -------------------------------------------
 
+3/31/16
+ - overwrite set as the default. Option "keepmine" can be given to source script to keep a user settings
+ - for version 1.3, reverting qt version to 5.3.2
+ - moving geant4 data inside geant4 distribution
+ - test: cleaning up geant4.env (no more G4DATA_VERSION?)
+
+3/8/16
+ - fixing osrelease for red hat strings
+
 3/7/16
  - updating G4 to 10.1.p03 for JLAB_VERSION 1.3
  - updated 1.3 version to reflect devel changes
 
 2/6/16
-- removed old version of fedora
-- removed SunOs - aww aww...
-- default compiler for mac is clang not gcc anymore
-- for red-hat line, script should now be general, assuming the format will not change
-- jana version updated to 0.7.4p2 for JLAB_VERSION 1.3
-- added overwrite option to scheme
-- updated documentation
-- go_qt docs improvements
-- more changes to documentation
-- explicit jlab server in go_tar
+ - removed old version of fedora
+ - removed SunOs - aww aww...
+ - default compiler for mac is clang not gcc anymore
+ - for red-hat line, script should now be general, assuming the format will not change
+ - jana version updated to 0.7.4p2 for JLAB_VERSION 1.3
+ - added overwrite option to scheme
+ - updated documentation
+ - go_qt docs improvements
+ - more changes to documentation
+ - explicit jlab server in go_tar
 
 12/3/15
-- changed ccdb naming conventions
+ - changed ccdb naming conventions
 
 12/2/15
-- do not remove geant4 source upon installation
+ - do not remove geant4 source upon installation
 
 
 11/30/15
-- improved instructions on go_qt
-- fixed date for this release
-- improved installation instructions
+ - improved instructions on go_qt
+ - fixed date for this release
+ - improved installation instructions
 
 11/24/15
-- switched to the latest version of root5: 5.34.34
-- switched to the latest version of ccdb: 1.05
-- switched to the latest version of jana: 0.7.3
+ - switched to the latest version of root5: 5.34.34
+ - switched to the latest version of ccdb: 1.05
+ - switched to the latest version of jana: 0.7.3
 
 11/23/15
-- re-implemented cmake version checking (fixed initial typo)
-- no need for gemc 1.8 compatibility check anymore
+ - re-implemented cmake version checking (fixed initial typo)
+ - no need for gemc 1.8 compatibility check anymore
 
 
 11/19/15
@@ -58,10 +67,10 @@ pre-freeze JLAB_VERSION devel to 1.3:
  - DEFAULT_CCDB_VERSION     = 1.03
 
 7/31/15
-- on mac, using active cpus
-- redirecting untar output to null whenever possible
-- better log for qt installation
-- devel version changes:
+ - on mac, using active cpus
+ - redirecting untar output to null whenever possible
+ - better log for qt installation
+ - devel version changes:
   - clhep to 2.2.08
   - qt to 5.5
     Warning:
@@ -77,97 +86,97 @@ pre-freeze JLAB_VERSION devel to 1.3:
   - geant4 to 4.10.1.p02
 
 5/27/15
-- added subversion to red-hat releases in osrelease.pl
+ - added subversion to red-hat releases in osrelease.pl
 
 5/4/15
-- root version for devel changed to 5.34.30
+ - root version for devel changed to 5.34.30
 
 2/19/15
-- fixed wrong log for get_coptions w/o parameters. Now giving "env" argument to it. Fixes for both 1.2 and devel versions
-- devel versions upgrades
+ - fixed wrong log for get_coptions w/o parameters. Now giving "env" argument to it. Fixes for both 1.2 and devel versions
+ - devel versions upgrades
   clhep 2.2.0.5
   qt 5.4
   geant4 10.1 (including data)
   evio 4.4.4
 
 2/11/15
-- added i686 case for qt path
+ - added i686 case for qt path
 
 2/9/15
-- first commit to github
-- Removed expat from dependencies
-- Added xcode developers tools installation instructions
-- Distinguishing between devel and 1.2 install instructions
-- Fixed tar command, directory list is at the end
-- Removed gemc 1.8 case
+ - first commit to github
+ - Removed expat from dependencies
+ - Added xcode developers tools installation instructions
+ - Distinguishing between devel and 1.2 install instructions
+ - Fixed tar command, directory list is at the end
+ - Removed gemc 1.8 case
 
 2/3/15
-- added html instructions for the packages installation
-- automatically install instructions when tarballing ceInstall
-- importing correct solenoid field map for clas12
+ - added html instructions for the packages installation
+ - automatically install instructions when tarballing ceInstall
+ - importing correct solenoid field map for clas12
 
 1/29/15
-- copied qt installer to jlab repo
-- modified go_qt, using QT_VERSION
-- qt versions for 1.2 is 5.3.2
-- fixed qt installation path to first two version digits
-- added sources reminder in go_qt
+ - copied qt installer to jlab repo
+ - modified go_qt, using QT_VERSION
+ - qt versions for 1.2 is 5.3.2
+ - fixed qt installation path to first two version digits
+ - added sources reminder in go_qt
 
 1/28/15
-- adding skipping of certificate check for wget commands
-- releasing JLAB_VERSION 1.2
-- automatic download of qt installer with go_qt
+ - adding skipping of certificate check for wget commands
+ - releasing JLAB_VERSION 1.2
+ - automatic download of qt installer with go_qt
  
 1/21/15
-- changed http to https in the jlab path in get_coptions
-- path set even if variables are set manually
+ - changed http to https in the jlab path in get_coptions
+ - path set even if variables are set manually
 
 11/11/14
-- geant4 from 10.00.p02 to 10.00.p03.
-- go_geant4 modified accordingly, with added instructions on how to compile the examples
+ - geant4 from 10.00.p02 to 10.00.p03.
+ - go_geant4 modified accordingly, with added instructions on how to compile the examples
 
 11/5/14
-- Fixed qt installation path, go_qt will instruct how to install qt from the installer
-- adding QTSYSTEM variable to account for different paths in Mac/Linux
+ - Fixed qt installation path, go_qt will instruct how to install qt from the installer
+ - adding QTSYSTEM variable to account for different paths in Mac/Linux
 
 11/3/14
-- devel ROOT version changed to 5.34.21
-- removed go_qt now obsolete
-- patched go_geant4 for linux with CMAKE_CXX_FLAGS (for cmake < 3)
-- added go_qt with instructions on how to install qt from qt website
-- fixed go_tar comand line
-- removed 1.8 from go_tar
-- typo on the requirement doc
+ - devel ROOT version changed to 5.34.21
+ - removed go_qt now obsolete
+ - patched go_geant4 for linux with CMAKE_CXX_FLAGS (for cmake < 3)
+ - added go_qt with instructions on how to install qt from qt website
+ - fixed go_tar comand line
+ - removed 1.8 from go_tar
+ - typo on the requirement doc
 
 10/28/14
-- Added CCDB to environment (testing)
-- Fixed paths for JANA and CCDB
-- Added python 2.7 path for JLab
-- Added CCDB_USER
+ - Added CCDB to environment (testing)
+ - Fixed paths for JANA and CCDB
+ - Added python 2.7 path for JLab
+ - Added CCDB_USER
 
 10/27/14
-- Using qt application from qt.io for Linux systems
-- correct text alignment for go_geant4
+ - Using qt application from qt.io for Linux systems
+ - correct text alignment for go_geant4
 
 10/21/13
-- system qt (installed from website) used for Darwin
-- go_qt4 changed to go_qt
-- using brew instead of fink for Darwin
-- fixed G4 data for 4.10
-- fixed geant4 installation scripts
+ - system qt (installed from website) used for Darwin
+ - go_qt4 changed to go_qt
+ - using brew instead of fink for Darwin
+ - fixed G4 data for 4.10
+ - fixed geant4 installation scripts
 
 10/20/14
-- system qt4 will now be used instead of re-compiling qt4
-- for Darwin, qt version still 4.8.5
+ - system qt4 will now be used instead of re-compiling qt4
+ - for Darwin, qt version still 4.8.5
 
 10/17/14
-- Added "system" option to QT_VERSION
-- Removed all references to "production" versioning
-- The files production.csh and devel.csh will still exist
-- As of 10/17 devel will be copied to version 1.1
+ - Added "system" option to QT_VERSION
+ - Removed all references to "production" versioning
+ - The files production.csh and devel.csh will still exist
+ - As of 10/17 devel will be copied to version 1.1
 
 8/21/14
-- Zhiwen: using system ROOTSYS if available.
+ - Zhiwen: using system ROOTSYS if available.
 
 6/13/14
 Compiling gemc shared library by default when installing gemc
@@ -182,34 +191,34 @@ xcode configuration for gemc sources fixed
 Protecting against aliased ls (using \ls)
 
 6/13/14
-- Completed port of magnetic field
-- progress bar for dipole and cylindrical maps
-- optimization of map reading routines.
-- fixed typo in kilogauss unit
-- removed old magnetic field class as the port is complete
-- reading ascii magnetic field maps with fscanf instead of C++ cin. This is about four times faster
+ - Completed port of magnetic field
+ - progress bar for dipole and cylindrical maps
+ - optimization of map reading routines.
+ - fixed typo in kilogauss unit
+ - removed old magnetic field class as the port is complete
+ - reading ascii magnetic field maps with fscanf instead of C++ cin. This is about four times faster
 
 6/12/14
-- added dc lowercased - bank variable with better names
-- adding G4StepLimiter to make the user step size effective
-- added kilogauss unit
-- ported phi-segmented field map (for clas12 torus)
-- better field log (include correct units)
-- added progress bar indicator for magnetic field loading
-- note: implementation not completed - committing anyway.
+ - added dc lowercased - bank variable with better names
+ - adding G4StepLimiter to make the user step size effective
+ - added kilogauss unit
+ - ported phi-segmented field map (for clas12 torus)
+ - better field log (include correct units)
+ - added progress bar indicator for magnetic field loading
+ - note: implementation not completed - committing anyway.
 
 6/11/14
-- removed unnecessary variables in bst hit process
-- fixed lowercased ec process name
+ - removed unnecessary variables in bst hit process
+ - fixed lowercased ec process name
 
 6/10/14
-- removed ec material, now in ec package
-- added ec hit process routined, lowercased from 1.8
-- better log loading bank definitions
-- fixed instance of bank loading when definition file in custom directory
+ - removed ec material, now in ec package
+ - added ec hit process routined, lowercased from 1.8
+ - better log loading bank definitions
+ - fixed instance of bank loading when definition file in custom directory
 
 6/9/14
-- LUND event format: the following names has been changed for the LUND format. Users can keep the
+ - LUND event format: the following names has been changed for the LUND format. Users can keep the
    original LUND meaning or assign custom meaning:
 
    var1 - User defined. In LUND this was: Target Polarization
@@ -221,47 +230,47 @@ Protecting against aliased ls (using \ls)
    var7 - User defined. In LUND this was: Q square
    var8 - User defined. In LUND this was: Energy loss
 
-- Do not exit if bank or hit definition TEXT files are not found.
-- Added these 8 variables in header bank for gemc internal generator
-- fixed inconsistency in header infos for LUND format
+ - Do not exit if bank or hit definition TEXT files are not found.
+ - Added these 8 variables in header bank for gemc internal generator
+ - fixed inconsistency in header infos for LUND format
 
 6/6/14
-- added htcc hitprocess (lowercased)
-- signal now displaying photon wavelength versus timing
+ - added htcc hitprocess (lowercased)
+ - signal now displaying photon wavelength versus timing
 
 6/5/14
-- overloaded << for sensitiveID object
-- calling integrateRaw by default, but writing the true info bank only if INTEGRATEDRAW is
+ - overloaded << for sensitiveID object
+ - calling integrateRaw by default, but writing the true info bank only if INTEGRATEDRAW is
   true for a given detector
-- HTCC renamed to htcc
+ - HTCC renamed to htcc
 
 6/4/14
-- isMirror changed to buildMirrors - for border surface we need all physical volumes to be built first.
-- removed goptions argument from MDetectorConstruction method as it is a class member
-- added arrayToString to perl utilities
-- Mirrors detector name changed to "mirror"
+ - isMirror changed to buildMirrors - for border surface we need all physical volumes to be built first.
+ - removed goptions argument from MDetectorConstruction method as it is a class member
+ - added arrayToString to perl utilities
+ - Mirrors detector name changed to "mirror"
 
 6/3/14
-- FTM lowercased to ftm
-- Added mirrors perl interface
-- Added mirrors factories to gemc
-- Material factory cosmetics to make both mirrors and factory more consistent
-- Added verbosity flag for mirrors
-- scons inc path organized by packages in SConstruct
+ - FTM lowercased to ftm
+ - Added mirrors perl interface
+ - Added mirrors factories to gemc
+ - Material factory cosmetics to make both mirrors and factory more consistent
+ - Added verbosity flag for mirrors
+ - scons inc path organized by packages in SConstruct
 
 6/2/14
-- Maurik Holtrop:
+ - Maurik Holtrop:
   - Fix up the STEER_BEAM option. The BEAM_P and BEAM_V were no longer propagated when using an StdHep file.
   - Fixed name mismatch in HPS hit process routines.
 
 5/30/14
-- added "-h" option that does the same thing as "-h"
-- fixed integrateRaw to match variables name changes
+ - added "-h" option that does the same thing as "-h"
+ - fixed integrateRaw to match variables name changes
 
 5/28/14
-- added Trimspaces to vector<string> functions
-- run_conditions: get_systems() now returns a map<string, string> : name, factory
-- bank scheme changed as requested from Hall-B software group
+ - added Trimspaces to vector<string> functions
+ - run_conditions: get_systems() now returns a map<string, string> : name, factory
+ - bank scheme changed as requested from Hall-B software group
   Reason: makes it more readable by 3rd party software.
   I'm opposed to this, I think we should be driven by human readability instead of 3rd party software
   from:
@@ -275,99 +284,99 @@ Protecting against aliased ls (using \ls)
 
    hit number now changed num from 0 to 99
 
-- Fixed multiple writing of the generated particle bank
-- Names of average quantities in the true info output changed from <v> to avg_v
-- Times font changed to Times-Roman. This doesn't help Maverick screen log whining yet.
-- Better log in case argument not recognized OR file not found
+ - Fixed multiple writing of the generated particle bank
+ - Names of average quantities in the true info output changed from <v> to avg_v
+ - Times font changed to Times-Roman. This doesn't help Maverick screen log whining yet.
+ - Better log in case argument not recognized OR file not found
 
 
 5/27/14
-- added utility function get_strings_except(string, string) to get a vector<string> from a string,
+ - added utility function get_strings_except(string, string) to get a vector<string> from a string,
   ignoring matches to second argument.
-- removed sensitiveDetectorFactories no more needed
-- Loading of the banks is now independent of sensitive detectors. Getting close to use gbank as stand-alone
-- IO bank text API changed: removed variation from filename
-- NOTE: This commit does not compile, work is not completed.
+ - removed sensitiveDetectorFactories no more needed
+ - Loading of the banks is now independent of sensitive detectors. Getting close to use gbank as stand-alone
+ - IO bank text API changed: removed variation from filename
+ - NOTE: This commit does not compile, work is not completed.
 
 5/23/14
-- Initialization of header bank infos
-- Removed extra debug comment
+ - Initialization of header bank infos
+ - Removed extra debug comment
 
 5/22/14
-- Fixed instances of flux bank being put inside existing detector bank
-- Added utility to retrieve generated particle infos from a string
+ - Fixed instances of flux bank being put inside existing detector bank
+ - Added utility to retrieve generated particle infos from a string
 
 5/14/14
 Revision: 1912
-- Skipping loading bank definitions from file if it's the flux bank
-- Fixed wrong return code for VOLTAGETIME_ID
-- Fixed bst hit process assignment
-- number correction in bst hit process (todo: make it external parameter)
-- Better code comments
-- Removed confusing ":" in run condtions map key
+ - Skipping loading bank definitions from file if it's the flux bank
+ - Fixed wrong return code for VOLTAGETIME_ID
+ - Fixed bst hit process assignment
+ - number correction in bst hit process (todo: make it external parameter)
+ - Better code comments
+ - Removed confusing ":" in run condtions map key
 
 5/13/14
-- Added warnings for malformed materials
+ - Added warnings for malformed materials
 
 5/12/14
-- Added bst hit process to 2.0
+ - Added bst hit process to 2.0
 
 5/8/14
-- Fixed warning: no need to print unit warning when a number is zero
+ - Fixed warning: no need to print unit warning when a number is zero
 
 5/6/14
-- Material factory: removing map item by key instead of iterator (which caused problems on some compiler).
+ - Material factory: removing map item by key instead of iterator (which caused problems on some compiler).
 
 5/2/14
-- Improved log for cases when the variation is changed within the API scripts
+ - Improved log for cases when the variation is changed within the API scripts
   to build several variations at the same time
-- Fixed bug that checked the existance of materials
+ - Fixed bug that checked the existance of materials
 
 5/1/14
-- Added optical properties in gemc
+ - Added optical properties in gemc
 
 4/29/14
 Revision: 1871
-- Changes to geometry service api
-- Renamed LUND header names
-- Added optical properties in the API
+ - Changes to geometry service api
+ - Renamed LUND header names
+ - Added optical properties in the API
 
 4/23/2014
 Revision: 1866
-- Added Total Edep, Fastest time, to generated particle information in both EVIO and TXT output factories
-- Added stat, number of volumes hit / detector,  to generated particle information in both EVIO and TXT output factories
+ - Added Total Edep, Fastest time, to generated particle information in both EVIO and TXT output factories
+ - Added stat, number of volumes hit / detector,  to generated particle information in both EVIO and TXT output factories
 
 4/22/2014
 Revision: 1864
-- Added original track information to hit: now one can track which original track was responsible
+ - Added original track information to hit: now one can track which original track was responsible
   for hits!
  This must be activated with  SAVE_ALL_MOTHERS, and INTEGRATEDRAW must contain
  the name of the sensitive detector of interest.
 
 4/15/2014
 Revision: 1843
-- solid pictures resized for better desplayed
-- Reorganized detector information window. Added material, type and dimensions, sensitivity.
-- Materials: if the material file is not found, it's ok - it may be a pre-defined G4 material.
-- default variation is main
-- add check for physics list name
-- add LIV and PEN for EM, add FTFP_BERT_HP for hadron
+ - solid pictures resized for better desplayed
+ - Reorganized detector information window. Added material, type and dimensions, sensitivity.
+ - Materials: if the material file is not found, it's ok - it may be a pre-defined G4 material.
+ - default variation is main
+ - add check for physics list name
+ - add LIV and PEN for EM, add FTFP_BERT_HP for hadron
 
 4/2/2014
-- Removing obsolete MATERIALSDB option.
-- Added TEXT factory
-- Adding materials initialization in buildmaterials for CPP, MYSQL, TEXT and GDML factories.
-- Do not open factory connection if no detector needs it
-- Fixed help
+ - Removing obsolete MATERIALSDB option.
+ - Added TEXT factory
+ - Adding materials initialization in buildmaterials for CPP, MYSQL, TEXT and GDML factories.
+ - Do not open factory connection if no detector needs it
+ - Fixed help
 
 4/1/2014
-- Changed elements, nelements to components, ncomponents
-- Added simple materials from MYSQL factory in addition to the CPP factory:
+ - Changed elements, nelements to components, ncomponents
+ - Added simple materials from MYSQL factory in addition to the CPP factory:
   1. molecular. Example:
      H2O->AddElement(H, natoms=2);
          H2O->AddElement(O, natoms=1);
   2. by mass fraction. Example:
          Gas->AddMaterial(matman->FindOrBuildMaterial("G4_H"), 0.2);
-- Air > G4_AIR as default Air material
+ - Air > G4_AIR as default Air material
 
------------------------------------------------------------------------------------------------------
+ -----------------------------------------------------------------------------------------------------

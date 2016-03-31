@@ -53,9 +53,9 @@ data:
 	# Getting data file
 	echo " > Installing geant4 data "$version" - release "$release"."
 
-	rm -rf   $JLAB_ROOT/noarch/$G4DATA_VERSION/data
-	mkdir -p $JLAB_ROOT/noarch/$G4DATA_VERSION/data
-	cd       $JLAB_ROOT/noarch/$G4DATA_VERSION/data
+	rm -rf   $G4ROOT/$G4VERSION/data
+	mkdir -p $G4ROOT/$G4VERSION/data
+	cd       $G4ROOT/$G4VERSION/data
 
 	wget -r -np -nH --cut-dir=5 $repo/geant4_data/$G4VERSION/
 	rm -f index* robots.txt
