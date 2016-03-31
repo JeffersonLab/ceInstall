@@ -91,15 +91,6 @@ if($pname == "gemc_evio2root") then
 endif
 
 
-# scons scripts
-if($pname == "doc") then
-	scp install/install.html $remoted/ceInstall
-endif
-
-
-# To prepare the ccdb package:
-# tar cvf ccdb_1.05-src.tar --exclude="ccdb_1.05/.svn" ccdb_1.05
-
 echo
 echo
 
