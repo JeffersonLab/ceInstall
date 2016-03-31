@@ -83,16 +83,22 @@
  
  <ol>
 	 <li>
-		 Choose a place to install the software, and set JLAB_VERSION to 1.3<br>
-		 A common location choice is <b>/opt/jlab_software</b>.<br><br>
+		 Choose a place (JLAB_ROOT) to install the software<br>
+		 A common choice for <b>JLAB_ROOT</b> is <b> /opt/jlab_software</b>.<br><br>
+		 Create the working directory:
 		 
-		 Set the environment variable accordingly:
+		 <pre>
+ mkdir -p $JLAB_ROOT/1.3
+		 </pre>
+		 
+		 Set the environment variables. You should put these lines in your login script:
 		 
 		 <pre>
  setenv JLAB_ROOT /opt/jlab_software
- setenv JLAB_VERSION 1.3
- mkdir -p $JLAB_ROOT/$JLAB_VERSION
+ source $JLAB_ROOT/1.3/ce/jlab.csh
 		 </pre>
+		 
+
 	 </li>
 	 
 	 
@@ -100,22 +106,13 @@
 	 <li>Get the installation scripts:
 		 <pre>
  cd $JLAB_ROOT
- wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_$JLAB_VERSION.tar.gz
- tar -zxpvf ceInstall_$JLAB_VERSION.tar.gz
+ wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_1.3.tar.gz
+ tar -zxpvf ceInstall_1.3.tar.gz
 		 </pre>
 		 
 	 </li>
 	 
-	 <li>
-		 From now on you can use these lines to set up the environment. Remember to cleanup your login scripts
-		 to avoid conflicts.
-		 <pre>
- setenv JLAB_ROOT /opt/jlab_software
- setenv JLAB_VERSION 1.3
- source $JLAB_ROOT/$JLAB_VERSION/ce/jlab.csh
-		 </pre>
-		 
-	 </li>
+
 	 
 	 <li>Start a new shell. Now you should see a log similar to this
 		 <pre>
@@ -143,14 +140,14 @@
 	 Notice: if you already have some existing environment variable, you may want to
 	 clear it or use the option "overwrite":<br>
 	 <pre>
-		 source $JLAB_ROOT/$JLAB_VERSION/ce/jlab.csh overwrite
+		 source $JLAB_ROOT/1.3/ce/jlab.csh overwrite
 	 </pre>
 	 
 	 
 	 <li>
 		 You can choose the packages you wish to install by executing the corresponding script:
 		 <pre>
- cd $JLAB_ROOT/$JLAB_VERSION/install
+ cd $JLAB_ROOT/1.3/install
  
  ./go_clhep
  ./go_xercesc

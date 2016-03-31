@@ -9,9 +9,15 @@ endif
 # git log -1
 set CE_DATE = "(Thu March 31 2016)"
 
+# Looking for user defined JLAB_VERSION
+if($overwrite == "yes") then
+	setenv JLAB_VERSION 1.3
+endif
+
+
 
 # Software packages
-set packages = (clhep xercesc mysql qt geant4 root jlab12 )
+set packages = (clhep xercesc mysql qt geant4 root jlab12)
 
 # Only print out if there's a prompt
 alias echo 'if($?prompt) echo \!*  '
