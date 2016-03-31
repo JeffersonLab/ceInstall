@@ -10,6 +10,8 @@
  - moving geant4 data inside geant4 distribution
  - test: cleaning up geant4.env (no more G4DATA_VERSION?)
  - updated instructions
+ - added G4DATA_VERSION to set the data location
+
 
 3/8/16
  - fixing osrelease for red hat strings
