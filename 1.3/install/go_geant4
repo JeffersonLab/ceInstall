@@ -42,7 +42,7 @@ echo
 set DATA = 'OFF'
 echo " > Data set to: "$DATA
 
-rm -rf   $G4INSTALL
+rm -rf $G4INSTALL
 
 
 set cdir    = (`pwd`)
@@ -56,8 +56,8 @@ data:
 	# Getting data file
 	echo " > Installing geant4 data "$version" - release "$release"."
 
-	mkdir -p $G4INSTALL/data/$G4DATA_VERSION/data
-	cd       $G4INSTALL/data/$G4DATA_VERSION/data
+	mkdir -p $G4INSTALL/data/Geant4-$G4DATA_VERSION/data
+	cd       $G4INSTALL/data/Geant4-$G4DATA_VERSION/data
 
 	wget -r -np -nH --cut-dir=5 $repo/geant4_data/$G4VERSION/
 	rm -f index* robots.txt
@@ -78,7 +78,6 @@ src:
 	# Getting source file
 	echo " > Installing geant4 version "$version" - release "$release". Getting and unpacking" $filename"..."
 
-	rm -rf   $G4INSTALL
 	mkdir -p $G4INSTALL/source $G4INSTALL/build
 
 	# Unpacking file, patching if needed
@@ -127,7 +126,7 @@ make:
 	make $opt          > $G4INSTALL/make_log
 	make install $opt >> $G4INSTALL/make_log
 
-	# Copying the source code
+	# Copying the examples source code
 	cp -r $G4INSTALL/source/"geant"$G4VERSION/examples $G4INSTALL
 
 
