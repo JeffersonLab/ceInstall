@@ -7,7 +7,7 @@ endif
 
 # Get date from:
 # git log -1
-set CE_DATE = "(Thue March 31 2016)"
+set CE_DATE = "(Thu March 31 2016)"
 
 
 # Software packages
