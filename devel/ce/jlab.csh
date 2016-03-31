@@ -1,13 +1,13 @@
 #!/bin/csh -f
 
-setenv overwrite "no"
-if($1 == "overwrite") then
-	setenv overwrite "yes"
+setenv overwrite "yes"
+if($1 == "keepmine") then
+	setenv overwrite "no"
 endif
 
 # Get date from:
 # git log -1
-set CE_DATE = "(Sat Feb 6 2016)"
+set CE_DATE = "(Thue March 31 2016)"
 
 
 # Software packages
