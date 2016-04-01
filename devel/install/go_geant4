@@ -127,7 +127,7 @@ make:
 	make install $opt >> $G4INSTALL/make_log
 
 	# Copying the examples source code
-	cp -r $G4INSTALL/source/"geant"$G4VERSION/examples $G4INSTALL
+	# cp -r $G4INSTALL/source/"geant"$G4VERSION/examples $G4INSTALL
 
 
 if($1 == "make") exit
