@@ -39,6 +39,9 @@ else if($system == "Linux") then
 endif
 echo
 echo Then follow the installation instructions. You can skip the creation of a qt account.
+echo
+echo WARNING WARNING WARNING
+echo
 echo Make sure to clear the installation location and use this instead:
 echo
 echo $JLAB_SOFTWARE/qt/$QT_VERSION

@@ -68,5 +68,8 @@ rm -rf $version $filename
 
 # Done!
 echo done
+echo Notice: If you have undefined reference to libiconv_open warnings, use the option WITHICONV
+echo
+echo "    ./go_xercesc WITHICONV"
 echo
 
