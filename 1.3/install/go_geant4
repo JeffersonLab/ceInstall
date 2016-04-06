@@ -42,7 +42,6 @@ echo
 set DATA = 'OFF'
 echo " > Data set to: "$DATA
 
-rm -rf $G4INSTALL
 
 
 set cdir    = (`pwd`)
@@ -56,6 +55,7 @@ data:
 	# Getting data file
 	echo " > Installing geant4 data "$version" - release "$release"."
 
+	rm   -rf $G4INSTALLdata/Geant4-$G4DATA_VERSION/data
 	mkdir -p $G4INSTALL/data/Geant4-$G4DATA_VERSION/data
 	cd       $G4INSTALL/data/Geant4-$G4DATA_VERSION/data
 
@@ -78,6 +78,7 @@ src:
 	# Getting source file
 	echo " > Installing geant4 version "$version" - release "$release". Getting and unpacking" $filename"..."
 
+	rm -rf   $G4INSTALL/source $G4INSTALL/build
 	mkdir -p $G4INSTALL/source $G4INSTALL/build
 
 	# Unpacking file, patching if needed
@@ -92,7 +93,6 @@ if($1 == "src") exit
 
 # make
 make:
-
 	set conf_options = ""
 	set x11_option   = ""
 	# Linux Options
