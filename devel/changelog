@@ -4,6 +4,10 @@
 
  -------------------------------------------
 
+4/8/16
+ - using default JLAB_VERSION so users do not have to define it
+	in case they use keepmine
+
 4/6/15
  - fixed deleting directories in go_geant4
 
