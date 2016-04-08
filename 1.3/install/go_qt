@@ -42,7 +42,8 @@ echo Then follow the installation instructions. You can skip the creation of a q
 echo
 echo WARNING WARNING WARNING
 echo
-echo Make sure to clear the installation location and use this instead:
+echo The qt installation program will ask you for the installation location
+echo Make sure to clear the default installation location and parse this instead:
 echo
 echo $JLAB_SOFTWARE/qt/$QT_VERSION
 echo
