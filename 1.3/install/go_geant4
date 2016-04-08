@@ -55,7 +55,7 @@ data:
 	# Getting data file
 	echo " > Installing geant4 data "$version" - release "$release"."
 
-	rm   -rf $G4INSTALLdata/Geant4-$G4DATA_VERSION/data
+	rm   -rf $G4INSTALL/data/Geant4-$G4DATA_VERSION/data
 	mkdir -p $G4INSTALL/data/Geant4-$G4DATA_VERSION/data
 	cd       $G4INSTALL/data/Geant4-$G4DATA_VERSION/data
 

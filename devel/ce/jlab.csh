@@ -10,10 +10,8 @@ endif
 set CE_DATE = "(Thu March 31 2016)"
 
 # Looking for user defined JLAB_VERSION
-if($overwrite == "yes") then
+if( ! $?JLAB_VERSION || $overwrite == "yes") then
 	setenv JLAB_VERSION 1.3
-else if($?JLAB_VERSION)
-	setenv JLAB_VERSION DEFAULT_JLAB_VERSION
 endif
 
 

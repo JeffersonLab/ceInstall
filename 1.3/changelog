@@ -4,6 +4,10 @@
 
  -------------------------------------------
 
+4/8/16
+ - go_geant4 fixes
+ - JLAB_ROOT not necessary when using keepmine
+
 4/6/15
  - fixed deleting directories in go_geant4
 
