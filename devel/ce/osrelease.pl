@@ -46,7 +46,6 @@ if ($uname eq 'Linux')
 		elsif ($release_string =~ /^Fedora release 23.*/)     { $release = '_Fedora23'; }
 		elsif ($release_string =~ /^Fedora release 22.*/)     { $release = '_Fedora22'; }
 		elsif ($release_string =~ /^Fedora release 21.*/)     { $release = '_Fedora21'; }
-		elsif ($release_string =~ /^Fedora release 20.*/)     { $release = '_Fedora20'; }
 		else
 		{
 			print STDERR "unrecognized Fedora release\n";
@@ -100,10 +99,9 @@ if ($uname eq 'Linux')
 elsif ($uname eq 'Darwin')
 {
 	my $release_string = `uname -r`;
-	if    ($release_string =~ /^12.*/) { $release = '_macosx10.8'; }
-	elsif ($release_string =~ /^13.*/) { $release = '_macosx10.9'; }
-	elsif ($release_string =~ /^14.*/) { $release = '_macosx10.10'; }
-	elsif ($release_string =~ /^15.*/) { $release = '_macosx10.11'; }
+	if    ($release_string =~ /^13.*/) { $release = 'macosx10.9'; }
+	elsif ($release_string =~ /^14.*/) { $release = 'macosx10.10'; }
+	elsif ($release_string =~ /^15.*/) { $release = 'macosx10.11'; }
 	else
 	{
 		print STDERR "unrecognized Mac OS release: $release_string\n";
