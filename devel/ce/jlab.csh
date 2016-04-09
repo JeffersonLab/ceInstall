@@ -7,11 +7,11 @@ endif
 
 # Get date from:
 # git log -1
-set CE_DATE = "(Thu March 31 2016)"
+set CE_DATE = "(Sat April 9 2016)"
 
 # Looking for user defined JLAB_VERSION
 if( ! $?JLAB_VERSION || $overwrite == "yes") then
-	setenv JLAB_VERSION 1.3
+	setenv JLAB_VERSION devel
 endif
 
 
