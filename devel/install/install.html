@@ -12,7 +12,6 @@
  
  <ul> <b>Mac:</b></ul>
  <ul>
-	 <li> Yosemite</li>
 	 <li> El Capitan</li>
  </ul>
  <br>
@@ -29,8 +28,8 @@
  <ul>
 	 <li> about 4GB of disk space</li>
 	 <li> csh shell </li>
-	 <li> cmake >= 2.8 (for clhep and geant4)</li>
-	 <li> network connection to dwonload packages during installation</li>
+	 <li> cmake >= 3.3 (for geant4. check with <i>cmake --version</i>)</li>
+	 <li> network connection to download the various packages during installation</li>
 	 <li> wget, scons, mysql</li>
  </ul>
  
@@ -39,12 +38,14 @@
   <h3> MAC OS specific requirements</h3>
   <i> Starting with Yosemite, the software to install packages is <a href="http://brew.sh"> homebrew</a>.
 	  You can install packages with commands like: </i>
-  <pre> brew install wget. </pre>
-  <ul>
-	  <li>xcode and developers tools. Both can be installed, each with the line (you have to run it twice):
+  <pre> brew install wget </pre>
+  You can upgrade packages with commands like: </i>
+  <pre> brew upgrade cmake </pre>
+ <i>
+	  <li>xcode and developers tools. Both can be installed with the command line:
 		  <pre> xcode-select -install </pre>
 	  </li>
-  </ul>
+  </i>
   
  </ul>
  
