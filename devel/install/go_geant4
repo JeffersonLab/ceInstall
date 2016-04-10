@@ -3,8 +3,8 @@
 # More geant4 build options:
 # http://geant4.web.cern.ch/geant4/UserDocumentation/UsersGuides/InstallationGuide/html/ch02s03.html
 #
-# Added includes manually for cmake 2.8.
-# cmake 3.0 can accept directives where the include dirs are separated by semi-colon
+# Added includes manually for cmake.
+# cmake 3.0+ can accept directives where the include dirs are separated by semi-colon
 
 
 # To compile the Geant4 Examples:
