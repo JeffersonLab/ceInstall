@@ -1,3 +1,13 @@
+<style type="text/css">
+ .row { vertical-align: top; height:auto !important; }
+ .list {display:none; }
+ .show {display: none; }
+ .hide:target + .show {display: inline; }
+ .hide:target {display: none; }
+ .hide:target ~ .list {display:inline; }
+ @media print { .hide, .show { display: none; } }
+ </style>
+
 <html>
 	
 	<h2> Software installation instructions (devel) </h2>
@@ -36,47 +46,87 @@
  
  <ul>
   <h3> MAC OS specific requirements</h3>
-  <i> Starting with Yosemite, the software to install packages is <a href="http://brew.sh"> homebrew</a>.
-	  You can install packages with commands like: </i>
-  <pre> brew install wget </pre>
-  You can upgrade packages with commands like: </i>
-  <pre> brew upgrade cmake </pre>
- <i>
-	  <li>xcode and developers tools. Both can be installed with the command line:
+  You can install the dependencies with <a href="http://brew.sh"> homebrew</a>:<br/><br/>
+
+  <div class="row">
+	  <a href="#hide1" class="hide" id="hide1">List of packages</a>
+	  <a href="#show1" class="show" id="show1">Collapse List</a>
+	  <div class="list">
+		  <ul>
+			  <li>brew install wget</li>
+			  <li>brew install make</li>
+			  <li>brew install scons</li>
+			  <li>brew install cmake</li>
+			  <li>brew install tcsh</li>
+			  <li>brew install /homebrew/versions/mysql56</li>
+			  <li>brew install openssl</li>
+			  <br><br>You can upgrade a package by using "upgrade" instead of "install"
+		  </ul>
+	  </div>
+  </div>
+	<br/>
+ 
+	  <ul><li>xcode and developers tools. Both can be installed with the command line:
 		  <pre> xcode-select -install </pre>
-	  </li>
-  </i>
+		  </li></ul>
+  
   
  </ul>
  
  <ul>
 	 <h3> Ubuntu (Debian-line) specific requirements</h3>
-	 <i> These can be installed with apt-get like this:  </i>
-	 <pre> apt-get install libmysqlclient. </pre>
-	 <ul>
-		 <li> g++ </li>
-		 <li> libmysqlclient-dev</li>
-		 <li> llibexpat1-dev</li>
-		 <li> libglu1-mesa-dev</li>
-		 <li> libxmu-dev</li>
-		 <li> pkg-config</li>
-	 </ul>
+
+	You can install the dependencies with apt-get:<br/><br/>
+
+
+	 <div class="row">
+	  <a href="#hide2" class="hide" id="hide2">List of packages</a>
+	  <a href="#show2" class="show" id="show2">Collapse List</a>
+	  <div class="list">
+		  <ul>
+			  <li>sudo apt-get install g++</li>
+			  <li>sudo apt-get install mysql-client-5.6</li>
+			  <li>sudo apt-get install libmysqlclient-dev</li>
+			  <li>sudo apt-get install libx11-dev</li>
+			  <li>sudo apt-get install libxext-dev</li>
+			  <li>sudo apt-get install libglu1-mesa-dev</li>
+			  <li>sudo apt-get install libxt-dev</li>
+			  <li>sudo apt-get install libxmu-dev</li>
+			  <li>sudo apt-get install libxrender-dev</li>
+			  <li>sudo apt-get install libexpat1-dev</li>
+			  <li>sudo apt-get install tcsh</li>
+			  <li>sudo apt-get install cmake</li>
+			  <li>sudo apt-get install libafterimage-dev</li>
+			  <li>sudo apt-get install scons</li>
+		  </ul>
+	  </div>
+  </div>
+	 <br/>
+	 
  </ul>
  
  <ul>
 	 <h3> Fedora (red-hat line) specific requirements</h3>
-	 <i> These can be installed with yum (or dnf for latest Fedora releases) like this:  </i>
-	 <pre> yum install gcc-c++ </pre>
-	 <pre> dnf install gcc-c++ </pre>
-	 <ul>
-		 <li> gcc-c++ </li>
-		 <li> libx11-devel</li>
-		 <li> mesa-libGLU-devel</li>
-		 <li> libXmu-devel</li>
-		 <li> expat-devel</li>
-		 <li> zlib-devel</li>
-		 <li> community-mysql-embedded-mysql</li>
-	 </ul>
+	 You can install the dependencies with dnf:<br/><br/>
+
+
+	 <div class="row">
+	  <a href="#hide3" class="hide" id="hide3">List of packages</a>
+	  <a href="#show3" class="show" id="show3">Collapse List</a>
+	  <div class="list">
+		  <ul>
+			  <li>dnf install gcc-c++</li>
+			  <li>dnf install libx11-devel</li>
+			  <li>dnf install mesa-libGLU-devel</li>
+			  <li>dnf install libXmu-devel</li>
+			  <li>dnf install expat-devel</li>
+			  <li>dnf install zlib-devel</li>
+			  <li>dnf install community-mysql-embedded-mysql</li>
+		  </ul>
+	  </div>
+  </div>
+	 <br/>
+	 
  </ul>
  <br>
  <hr>
