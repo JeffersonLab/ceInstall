@@ -36,6 +36,11 @@ if(`hostname -f | awk -F. '{print $2}'` == "jlab") then
 	# gcc 5.2.0
 	setenv PATH /apps/gcc/5.2.0/install/bin:$PATH
 	setenv LD_LIBRARY_PATH /apps/gcc/5.2.0/install/lib64:$LD_LIBRARY_PATH
+	setenv CXX /apps/gcc/5.2.0/install/bin/c++
+
+	# cmake
+	setenv PATH /apps/cmake/cmake-3.5.1/bin/:$PATH
+
 endif
 
 # Looking for custom defined OSRELEASE
