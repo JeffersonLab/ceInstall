@@ -27,6 +27,16 @@ alias echo 'if($?prompt) echo \!*  '
 ##################################################################################################
 echo
 
+## !!!! temp fixes for JLab users: use specific softare
+if(`hostname -f | awk -F. '{print $2}'` == "jlab") then
+	# python
+	setenv PATH /apps/python/3.3.1/bin:$PATH
+	setenv LD_LIBRARY_PATH /apps/python/PRO/lib:$LD_LIBRARY_PATH
+
+	# gcc 5.2.0
+	setenv PATH /apps/gcc/5.2.0/install/bin:$PATH
+	setenv LD_LIBRARY_PATH /apps/gcc/5.2.0/install/lib64:$LD_LIBRARY_PATH
+endif
 
 # Looking for custom defined OSRELEASE
 set DEFAULT_OSRELEASE = `$JLAB_ROOT/$JLAB_VERSION/ce/osrelease.pl`

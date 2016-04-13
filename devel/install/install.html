@@ -6,7 +6,7 @@
  .hide:target {display: none; }
  .hide:target ~ .list {display:inline; }
  @media print { .hide, .show { display: none; } }
- </style>
+</style>
 
 <html>
 	
@@ -141,14 +141,7 @@
 		 Create the working directory:
 		 
 		 <pre>
- mkdir -p $JLAB_ROOT/devel
-		 </pre>
-		 
-		 Set the environment variables. You should put these lines in your login script:
-		 
-		 <pre>
- setenv JLAB_ROOT /opt/jlab_software
- source $JLAB_ROOT/devel/ce/jlab.csh
+ mkdir -p &lt;JLAB_ROOT&gt;/devel
 		 </pre>
 		 
 
@@ -158,7 +151,7 @@
 	 
 	 <li>Get the installation scripts:
 		 <pre>
- cd $JLAB_ROOT
+ cd &lt;JLAB_ROOT&gt;
  wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_devel.tar.gz
  tar -zxpvf ceInstall_devel.tar.gz
 		 </pre>
@@ -166,7 +159,17 @@
 	 </li>
 	 
 
-	 
+		 <li>
+		 Set the environment variables. You should put these lines in your login script:
+		 
+		 <pre>
+ setenv JLAB_ROOT /opt/jlab_software
+ source $JLAB_ROOT/devel/ce/jlab.csh
+		 </pre>
+		 
+		 </li>
+
+
 	 <li>Start a new shell. Now you should see a log similar to this
 		 <pre>
  > Common Environment Version: <devel>  (Thu March 31 2016)
