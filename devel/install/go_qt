@@ -40,7 +40,7 @@ endif
 echo
 echo Then follow the installation instructions. You can skip the creation of a qt account.
 echo
-echo !!! WARNING WARNING WARNING !!!
+echo \!\!\! WARNING WARNING WARNING \!\!\!
 echo
 echo The qt installation program will ask to verify the installation folder.
 echo Make sure to clear the default installation location and copy/parse this instead:
