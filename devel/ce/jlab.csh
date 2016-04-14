@@ -27,6 +27,15 @@ alias echo 'if($?prompt) echo \!*  '
 ##################################################################################################
 echo
 
+# Sourcing packages. This will set the LD_LIBRARY_PATH. 
+# Powerpcs and Darwins will be set right below
+if( ! $?LD_LIBRARY_PATH) then
+	setenv LD_LIBRARY_PATH ""
+endif
+if( ! $?PYTHONPATH) then
+	setenv PYTHONPATH "."
+endif
+
 ## !!!! temp fixes for JLab users: use specific softare
 if(`hostname -f | awk -F. '{print $2}'` == "jlab") then
 	# python
@@ -71,14 +80,6 @@ else
 endif
 echo
 
-# Sourcing packages. This will set the LD_LIBRARY_PATH. 
-# Powerpcs and Darwins will be set right below
-if( ! $?LD_LIBRARY_PATH) then
-	setenv LD_LIBRARY_PATH ""
-endif
-if( ! $?PYTHONPATH) then
-	setenv PYTHONPATH "."
-endif
 
 foreach p ($packages)
 	source $JLAB_ROOT/$JLAB_VERSION/ce/$p".env"
