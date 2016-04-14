@@ -65,6 +65,7 @@ data:
 	set file = (`\ls *.tar.gz`)
 	foreach f ($file)
 		echo Extracting $f
+		file $f
 		tar zxpf $f >& /dev/null
 	end
 	rm -f *.tar.gz
