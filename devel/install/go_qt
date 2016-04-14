@@ -47,6 +47,6 @@ echo Make sure to clear the default installation location and copy/parse this in
 echo
 echo $JLAB_SOFTWARE/qt/$QT_VERSION
 echo
-echo Make sure to include the Source Components during the installation process. Extras are not needed.
+echo Make sure to include the Source Components during the installation process. 
 echo
 
