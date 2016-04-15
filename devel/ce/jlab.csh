@@ -37,7 +37,7 @@ if( ! $?PYTHONPATH) then
 endif
 
 ## !!!! temp fixes for JLab users: use specific softare
-if(`hostname -f | awk -F. '{print $2}'` == "jlab") then
+if( -d /apps/gcc/5.2.0/install/bin) then
 	# python
 	setenv PATH /apps/python/3.3.1/bin:$PATH
 	setenv LD_LIBRARY_PATH /apps/python/PRO/lib:$LD_LIBRARY_PATH
