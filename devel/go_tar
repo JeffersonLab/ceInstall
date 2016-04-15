@@ -56,15 +56,21 @@ endif
 
 
 # gemc
+# copying API in gemc
 if($pname == "gemc") then
-  cd $locald/gemc/releases/$pver/source
-  scons -c ;
-  scp changelog  $remoted/gemc
-  cd ../../
+	if($pver == "devel") then
+		cd $locald/gemc/releases/
+		rm devel ; cp -r ../source devel
+	endif
+	cd $locald/gemc/releases/$pver
+	scons -c ;
+	cp -r $locald/gemc/api .
+	cd $locald/gemc/releases
 	rm -rf gemc-$pver.*
-	tar cvf gemc-$pver.tar  --exclude=".DS_Store" --exclude=".sconsign.dblite" --exclude=".git" --exclude=".entitlements" $pver/source $pver/api
+	tar cvf gemc-$pver.tar  --exclude=".DS_Store"  --exclude=".gitignore" --exclude=".sconsign.dblite" --exclude=".git" --exclude=".entitlements" $pver
 	gzip gemc-$pver.tar
 	scp gemc-$pver.tar.gz $remoted/gemc
+	rm -rf $locald/gemc/releases/$pver/api
 endif
 
 # banks
