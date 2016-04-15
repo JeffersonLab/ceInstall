@@ -87,6 +87,7 @@ src:
 
 	rm -f              $filename
 	wget  $repo/geant4/$filename
+	echo Unpacking     $filename
 	tar -zxpvf         $filename >& /dev/null
 if($1 == "src") exit
 

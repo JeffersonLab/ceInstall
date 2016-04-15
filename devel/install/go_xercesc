@@ -37,9 +37,10 @@ src:
 
 	# Unpacking file. For XERCES, we need source dir different than destination dir
 	cd $XERCESCROOT
-	rm -f       $filename
-	wget  $repo/$filename
-	tar -zxpvf  $filename >& /dev/null
+	rm -f          $filename
+	wget     $repo/$filename
+	echo Unpacking $filename
+	tar -zxpvf     $filename >& /dev/null
 if($1 == "src") exit
 
 # make

@@ -27,9 +27,11 @@ rm -rf   $JANA_HOME
 mkdir -p $JANA_HOME
 cd       $JLAB_SOFTWARE/jana
 
-rm -f      $filename
-wget $repo/$filename
-tar -zxpvf $filename >& /dev/null
+rm -f          $filename
+wget     $repo/$filename
+
+echo Unpacking $filename
+tar -zxpvf     $filename >& /dev/null
 
 
 # Compiling

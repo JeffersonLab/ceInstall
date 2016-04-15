@@ -39,8 +39,9 @@ endif
 ## !!!! temp fixes for JLab users: use specific softare
 if( -d /apps/gcc/5.2.0/install/bin) then
 	# python
-	setenv PATH /apps/python/3.3.1/bin:$PATH
-	setenv LD_LIBRARY_PATH /apps/python/PRO/lib:$LD_LIBRARY_PATH
+	setenv PYPATH /apps/python/python-2.7.1
+	setenv PATH            $PYPATH/bin:$PATH
+	setenv LD_LIBRARY_PATH $PYPATH/lib:$LD_LIBRARY_PATH
 
 	# gcc 5.2.0
 	setenv PATH /apps/gcc/5.2.0/install/bin:$PATH

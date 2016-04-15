@@ -30,9 +30,10 @@ rm -rf   $JLAB_SOFTWARE/banks/$BANKS_VERSION
 mkdir -p $JLAB_SOFTWARE/banks
 cd       $JLAB_SOFTWARE/banks
 
-rm         $filename
-wget $repo/$filename
-tar -zxpvf $filename >& /dev/null
+rm             $filename
+wget     $repo/$filename
+echo Unpacking $filename
+tar -zxpvf     $filename >& /dev/null
 
 
 # Compiling
