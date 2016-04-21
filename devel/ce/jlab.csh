@@ -47,6 +47,7 @@ if( -d /apps/gcc/5.2.0/install/bin) then
 	setenv PATH /apps/gcc/5.2.0/install/bin:$PATH
 	setenv LD_LIBRARY_PATH /apps/gcc/5.2.0/install/lib64:$LD_LIBRARY_PATH
 	setenv CXX /apps/gcc/5.2.0/install/bin/c++
+	setenv CC  /apps/gcc/5.2.0/install/bin/gcc
 
 	# cmake
 	setenv PATH /apps/cmake/cmake-3.5.1/bin/:$PATH
