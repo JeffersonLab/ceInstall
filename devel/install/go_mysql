@@ -13,7 +13,7 @@ echo " > Linking to local mysql distributions"
 mkdir -p $JLAB_SOFTWARE/mysql
 # Darwin
 if(`uname` == "Darwin") then
-    set msqlver = `ls -t /usr/local/Cellar/mysql | head -1`
+    set msqlver = `ls -t /usr/local/Cellar | grep mysql | head -1`
 
     ln -sfn /usr/local/Cellar/mysql/$msqlver/include/mysql $JLAB_SOFTWARE/mysql/include
     ln -sfn /usr/local/Cellar/mysql/$msqlver/lib           $JLAB_SOFTWARE/mysql/
