@@ -39,7 +39,7 @@ tar -zxpvf     $filename >& /dev/null
 cd $JLAB_SOFTWARE/gemc/$GEMC_VERSION
 echo " > Compiling gemc source (log will be in "\$GEMC"/build_log )..."
 
-scons $opt $ooarch  LIBRARY="shared" > build_log
+scons $opt $ooarch  LIBRARY="shared" > $GEMC/build_log
 
 # Done!
 echo done
