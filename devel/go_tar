@@ -59,8 +59,10 @@ endif
 # copying API in gemc
 if($pname == "gemc") then
 	if($pver == "devel") then
+		cd $GEMC
+		scons -c
 		cd $locald/gemc/releases/
-		rm devel ; cp -r ../source devel
+		rm -rf devel ; cp -r ../source devel
 	endif
 	cd $locald/gemc/releases/$pver
 	scons -c ;
