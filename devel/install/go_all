@@ -7,13 +7,15 @@
 
 ./go_clhep
 ./go_xercesc
-./go_mysql
-./go_qt4
+./go_qt
 ./go_geant4
 ./go_sconsscript
 ./go_evio
+./go_mysql
+./go_ccdb
 ./go_gemc
 ./go_fields
 ./go_root
-
+./go_banks
+./go_jana
 
