@@ -1,5 +1,8 @@
 #!/bin/csh -f
 
+# At JLab Robert Michaels is taking care of the ROOT installation
+# chgrp -R 12gev_phys root
+# chmod -R 775 root
 
 # Additional settings at the top of get_coptions
 source get_coptions env
