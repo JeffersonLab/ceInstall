@@ -30,6 +30,7 @@ if($pname == "ceInstall") then
 	gzip ceInstall_$pver.tar
 	scp ceInstall_$pver.tar.gz $remoted/ceInstall
 	scp $pver/install/install.html $remoted/ceInstall/$pver"_install.html"
+	exit
 endif
 
 
@@ -40,6 +41,7 @@ if($pname == "bm") then
 	tar cvf scons_bm-$pver.tar $pver/*
 	gzip scons_bm-$pver.tar
 	scp scons_bm-$pver.tar.gz $remoted/scons_bm
+	exit
 endif
 
 
@@ -52,6 +54,7 @@ if($pname == "evio") then
 	tar cvf evio-$pver.tar $pver/*
 	gzip evio-$pver.tar
 	scp evio-$pver.tar.gz $remoted/evio
+	exit
 endif
 
 
@@ -73,6 +76,7 @@ if($pname == "gemc") then
 	gzip gemc-$pver.tar
 	scp gemc-$pver.tar.gz $remoted/gemc
 	rm -rf $locald/gemc/releases/$pver/api
+	exit
 endif
 
 # banks
@@ -85,6 +89,7 @@ if($pname == "banks") then
 	tar cvf banks-$pver.tar --exclude="banks.xcodeproj" --exclude="lib" $pver/*
 	gzip banks-$pver.tar
 	scp banks-$pver.tar.gz $remoted/banks
+	exit
 endif
 
 # gemc_evio2root
@@ -96,6 +101,7 @@ if($pname == "gemc_evio2root") then
 	tar cvf gemc_evio2root.tar --exclude="evio2root" --exclude="make_log" *
 	gzip gemc_evio2root.tar
 	scp gemc_evio2root.tar.gz $remoted/gemc_evio2root
+	exit
 endif
 
 
