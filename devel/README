@@ -1,0 +1,7 @@
+TO RELEASE:
+
+
+- change release date in jlab.csh
+- make sure versions.env is updated
+- if it's a patch make sure to delete all the go_packages except the one needed
+

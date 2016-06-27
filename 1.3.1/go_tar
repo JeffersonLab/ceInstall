@@ -1,0 +1,97 @@
+#!/bin/tcsh -f
+
+# First argument is package name
+# Second argument is version
+
+if($#argv != 2 && $1 != doc) then
+	echo " "
+	echo "Usage:   "
+	echo  "  >> go_tar package version"
+	echo " "
+	exit 0
+endif
+
+
+set pname   = $1
+set pver    = $2
+set remoted = "ftp.jlab.org:/u/group/12gev_phys/www/packages/sources"
+set locald  = /opt/projects
+
+echo
+echo " Package: " $pname ", version: " $pver
+echo
+
+
+# common environment
+if($pname == "ceInstall") then
+	cd $locald/ceInstall
+	rm -f ceInstall_$pver.*
+	tar cvf ceInstall_$pver.tar  --exclude='go_tar' --exclude="doc" --exclude=".DS_Store" $pver
+	gzip ceInstall_$pver.tar
+	scp ceInstall_$pver.tar.gz $remoted/ceInstall
+	scp $pver/install/install.html $remoted/ceInstall/$pver"_install.html"
+endif
+
+
+# scons scripts
+if($pname == "bm") then
+	cd $locald/scons_bm/
+	rm -rf scons_bm-$pver.*
+	tar cvf scons_bm-$pver.tar $pver/*
+	gzip scons_bm-$pver.tar
+	scp scons_bm-$pver.tar.gz $remoted/scons_bm
+endif
+
+
+# evio
+if($pname == "evio") then
+	cd $locald/evio/releases/$pver
+	scons -c ; rm -rf lib bin
+	cd ..
+	rm -rf evio-$pver.*
+	tar cvf evio-$pver.tar $pver/*
+	gzip evio-$pver.tar
+	scp evio-$pver.tar.gz $remoted/evio
+endif
+
+
+# gemc
+if($pname == "gemc") then
+  cd $locald/gemc/releases/$pver/source
+  scons -c ;
+  scp changelog  $remoted/gemc
+  cd ../../
+	rm -rf gemc-$pver.*
+	tar cvf gemc-$pver.tar  --exclude=".DS_Store" --exclude=".sconsign.dblite" --exclude=".git" --exclude=".entitlements" $pver/source $pver/api
+	gzip gemc-$pver.tar
+	scp gemc-$pver.tar.gz $remoted/gemc
+endif
+
+# banks
+if($pname == "banks") then
+	cd $locald/banks/$pver
+	setenv BANKS `pwd`
+	scons -c ;
+	cd ../
+	rm -rf banks-$pver.*
+	tar cvf banks-$pver.tar --exclude="banks.xcodeproj" --exclude="lib" $pver/*
+	gzip banks-$pver.tar
+	scp banks-$pver.tar.gz $remoted/banks
+endif
+
+# gemc_evio2root
+# Only one version of it
+if($pname == "gemc_evio2root") then
+	cd $locald/gemc_evio2root/
+	scons -c ;
+	rm -rf gemc_evio2root.tar.gz
+	tar cvf gemc_evio2root.tar --exclude="evio2root" --exclude="make_log" *
+	gzip gemc_evio2root.tar
+	scp gemc_evio2root.tar.gz $remoted/gemc_evio2root
+endif
+
+
+echo
+echo
+
+

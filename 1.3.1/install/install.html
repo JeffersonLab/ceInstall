@@ -1,0 +1,110 @@
+<html>
+	
+	<h2> Software installation instructions (1.3.1) </h2>
+ 
+ <br>
+ These instructions apply to JLAB_VERSION 1.3.1 (patch). You must have 1.3 installed to proceed.<br>
+ You can find previous releases installation instructions below:<br>
+ <ul>
+	<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/1.3_install.html"> Version 1.3</a><br> </li>
+	<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/1.2_install.html"> Version 1.2</a><br> </li>
+ </ul>
+ 
+ <hr>
+ 
+
+ <h2> Installation:</h2>
+ 
+ 
+ <ol>
+	 <li>
+		 There is no need to change the JLAB_ROOT variable. To create the 1.3.1 directory:
+		 
+		 <pre>
+ mkdir -p $JLAB_ROOT/1.3.1
+		 </pre>
+		 
+		 Set the environment variables. You should have these lines in your login script:
+		 
+		 <pre>
+ setenv JLAB_ROOT /opt/jlab_software
+ source $JLAB_ROOT/1.3.1/ce/jlab.csh
+		 </pre>
+		 
+
+	 </li>
+	 
+	 
+	 
+	 <li>Get the installation scripts:
+		 <pre>
+ cd $JLAB_ROOT
+ wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_1.3.1.tar.gz
+ tar -zxpvf ceInstall_1.3.1.tar.gz
+		 </pre>
+		 
+	 </li>
+	 
+
+	 
+	 <li>Start a new shell. Now you should see a log similar to this
+		 <pre>
+ > Common Environment Version: <1.3.1>  (Sun June 19 2016)
+ > Running as ungaro on Maurizios-Mac-Pro.local
+ > OS Release:    Darwin__macosx10.11-x86_64-clang7.0.2
+ > JLAB_ROOT set to:     /opt/jlab_software
+ > /opt/jlab_software/1.3/Darwin__macosx10.11-x86_64-clang7.0.2 is not a directory. Creating it.
+	 
+ ? Attention: No CLHEP installation found.
+ ? Attention: No XERCES installation found.
+ ? Attention: No mysql installation found.
+ ? Attention: No QTDIR installation found.
+ ? Attention: No GEANT4 installation found.
+ ? Attention: No ROOT installation found.
+ ? Attention: No GEMC installation found.
+ ? Attention: No JANA installation found.
+ ? Attention: No Scons Script installation found.
+ ? Attention: No EVIO installation found.
+ ? Attention: No BANKS installation found.
+	 </pre>
+		 
+	 </li>
+	 If you do, great. You're ready to run the patch installation script.<br>
+	 Notice: if you already have some existing environment variable that you want to keep,
+	 use the option "keepmine":<br>
+	 <pre>
+ source $JLAB_ROOT/1.3.1/ce/jlab.csh keepmine
+	 </pre>
+	 
+	 
+	 <li>
+		 Choose the packages you wish to install by executing the corresponding script:
+		 <pre>
+ cd $JLAB_ROOT/1.3.1
+
+ ./go_patch.
+		 </pre>
+	
+	This will make symbolic links to the 1.3 packages except for the gemc package, which is now at version 2.4 and is installed from source.
+	 </li>
+ </ol>
+ <br><br><br>
+ 
+ Please email any comments/corrections/bug report/feature requests to <a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">Maurizio Ungaro</a>.
+
+ 
+ <br><br><br>
+ <br><br><br>
+ <br><br><br>
+ 
+ 
+</html>
+
+
+
+
+
+
+
+
+
