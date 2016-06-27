@@ -30,20 +30,16 @@ rm -rf   $JLAB_SOFTWARE/gemc/$GEMC_VERSION
 mkdir -p $JLAB_SOFTWARE/gemc
 cd       $JLAB_SOFTWARE/gemc
 
-rm         $filename
-wget $repo/$filename
-tar -zxpvf $filename >& /dev/null
-
-# temp link of io and api/perl
-# for backward compatibility
-cd $JLAB_SOFTWARE/gemc/$GEMC_VERSION/
-ln -s api/perl io
+rm             $filename
+wget     $repo/$filename
+echo Unpacking $filename
+tar -zxpvf     $filename >& /dev/null
 
 # Compiling
-cd $JLAB_SOFTWARE/gemc/$GEMC_VERSION/source
-echo " > Compiling gemc source (log will be in "\$GEMC"/source/build_log )..."
+cd $JLAB_SOFTWARE/gemc/$GEMC_VERSION
+echo " > Compiling gemc source (log will be in "\$GEMC"/build_log )..."
 
-scons $opt $ooarch  LIBRARY="shared" > build_log
+scons $opt $ooarch  LIBRARY="shared" > $GEMC/build_log
 
 # Done!
 echo done

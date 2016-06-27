@@ -11,20 +11,26 @@ set patchRelease = 1.3.1
 set packages = (gemc)
 
 echo
-echo Creating distribution directory...
-cd $JLAB_ROOT/$patchRelease
-mkdir $OSRELEASE
-echo done. Now linking the various $baseRelease packages...
+echo Linking the various $baseRelease packages...
 
-foreach dontdo $(packages)
-	foreach p (clhep xercesc qt geant4 scons_bm mysql ccdb gemc root banks jana)
+foreach dontdo ($packages)
+	foreach p (clhep xercesc qt geant4 mysql ccdb evio gemc root banks jana)
 		if($p != $dontdo) then
-			echo Linking $p package
-			ln -s ../$baseRelease/$OSRELEASE/$p $OSRELEASE/$p
+			echo "  linking $p package"
+			ln -s $JLAB_ROOT/$baseRelease/$OSRELEASE/$p $OSRELEASE/$p
 		endif
 	end
+	echo
+	echo "  linking scons_bm"
+	ln -s $JLAB_ROOT/$baseRelease/scons_bm .
 end
 
+echo done.
+cd install
+foreach do ($packages)
+	echo Now installing $do"..."
+	./go_$do
+end
 echo done!
 echo
 echo

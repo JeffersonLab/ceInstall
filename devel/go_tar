@@ -26,7 +26,7 @@ echo
 if($pname == "ceInstall") then
 	cd $locald/ceInstall
 	rm -f ceInstall_$pver.*
-	tar cvf ceInstall_$pver.tar  --exclude='go_tar' --exclude="doc" --exclude=".DS_Store" $pver
+	tar cvf ceInstall_$pver.tar  --exclude='go_tar' --exclude="doc" --exclude=".DS_Store" --exclude="releases.key" $pver
 	gzip ceInstall_$pver.tar
 	scp ceInstall_$pver.tar.gz $remoted/ceInstall
 	scp $pver/install/install.html $remoted/ceInstall/$pver"_install.html"
