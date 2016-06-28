@@ -17,7 +17,7 @@ endif
 
 
 # Software packages
-set packages = (clhep xercesc mysql qt geant4 root jlab12)
+set packages = (clhep xercesc mysql qt geant4 root jlab12 mlibrary)
 
 # Only print out if there's a prompt
 alias echo 'if($?prompt) echo \!*  '

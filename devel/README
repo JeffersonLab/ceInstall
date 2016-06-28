@@ -5,11 +5,6 @@ TO RELEASE:
 - make sure versions.env is updated
 - if it's a patch make sure to delete all the go_packages except the one needed
 
-
-
-
-
-
 Email Draft:
 
 

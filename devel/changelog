@@ -1,4 +1,6 @@
 TODO: function to set SOFTWARE_ROOT_DIR SOFTWARE_VERSION depending if user already setting those
+TODO: split ccdb, jana, gemc and the rest in smaller script.
+TODO: finalize the if statements of all packages. A general function would be best.
 
 -------------------------------------------
 
