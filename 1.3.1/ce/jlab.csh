@@ -11,7 +11,7 @@ set CE_DATE = "(Sun June 19 2016)"
 
 # Looking for user defined JLAB_VERSION
 if( ! $?JLAB_VERSION || $overwrite == "yes") then
-	setenv JLAB_VERSION 1.3
+	setenv JLAB_VERSION 1.3.1
 endif
 
 
