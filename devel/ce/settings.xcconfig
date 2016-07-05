@@ -9,41 +9,40 @@
 // NOTICE: some qt headers require the include directory
 // but it doesn't come with the normal installation
 // make sure to copy the headers manually
-QT_VERSION = 5.4.0
-QT_SYSTEM  = 5.4
+QT_VERSION = 5.6.0
+QT_SYSTEM  = 5.6
 QT_ARCH    = clang_64
 QTDIR      = $JLAB_SOFTWARE/qt/$QT_VERSION
 QTFRAMES   = $QTDIR/$QT_SYSTEM/$QT_ARCH/lib
-QT_HEADS   = $QTFRAMES/QtCore.framework/Headers $QTFRAMES/QtGui.framework/Headers $QTFRAMES/QtWidgets.framework/Headers
-
+QT_HEADS   = $QTFRAMES/QtCore.framework/Headers $QTFRAMES/QtGui.framework/Headers $QTFRAMES/QtWidgets.framework/Headers $QTFRAMES/QtXml.framework/Headers
 
 // EVIO
-EVIO_VERSION = 4.4
-EVIO         = $JLAB_SOFTWARE/evio/$EVIO_VERSION
-EVIO_LIBP    = $EVIO/lib
-EVIO_LIBS    =  -levioxx -levio -lexpat
-EVIO_HEADS   = $EVIO/src/libsrc $EVIO/src/libsrc++
+//EVIO_VERSION = 4.4
+//EVIO         = $JLAB_SOFTWARE/evio/$EVIO_VERSION
+//EVIO_LIBP    = $EVIO/lib
+//EVIO_LIBS    =  -levioxx -levio -lexpat
+//EVIO_HEADS   = $EVIO/src/libsrc $EVIO/src/libsrc++
 
 // XERCES
-XERCESC_VERSION = 3.1.1
-XERCESCROOT     = $JLAB_SOFTWARE/xercesc/$XERCESC_VERSION
-XERCESC_LIBP    = $XERCESCROOT/lib
-XERCESC_LIBS    = -lxerces-c 
-XERCESC_HEADS   = $XERCESCROOT/include
+//XERCESC_VERSION = 3.1.1
+//XERCESCROOT     = $JLAB_SOFTWARE/xercesc/$XERCESC_VERSION
+//XERCESC_LIBP    = $XERCESCROOT/lib
+//XERCESC_LIBS    = -lxerces-c 
+//XERCESC_HEADS   = $XERCESCROOT/include
 
 // CLHEP
-CLHEP_VERSION = 2.2.0.3
-CLHEP_ROOT    = $JLAB_SOFTWARE/clhep/$CLHEP_VERSION
-CLHEP_HEADS   = $CLHEP_ROOT/include
-CLHEP_LIBP    = $CLHEP_ROOT/lib
+//CLHEP_VERSION = 2.2.0.3
+//CLHEP_ROOT    = $JLAB_SOFTWARE/clhep/$CLHEP_VERSION
+//CLHEP_HEADS   = $CLHEP_ROOT/include
+//CLHEP_LIBP    = $CLHEP_ROOT/lib
 
 // GEANT4
 // The libraries in xcode should added manually to the
 // project (assigned to proper targets).
-GEANT4_VERSION = 4.10.00.p03
-GEANT4_ROOT    = $JLAB_SOFTWARE/geant4/$GEANT4_VERSION
-GEANT4_HEADS   = $GEANT4_ROOT/include/Geant4
-GEANT4_PREPROC = G4VIS_USE_OPENGL G4UI_USE_TCSH G4INTY_USE_QT G4UI_USE_QT G4VIS_USE_OPENGLQT
+//GEANT4_VERSION = 4.10.00.p03
+//GEANT4_ROOT    = $JLAB_SOFTWARE/geant4/$GEANT4_VERSION
+//GEANT4_HEADS   = $GEANT4_ROOT/include/Geant4
+//GEANT4_PREPROC = G4VIS_USE_OPENGL G4UI_USE_TCSH G4INTY_USE_QT G4UI_USE_QT G4VIS_USE_OPENGLQT
 // GEANT4_LIBP    = $GEANT4_ROOT/lib
 // GEANT4_LIBS    = -lG4OpenGL -lG4gl2ps -lG4Tree -lG4FR -lG4GMocren -lG4visHepRep -lG4RayTracer
 // -lG4VRML -lG4vis_management -lG4modeling -lG4interfaces -lG4persistency -lG4analysis -lG4error_propagation
@@ -51,29 +50,22 @@ GEANT4_PREPROC = G4VIS_USE_OPENGL G4UI_USE_TCSH G4INTY_USE_QT G4UI_USE_QT G4VIS_
 // -lG4track -lG4particles -lG4geometry -lG4materials -lG4graphics_reps -lG4intercoms -lG4global
 
 
-// GEMC
-GEMC_VERSION = devel
-GEMC_ROOT    = /opt/projects/gemc/$GEMC_VERSION/source
-GEMC_HEADS   = $GEMC_ROOT/utilities $GEMC_ROOT/output $GEMC_ROOT/src
-GEMC_LIBP    = $GEMC_ROOT/lib
-GEMC_LIBS    = -loutput -lutilities 
-
 
 // ROOT
-// libraries are better added in xcode directly (dragged there)
+// libraries are added in xcode directly (dragged there)
 // and added to the relevant paths
-ROOT_VERSION = 5.34.21
-ROOT_ROOT    = $JLAB_SOFTWARE/root/$ROOT_VERSION/root
-ROOT_HEADS   = $ROOT_ROOT/include/root
-ROOT_LIBP    = $ROOT_ROOT/lib/root
+//ROOT_VERSION = 5.34.21
+//ROOT_ROOT    = $JLAB_SOFTWARE/root/$ROOT_VERSION/root
+//ROOT_HEADS   = $ROOT_ROOT/include/root
+//ROOT_LIBP    = $ROOT_ROOT/lib/root
 
 
 // CCDB
 // libraries are better added in xcode directly (dragged there)
 // and added to the relevant paths
-CCDB_VERSION = 1.03
-CCDB_ROOT    = $JLAB_SOFTWARE/ccdb/ccdb_$CCDB_VERSION
-CCDB_HEADS   = $CCDB_ROOT/include
+//CCDB_VERSION = 1.03
+//CCDB_ROOT    = $JLAB_SOFTWARE/ccdb/ccdb_$CCDB_VERSION
+//CCDB_HEADS   = $CCDB_ROOT/include
 
 
 
