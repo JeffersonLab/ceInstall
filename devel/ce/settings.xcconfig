@@ -63,9 +63,9 @@ QT_HEADS   = $QTFRAMES/QtCore.framework/Headers $QTFRAMES/QtGui.framework/Header
 // CCDB
 // libraries are better added in xcode directly (dragged there)
 // and added to the relevant paths
-//CCDB_VERSION = 1.03
-//CCDB_ROOT    = $JLAB_SOFTWARE/ccdb/ccdb_$CCDB_VERSION
-//CCDB_HEADS   = $CCDB_ROOT/include
+CCDB_VERSION = 1.06.00
+CCDB_ROOT    = $JLAB_SOFTWARE/ccdb/ccdb-$CCDB_VERSION
+CCDB_HEADS   = $CCDB_ROOT/include
 
 
 
