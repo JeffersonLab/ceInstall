@@ -73,7 +73,7 @@ CCDB_HEADS   = $CCDB_ROOT/include
 // adding includes here
 MLIB_VERSION = 1.0
 MLIB_ROOT    = /opt/projects/mlibrary
-MLIB_HEADS   = $MLIB_ROOT/options $MLIB_ROOT/translationTable $MLIB_ROOT/splash $MLIB_ROOT/gruns
+MLIB_HEADS   = $MLIB_ROOT/options $MLIB_ROOT/translationTable $MLIB_ROOT/splash $MLIB_ROOT/gruns $MLIB_ROOT/textProgressBar
 
 
 
