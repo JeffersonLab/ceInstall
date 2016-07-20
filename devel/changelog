@@ -8,6 +8,11 @@ TODO: finalize the if statements of all packages. A general function would be be
 
  -------------------------------------------
 
+7/22/16
+- removed obsolete go_scrat
+- finalized go_mlibrary
+- added mlibrary in go_tar
+
 5/12/16
 - fixed BANKS envs
 

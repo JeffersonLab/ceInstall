@@ -72,7 +72,7 @@ if($pname == "gemc") then
 	cp -r $locald/gemc/api .
 	cd $locald/gemc/releases
 	rm -rf gemc-$pver.*
-	tar cvf gemc-$pver.tar  --exclude=".DS_Store"  --exclude=".gitignore" --exclude=".sconsign.dblite" --exclude=".git" --exclude=".entitlements" $pver
+	tar cvf gemc-$pver.tar  --exclude=".DS_Store"  --exclude=".gitignore" --exclude=".sconsign.dblite" --exclude=".git" --exclude=".entitlements" --exclude="lib" $pver
 	gzip gemc-$pver.tar
 	scp gemc-$pver.tar.gz $remoted/gemc
 	rm -rf $locald/gemc/releases/$pver/api
@@ -92,17 +92,31 @@ if($pname == "banks") then
 	exit
 endif
 
-# gemc_evio2root
-# Only one version of it
-if($pname == "gemc_evio2root") then
-	cd $locald/gemc_evio2root/
+
+# mlibrary
+if($pname == "mlibrary") then
+	if($pver == "devel") then
+		cd $locald/mlibrary/
+		scons -c
+		cd $locald/mlibrary/releases/
+		rm -rf devel ; mkdir devel ;
+		foreach mlib (gruns options splash textProgressBar translationTable cadmesh)
+	      cp -r ../$mlib devel/
+		end
+		cp ../SConstruct devel
+	endif
+
+	cd $locald/mlibrary/releases/$pver
 	scons -c ;
-	rm -rf gemc_evio2root.tar.gz
-	tar cvf gemc_evio2root.tar --exclude="evio2root" --exclude="make_log" *
-	gzip gemc_evio2root.tar
-	scp gemc_evio2root.tar.gz $remoted/gemc_evio2root
+	cd ../
+	rm -rf mlibrary-$pver.*
+	tar cvf mlibrary-$pver.tar --exclude=".DS_Store"  --exclude=".gitignore" --exclude=".sconsign.dblite" --exclude=".git" --exclude=".entitlements" $pver/*
+	gzip mlibrary-$pver.tar
+	scp mlibrary-$pver.tar.gz $remoted/mlibrary
 	exit
 endif
+
+
 
 
 echo

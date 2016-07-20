@@ -37,11 +37,21 @@ tar -zxpvf     $filename >& /dev/null
 
 # Compiling
 
-cd $JLAB_SOFTWARE/mlibrary/
+cd $JLAB_SOFTWARE/mlibrary/$MLIBRARY_VERSION
 
 echo " > Compiling mlibrary  (log will be in "\$MLIBRARY"/build_log )..."
 
 scons $opt $ooarch > $MLIBRARY/build_log
+
+
+# CADMESH is part of the mlibrary distribution
+mkdir cadmeshBuild
+cd cadmeshBuild
+# check with geant4 p03 we still need to set CLHEP_DIR
+setenv CLHEP_DIR $CLHEP_BASE_DIR
+cmake ../cadmesh -DCMAKE_INSTALL_PREFIX:PATH=$JLAB_SOFTWARE/mlibrary/$MLIBRARY_VERSION
+make $opt install
+
 
 # Done!
 echo done
