@@ -41,8 +41,10 @@ cd $JLAB_SOFTWARE/mlibrary/$MLIBRARY_VERSION
 
 echo " > Compiling mlibrary (log will be in "\$MLIBRARY"/build_log )..."
 
-scons $opt $ooarch > $MLIBRARY/build_log
+scons $opt $ooarch  LIBRARY="shared" > $MLIBRARY/build_log
 
+echo
+echo
 echo " > Compiling cadmesh in mlibrary..."
 # CADMESH is part of the mlibrary distribution
 mkdir cadmeshBuild
