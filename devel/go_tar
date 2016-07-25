@@ -45,17 +45,7 @@ if($pname == "bm") then
 endif
 
 
-# evio
-if($pname == "evio") then
-	cd $locald/evio/releases/$pver
-	scons -c ; rm -rf lib bin
-	cd ..
-	rm -rf evio-$pver.*
-	tar cvf evio-$pver.tar $pver/*
-	gzip evio-$pver.tar
-	scp evio-$pver.tar.gz $remoted/evio
-	exit
-endif
+# evio addressed in go_evio
 
 
 # gemc
