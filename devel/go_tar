@@ -45,8 +45,20 @@ if($pname == "bm") then
 endif
 
 
-# evio addressed in go_evio
-
+Additional settings at the top of get_coptions
+# Get evio from here:
+# https://coda.jlab.org/drupal/content/event-io-evio
+# then replace the SConstruct there with the old $EVIO/SConstruct and re-pack with (one dir up)
+if($pname == "evio") then
+	cd $JLAB_SOFTWARE/evio/$pver
+	scons -c ; rm -rf lib bin
+	cd ..
+	rm -rf evio-$pver.*
+	tar cvf  evio-$pver.tar --exclude="doc" --exclude="java" --exclude="tar" $pver/*
+	gzip evio-$pver.tar
+	scp evio-$pver.tar.gz $remoted/evio
+	exit
+endif
 
 # gemc
 # copying API in gemc
