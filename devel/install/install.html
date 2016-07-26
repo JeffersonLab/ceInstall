@@ -165,11 +165,11 @@
         
         <li>Start a new shell. Now you should see a log similar to this
             <pre>
-                > Common Environment Version: <devel>  (Thu March 31 2016)
+                > Common Environment Version: <devel>  (Sat April 9 2016)
                     > Running as ungaro on Maurizios-Mac-Pro.local
-                    > OS Release:    Darwin__macosx10.11-x86_64-clang7.0.2
+                    > OS Release:    Darwin__macosx10.11-x86_64-clang7.0.3
                     > JLAB_ROOT set to:     /opt/jlab_software
-                    > /opt/jlab_software/devel/Darwin__macosx10.11-x86_64-clang7.0.2 is not a directory. Creating it.
+                    > /opt/jlab_software/devel/Darwin__macosx10.11-x86_64-clang7.0.3 is not a directory. Creating it.
                     
                     ? Attention: No CLHEP installation found.
                     ? Attention: No XERCES installation found.
@@ -180,8 +180,10 @@
                     ? Attention: No GEMC installation found.
                     ? Attention: No JANA installation found.
                     ? Attention: No Scons Script installation found.
-                    ? Attention: No EVIO installation found.
+						  ? Attention: No EVIO installation found.
+						  ? Attention: No CCDB installation found.
                     ? Attention: No BANKS installation found.
+						  ? Attention: No MLIBRARY installation found.
                     </pre>
             
         </li>
@@ -205,7 +207,8 @@
                 ./go_sconsscript
                 ./go_evio
                 ./go_mysql
-                ./go_ccdb
+					 ./go_ccdb
+					 ./go_mlibrary
                 ./go_gemc
                 ./go_fields
                 ./go_root
