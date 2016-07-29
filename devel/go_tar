@@ -45,7 +45,7 @@ if($pname == "bm") then
 endif
 
 
-Additional settings at the top of get_coptions
+# Additional settings at the top of get_coptions
 # Get evio from here:
 # https://coda.jlab.org/drupal/content/event-io-evio
 # then replace the SConstruct there with the old $EVIO/SConstruct and re-pack with (one dir up)
