@@ -44,8 +44,8 @@ echo " > Compiling mlibrary (log will be in "\$MLIBRARY"/build_log )..."
 scons $opt $ooarch  LIBRARY="shared" > $MLIBRARY/build_log
 
 echo
+echo " > Compiling cadmesh as part of mlibrary..."
 echo
-echo " > Compiling cadmesh in mlibrary..."
 # CADMESH is part of the mlibrary distribution
 mkdir cadmeshBuild
 cd cadmeshBuild

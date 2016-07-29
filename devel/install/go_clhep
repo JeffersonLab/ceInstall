@@ -1,5 +1,7 @@
 #!/bin/csh -f
 
+# library from http://proj-clhep.web.cern.ch/proj-clhep/
+
 # Additional settings at the top of get_coptions
 source get_coptions env
 
