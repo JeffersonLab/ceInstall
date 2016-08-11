@@ -102,7 +102,7 @@ if($pname == "mlibrary") then
 		scons -c
 		cd $locald/mlibrary/releases/
 		rm -rf devel ; mkdir devel ;
-		foreach mlib (gruns options splash textProgressBar translationTable)
+		foreach mlib (gruns options splash textProgressBar translationTable gstring frequencySyncSignal)
 	      cp -r ../$mlib devel/
 		end
 		cp ../SConstruct devel
