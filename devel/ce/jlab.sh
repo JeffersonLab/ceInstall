@@ -68,7 +68,7 @@ if [ ! -z $PS1 ]; then
     if [ ! -d $QTDIR/lib ]; then
 	echo " ? Attention: No QT   installation found for version ${QT_VERSION}"
     else
-	echo " > QT       version: ${CLHEP_VERSION} "
+	echo " > QT       version: ${QT_VERSION} "
     fi
     if [ ! -d ${XERCESCROOT}/lib ]; then
 	echo " ? Attention: No XERCESC installation found for version ${XERCESC_VERSION}"
