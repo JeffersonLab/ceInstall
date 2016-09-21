@@ -1,8 +1,10 @@
+JLAB_SOFTWARE = /opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0
+
+MYBUILDDIR = /Users/ungaro/Library/Mobile Documents/com~apple~CloudDocs/builds
+
 // The path to JLAB_SOFTWARE is set in each project settings.
 // This file should be included in any project xcode settings
 
-// Notice: to build libraries, use STATIC libraries
-// For some reason building dynamic libraries is so tricky and ask for  dependencies 
 
 // QT
 // the ** indicate all subdirs
