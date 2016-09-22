@@ -13,6 +13,7 @@
 ./go_evio
 ./go_mysql
 ./go_ccdb
+./go_mlibrary
 ./go_gemc
 ./go_fields
 ./go_root
