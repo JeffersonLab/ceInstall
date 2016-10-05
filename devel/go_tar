@@ -106,21 +106,38 @@ if($pname == "mlibrary") then
 	      cp -r ../$mlib devel/
 		end
 		cp ../SConstruct devel
-		# cadmesh needs download from the web directly
-		# or it will pick cmake stuff if there - why people using cmake?
 		cd devel
+		# cadmesh needs download from the web directly
+		# or it will pick cmake stuff if there - why people still using cmake?
 		git clone https://github.com/christopherpoole/CADMesh.git
 		mv CADMesh cadmesh
 	endif
 
 	# echo remember to include a cadmesh release version on mlibrary
+	# the releases of the mlibraries are done with github
+	# get them here:
+	# https://github.com/gemc/mlibrary/releases
+
+	cd $locald/mlibrary/releases/
+	wget https://github.com/gemc/mlibrary/archive/v$pver".tar.gz"
+	tar -zxpvf v$pver.tar.gz
+	mv mlibrary-$pver $pver
 	cd $locald/mlibrary/releases/$pver
 	scons -c ;
+
+	# cadmesh needs download from the web directly
+	# or it will pick cmake stuff if there - why people still using cmake?
+	git clone https://github.com/christopherpoole/CADMesh.git
+	mv CADMesh cadmesh
+
 	cd ../
 	rm -rf mlibrary-$pver.*
+
 	tar cvf mlibrary-$pver.tar --exclude=".DS_Store"  --exclude=".gitignore" --exclude=".sconsign.dblite" --exclude=".git" --exclude=".entitlements" $pver/*
 	gzip mlibrary-$pver.tar
 	scp mlibrary-$pver.tar.gz $remoted/mlibrary
+
+	rm v$pver.tar.gz
 	exit
 endif
 
