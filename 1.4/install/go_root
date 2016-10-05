@@ -1,0 +1,93 @@
+#!/bin/csh -f
+
+# At JLab Robert Michaels is taking care of the ROOT installation
+# chgrp -R 12gev_phys root
+# chmod -R 775 root
+
+# Additional settings at the top of get_coptions
+source get_coptions env
+
+ # Options
+set name     = root
+set release  = `./get_coptions release`
+set repo     = `./get_coptions repo`/root
+set version  = $ROOT_VERSION
+set filename = "root_v"$ROOT_VERSION".source.tar.gz"
+set arch     = `./get_coptions arch`
+set opt      = `./get_coptions copt`
+./get_coptions log $name $version $filename $release $arch $opt
+
+# Checking if the OS is 32 bit.
+set oarch = ""
+if($arch == "32" && `uname` == "Darwin") then
+	set oarch = '--disable-dependency-tracking'
+endif
+
+# Configuring and Compiling
+# disabling stuff we don't need
+set disablePackages = ("alien" "asimag" "bonjour" "builtin_afterimage" "castor" "chirp" "dcache" "fitsio" "gfal" "glite" "hdfs" "krb5" "odbc" "sapdb" "shadowpw" "srp")
+set toDisable = ""
+foreach p ($disablePackages)
+	set toDisable="$toDisable -D$p=OFF"
+end
+
+
+echo " > Special Compilation Options: " $oarch $toDisable
+echo
+
+set ROOTROOT   = $JLAB_SOFTWARE/root
+set ROOTSOURCE = "$ROOTROOT/root-$ROOT_VERSION"
+set ROOTBUILD  = "$ROOTROOT/root-$ROOT_VERSION-build"
+
+if($1 == "src"|| $1 == "make") goto $1
+
+# Source Build
+src:
+	# Getting source file
+	echo " > Installing root version "$version" - release "$release". Getting and unpacking" $filename"..."
+
+	# Getting and unpacking file. For ROOT, we need source dir different than destination dir IMPORTANT
+	rm -rf   $ROOTSYS $ROOTSOURCE $ROOTBUILD
+	mkdir -p $ROOTSYS $ROOTBUILD
+
+	# Unzipping source
+	cd $ROOTROOT
+
+	rm -f          $filename
+	wget     $repo/$filename
+
+	echo Unpacking $filename
+	tar -zxpvf     $filename >& /dev/null
+
+if($1 == "src") exit
+
+# notes: ROOT switched to cmake
+make:
+
+	cd $ROOTBUILD
+	cmake -DCMAKE_INSTALL_PREFIX=$ROOTSYS $toDisable $ROOTSOURCE
+
+	echo " > Compiling root source (log will be in "\$ROOTSYS/"make_log)..."
+	make $opt          > $ROOTSYS/make_log
+	make install $opt >> $ROOTSYS/make_log
+
+if($1 == "make") exit
+
+
+# Cleaning up
+rm -rf $ROOTSYS/root
+
+# Done!
+echo done
+echo
+
+
+
+
+
+
+
+
+
+
+
