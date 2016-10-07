@@ -131,11 +131,18 @@
     <ol>
         <li>
             Choose a place (JLAB_ROOT) to install the software<br>
-            A common choice for <b>JLAB_ROOT</b> is <b> /opt/jlab_software</b>.<br><br>
+				A common choice for <b>JLAB_ROOT</b> is <b> /opt/jlab_software</b>:<br><br>
+
+				<pre>
+                set JLAB_ROOT /opt/jlab_software
+				</pre>
+
+
+				<br>
             Create the working directory:
             
             <pre>
-                mkdir -p &lt;JLAB_ROOT&gt;/2.0
+                mkdir -p $JLAB_ROOT/2.0
             </pre>
             
             
@@ -145,7 +152,7 @@
         
         <li>Get the installation scripts:
             <pre>
-                cd &lt;JLAB_ROOT&gt;
+                cd $JLAB_ROOT
                 wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_2.0.tar.gz
                 tar -zxpvf ceInstall_2.0.tar.gz
             </pre>
@@ -167,29 +174,29 @@
         <li>Start a new shell. Now you should see a log similar to this
             <pre>
                 > Common Environment Version: <2.0>  (Wed Oct 6 2016)
-                    > Running as ungaro on Maurizios-Mac-Pro.local
-                    > OS Release:    Darwin__macosx10.11-x86_64-clang8.0.0
-                    > JLAB_ROOT set to:     /opt/jlab_software
-                    > /opt/jlab_software/2.0/Darwin__macosx10.11-x86_64-clang8.0.0 is not a directory. Creating it.
+                > Running as ungaro on Maurizios-Mac-Pro.local
+                > OS Release:    Darwin__macosx10.11-x86_64-clang8.0.0
+                > JLAB_ROOT set to:     /opt/jlab_software
+                > /opt/jlab_software/2.0/Darwin__macosx10.11-x86_64-clang8.0.0 is not a directory. Creating it.
                     
-                    ? Attention: No CLHEP installation found.
-                    ? Attention: No XERCES installation found.
-                    ? Attention: No mysql installation found.
-                    ? Attention: No QTDIR installation found.
-                    ? Attention: No GEANT4 installation found.
-                    ? Attention: No ROOT installation found.
-                    ? Attention: No GEMC installation found.
-                    ? Attention: No JANA installation found.
-                    ? Attention: No Scons Script installation found.
-                    ? Attention: No EVIO installation found.
-                    ? Attention: No CCDB installation found.
-                    ? Attention: No BANKS installation found.
-                    ? Attention: No MLIBRARY installation found.
-                    </pre>
+                ? Attention: No CLHEP installation found.
+                ? Attention: No XERCES installation found.
+                ? Attention: No mysql installation found.
+                ? Attention: No QTDIR installation found.
+                ? Attention: No GEANT4 installation found.
+                ? Attention: No ROOT installation found.
+                ? Attention: No GEMC installation found.
+                ? Attention: No JANA installation found.
+                ? Attention: No Scons Script installation found.
+                ? Attention: No EVIO installation found.
+                ? Attention: No CCDB installation found.
+                ? Attention: No BANKS installation found.
+                ? Attention: No MLIBRARY installation found.
+				</pre>
             
         </li>
         If you do, great. You're ready to run the installation scripts<br>
-        Notice: if you already have some existing environment variable that you want to keep,
+        Notice: if you already have some existing environment variables that you want to keep,
         use the option "keepmine":<br>
         <pre>
             source $JLAB_ROOT/2.0/ce/jlab.csh keepmine
