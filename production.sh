@@ -18,7 +18,7 @@ if [ -e  "$config_sh" ]; then
   source "$config_sh"
 else
   echo "  Configuration '$1' not available on this machine."
-  echo "  Usage:  $0 <version>"
+  echo "  Usage:  'source $JLAB_ROOT/production.sh <version>'"
   echo -n "    Versions: "
   for f in $JLAB_ROOT/*; do
     bn=`basename $f`
