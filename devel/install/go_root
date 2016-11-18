@@ -39,7 +39,16 @@ set ROOTROOT   = $JLAB_SOFTWARE/root
 set ROOTSOURCE = "$ROOTROOT/root-$ROOT_VERSION"
 set ROOTBUILD  = "$ROOTROOT/root-$ROOT_VERSION-build"
 
-if($1 == "src"|| $1 == "make") goto $1
+if($1 == "src"|| $1 == "make" || $1 == "perm") goto $1
+
+# write permissions for JLab 12gev group
+perm:
+    cd $JLAB_SOFTWARE
+    mkdir root
+    chgrp -R 12gev_phys root
+    chmod -R 775 root
+if($1 == "perm") exit
+
 
 # Source Build
 src:

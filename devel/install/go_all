@@ -4,6 +4,7 @@
 # This script runs the scripts that install
 # software packages
 
+# remember to run go_root perm for proper permissions on /site
 
 ./go_clhep
 ./go_xercesc
