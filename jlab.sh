@@ -47,7 +47,7 @@ tcsh ${TCSH_ARG} -c "source ${JLAB_ROOT}/${JLAB_VERSION}/ce/jlab.csh ${JLAB_VERS
     ## Dump information messages (and everything else) to STDERR where it should not hurt anyone
     print STDERR "$_\n";
   }
-' > $TMPF
+' >> $TMPF
 
 source "$TMPF"
 rm -f "$TMPF"
