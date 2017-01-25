@@ -7,7 +7,7 @@ endif
 
 # Get date from:
 # git log -1
-set CE_DATE = "(Sat April 9 2016)"
+set CE_DATE = "(Wed January 25 2017)"
 
 # Looking for user defined JLAB_VERSION
 if( ! $?JLAB_VERSION || $overwrite == "yes") then
@@ -15,16 +15,15 @@ if( ! $?JLAB_VERSION || $overwrite == "yes") then
 endif
 
 
-
 # Software packages
-set packages = (clhep xercesc mysql qt geant4 root jlab12 mlibrary)
+set packages = (banks ccdb clhep evio geant4 gemc jana mlibrary mysql qt root scons xercesc)
 
 # Only print out if there's a prompt
 alias echo 'if($?prompt) echo \!*  '
 
 
 # Do not edit below this line
-##################################################################################################
+#############################
 echo
 
 # Sourcing packages. This will set the LD_LIBRARY_PATH. 
@@ -84,7 +83,8 @@ echo
 
 
 foreach p ($packages)
-	source $JLAB_ROOT/$JLAB_VERSION/ce/$p".env"
+#source $JLAB_ROOT/$JLAB_VERSION/ce/$p".env"
+	source $p".env"
 end
 
 
