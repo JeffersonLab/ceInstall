@@ -173,29 +173,29 @@
         
         <li>Start a new shell. Now you should see a log similar to this
             <pre>
-                > Common Environment Version: <devel>  (Wed Oct 6 2016)
-                > Running as ungaro on Maurizios-Mac-Pro.local
-                > OS Release:    Darwin__macosx10.11-x86_64-clang8.0.0
+                > Common Environment Version: <devel>  (Wed January 25 2017)
+                > Running as ungaro on MauriMP.local
+                > OS Release:    Darwin_macosx10.12-x86_64-clang8.0.0
                 > JLAB_ROOT set to:     /opt/jlab_software
-                > /opt/jlab_software/devel/Darwin__macosx10.11-x86_64-clang8.0.0 is not a directory. Creating it.
-                    
-                ? Attention: No CLHEP installation found.
-                ? Attention: No XERCES installation found.
-                ? Attention: No mysql installation found.
-                ? Attention: No QTDIR installation found.
-                ? Attention: No GEANT4 installation found.
-                ? Attention: No ROOT installation found.
-                ? Attention: No GEMC installation found.
-                ? Attention: No JANA installation found.
-                ? Attention: No Scons Script installation found.
-                ? Attention: No EVIO installation found.
-                ? Attention: No CCDB installation found.
-                ? Attention: No BANKS installation found.
-                ? Attention: No MLIBRARY installation found.
-				</pre>
+                > '/opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0' is not a directory. Creating it.
+
+                !! Attention:  BANKS  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/banks/devel/bin  not found
+                !! Attention:  CCDB  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/ccdb/ccdb-1.06.02.00/lib  not found
+                !! Attention:  CLHEP  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/clhep/2.3.4.3/lib  not found
+                !! Attention:  EVIO  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/ccdb/ccdb-1.06.02.00/bin  not found
+                !! Attention:  GEANT4  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/geant4/4.10.03/bin  not found
+                !! Attention:  GEMC  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/gemc/devel/gemc  not found
+                !! Attention:  JANA  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/jana/0.7.7p1/bin/jana  not found
+                !! Attention:  MLIBRARY  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/mlibrary/devel/lib  not found
+                !! Attention:  MYSQL  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/mysql/lib  not found
+                !! Attention:  QT    installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/qt/5.8.0/5.8/clang_64/lib  not found
+                !! Attention:  ROOT  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/root/6.08.04/bin/root-config  not found
+                !! Attention:  SCONS  installation check /opt/jlab_software/devel/scons_bm/devel/site_tools  not found
+                !! Attention:  XERCESC  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/xercesc/3.1.4/lib  not found
+			</pre>
             
         </li>
-        If you do, great. You're ready to run the installation scripts<br>
+        If you do, great. You're ready to run the installation scripts. Every script that you run below will replace the warning log with a successful one.<br>
         Notice: if you already have some existing environment variables that you want to keep,
         use the option "keepmine":<br>
         <pre>
