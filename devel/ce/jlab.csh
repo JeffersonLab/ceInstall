@@ -83,8 +83,7 @@ echo
 
 
 foreach p ($packages)
-#source $JLAB_ROOT/$JLAB_VERSION/ce/$p".env"
-	source $p".env"
+	source $JLAB_ROOT/$JLAB_VERSION/ce/$p".env"
 end
 
 
