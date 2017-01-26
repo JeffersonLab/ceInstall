@@ -49,8 +49,6 @@ echo
 # CADMESH is part of the mlibrary distribution
 mkdir cadmeshBuild
 cd cadmeshBuild
-# check with geant4 p03 we still need to set CLHEP_DIR
-setenv CLHEP_DIR $CLHEP_BASE_DIR
 # need to ignore certificate for the dependencies repos
 setenv GIT_SSL_NO_VERIFY false
 cmake ../cadmesh -DCMAKE_INSTALL_PREFIX:PATH=$MLIBRARY

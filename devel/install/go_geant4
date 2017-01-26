@@ -50,8 +50,6 @@ echo
 set DATA = 'OFF'
 echo " > Data set to: "$DATA
 
-
-
 set cdir    = (`pwd`)
 
 if($1 == "data" || $1 == "src" || $1 == "make") then
@@ -67,7 +65,7 @@ data:
 	mkdir -p $G4INSTALL/data/Geant4-$G4DATA_VERSION/data
 	cd       $G4INSTALL/data/Geant4-$G4DATA_VERSION/data
 
-	wget -r -np -nH --cut-dir=5 $repo/geant4_data/$G4VERSION/
+	wget -r -np -nH --cut-dir=5 $repo/geant4_data/$GEANT4_VERSION/
 	rm -f index* robots.txt
 
 	set file = (`\ls *.tar.gz`)
@@ -130,7 +128,7 @@ make:
 								-DGEANT4_INSTALL_DATA=$DATA \
 								-DGEANT4_BUILD_EXAMPLES=OFF \
 								-DCMAKE_CXX_FLAGS="$conf_options" \
-							    $G4INSTALL/source/"geant"$G4VERSION
+							    $G4INSTALL/source/"geant"$GEANT4_VERSION
 
 	echo " > Compiling geant4 source (log will be in "\$G4INSTALL/"make_log)..."
 	make $opt          > $G4INSTALL/make_log

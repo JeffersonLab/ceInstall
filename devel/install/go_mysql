@@ -18,7 +18,7 @@ if(`uname` == "Darwin") then
 
 	echo "   MYSQL version $msqlver detailed version $msqlverver"
 
-	rm $JLAB_SOFTWARE/mysql/include $JLAB_SOFTWARE/mysql/lib
+	rm -rf $JLAB_SOFTWARE/mysql/include $JLAB_SOFTWARE/mysql/lib
 
 	ln -sfn /usr/local/Cellar/$msqlver/$msqlverver/include/mysql $JLAB_SOFTWARE/mysql/include
 	ln -sfn /usr/local/Cellar/$msqlver/$msqlverver/lib           $JLAB_SOFTWARE/mysql/

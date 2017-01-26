@@ -8,11 +8,12 @@ TODO: finalize the if statements of all packages. A general function would be be
 
  -------------------------------------------
 
+1/26/17
+- introducing two python functions to streamline and standardize the versioning and user customization options
+
 11/9/16
 - limiting max parallel compilation to 24
   just in case there are local limits (for example, some JLab nodes)
-
-
 
 7/22/16
 - removed obsolete go_scrat

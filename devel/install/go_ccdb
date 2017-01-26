@@ -13,7 +13,7 @@ set name     = ccdb
 set release  = `./get_coptions release`
 set repo     = `./get_coptions repo`/ccdb
 set version  = $CCDB_VERSION
-set filename =  ccdb"-"$CCDB_VERSION".00.tar.gz"
+set filename =  ccdb"-"$CCDB_VERSION".tar.gz"
 set arch     = `./get_coptions arch`
 set opt      = `./get_coptions copt`
 ./get_coptions log $name $version $filename $release $arch $opt
@@ -34,7 +34,7 @@ tar -zxpvf     $filename >& /dev/null
 
 # Compiling - notice naming convention changes
 echo " > Compiling ccdb source (log will be in "\$JLAB_SOFTWARE/"jana/jana_$CCDB_VERSION/build_log )..."
-cd $JLAB_SOFTWARE/ccdb/ccdb"-"$CCDB_VERSION".00"
+cd $JLAB_SOFTWARE/ccdb/ccdb"-"$CCDB_VERSION
 
 
 scons $opt
