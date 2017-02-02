@@ -38,6 +38,3 @@ if softwareLocation == proposedSoftwareLocation:
 else:
 	print " >", name, "\t custom location: ", softwareLocation
 
-
-
-
