@@ -26,5 +26,3 @@ else:
 	print os.environ[versionExist]
 
 
-
-
