@@ -5,6 +5,7 @@
 # Get evio from here:
 # https://coda.jlab.org/drupal/content/event-io-evio
 # then replace the SConstruct there with the old $EVIO/SConstruct and re-pack with (one dir up)
+# Also need to copy
 # set version = 5.1
 # tar cvf evio-$version.tar --exclude="doc" --exclude="java" --exclude="tar" evio-$version/*
 # gzip evio-$version.tar

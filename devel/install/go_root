@@ -17,11 +17,6 @@ set arch     = `./get_coptions arch`
 set opt      = `./get_coptions copt`
 ./get_coptions log $name $version $filename $release $arch $opt
 
-# Checking if the OS is 32 bit.
-set oarch = ""
-if($arch == "32" && `uname` == "Darwin") then
-	set oarch = '--disable-dependency-tracking'
-endif
 
 # Configuring and Compiling
 # disabling stuff we don't need
@@ -31,15 +26,26 @@ foreach p ($disablePackages)
 	set toDisable="$toDisable -D$p=OFF"
 end
 
+# enabling stuff we want
+set enablePackages = ("roofit" "minuit2" "python" )
+set toEnable = ""
+foreach p ($enablePackages)
+	set toEnable="$toEnable -D$p=ON"
+end
 
-echo " > Special Compilation Options: " $oarch $toDisable
+
+echo " > Special Compilation Options: "  $toDisable $toEnable
 echo
 
 set ROOTROOT   = $JLAB_SOFTWARE/root
 set ROOTSOURCE = "$ROOTROOT/root-$ROOT_VERSION"
 set ROOTBUILD  = "$ROOTROOT/root-$ROOT_VERSION-build"
 
-if($1 == "src"|| $1 == "make" || $1 == "perm") goto $1
+if($1 == "src"|| $1 == "make" || $1 == "perm") then
+	goto $1
+else
+	goto src
+endif
 
 # write permissions for JLab 12gev group
 perm:
@@ -74,7 +80,7 @@ if($1 == "src") exit
 make:
 
 	cd $ROOTBUILD
-	cmake -DCMAKE_INSTALL_PREFIX=$ROOTSYS $toDisable $ROOTSOURCE
+	cmake -DCMAKE_INSTALL_PREFIX=$ROOTSYS $toDisable $toEnable $ROOTSOURCE
 
 	echo " > Compiling root source (log will be in "\$ROOTSYS/"make_log)..."
 	make $opt          > $ROOTSYS/make_log
