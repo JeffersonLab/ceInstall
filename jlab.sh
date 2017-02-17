@@ -1,16 +1,16 @@
+#/bin/bash
 #
-# You must source this script. At your bash prompt type: ". <path>/jlab.sh"
+# You must source this script.
+#   - It requires JLAB_ROOT and JLAB_VERSION to be set to something sensible
+#   - At your bash prompt type: ". <path>/jlab.sh"
 #
 # Get the JLAB environment variables by parsing the script in tcsh and then
 # printing the  environment.  We need to filter out the spaces, since that
 # confuses the for loop. We also need to drop some tcsh specific environment
 # variables from the export list.
 #
-# Author: Maurik Holtop, maurik@physics.unh.edu
-# Date:   August, 2016
-#
-# - Brad Sawatky <brads@jlab.org>  (Nov 17, 2016)
-#   - rewrote script to fix a few issues
+# Maintainer:  Brad Sawatky <brads@jlab.org>  (Nov 17, 2016)
+#   - rework of script by Maurik Holtop
 
 
 TMPF=`mktemp`
