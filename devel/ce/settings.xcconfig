@@ -35,7 +35,7 @@ CCDB_HEADS   = $CCDB_ROOT/include
 // libraries are added in xcode directly (dragged there)
 // adding includes here
 MLIB_ROOT    = /opt/projects/mlibrary
-MLIB_HEADS   = $MLIB_ROOT/options $MLIB_ROOT/translationTable $MLIB_ROOT/splash $MLIB_ROOT/gruns $MLIB_ROOT/textProgressBar $MLIB_ROOT/gstring
+MLIB_HEADS   = $MLIB_ROOT/options $MLIB_ROOT/translationTable $MLIB_ROOT/splash $MLIB_ROOT/gruns $MLIB_ROOT/textProgressBar $MLIB_ROOT/gstring $MLIB_ROOT/qtButtonsWidget
 
 
 
