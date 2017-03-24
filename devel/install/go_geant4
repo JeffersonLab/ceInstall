@@ -100,9 +100,13 @@ if($1 == "src") exit
 
 
 # make
+# build options on chapter 2 s 3
+# http://geant4.web.cern.ch/geant4/UserDocumentation/UsersGuides/InstallationGuide/html/ch02s03.html
 make:
 	set conf_options = ""
 	set x11_option   = ""
+	set mt_option    = " -DGEANT4_BUILD_MULTITHREADED=ON "
+	set mt_option    = " "
 	# Linux Options
 	if (`uname` == "Linux") then
 		set x11_option = "-DGEANT4_USE_OPENGL_X11=ON"
@@ -118,7 +122,8 @@ make:
 
 	# Compiling
 	cd $G4INSTALL/build
-	cmake $oarch $x11_option    -DCMAKE_INSTALL_PREFIX=$G4INSTALL \
+	cmake $oarch $x11_option $mt_option \
+								-DCMAKE_INSTALL_PREFIX=$G4INSTALL \
 								-DGEANT4_USE_GDML=ON \
 								-DXERCESC_ROOT_DIR=$XERCESCROOT \
 								-DGEANT4_USE_QT=ON \

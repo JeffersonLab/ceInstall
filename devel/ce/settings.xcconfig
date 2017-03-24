@@ -4,6 +4,7 @@ MYBUILDDIR = /Users/ungaro/Library/Mobile Documents/com~apple~CloudDocs/builds
 
 // The path to JLAB_SOFTWARE is set in each project settings.
 // This file should be included in any project xcode settings
+// libraries are added in xcode directly (dragged there)
 
 
 // QT
@@ -24,15 +25,22 @@ QT_HEADS   = $QTBASE $QTFRAMES/QtCore.framework/Headers $QTFRAMES/QtGui.framewor
 
 
 // CCDB
-// libraries are added in xcode directly (dragged there)
 // adding includes here
 CCDB_VERSION = 1.06.00
 CCDB_ROOT    = $JLAB_SOFTWARE/ccdb/ccdb-$CCDB_VERSION
 CCDB_HEADS   = $CCDB_ROOT/include
 
+// CLHEP
+CLHEP_VERSION = 2.3.4.3
+CLHEP_ROOT    = $JLAB_SOFTWARE/clhep/$CLHEP_VERSION
+CLHEP_HEADS   = $CLHEP_ROOT/include $CLHEP_ROOT/include/CLHEP
+
+// GEANT4
+GEANT4_VERSION = 4.10.03.p01
+GEANT4_ROOT    = $JLAB_SOFTWARE/geant4/$GEANT4_VERSION
+GEANT4_HEADS   = $GEANT4_ROOT/include/Geant4
 
 // MLIBRARY
-// libraries are added in xcode directly (dragged there)
 // adding includes here
 MLIB_ROOT    = /opt/projects/mlibrary
 MLIB_HEADS   = $MLIB_ROOT/options $MLIB_ROOT/translationTable $MLIB_ROOT/splash $MLIB_ROOT/gruns $MLIB_ROOT/textProgressBar $MLIB_ROOT/gstring $MLIB_ROOT/qtButtonsWidget

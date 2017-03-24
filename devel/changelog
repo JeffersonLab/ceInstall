@@ -8,6 +8,10 @@ TODO: finalize the if statements of all packages. A general function would be be
 
  -------------------------------------------
 
+3/24/17
+- added mt option for installation
+- added clhep and geant4 in xcode settings
+
 1/26/17
 - introducing two python functions to streamline and standardize the versioning and user customization options
 
