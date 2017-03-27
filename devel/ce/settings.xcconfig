@@ -43,8 +43,9 @@ GEANT4_HEADS   = $GEANT4_ROOT/include/Geant4
 // MLIBRARY
 // adding includes here
 MLIB_ROOT    = /opt/projects/mlibrary
-MLIB_HEADS   = $MLIB_ROOT/options $MLIB_ROOT/translationTable $MLIB_ROOT/splash $MLIB_ROOT/gruns
-MLIB_HEADS   = $MLIB_HEADS $MLIB_ROOT/textProgressBar $MLIB_ROOT/gstring $MLIB_ROOT/qtButtonsWidget $MLIB_ROOT/gfactory
+MLIB_HEADS1  = $MLIB_ROOT/options $MLIB_ROOT/translationTable $MLIB_ROOT/splash $MLIB_ROOT/gruns
+MLIB_HEADS2  = $MLIB_ROOT/textProgressBar $MLIB_ROOT/gstring $MLIB_ROOT/qtButtonsWidget $MLIB_ROOT/gfactory
+MLIB_HEADS   = $MLIB_HEADS1 $MLIB_HEADS2
 
 
 
