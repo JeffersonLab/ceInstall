@@ -103,8 +103,7 @@ if($pname == "mlibrary") then
 	if($pver == "devel") then
 		cd $locald/mlibrary/
 		scons -c
-		cd $locald/mlibrary/
-		set toCopy = `\ls | grep -v releases | grep -v doxygenREADME`
+		set toCopy = `\ls | grep -v releases | grep -v doxygenREADME | grep -v cadmesh`
 		cp -r $toCopy releases/devel/
 	else
 		# the numbered releases of the mlibraries are done with github
