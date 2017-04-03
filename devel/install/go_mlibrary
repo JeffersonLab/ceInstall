@@ -46,14 +46,7 @@ scons $opt $ooarch  LIBRARY="shared" > $MLIBRARY/build_log
 echo
 echo " > Compiling cadmesh as part of mlibrary..."
 echo
-# CADMESH is part of the mlibrary distribution
-mkdir cadmeshBuild
-cd cadmeshBuild
-# need to ignore certificate for the dependencies repos
-setenv GIT_SSL_NO_VERIFY false
-cmake ../cadmesh -DCMAKE_INSTALL_PREFIX:PATH=$MLIBRARY
-make $opt install
-
+./installCmesh
 
 # Done!
 echo done

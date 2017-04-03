@@ -117,14 +117,7 @@ if($pname == "mlibrary") then
 		mv mlibrary-$pver $pver
 	endif
 
-	cd $locald/mlibrary/releases/$pver
-
-	# cadmesh needs download from the web directly
-	# or it will pick cmake stuff if there - why people still using cmake?
-	git clone https://github.com/christopherpoole/CADMesh.git
-	mv CADMesh cadmesh
-
-	cd ../
+	cd $locald/mlibrary/releases/
 	rm -rf mlibrary-$pver.*
 
 	tar cvf mlibrary-$pver.tar --exclude=".DS_Store"  --exclude=".gitignore" --exclude=".sconsign.dblite" --exclude=".git" --exclude=".entitlements" $pver/*
