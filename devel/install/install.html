@@ -47,6 +47,11 @@
     
     <ul>
         <h3> MAC OS specific requirements</h3>
+		Make sure you have the latest xcode tools with:
+		<pre>
+	xcode-select --install
+		</pre>
+
         You can install the dependencies with <a href="http://brew.sh"> homebrew</a>:<br/><br/>
         
         <div class="row">
@@ -57,7 +62,8 @@
                     <li>brew install wget</li>
                     <li>brew install scons</li>
                     <li>brew install cmake</li>
-                    <li>brew install mysql</li>
+					<li>brew install mysql</li>
+					<li>brew install openssl</li>
                     <br><br>You can upgrade a package by using "upgrade" instead of "install"
 					<br><br>Notice: mysql56 or mysql@56 are no longer supported. If you have it installed, please issue the command:  brew remove homebrew/versions/mysql56
               </ul>

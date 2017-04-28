@@ -103,13 +103,13 @@ if($pname == "mlibrary") then
 	if($pver == "devel") then
 		cd $locald/mlibrary/
 		scons -c
-		set toCopy = `\ls | grep -v releases | grep -v doxygenREADME | grep -v cadmesh`
+		rm -rf cadmeshBuild lib include
+		set toCopy = `\ls | grep -v releases | grep -v doxygenREADME`
 		cp -r $toCopy releases/devel/
 	else
 		# the numbered releases of the mlibraries are done with github
 		# get them here:
 		# https://github.com/gemc/mlibrary/releases
-		# need to include a cadmesh release version on mlibrary
 
 		cd $locald/mlibrary/releases/
 		wget https://github.com/gemc/mlibrary/archive/v$pver".tar.gz"
@@ -120,7 +120,7 @@ if($pname == "mlibrary") then
 	cd $locald/mlibrary/releases/
 	rm -rf mlibrary-$pver.*
 
-	tar cvf mlibrary-$pver.tar --exclude=".DS_Store"  --exclude=".gitignore" --exclude=".sconsign.dblite" --exclude=".git" --exclude=".entitlements" $pver/*
+	tar cvf mlibrary-$pver.tar --exclude=".DS_Store"  --exclude=".gitignore" --exclude=".sconsign.dblite" --exclude=".git" --exclude=".entitlements"  $pver/*
 	gzip mlibrary-$pver.tar
 	scp mlibrary-$pver.tar.gz $remoted/mlibrary
 
