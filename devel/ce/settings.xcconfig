@@ -9,11 +9,11 @@ MYBUILDDIR = /Users/ungaro/Library/Mobile Documents/com~apple~CloudDocs/builds
 
 // QT
 // $QTBASE is needed because some qt headers call that instead of the frameworks headers
-// directory to manually link in subdirs of /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/qt/5.8.0/5.8/Src/qtbase/include
-// - /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/qt/5.8.0/5.8/clang_64/lib/QtCore.framework/Versions/5/Headers/*    to subidr QtCore
-// - /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/qt/5.8.0/5.8/clang_64/lib/QtXml.framework/Versions/5/Headers/*     to subidr QtXml
-// - /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/qt/5.8.0/5.8/clang_64/lib/QtWidgets.framework/Versions/5/Headers/* to subidr QtWidgets
-// - /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/qt/5.8.0/5.8/clang_64/lib/QtGui.framework/Versions/5/Headers/*     to subdir QtGui
+// directory to manually link in subdirs of /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/qt/5.8.0/5.8/Src/qtbase/include
+// - /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/qt/5.8.0/5.8/clang_64/lib/QtCore.framework/Versions/5/Headers/*    to subidr QtCore
+// - /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/qt/5.8.0/5.8/clang_64/lib/QtXml.framework/Versions/5/Headers/*     to subidr QtXml
+// - /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/qt/5.8.0/5.8/clang_64/lib/QtWidgets.framework/Versions/5/Headers/* to subidr QtWidgets
+// - /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/qt/5.8.0/5.8/clang_64/lib/QtGui.framework/Versions/5/Headers/*     to subdir QtGui
 
 QT_VERSION = 5.8.0
 QT_SYSTEM  = 5.8
