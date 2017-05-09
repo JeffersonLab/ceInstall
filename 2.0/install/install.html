@@ -142,7 +142,7 @@
             Create the working directory:
             
             <pre>
-                mkdir -p $JLAB_ROOT/devel
+                mkdir -p $JLAB_ROOT/2.0
             </pre>
             
             
@@ -153,8 +153,8 @@
         <li>Get the installation scripts:
             <pre>
                 cd $JLAB_ROOT
-                wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_devel.tar.gz
-                tar -zxpvf ceInstall_devel.tar.gz
+                wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_2.0.tar.gz
+                tar -zxpvf ceInstall_2.0.tar.gz
             </pre>
             
         </li>
@@ -165,7 +165,7 @@
             
             <pre>
                 setenv JLAB_ROOT /opt/jlab_software
-                source $JLAB_ROOT/devel/ce/jlab.csh
+                source $JLAB_ROOT/2.0/ce/jlab.csh
             </pre>
             
         </li>
@@ -173,11 +173,11 @@
         
         <li>Start a new shell. Now you should see a log similar to this
             <pre>
-                > Common Environment Version: <devel>  (Wed Oct 6 2016)
+                > Common Environment Version: <2.0>  (Wed Oct 6 2016)
                 > Running as ungaro on Maurizios-Mac-Pro.local
                 > OS Release:    Darwin__macosx10.11-x86_64-clang8.0.0
                 > JLAB_ROOT set to:     /opt/jlab_software
-                > /opt/jlab_software/devel/Darwin__macosx10.11-x86_64-clang8.0.0 is not a directory. Creating it.
+                > /opt/jlab_software/2.0/Darwin__macosx10.11-x86_64-clang8.0.0 is not a directory. Creating it.
                     
                 ? Attention: No CLHEP installation found.
                 ? Attention: No XERCES installation found.
@@ -199,14 +199,14 @@
         Notice: if you already have some existing environment variables that you want to keep,
         use the option "keepmine":<br>
         <pre>
-            source $JLAB_ROOT/devel/ce/jlab.csh keepmine
+            source $JLAB_ROOT/2.0/ce/jlab.csh keepmine
         </pre>
         
         
         <li>
             Choose the packages you wish to install by executing the corresponding script:
             <pre>
-                cd $JLAB_ROOT/devel/install
+                cd $JLAB_ROOT/2.0/install
                 
                 ./go_clhep
                 ./go_xercesc
