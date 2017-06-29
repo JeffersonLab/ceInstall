@@ -1,6 +1,8 @@
 TO RELEASE:
 
+- copy ceInstall devel to new release
 - change release date in jlab.csh
+- change devel to version jlab.csh
 - make sure versions.env is updated
 - change install.html
 - make new releases as needed, remember to change changelog for my libraries
