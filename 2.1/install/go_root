@@ -1,0 +1,108 @@
+#!/bin/csh -f
+
+# At JLab Robert Michaels is taking care of the ROOT installation
+# chgrp -R 12gev_phys root
+# chmod -R 775 root
+
+# Additional settings at the top of get_coptions
+source get_coptions env
+
+ # Options
+set name     = root
+set release  = `./get_coptions release`
+set repo     = `./get_coptions repo`/root
+set version  = $ROOT_VERSION
+set filename = "root_v"$ROOT_VERSION".source.tar.gz"
+set arch     = `./get_coptions arch`
+set opt      = `./get_coptions copt`
+./get_coptions log $name $version $filename $release $arch $opt
+
+
+# Configuring and Compiling
+# disabling stuff we don't need
+set disablePackages = ("alien" "asimag" "bonjour" "builtin_afterimage" "castor" "chirp" "dcache" "fitsio" "gfal" "glite" "hdfs" "krb5" "odbc" "sapdb" "shadowpw" "srp")
+set toDisable = ""
+foreach p ($disablePackages)
+	set toDisable="$toDisable -D$p=OFF"
+end
+
+# enabling stuff we want
+set enablePackages = ("roofit" "minuit2" "python" )
+set toEnable = ""
+foreach p ($enablePackages)
+	set toEnable="$toEnable -D$p=ON"
+end
+
+
+echo " > Special Compilation Options: "  $toDisable $toEnable
+echo
+
+set ROOTROOT   = $JLAB_SOFTWARE/root
+set ROOTSOURCE = "$ROOTROOT/root-$ROOT_VERSION"
+set ROOTBUILD  = "$ROOTROOT/root-$ROOT_VERSION-build"
+
+if($1 == "src"|| $1 == "make" || $1 == "perm") then
+	goto $1
+else
+	goto src
+endif
+
+# write permissions for JLab 12gev group
+perm:
+    cd $JLAB_SOFTWARE
+    mkdir root
+    chgrp -R 12gev_phys root
+    chmod -R 775 root
+if($1 == "perm") exit
+
+
+# Source Build
+src:
+	# Getting source file
+	echo " > Installing root version "$version" - release "$release". Getting and unpacking" $filename"..."
+
+	# Getting and unpacking file. For ROOT, we need source dir different than destination dir IMPORTANT
+	rm -rf   $ROOTSYS $ROOTSOURCE $ROOTBUILD
+	mkdir -p $ROOTSYS $ROOTBUILD
+
+	# Unzipping source
+	cd $ROOTROOT
+
+	rm -f          $filename
+	wget     $repo/$filename
+
+	echo Unpacking $filename
+	tar -zxpvf     $filename >& /dev/null
+
+if($1 == "src") exit
+
+# notes: ROOT switched to cmake
+make:
+
+	cd $ROOTBUILD
+	cmake -DCMAKE_INSTALL_PREFIX=$ROOTSYS $toDisable $toEnable $ROOTSOURCE
+
+	echo " > Compiling root source (log will be in "\$ROOTSYS/"make_log)..."
+	make $opt          > $ROOTSYS/make_log
+	make install $opt >> $ROOTSYS/make_log
+
+if($1 == "make") exit
+
+
+# Cleaning up
+rm -rf $ROOTSYS/root
+
+# Done!
+echo done
+echo
+
+
+
+
+
+
+
+
+
+
+

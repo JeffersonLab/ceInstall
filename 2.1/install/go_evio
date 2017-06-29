@@ -1,0 +1,66 @@
+#!/bin/csh -f
+
+
+# Additional settings at the top of get_coptions
+# Get evio from here:
+# https://coda.jlab.org/drupal/content/event-io-evio
+# then replace the SConstruct there with the old $EVIO/SConstruct and re-pack with (one dir up)
+# Also need to copy
+# set version = 5.1
+# tar cvf evio-$version.tar --exclude="doc" --exclude="java" --exclude="tar" evio-$version/*
+# gzip evio-$version.tar
+# scp evio-$version.tar.gz ftp:/u/group/12gev_phys/www/packages/sources/evio
+
+source get_coptions env
+
+# Options
+set name     = evio
+set release  = `./get_coptions release`
+set repo     = `./get_coptions repo`/evio
+set version  = $EVIO_VERSION
+set filename = evio-$EVIO_VERSION".tar.gz"
+set arch     = `./get_coptions arch`
+set opt      = `./get_coptions copt`
+./get_coptions log $name $version $filename $release $arch $opt
+
+
+# Checking if the OS is 32 bit. 
+set oarch = ""
+if($arch == "32") then
+	set oarch = 'ARCHI=x86'
+endif
+echo " > Special Compilation Options: " $oarch 
+echo
+
+
+if($1 == "src"|| $1 == "make") goto $1
+
+# Source Build
+src:
+
+	# Getting source file
+	echo " > Installing evio version "$version" - release "$release". Getting and unpacking" $filename"..."
+	rm -rf $EVIO
+	mkdir -p $JLAB_SOFTWARE/evio
+	cd $JLAB_SOFTWARE/evio
+	rm -f          $filename
+	wget     $repo/$filename
+	echo Unpacking $filename
+	tar -zxpvf     $filename >& /dev/null
+if($1 == "src") exit
+
+# make
+make:
+	# Configuring and Compiling
+	# Compiling
+	echo " > Compiling evio source (log will be in "\$EVIO/"make_log)..."
+	cd $EVIO
+
+	scons $opt $oarch > make_log
+if($1 == "make") exit
+
+# Done!
+echo done
+echo
+
+

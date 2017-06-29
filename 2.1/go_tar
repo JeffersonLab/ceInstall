@@ -1,0 +1,137 @@
+#!/bin/tcsh -f
+
+# First argument is package name
+# Second argument is version
+
+if($#argv != 2 && $1 != doc) then
+	echo " "
+	echo "Usage:   "
+	echo  "  >> go_tar package version"
+	echo " "
+	exit 0
+endif
+
+
+set pname   = $1
+set pver    = $2
+set remoted = "ftp.jlab.org:/u/group/12gev_phys/www/packages/sources"
+set locald  = /opt/projects
+
+echo
+echo " Package: " $pname ", version: " $pver
+echo
+
+
+# common environment
+if($pname == "ceInstall") then
+	cd $locald/ceInstall
+	rm -f ceInstall_$pver.*
+	tar cvf ceInstall_$pver.tar  -L --exclude='go_tar' --exclude="doc" --exclude=".DS_Store" --exclude="releases.key" $pver
+	gzip ceInstall_$pver.tar
+	scp ceInstall_$pver.tar.gz $remoted/ceInstall
+	scp $pver/install/install.html $remoted/ceInstall/$pver"_install.html"
+    scp jlab.sh production.csh production.sh ftp.jlab.org:/site/12gev_phys
+	exit
+endif
+
+
+# scons scripts
+if($pname == "bm") then
+	cd $locald/scons_bm/
+	rm -rf scons_bm-$pver.*
+	tar cvf scons_bm-$pver.tar $pver/*
+	gzip scons_bm-$pver.tar
+	scp scons_bm-$pver.tar.gz $remoted/scons_bm
+	exit
+endif
+
+
+# Additional settings at the top of get_coptions
+# Get evio from here:
+# https://coda.jlab.org/drupal/content/event-io-evio
+# then replace the SConstruct there with the old $EVIO/SConstruct and re-pack with (one dir up)
+if($pname == "evio") then
+	cd $JLAB_SOFTWARE/evio/$pver
+	scons -c ; rm -rf lib bin
+	cd ..
+	rm -rf evio-$pver.*
+	tar cvf  evio-$pver.tar --exclude="doc" --exclude="java" --exclude="tar" $pver/*
+	gzip evio-$pver.tar
+	scp evio-$pver.tar.gz $remoted/evio
+	exit
+endif
+
+# gemc
+# copying API in gemc
+if($pname == "gemc") then
+	if($pver == "devel") then
+		cd $GEMC
+		scons -c
+		cd $locald/gemc/releases/
+		rm -rf devel ; cp -r ../source devel
+	endif
+	cd $locald/gemc/releases/$pver
+	scons -c ;
+	cp -r $locald/gemc/api .
+	cd $locald/gemc/releases
+	rm -rf gemc-$pver.*
+	tar cvf gemc-$pver.tar  --exclude=".DS_Store"  --exclude=".gitignore" --exclude=".sconsign.dblite" --exclude=".git" --exclude=".entitlements" --exclude="lib" $pver
+	gzip gemc-$pver.tar
+	scp gemc-$pver.tar.gz $remoted/gemc
+	rm -rf $locald/gemc/releases/$pver/api
+	exit
+endif
+
+# banks
+if($pname == "banks") then
+	cd $locald/banks/$pver
+	setenv BANKS `pwd`
+	scons -c ;
+	cd ../
+	rm -rf banks-$pver.*
+	tar cvf banks-$pver.tar --exclude="banks.xcodeproj" --exclude="lib" $pver/*
+	gzip banks-$pver.tar
+	scp banks-$pver.tar.gz $remoted/banks
+	exit
+endif
+
+
+# mlibrary
+if($pname == "mlibrary") then
+	rm -rf $locald/mlibrary/releases
+	mkdir -p $locald/mlibrary/releases/$pver
+	if($pver == "devel") then
+		cd $locald/mlibrary/
+		scons -c
+		rm -rf cadmeshBuild lib include
+		set toCopy = `\ls | grep -v releases | grep -v doxygenREADME`
+		cp -r $toCopy releases/devel/
+	else
+		# the numbered releases of the mlibraries are done with github
+		# get them here:
+		# https://github.com/gemc/mlibrary/releases
+
+		cd $locald/mlibrary/releases/
+		wget https://github.com/gemc/mlibrary/archive/v$pver".tar.gz"
+		tar -zxpvf v$pver.tar.gz
+		mv mlibrary-$pver $pver
+	endif
+
+	cd $locald/mlibrary/releases/
+	rm -rf mlibrary-$pver.*
+
+	tar cvf mlibrary-$pver.tar --exclude=".DS_Store"  --exclude=".gitignore" --exclude=".sconsign.dblite" --exclude=".git" --exclude=".entitlements"  $pver/*
+	gzip mlibrary-$pver.tar
+	scp mlibrary-$pver.tar.gz $remoted/mlibrary
+
+	rm mlibrary-$pver.tar.gz
+	exit
+endif
+
+
+
+
+echo
+echo
+
+

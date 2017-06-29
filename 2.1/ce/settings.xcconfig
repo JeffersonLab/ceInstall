@@ -1,0 +1,53 @@
+JLAB_SOFTWARE = /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0
+
+MYBUILDDIR = /Users/ungaro/Library/Mobile Documents/com~apple~CloudDocs/builds
+
+// The path to JLAB_SOFTWARE is set in each project settings.
+// This file should be included in any project xcode settings
+// libraries are added in xcode directly (dragged there)
+
+
+// QT
+// $QTBASE is needed because some qt headers call that instead of the frameworks headers
+// directory to manually link in subdirs of /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/qt/5.8.0/5.8/Src/qtbase/include
+// - /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/qt/5.8.0/5.8/clang_64/lib/QtCore.framework/Versions/5/Headers/*    to subidr QtCore
+// - /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/qt/5.8.0/5.8/clang_64/lib/QtXml.framework/Versions/5/Headers/*     to subidr QtXml
+// - /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/qt/5.8.0/5.8/clang_64/lib/QtWidgets.framework/Versions/5/Headers/* to subidr QtWidgets
+// - /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/qt/5.8.0/5.8/clang_64/lib/QtGui.framework/Versions/5/Headers/*     to subdir QtGui
+
+QT_VERSION = 5.8.0
+QT_SYSTEM  = 5.8
+QT_ARCH    = clang_64
+QTDIR      = $JLAB_SOFTWARE/qt/$QT_VERSION
+QTFRAMES   = $QTDIR/$QT_SYSTEM/$QT_ARCH/lib
+QTBASE     = $QTDIR/$QT_SYSTEM/Src/qtbase/include
+QT_HEADS   = $QTBASE $QTFRAMES/QtCore.framework/Headers $QTFRAMES/QtGui.framework/Headers $QTFRAMES/QtWidgets.framework/Headers $QTFRAMES/QtXml.framework/Headers
+
+
+// CCDB
+// adding includes here
+CCDB_VERSION = 1.06.00
+CCDB_ROOT    = $JLAB_SOFTWARE/ccdb/ccdb-$CCDB_VERSION
+CCDB_HEADS   = $CCDB_ROOT/include
+
+// CLHEP
+// for libraries: open $CLHEP_BASE_DIR/lib/
+CLHEP_VERSION = 2.3.4.3
+CLHEP_ROOT    = $JLAB_SOFTWARE/clhep/$CLHEP_VERSION
+CLHEP_HEADS   = $CLHEP_ROOT/include $CLHEP_ROOT/include/CLHEP
+
+// GEANT4
+// for libraries: open $G4LIB/
+// G4Run for run manager
+// G4global for MT calls like G4GetNumberOfCores
+GEANT4_VERSION = 4.10.03.p01
+GEANT4_ROOT    = $JLAB_SOFTWARE/geant4/$GEANT4_VERSION
+GEANT4_HEADS   = $GEANT4_ROOT/include/Geant4
+
+// MLIBRARY
+// adding includes here
+MLIB_ROOT    = /opt/projects/mlibrary
+MLIB_HEADS1  = $MLIB_ROOT/options $MLIB_ROOT/translationTable $MLIB_ROOT/splash $MLIB_ROOT/gruns
+MLIB_HEADS2  = $MLIB_ROOT/textProgressBar $MLIB_ROOT/gstring $MLIB_ROOT/qtButtonsWidget $MLIB_ROOT/gfactory
+MLIB_HEADS3  = $MLIB_ROOT/gvolume $MLIB_ROOT/g4volume $MLIB_ROOT/g4display
+MLIB_HEADS   = $MLIB_HEADS1 $MLIB_HEADS2 $MLIB_HEADS3

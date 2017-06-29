@@ -1,0 +1,256 @@
+<style type="text/css">
+    .row { vertical-align: top; height:auto !important; }
+    .list {display:none; }
+    .show {display: none; }
+    .hide:target + .show {display: inline; }
+    .hide:target {display: none; }
+    .hide:target ~ .list {display:inline; }
+    @media print { .hide, .show { display: none; } }
+    </style>
+
+<html>
+    
+    <h2> Software installation instructions (JLAB_VERSION 2.1) </h2>
+    
+    These instructions are verified on:
+    <ul> <b>Linux:</b></ul>
+    <ul>
+        <li> CentOS 6.5</li>
+        <li> Ubuntu 12.04</li>
+        <li> Fedora 23</li>
+    </ul>
+    
+    <ul> <b>Mac:</b></ul>
+    <ul>
+        <li> El Capitan</li>
+    </ul>
+    <br>
+    These are instructions to install JLAB_VERSION 2.1. You can find other JLAB_VERSION releases instructions below:<br>
+    <ul>
+		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.0_install.html"> Version 2.0</a><br></li>
+        <li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/1.3_install.html"> Version 1.3</a><br></li>
+        <li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/1.2_install.html"> Version 1.2</a><br></li>
+    </ul>
+    
+    <hr>
+    
+    <h2> General Requirements:</h2>
+    
+    <ul>
+        <li> about 4GB of disk space</li>
+        <li> csh shell </li>
+        <li> cmake >= 3.3 (for geant4. check with <i>cmake --version</i>)</li>
+        <li> network connection to download the various packages during installation</li>
+        <li> wget, scons, mysql, git</li>
+    </ul>
+    
+    
+    <ul>
+        <h3> MAC OS specific requirements</h3>
+		Make sure you have the latest xcode tools with:
+		<pre>
+	xcode-select --install
+		</pre>
+
+        You can install the dependencies with <a href="http://brew.sh"> homebrew</a>:<br/><br/>
+        
+        <div class="row">
+            <a href="#hide1" class="hide" id="hide1">List of packages</a>
+            <a href="#show1" class="show" id="show1">Collapse List</a>
+            <div class="list">
+                <ul>
+                    <li>brew install wget</li>
+                    <li>brew install scons</li>
+                    <li>brew install cmake</li>
+					<li>brew install mysql</li>
+					<li>brew install openssl</li>
+                    <br><br>You can upgrade a package by using "upgrade" instead of "install"
+					<br><br>Notice: mysql56 or mysql@56 are no longer supported. If you have it installed, please issue the command:  brew remove homebrew/versions/mysql56
+              </ul>
+            </div>
+        </div>
+        <br/>
+        
+        
+    </ul>
+    
+    <ul>
+        <h3> Ubuntu (Debian-line) specific requirements</h3>
+        
+        You can install the dependencies with apt-get:<br/><br/>
+        
+        
+        <div class="row">
+            <a href="#hide2" class="hide" id="hide2">List of packages</a>
+            <a href="#show2" class="show" id="show2">Collapse List</a>
+            <div class="list">
+                <ul>
+                    <li>sudo apt-get install g++</li>
+                    <li>sudo apt-get install mysql-client-5.6</li>
+                    <li>sudo apt-get install libmysqlclient-dev</li>
+                    <li>sudo apt-get install libx11-dev</li>
+                    <li>sudo apt-get install libxext-dev</li>
+                    <li>sudo apt-get install libglu1-mesa-dev</li>
+                    <li>sudo apt-get install libxt-dev</li>
+                    <li>sudo apt-get install libxmu-dev</li>
+                    <li>sudo apt-get install libxrender-dev</li>
+                    <li>sudo apt-get install libexpat1-dev</li>
+                    <li>sudo apt-get install tcsh</li>
+                    <li>sudo apt-get install cmake</li>
+                    <li>sudo apt-get install libafterimage-dev</li>
+                    <li>sudo apt-get install scons</li>
+                </ul>
+            </div>
+        </div>
+        <br/>
+        
+    </ul>
+    
+    <ul>
+        <h3> Fedora (red-hat line) specific requirements</h3>
+        You can install the dependencies with dnf (or yum):<br/><br/>
+        
+        
+        <div class="row">
+            <a href="#hide3" class="hide" id="hide3">List of packages</a>
+            <a href="#show3" class="show" id="show3">Collapse List</a>
+            <div class="list">
+                <ul>
+                    <li>dnf install gcc-c++</li>
+                    <li>dnf install libx11-devel</li>
+                    <li>dnf install mesa-libGLU-devel</li>
+                    <li>dnf install libXmu-devel</li>
+                    <li>dnf install expat-devel</li>
+                    <li>dnf install zlib-devel</li>
+					<li>dnf install community-mysql-embedded-mysql <br/>(the mysql package name may vary depends on the OS, you can dnf yum search mysql to find out the available version)</li>
+                </ul>
+            </div>
+        </div>
+        <br/>
+        
+    </ul>
+    <br>
+    <hr>
+    
+    <h2> Installation:</h2>
+    
+    
+    <ol>
+        <li>
+            Choose a place (JLAB_ROOT) to install the software<br>
+				A common choice for <b>JLAB_ROOT</b> is <b> /opt/jlab_software</b>:<br><br>
+
+				<pre>
+                set JLAB_ROOT /opt/jlab_software
+				</pre>
+
+
+				<br>
+            Create the working directory:
+            
+            <pre>
+                mkdir -p $JLAB_ROOT/2.1
+            </pre>
+            
+            
+        </li>
+        
+        
+        
+        <li>Get the installation scripts:
+            <pre>
+                cd $JLAB_ROOT
+                wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_2.1.tar.gz
+                tar -zxpvf ceInstall_2.1.tar.gz
+            </pre>
+            
+        </li>
+        
+        
+        <li>
+            Set the environment variables. You should put these lines in your login script:
+            
+            <pre>
+                setenv JLAB_ROOT /opt/jlab_software
+                source $JLAB_ROOT/2.1/ce/jlab.csh
+            </pre>
+            
+        </li>
+        
+        
+        <li>Start a new shell. Now you should see a log similar to this
+            <pre>
+                > Common Environment Version: <2.1>  (Wed January 25 2017)
+                > Running as ungaro on MauriMP.local
+                > OS Release:    Darwin_macosx10.12-x86_64-clang8.0.0
+                > JLAB_ROOT set to:     /opt/jlab_software
+                > '/opt/jlab_software/2.1/Darwin_macosx10.12-x86_64-clang8.0.0' is not a directory. Creating it.
+
+                !! Attention:  BANKS  installation check /opt/jlab_software/2.1/Darwin_macosx10.12-x86_64-clang8.0.0/banks/devel/bin  not found
+                !! Attention:  CCDB  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/ccdb/ccdb-1.06.02.00/lib  not found
+                !! Attention:  CLHEP  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/clhep/2.3.4.3/lib  not found
+                !! Attention:  EVIO  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/ccdb/ccdb-1.06.02.00/bin  not found
+                !! Attention:  GEANT4  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/geant4/4.10.03/bin  not found
+                !! Attention:  GEMC  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/gemc/devel/gemc  not found
+                !! Attention:  JANA  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/jana/0.7.7p1/bin/jana  not found
+                !! Attention:  MLIBRARY  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/mlibrary/devel/lib  not found
+                !! Attention:  MYSQL  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/mysql/lib  not found
+                !! Attention:  QT    installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/qt/5.8.0/5.8/clang_64/lib  not found
+                !! Attention:  ROOT  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/root/6.08.04/bin/root-config  not found
+                !! Attention:  SCONS  installation check /opt/jlab_software/devel/scons_bm/devel/site_tools  not found
+                !! Attention:  XERCESC  installation check /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.0.0/xercesc/3.1.4/lib  not found
+			</pre>
+            
+        </li>
+        If you do, great. You're ready to run the installation scripts. Every script that you run below will replace the warning log with a successful one.<br>
+        Notice: if you already have some existing environment variables that you want to keep,
+        use the option "keepmine":<br>
+        <pre>
+            source $JLAB_ROOT/devel/ce/jlab.csh keepmine
+        </pre>
+        
+        
+        <li>
+            Choose the packages you wish to install by executing the corresponding script:
+            <pre>
+                cd $JLAB_ROOT/devel/install
+                
+                ./go_clhep
+                ./go_xercesc
+                ./go_qt
+                ./go_geant4
+                ./go_sconsscript
+                ./go_evio
+                ./go_mysql
+                ./go_ccdb
+                ./go_mlibrary
+                ./go_gemc
+                ./go_fields
+                ./go_root
+                ./go_banks
+                ./go_jana
+            </pre>
+            
+            All the packages listed above "go_gemc" are necessary to run gemc.
+        </li>
+    </ol>
+    <br><br><br>
+    
+    Please email any comments/corrections/bug report/feature requests to <a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">Maurizio Ungaro</a>.
+    
+    
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
+    
+    
+</html>
+
+
+
+
+
+
+
+
+

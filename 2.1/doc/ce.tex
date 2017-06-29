@@ -1,0 +1,88 @@
+\ifx\pdfoutput\undefined      % compilazione htlatex
+\documentclass{article}
+\DeclareGraphicsExtensions{.png, .gif, .jpg}
+\newcommand{\href}[2]{\Link[#1]{}{} #2 \EndLink}
+\newcommand{\hypertarget}[2]{\Link[]{}{#1} #2 \EndLink}
+\newcommand{\hyperlink}[2]{\Link[]{#1}{} #2 \EndLink}
+\else                         % compilazione pdflatex
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{lscape}
+\usepackage{amssymb,amsmath}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\setlength\textwidth{6.5in}
+\setlength\textheight{8.1in}
+\setlength\oddsidemargin{0in}
+\setlength\evensidemargin{0in}
+\setlength\topmargin{-0.6in}
+\setlength\footskip{0.6in}
+\setlength\headsep{0.6in}
+\usepackage[hyperindex]{hyperref}
+\usepackage{qtree}
+\newcommand{\percent}{\,^0\!/_0}
+ \hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=true,      % page fit to window when opened
+    pdfauthor={Maurizio},   % author
+    pdfsubject={Ungaro},    % subject of the document
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,        % false: boxed links; true: colored links
+    linkcolor=black,        % color of internal links
+    citecolor=blue,         % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=blue           % color of external links
+}
+\fi
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markright{\slshape \thesection\ #1}{}}
+% remove the right header because clas12 note will overwrite this 
+\fancyhead[R]{} 
+\fancyhead[L]{Common Environment for Software Packages}
+\fancyfoot[R]{ \sl M. Ungaro, Z. Zhao}
+\fancyfoot[L]{ \sl JLAB}
+
+\begin{flushright}
+CLAS-NOTE 2014-02\\
+{\small svn: https://phys12svn.jlab.org/repos/ceInstall/devel/doc }\\
+Version: 1.0
+\end{flushright}
+
+\vspace{0.6cm}
+
+\begin{center}
+{\Large \bf Common Environment for Software Packages} \hfill \\
+\vspace{0.6cm}
+{  M. Ungaro, Z. Zhao} \hfill
+\end{center}
+\vspace{0.6cm}
+
+\abstract{We present a model to organize software packages into releases. 
+Shell scripts define the environment variables needed to run and compile vs the packages.
+Users can switch between releases and can select different versions of individual packages.}
+
+\tableofcontents
+
+
+\input{ce_doc}
+
+\end{document}
+
+
+
+
+
+
+
+
