@@ -35,24 +35,6 @@ if( ! $?PYTHONPATH) then
 	setenv PYTHONPATH "."
 endif
 
-## !!!! temp fixes for JLab users: use specific softare
-if( -d /apps/gcc/5.2.0/install/bin) then
-	# python
-	setenv PYPATH /apps/python/python-2.7.1
-	setenv PATH            $PYPATH/bin:$PATH
-	setenv LD_LIBRARY_PATH $PYPATH/lib:$LD_LIBRARY_PATH
-
-	# gcc 5.2.0
-	setenv PATH /apps/gcc/5.2.0/install/bin:$PATH
-	setenv LD_LIBRARY_PATH /apps/gcc/5.2.0/install/lib64:$LD_LIBRARY_PATH
-	setenv CXX /apps/gcc/5.2.0/install/bin/c++
-	setenv CC  /apps/gcc/5.2.0/install/bin/gcc
-
-	# cmake
-	setenv PATH /apps/cmake/cmake-3.5.1/bin/:$PATH
-
-endif
-
 # Looking for custom defined OSRELEASE
 set DEFAULT_OSRELEASE = `$JLAB_ROOT/$JLAB_VERSION/ce/osrelease.pl`
 if($?OSRELEASE) then
