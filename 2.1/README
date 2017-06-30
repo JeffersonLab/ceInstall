@@ -24,7 +24,7 @@ Version 2.1 includes these updates:
 - ROOT:         6.06 > 6.08.04
 - EVIO:         stays 5.1
 - CCDB:         1.06 > 1.06.02
-- mlibrary:     1.1 > 1.2
+- mlibrary:     1.0 > 1.1
 
 The "production.csh" will require the version argument starting from Wed, July 5. This will ensure that:
 
