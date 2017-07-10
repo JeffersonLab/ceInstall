@@ -1,7 +1,7 @@
 #!/bin/csh -f
 
 setenv overwrite "yes"
-if($1 == "keepmine") then
+if($2 == "keepmine") then
 	setenv overwrite "no"
 endif
 

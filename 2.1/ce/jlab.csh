@@ -1,19 +1,19 @@
 #!/bin/csh -f
 
 setenv overwrite "yes"
-if($1 == "keepmine") then
+if($2 == "keepmine") then
 	setenv overwrite "no"
 endif
 
 # Get date from:
 # git log -1
-set CE_DATE = "(Wed Jul7 5 2017)"
+set CE_DATE = "(Wed January 25 2017)"
 
 # Looking for user defined JLAB_VERSION
 if( ! $?JLAB_VERSION || $overwrite == "yes") then
-	setenv JLAB_VERSION 2.1
+	setenv JLAB_VERSION devel
 endif
-setenv PATH $JLAB_ROOT/2.1/ce:$PATH
+setenv PATH $JLAB_ROOT/devel/ce:$PATH
 
 # Software packages
 set packages = (banks ccdb clhep evio geant4 gemc jana mlibrary mysql qt root scons xercesc)
