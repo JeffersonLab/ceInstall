@@ -11,9 +11,9 @@ set CE_DATE = "(Wed January 25 2017)"
 
 # Looking for user defined JLAB_VERSION
 if( ! $?JLAB_VERSION || $overwrite == "yes") then
-	setenv JLAB_VERSION devel
+	setenv JLAB_VERSION 2.1
 endif
-setenv PATH $JLAB_ROOT/devel/ce:$PATH
+setenv PATH $JLAB_ROOT/$JLAB_VERSION/ce:$PATH
 
 # Software packages
 set packages = (banks ccdb clhep evio geant4 gemc jana mlibrary mysql qt root scons xercesc)
