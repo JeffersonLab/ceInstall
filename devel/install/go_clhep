@@ -41,18 +41,16 @@ if($1 == "src"|| $1 == "make" || $1 == "fixconfig") goto $1
 src:
 	# Getting source file
 	echo " > Installing clhep version "$version" - release "$release". Getting and unpacking" $filename"..."
-	rm -rf   $CLHEP_BASE_DIR
 	mkdir -p $CLHEP_BASE_DIR
-
+	
 	# Unpacking file. For CLHEP, we need source dir different than destination dir
 	cd $CLHEP_BASE_DIR/..
-	rm -rf build  ; mkdir build
-	rm -rf source ; mkdir source
+	rm -rf build ; mkdir build
+	mkdir -p source
 	cd source
-	rm -f          $filename
 	wget     $repo/$filename
 	echo Unpacking $filename
-	tar -zxpvf     $filename >& /dev/null
+	tar --overwrite -zxpvf     $filename >& /dev/null
 if($1 == "src") exit
 
 # make
@@ -68,7 +66,7 @@ if($1 == "make") exit
 
 # Cleaning up
 cd $CLHEP_BASE_DIR
-rm -rf $version $filename ../build ../source
+rm -rf $version  ../build
 
 # Changing permission of bin (maybe they'll fix this with the next clhep release)
 chmod a+x $CLHEP_BASE_DIR/bin/*

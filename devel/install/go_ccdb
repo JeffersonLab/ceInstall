@@ -22,14 +22,12 @@ set opt      = `./get_coptions copt`
 # Build
 # Getting source file
 echo " > Installing ccdb - release "$release". Getting package source from repository..."
-rm -rf   $JLAB_SOFTWARE/ccdb
 mkdir -p $JLAB_SOFTWARE/ccdb
 cd       $JLAB_SOFTWARE/ccdb
 
-rm -f          $filename
 wget     $repo/$filename
 echo Unpacking $filename
-tar -zxpvf     $filename >& /dev/null
+tar --overwrite -zxpvf     $filename >& /dev/null
 
 
 # Compiling - notice naming convention changes
@@ -38,10 +36,6 @@ cd $JLAB_SOFTWARE/ccdb/ccdb"-"$CCDB_VERSION
 
 
 scons $opt
-
-
-# Removing tar file
-rm -rf $JLAB_SOFTWARE/ccdb/$filename
 
 
 # Done!
