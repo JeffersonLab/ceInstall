@@ -7,7 +7,7 @@ endif
 
 # Additional environment
 env:
-	alias wget "wget --no-check-certificate"
+	alias wget "wget -N --no-check-certificate"
 if($1 == "env") exit
 
 

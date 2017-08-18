@@ -6,18 +6,18 @@
 
 # remember to run go_root perm for proper permissions on /site
 
-./go_clhep
-./go_xercesc
-./go_qt
-./go_geant4
-./go_sconsscript
-./go_evio
-./go_mysql
-./go_ccdb
-./go_mlibrary
-./go_gemc
-./go_fields
-./go_root
-./go_banks
-./go_jana
+./go_clhep $1
+./go_xercesc $1
+./go_qt $1
+./go_geant4 $1
+./go_sconsscript $1
+./go_evio $1
+./go_mysql $1
+./go_ccdb $1
+./go_mlibrary $1
+./go_gemc $1
+./go_fields $1
+./go_root $1
+./go_banks $1
+./go_jana $1
 

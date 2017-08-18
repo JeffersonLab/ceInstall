@@ -40,13 +40,11 @@ src:
 
 	# Getting source file
 	echo " > Installing evio version "$version" - release "$release". Getting and unpacking" $filename"..."
-	rm -rf $EVIO
 	mkdir -p $JLAB_SOFTWARE/evio
 	cd $JLAB_SOFTWARE/evio
-	rm -f          $filename
 	wget     $repo/$filename
 	echo Unpacking $filename
-	tar -zxpvf     $filename >& /dev/null
+	tar --overwrite -zxpvf     $filename >& /dev/null
 if($1 == "src") exit
 
 # make
@@ -62,5 +60,3 @@ if($1 == "make") exit
 # Done!
 echo done
 echo
-
-

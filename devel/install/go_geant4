@@ -61,7 +61,6 @@ data:
 	# Getting data file
 	echo " > Installing geant4 data "$version" - release "$release"."
 
-	rm   -rf $G4INSTALL/data/Geant4-$G4DATA_VERSION/data
 	mkdir -p $G4INSTALL/data/Geant4-$G4DATA_VERSION/data
 	cd       $G4INSTALL/data/Geant4-$G4DATA_VERSION/data
 
@@ -74,7 +73,7 @@ data:
 		file $f
 		tar zxpf $f >& /dev/null
 	end
-	rm -f *.tar.gz
+	
 if($1 == "data") exit
 
 
@@ -85,16 +84,16 @@ src:
 	# Getting source file
 	echo " > Installing geant4 version "$version" - release "$release". Getting and unpacking" $filename"..."
 
-	rm -rf   $G4INSTALL/source $G4INSTALL/build
+	rm -rf   $G4INSTALL/build
 	mkdir -p $G4INSTALL/source $G4INSTALL/build
 
 	# Unpacking file, patching if needed
 	cd $G4INSTALL/source
 
-	rm -f              $filename
+       
 	wget  $repo/geant4/$filename
 	echo Unpacking     $filename
-	tar -zxpvf         $filename >& /dev/null
+	tar --overwrite -zxpvf         $filename >& /dev/null
 if($1 == "src") exit
 
 

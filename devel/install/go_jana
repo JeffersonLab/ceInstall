@@ -23,11 +23,9 @@ set opt      = `./get_coptions copt`
 # Build
 # Getting source file
 echo " > Installing jana - release "$release". Getting package source from repository..."
-rm -rf   $JANA_HOME
 mkdir -p $JANA_HOME
 cd       $JLAB_SOFTWARE/jana
 
-rm -f          $filename
 wget     $repo/$filename
 
 echo Unpacking $filename
@@ -47,7 +45,6 @@ mv $BMS_OSNAME/* $JANA_HOME
 
 # Clean ups
 rm -rf $JANA_HOME/src
-rm -rf $JLAB_SOFTWARE/jana/$filename
 rm -rf $JLAB_SOFTWARE/jana/jana_$JANA_VERSION
 
 

@@ -62,13 +62,9 @@ src:
 	echo " > Installing root version "$version" - release "$release". Getting and unpacking" $filename"..."
 
 	# Getting and unpacking file. For ROOT, we need source dir different than destination dir IMPORTANT
-	rm -rf   $ROOTSYS $ROOTSOURCE $ROOTBUILD
 	mkdir -p $ROOTSYS $ROOTBUILD
 
-	# Unzipping source
 	cd $ROOTROOT
-
-	rm -f          $filename
 	wget     $repo/$filename
 
 	echo Unpacking $filename
@@ -90,7 +86,8 @@ if($1 == "make") exit
 
 
 # Cleaning up
-rm -rf $ROOTSYS/root
+rm -rf $ROOTSOURCE
+rm -rf $ROOTBUILD
 
 # Done!
 echo done
