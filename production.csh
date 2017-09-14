@@ -4,12 +4,15 @@
 setenv JLAB_ROOT /site/12gev_phys
 setenv JLAB_VERSION 1.2
 
+set OVERWRITE=""
+
 if( "$1" != "" ) setenv JLAB_VERSION $1
+if( "$2" != "" ) set OVERWRITE=keepmine
 
 set config_csh="$JLAB_ROOT/$JLAB_VERSION/ce/jlab.csh"
 
 if( -e  "$config_csh") then
-	source "$config_csh"
+	source "$config_csh $OVERWRITE"
 else
 	echo "  Configuration '$1' not available on this machine."
 	echo "  Usage:  'source $JLAB_ROOT/production.csh <version>'"
