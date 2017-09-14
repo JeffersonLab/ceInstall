@@ -12,7 +12,7 @@ if( "$2" != "" ) set OVERWRITE=keepmine
 set config_csh="$JLAB_ROOT/$JLAB_VERSION/ce/jlab.csh"
 
 if( -e  "$config_csh") then
-	source "$config_csh $OVERWRITE"
+	source "$config_csh" $OVERWRITE
 else
 	echo "  Configuration '$1' not available on this machine."
 	echo "  Usage:  'source $JLAB_ROOT/production.csh <version>'"
