@@ -40,7 +40,7 @@ CLHEP_HEADS   = $CLHEP_ROOT/include $CLHEP_ROOT/include/CLHEP
 // for libraries: open $G4LIB/
 // G4Run for run manager
 // G4global for MT calls like G4GetNumberOfCores
-GEANT4_VERSION = 4.10.03.p01
+GEANT4_VERSION = 4.10.03.p02
 GEANT4_ROOT    = $JLAB_SOFTWARE/geant4/$GEANT4_VERSION
 GEANT4_HEADS   = $GEANT4_ROOT/include/Geant4
 
