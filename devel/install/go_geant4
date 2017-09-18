@@ -139,9 +139,6 @@ make:
 	make $opt          > $G4INSTALL/make_log
 	make install $opt >> $G4INSTALL/make_log
 
-	# for 10.3.p02 the HEPRandom are not included on mac.
-	`# cp $G4INSTALL/source/geant4.$GEANT4_VERSION/source/global/HEPRandom/include/*  $G4INSTALL/include/Geant4/
-
 if($1 == "make") exit
 
 # Cleaning up
