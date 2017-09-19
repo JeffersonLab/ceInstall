@@ -1,4 +1,4 @@
-JLAB_SOFTWARE = /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0
+JLAB_SOFTWARE = /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang9.0.0
 
 MYBUILDDIR = /Users/ungaro/Library/Mobile Documents/com~apple~CloudDocs/builds
 
@@ -9,11 +9,12 @@ MYBUILDDIR = /Users/ungaro/Library/Mobile Documents/com~apple~CloudDocs/builds
 
 // QT
 // $QTBASE is needed because some qt headers call that instead of the frameworks headers
-// directory to manually link in subdirs of /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/qt/5.8.0/5.8/Src/qtbase/include
-// - /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/qt/5.8.0/5.8/clang_64/lib/QtCore.framework/Versions/5/Headers/*    to subidr QtCore
-// - /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/qt/5.8.0/5.8/clang_64/lib/QtXml.framework/Versions/5/Headers/*     to subidr QtXml
-// - /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/qt/5.8.0/5.8/clang_64/lib/QtWidgets.framework/Versions/5/Headers/* to subidr QtWidgets
-// - /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/qt/5.8.0/5.8/clang_64/lib/QtGui.framework/Versions/5/Headers/*     to subdir QtGui
+// directory to manually link in subdirs of /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang9.0.0/qt/5.8.0/5.8/Src/qtbase/include
+// cd /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang9.0.0/qt/5.8.0/5.8/Src/qtbase/include
+// ln -s /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang9.0.0/qt/5.8.0/5.8/clang_64/lib/QtCore.framework/Versions/5/Headers/*    QtCore/
+// ln -s /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang9.0.0/qt/5.8.0/5.8/clang_64/lib/QtXml.framework/Versions/5/Headers/*     QtXml/
+// ln -s /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang9.0.0/qt/5.8.0/5.8/clang_64/lib/QtWidgets.framework/Versions/5/Headers/* QtWidgets/
+// ln -s /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang9.0.0/qt/5.8.0/5.8/clang_64/lib/QtGui.framework/Versions/5/Headers/*     QtGui/
 
 QT_VERSION = 5.8.0
 QT_SYSTEM  = 5.8
@@ -38,8 +39,6 @@ CLHEP_HEADS   = $CLHEP_ROOT/include $CLHEP_ROOT/include/CLHEP
 
 // GEANT4
 // for libraries: open $G4LIB/
-// G4Run for run manager
-// G4global for MT calls like G4GetNumberOfCores
 GEANT4_VERSION = 4.10.03.p02
 GEANT4_ROOT    = $JLAB_SOFTWARE/geant4/$GEANT4_VERSION
 GEANT4_HEADS   = $GEANT4_ROOT/include/Geant4
