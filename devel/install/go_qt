@@ -11,7 +11,7 @@ set repo     = `./get_coptions repo`/qt
 set system = ""
 set filename = ""
 if(`echo $release | grep mac   | wc | awk '{print $1}'` == "1") then
-	set filename = "qt-opensource-mac-x64-clang-"$QT_VERSION".dmg"
+	set filename = "qt-opensource-mac-x64-"$QT_VERSION".dmg"
 	set system = "Mac"
 else if(`echo $release | grep Linux | wc | awk '{print $1}'` == "1") then
 	if($arch == "32") then
