@@ -41,7 +41,10 @@
         <li> csh shell </li>
         <li> cmake >= 3.3 (for geant4. check with <i>cmake --version</i>)</li>
         <li> network connection to download the various packages during installation</li>
-        <li> wget, scons, mysql, git</li>
+        <li> wget</li>
+        <li> scons version 2 to 2.5.1</li>
+        <li> mysql</li>
+        <li> git</li>
     </ul>
     
     
@@ -60,10 +63,15 @@
             <div class="list">
                 <ul>
                     <li>brew install wget</li>
-                    <li>brew install scons</li>
+                    <li>brew install scons*</li>
                     <li>brew install cmake</li>
 					<li>brew install mysql</li>
 					<li>brew install openssl</li>
+                    <br><br>* if you are on High Sierra, brew will install scons3. Not good. Go to http://scons.org/pages/download.html instead and use
+                    <pre>
+                        python setup.py install
+                    </pre>
+                    inside the untarred 2.5.1 dir.
                     <br><br>You can upgrade a package by using "upgrade" instead of "install"
 					<br><br>Notice: mysql56 or mysql@56 are no longer supported. If you have it installed, please issue the command:  brew remove homebrew/versions/mysql56
               </ul>
