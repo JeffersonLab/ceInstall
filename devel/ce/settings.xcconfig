@@ -1,4 +1,4 @@
-JLAB_SOFTWARE = /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang9.0.0
+JLAB_SOFTWARE = /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0
 
 MYBUILDDIR = /Users/ungaro/Library/Mobile Documents/com~apple~CloudDocs/builds
 
@@ -9,15 +9,15 @@ MYBUILDDIR = /Users/ungaro/Library/Mobile Documents/com~apple~CloudDocs/builds
 
 // QT
 // $QTBASE is needed because some qt headers call that instead of the frameworks headers
-// directory to manually link in subdirs of /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang9.0.0/qt/5.8.0/5.8/Src/qtbase/include
-// cd /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang9.0.0/qt/5.8.0/5.8/Src/qtbase/include
-// ln -s /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang9.0.0/qt/5.8.0/5.8/clang_64/lib/QtCore.framework/Versions/5/Headers/*    QtCore/
-// ln -s /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang9.0.0/qt/5.8.0/5.8/clang_64/lib/QtXml.framework/Versions/5/Headers/*     QtXml/
-// ln -s /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang9.0.0/qt/5.8.0/5.8/clang_64/lib/QtWidgets.framework/Versions/5/Headers/* QtWidgets/
-// ln -s /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang9.0.0/qt/5.8.0/5.8/clang_64/lib/QtGui.framework/Versions/5/Headers/*     QtGui/
+// directory to manually link in subdirs of /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/qt/5.9.1/5.9.1/Src/qtbase/include
+// cd /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/qt/5.9.1/5.9.1/Src/qtbase/include
+// ln -s /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/qt/5.9.1/5.9.1/clang_64/lib/QtCore.framework/Versions/5/Headers/*    QtCore/
+// ln -s /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/qt/5.9.1/5.9.1/clang_64/lib/QtXml.framework/Versions/5/Headers/*     QtXml/
+// ln -s /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/qt/5.9.1/5.9.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/* QtWidgets/
+// ln -s /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/qt/5.9.1/5.9.1/clang_64/lib/QtGui.framework/Versions/5/Headers/*     QtGui/
 
-QT_VERSION = 5.8.0
-QT_SYSTEM  = 5.8
+QT_VERSION = 5.9.1
+QT_SYSTEM  = 5.9.1
 QT_ARCH    = clang_64
 QTDIR      = $JLAB_SOFTWARE/qt/$QT_VERSION
 QTFRAMES   = $QTDIR/$QT_SYSTEM/$QT_ARCH/lib
@@ -27,13 +27,13 @@ QT_HEADS   = $QTBASE $QTFRAMES/QtCore.framework/Headers $QTFRAMES/QtGui.framewor
 
 // CCDB
 // adding includes here
-CCDB_VERSION = 1.06.00
+CCDB_VERSION = 1.06.02
 CCDB_ROOT    = $JLAB_SOFTWARE/ccdb/ccdb-$CCDB_VERSION
 CCDB_HEADS   = $CCDB_ROOT/include
 
 // CLHEP
 // for libraries: open $CLHEP_BASE_DIR/lib/
-CLHEP_VERSION = 2.3.4.3
+CLHEP_VERSION = 2.3.4.5
 CLHEP_ROOT    = $JLAB_SOFTWARE/clhep/$CLHEP_VERSION
 CLHEP_HEADS   = $CLHEP_ROOT/include $CLHEP_ROOT/include/CLHEP
 
