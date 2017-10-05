@@ -57,10 +57,17 @@ if($1 == "src") exit
 
 # make
 make:
+	# making sure we use CLANG in mac
+	set clang_option = ""
+	if (`uname` == "Darwin") then
+		set clang_option = " -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++"
+	endif
+
+
 	# Configuring and Compiling
 	echo " > Configuring and compiling clhep source (log will be in "\$CLHEP_BASE_DIR/"make_log)..."
 	cd $CLHEP_BASE_DIR/../build
-	cmake $oarch -DCMAKE_INSTALL_PREFIX=$CLHEP_BASE_DIR  $CLHEP_BASE_DIR/../source/$version/CLHEP > $CLHEP_BASE_DIR/make_log
+	cmake $oarch  $clang_option -DCMAKE_INSTALL_PREFIX=$CLHEP_BASE_DIR  $CLHEP_BASE_DIR/../source/$version/CLHEP > $CLHEP_BASE_DIR/make_log
 
 	make $opt    >> $CLHEP_BASE_DIR/make_log
 	make install >> $CLHEP_BASE_DIR/make_log

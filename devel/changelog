@@ -8,6 +8,10 @@ TODO: finalize the if statements of all packages. A general function would be be
 
  -------------------------------------------
 
+10/5/17
+ - fixed uncommented comment
+ - added CLANG cmake options for Darwin for geant4 and cmake
+
 3/24/17
 - added mt option for installation
 - added clhep and geant4 in xcode settings

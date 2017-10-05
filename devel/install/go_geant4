@@ -105,11 +105,13 @@ if($1 == "src") exit
 make:
 	set conf_options = ""
 	set x11_option   = ""
-	set mt_option    = " -DGEANT4_BUILD_MULTITHREADED=ON "
+	set mt_option    = " -DGEANT4_BUILD_MULTITHREADED=ON"
 	set mt_option    = " -DGEANT4_BUILD_MULTITHREADED=OFF"
+
 	# Linux Options
 	if (`uname` == "Linux") then
 		set x11_option = "-DGEANT4_USE_OPENGL_X11=ON"
+
 		set opt1 = `echo -I$QTDIR/include`
 		set opt2 = `echo -I$QTDIR/include/QtOpenGL`
 		set opt3 = `echo -I$QTDIR/include/QtWidgets`
@@ -117,12 +119,20 @@ make:
 		set opt5 = `echo -I$QTDIR/include/QtCore`
 		set opt6 = `echo -I$QTDIR/include/QtPrintSupport`
 		set opt7 = ' -W -Wall -pedantic -Wno-non-virtual-dtor -Wno-long-long -Wwrite-strings -Wpointer-arith -Woverloaded-virtual -pipe'
+
+		# not used currently, need to check if we need them
 		set conf_options = "$opt1 $opt2 $opt3 $opt4 $opt5 $opt6 $opt7"
+	endif
+
+	# making sure we use CLANG in mac
+	set clang_option = ""
+	if (`uname` == "Darwin") then
+		set clang_option = " -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++"
 	endif
 
 	# Compiling
 	cd $G4INSTALL/build
-	cmake $oarch $x11_option $mt_option \
+	cmake $oarch $x11_option $mt_option $clang_option\
 								-DCMAKE_INSTALL_PREFIX=$G4INSTALL \
 								-DGEANT4_USE_GDML=ON \
 								-DXERCESC_ROOT_DIR=$XERCESCROOT \
