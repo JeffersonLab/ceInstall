@@ -11,10 +11,12 @@ MYBUILDDIR = /Users/ungaro/Library/Mobile Documents/com~apple~CloudDocs/builds
 // $QTBASE is needed because some qt headers call that instead of the frameworks headers
 // directory to manually link in subdirs of /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/qt/5.9.1/5.9.1/Src/qtbase/include
 // cd /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/qt/5.9.1/5.9.1/Src/qtbase/include
-// ln -s /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/qt/5.9.1/5.9.1/clang_64/lib/QtCore.framework/Versions/5/Headers/*    QtCore/
-// ln -s /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/qt/5.9.1/5.9.1/clang_64/lib/QtXml.framework/Versions/5/Headers/*     QtXml/
-// ln -s /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/qt/5.9.1/5.9.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/* QtWidgets/
-// ln -s /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/qt/5.9.1/5.9.1/clang_64/lib/QtGui.framework/Versions/5/Headers/*     QtGui/
+// ln -s /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/qt/5.9.1/5.9.1/clang_64/lib/QtCore.framework/Versions/Current/Headers/*    QtCore/
+// ln -s /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/qt/5.9.1/5.9.1/clang_64/lib/QtXml.framework/Versions/Current/Headers/*     QtXml/
+// ln -s /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/qt/5.9.1/5.9.1/clang_64/lib/QtWidgets.framework/Versions/Current/Headers/* QtWidgets/
+// ln -s /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/qt/5.9.1/5.9.1/clang_64/lib/QtGui.framework/Versions/Current/Headers/*     QtGui/
+// if qt threads
+// ln -s /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/qt/5.9.1/5.9.1/clang_64/lib/QtConcurrent.framework/Versions/Current/Headers/* QtConcurrent/
 
 QT_VERSION = 5.9.1
 QT_SYSTEM  = 5.9.1
@@ -23,7 +25,6 @@ QTDIR      = $JLAB_SOFTWARE/qt/$QT_VERSION
 QTFRAMES   = $QTDIR/$QT_SYSTEM/$QT_ARCH/lib
 QTBASE     = $QTDIR/$QT_SYSTEM/Src/qtbase/include
 QT_HEADS   = $QTBASE $QTFRAMES/QtCore.framework/Headers $QTFRAMES/QtGui.framework/Headers $QTFRAMES/QtWidgets.framework/Headers $QTFRAMES/QtXml.framework/Headers
-
 
 // CCDB
 // adding includes here
