@@ -50,4 +50,5 @@ MLIB_ROOT    = /opt/projects/mlibrary
 MLIB_HEADS1  = $MLIB_ROOT/options $MLIB_ROOT/translationTable $MLIB_ROOT/splash $MLIB_ROOT/gruns
 MLIB_HEADS2  = $MLIB_ROOT/textProgressBar $MLIB_ROOT/gstring $MLIB_ROOT/qtButtonsWidget $MLIB_ROOT/gfactory
 MLIB_HEADS3  = $MLIB_ROOT/gvolume $MLIB_ROOT/g4volume $MLIB_ROOT/g4display $MLIB_ROOT/gtouchable $MLIB_ROOT/gdynamic
-MLIB_HEADS   = $MLIB_HEADS1 $MLIB_HEADS2 $MLIB_HEADS3
+MLIB_MESH    = $MLIB_ROOT/cadmesh/include $MLIB_ROOT/cadmesh/external/tetgen $MLIB_ROOT/cadmesh/external/assimp/include/
+MLIB_HEADS   = $MLIB_HEADS1 $MLIB_HEADS2 $MLIB_HEADS3 $MLIB_MESH
