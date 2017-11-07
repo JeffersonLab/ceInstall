@@ -6,7 +6,10 @@ TODO: function to set SOFTWARE_ROOT_DIR SOFTWARE_VERSION depending if user alrea
 
  -------------------------------------------
 
-1/2/17
+11/7/17
+ - added gmedia in xcode headers
+
+11/2/17
  - added gdata in xcode headers
 
 10/31/17
