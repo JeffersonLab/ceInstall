@@ -44,6 +44,15 @@ GEANT4_VERSION = 4.10.03.p02
 GEANT4_ROOT    = $JLAB_SOFTWARE/geant4/$GEANT4_VERSION
 GEANT4_HEADS   = $GEANT4_ROOT/include/Geant4
 
+// ROOT
+// for libraries: open $ROOTSYS/lib/
+// - core
+// - RIO for files
+ROOT_VERSION = 6.10.06
+ROOTSYS      = $JLAB_SOFTWARE/root/$ROOT_VERSION
+ROOT_HEADS   = $ROOTSYS/include
+
+
 // MLIBRARY
 // adding includes here
 MLIB_ROOT    = /opt/projects/mlibrary
