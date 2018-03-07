@@ -6,7 +6,7 @@
 
 # Set defaults if vars not already defined
 export    JLAB_ROOT="${JLAB_ROOT:=/site/12gev_phys}"
-export JLAB_VERSION="${JLAB_VERSION:=1.2}"
+export JLAB_VERSION="${JLAB_VERSION:=2.2}"
 
 if [ -n "$1" ]; then
   export JLAB_VERSION="$1"

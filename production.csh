@@ -1,13 +1,24 @@
-# As of 2/10/2015 the production version
-# is a link to 1.2
+# As of 3/7/2018 this script require explicit argument
+# to set the JLAB_VERSION
+# An additional argument can be provided to keep certain user setting
 
 setenv JLAB_ROOT /site/12gev_phys
-setenv JLAB_VERSION 1.2
+
+
+# Making sure we maintain the supported versions:
+## - 2.0
+## - 2.1
+## - 2.2 (production)
+## - devel
+if($1 != "2.2" && $1 != "2.1" && $1 != "2.0") then
+	echo "$1 is not among the supported versions: 2.0, 2.1, 2.2 or devel"
+endif
+setenv JLAB_VERSION $1
 
 set OVERWRITE=""
-
-if( "$1" != "" ) setenv JLAB_VERSION $1
-if( "$2" != "" ) set OVERWRITE=keepmine
+if( "$2" == "keepmine" || "$2" == "overwrite") then
+	set OVERWRITE=keepmine
+endif
 
 set config_csh="$JLAB_ROOT/$JLAB_VERSION/ce/jlab.csh"
 
@@ -28,15 +39,6 @@ endif
 
 alias echo 'if($?prompt) echo \!*  '
 
-# Warning for CentOS2
-if (-r /etc/centos-release) then
-	if { ( grep -q 'CentOS release 6.2' /etc/centos-release ) } then
-		echo " > NOTE:  Not all 1.2 packages are supported under CentOS62."
-		echo " > Please move to the updated CentOS65 environment using"
-		echo " > ifarm65.jlab.org AND "OS: centos65" for farm submissions."
-		echo
-	endif
-endif
 echo \ \>\> For documentation and a list of supported architectures please look at https://data.jlab.org
 echo
 

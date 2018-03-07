@@ -9,39 +9,43 @@ TO RELEASE:
 
 Email Draft:
 
-A new version of the JLab software libraries is available:
+A new version of the production JLab software libraries is available:
 
-Version 2.1 includes these updates:
+Version 2.2 includes these updates:
 
-- clhep:        2.3.3.1 > 2.3.4.3
-- QT:           5.6.0 > 5.8.0
-- xercesc:      3.1.3 > 3.1.4
-- geant4:       4.10.02.p02 > 4.10.02.p03
-- gemc:         2.5 > 2.6
-- JANA:         0.7.4p2 > 0.7.7p1
-- banks:        stays 1.3
-- build system: 1.4 > 1.5
-- ROOT:         6.06 > 6.08.04
-- EVIO:         stays 5.1
-- CCDB:         1.06 > 1.06.02
-- mlibrary:     1.0 > 1.1
+- scons build:  1.5 > 1.6
+- banks:        1.3 > 1.4
+- ccdb:         stays 1.06.02
+- clhep:        2.3.4.3 > 2.3.4.5
+- evio:         stays 5.1
+- geant4:       4.10.02.p03 > 4.10.03.p02
+- gemc:         2.6 > 2.7
+- jana:         stays 0.7.7p1
+- mlibrary:     1.1 > 1.2
+- qt:           5.8.0 > 5.9.1
+- root:         6.08.04 >
+- xercesc:      3.1.4 > 3.2.0
 
-The "production.csh" will require the version argument starting from Wed, July 5. This will ensure that:
+Starting from Wed, March 21 2018 the "production.csh" will require as a first argument the version. This will ensure that:
 
 - changes in JLAB_VERSION will not change libraries version underneath users
 - there's no ambiguity in what a version users are running.
 
-Details on what's in each version can be found here.
+The gcc and cmake versions requirements are dropped from the scripts as the CUE machines provide sufficient updated version of these by default.
 
-To setup the environment.
+The development version will upgrade to the latest version of all these packages.
+This will not happen all at once, so bewhare of using development.
+
+
+To setup the environment to use 2.2:
 
 Csh:
 
-source /site/12gev_phys/production.csh 2.1
+source /site/12gev_phys/production.csh 2.2
 
 Bash:
 
-source /site/12gev_phys/production.sh 2.1
+source /site/12gev_phys/production.sh 2.2
 
 
 Please send questions/comments/suggestions to ungaro@jlab.org, or to helpdesk@jlab.org.

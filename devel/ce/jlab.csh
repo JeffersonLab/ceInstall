@@ -7,12 +7,9 @@ endif
 
 # Get date from:
 # git log -1
-set CE_DATE = "(Wed January 25 2017)"
+set CE_DATE = "(Wed March 18 2018)"
 
-# Looking for user defined JLAB_VERSION
-if( ! $?JLAB_VERSION || $overwrite == "yes") then
-	setenv JLAB_VERSION devel
-endif
+
 setenv PATH $JLAB_ROOT/$JLAB_VERSION/ce:$PATH
 
 # Software packages
@@ -34,14 +31,6 @@ endif
 if( ! $?PYTHONPATH) then
 	setenv PYTHONPATH "."
 endif
-
-
-## !!!! temp fixes for JLab users: use specific software
-if( -d /apps/gcc/5.2.0/install/bin) then
-	# cmake
-	setenv PATH /apps/cmake/cmake-3.8.1/bin/:$PATH
-endif
-
 
 # Looking for custom defined OSRELEASE
 set DEFAULT_OSRELEASE = `$JLAB_ROOT/$JLAB_VERSION/ce/osrelease.pl`
