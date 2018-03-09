@@ -29,7 +29,7 @@ if($pname == "ceInstall") then
 	tar cvf ceInstall_$pver.tar  -L --exclude='go_tar' --exclude="doc" --exclude=".DS_Store" --exclude="releases.key" $pver
 	gzip ceInstall_$pver.tar
 	scp ceInstall_$pver.tar.gz $remoted/ceInstall
-	scp $pver/install/install.html $remoted/ceInstall/$pver"_install.html"
+	scp $pver/install/sbsInstall/* $remoted/ceInstall/
     scp jlab.sh production.csh production.sh ftp.jlab.org:/site/12gev_phys
 	exit
 endif

@@ -1,10 +1,10 @@
 TO RELEASE:
 
-- change release date in jlab.csh
-- change devel to version jlab.csh 
+- change release date in ce/jlab scripts
 - make sure versions.env is updated
-- change install.html
 - make new releases as needed, remember to change changelog
+- copy sbsInstall/devel_install.html to the appropriate version and change all "devel"
+- test installation, copy initial log in sbsInstall/#_install.html
 
 Email Draft:
 
