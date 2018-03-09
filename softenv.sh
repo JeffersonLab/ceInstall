@@ -8,6 +8,7 @@
 export    JLAB_ROOT="${JLAB_ROOT:=/site/12gev_phys}"
 
 # modify this so JLAB_VERSION must be set by user
+# please use same formatting help as the csh file to be consistent
 export JLAB_VERSION="${JLAB_VERSION:=2.2}"
 
 if [ -n "$1" ]; then
@@ -17,19 +18,13 @@ fi
 config_sh="${JLAB_ROOT}/${JLAB_VERSION}/ce/jlab.sh"
 
 if [ -e  "$config_sh" ]; then
-  source "$config_sh"
+	source "$config_sh"
 else
-  echo "  Configuration '$1' not available on this machine."
-  echo "  Usage:  'source $JLAB_ROOT/production.sh <version>'"
-  echo -n "    Versions: "
-  for f in $JLAB_ROOT/*; do
-    bn=`basename $f`
-    if [ $bn == "noarch" ]; then continue; fi
-    if [ -d "$f" ]; then echo -n "  $bn"; fi
-  done
-  echo
-  echo
-  return
+	echo
+	echo "  Configuration '$1' not available on this machine."
+	echo "  For documentation on the environment please visit https://data.jlab.org "
+	echo
+	exit
 fi
 
 case $- in

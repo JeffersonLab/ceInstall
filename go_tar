@@ -24,13 +24,21 @@ echo
 
 # common environment
 if($pname == "ceInstall") then
-	cd $locald/ceInstall
-	rm -f ceInstall_$pver.*
-	tar cvf ceInstall_$pver.tar  -L --exclude='go_tar' --exclude="doc" --exclude=".DS_Store" --exclude="releases.key" $pver
-	gzip ceInstall_$pver.tar
+	rm -rf   $locald/ceInstall/tmp
+	mkdir -p $locald/ceInstall/tmp/
+	cd       $locald/ceInstall/tmp/
+
+	wget https://github.com/JeffersonLab/ceInstall/archive/v$pver".tar.gz" -O ceInstall_$pver.tar.gz
 	scp ceInstall_$pver.tar.gz $remoted/ceInstall
-	scp $pver/install/sbsInstall/* $remoted/ceInstall/
-    scp jlab.sh production.csh production.sh ftp.jlab.org:/site/12gev_phys
+	cd ..
+	rm -rf tmp
+
+	# html instructions: these are the ones in the local dir, not coming from the git release
+	scp sbsInstall/* $remoted/ceInstall/
+
+	# main scripts: these are the ones in the local dir, not coming from the git release
+	scp softenv.* ftp.jlab.org:/site/12gev_phys
+
 	exit
 endif
 
@@ -84,14 +92,14 @@ endif
 
 # banks
 if($pname == "banks") then
-	rm -rf $locald/banks/tmp
+	rm -rf   $locald/banks/tmp
 	mkdir -p $locald/banks/tmp/
-	cd $locald/banks/tmp/
+	cd       $locald/banks/tmp/
 
 	wget https://github.com/maureeungaro/banks/archive/v$pver".tar.gz" -O banks-$pver.tar.gz
 	scp banks-$pver.tar.gz $remoted/banks
 	cd ..
-#	rm -rf tmp
+	rm -rf tmp
 	exit
 endif
 
