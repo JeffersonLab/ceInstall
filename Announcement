@@ -1,11 +1,10 @@
 TO RELEASE:
 
-- copy ceInstall devel to new release
 - change release date in jlab.csh
 - change devel to version jlab.csh 
 - make sure versions.env is updated
 - change install.html
-- make new releases as needed, remember to change changelog for my libraries
+- make new releases as needed, remember to change changelog
 
 Email Draft:
 
@@ -26,18 +25,17 @@ Version 2.2 includes these updates:
 - root:         6.08.04 >
 - xercesc:      3.1.4 > 3.2.0
 
-Starting from Wed, March 21 2018 the "production.csh" will require as a first argument the version. This will ensure that:
+Starting from Wed, March 21 2018 the "production" scripts will require as a first argument the version number. This will ensure that:
 
-- changes in JLAB_VERSION will not change libraries version underneath users
-- there's no ambiguity in what a version users are running.
+- JLAB_VERSION releases will not modify user environments by updating the production scripts
+- there's no ambiguity in the version number used by users
 
 Additional notes:
- - The gcc and cmake versions requirements are dropped from the scripts as the CUE machines (and modern darwin/linux distributions) provide sufficient updated versions by default.
+ - The gcc and cmake versions requirements are dropped from the scripts as the CUE machines
+   (and modern darwin/linux distributions) provide sufficient updated versions by default.
  - Starting from 3/9/18 the release mechanism of ceInstall will be the git release mechanism.
-
-
-The development version of the libraries will upgrade each package to the latest release.
-This will not happen all at once, and may happen more than once if a library is updated, so bewhare of using development.
+ - The development version of the libraries will upgrade each package to the latest release.
+   This will not happen all at once, and may happen more than once if a library is updated, so bewhare of using development.
 
 To setup the environment to use 2.2:
 
