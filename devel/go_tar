@@ -103,6 +103,7 @@ if($pname == "mlibrary") then
 	if($pver == "devel") then
 		cd $locald/mlibrary/
 		scons -c
+		./installCmesh   # make sure the cadmesh included match the release version
 		rm -rf cadmeshBuild lib include
 		set toCopy = `\ls | grep -v releases | grep -v doxygenREADME`
 		cp -r $toCopy releases/devel/
@@ -110,14 +111,12 @@ if($pname == "mlibrary") then
 		# the numbered releases of the mlibraries are done with github
 		# get them here:
 		# https://github.com/gemc/mlibrary/releases
-
+		# remember to run ./installCmesh and make the release
+		# then make the release by hand at https://github.com/gemc/mlibrary/releases
 		cd $locald/mlibrary/releases/
-		rm -rf $pver
 		wget https://github.com/gemc/mlibrary/archive/v$pver".tar.gz"
-		tar -zxpvf v$pver.tar.gz
+		tar -zxpf v$pver.tar.gz
 		mv mlibrary-$pver $pver
-		cd $pver
-		git clone https://github.com/christopherpoole/CADMesh.git
 	endif
 
 	cd $locald/mlibrary/releases/

@@ -6,6 +6,10 @@ TODO: function to set SOFTWARE_ROOT_DIR SOFTWARE_VERSION depending if user alrea
 
  -------------------------------------------
 
+3/9/18
+ - portable command to get number of cpus
+ - cadmesh release made part of mlibrary (but it will still git-get the submodules assimp and tetgen)
+
 3/7/18
  - starting release of 2.2
 

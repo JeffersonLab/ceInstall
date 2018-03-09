@@ -46,7 +46,7 @@ scons $opt $ooarch  LIBRARY="shared" > $MLIBRARY/build_log
 echo
 echo " > Compiling cadmesh as part of mlibrary..."
 echo
-./installCmesh
+./compileCmesh
 
 # Done!
 echo done
