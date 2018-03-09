@@ -31,11 +31,13 @@ Starting from Wed, March 21 2018 the "production.csh" will require as a first ar
 - changes in JLAB_VERSION will not change libraries version underneath users
 - there's no ambiguity in what a version users are running.
 
-The gcc and cmake versions requirements are dropped from the scripts as the CUE machines provide sufficient updated version of these by default.
+Additional notes:
+ - The gcc and cmake versions requirements are dropped from the scripts as the CUE machines (and modern darwin/linux distributions) provide sufficient updated versions by default.
+ - Starting from 3/9/18 the release mechanism of ceInstall will be the git release mechanism.
 
-The development version will upgrade to the latest version of all these packages.
-This will not happen all at once, so bewhare of using development.
 
+The development version of the libraries will upgrade each package to the latest release.
+This will not happen all at once, and may happen more than once if a library is updated, so bewhare of using development.
 
 To setup the environment to use 2.2:
 
@@ -46,7 +48,6 @@ source /site/12gev_phys/production.csh 2.2
 Bash:
 
 source /site/12gev_phys/production.sh 2.2
-
 
 Please send questions/comments/suggestions to ungaro@jlab.org, or to helpdesk@jlab.org.
 Please also visit the Physics software documentation at http://data.jlab.org.
