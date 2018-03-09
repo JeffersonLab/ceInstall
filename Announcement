@@ -22,7 +22,7 @@ Version 2.2 includes these updates:
 - jana:         stays 0.7.7p1
 - mlibrary:     1.1 > 1.2
 - qt:           5.8.0 > 5.9.1
-- root:         6.08.04 >
+- root:         6.08.04 > 6.12.06
 - xercesc:      3.1.4 > 3.2.0
 
 Starting from Wed, March 21 2018 the "production" scripts will require as a first argument the version number. This will ensure that:
