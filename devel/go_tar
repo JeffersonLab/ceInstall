@@ -84,14 +84,14 @@ endif
 
 # banks
 if($pname == "banks") then
-	cd $locald/banks/$pver
-	setenv BANKS `pwd`
-	scons -c ;
-	cd ../
-	rm -rf banks-$pver.*
-	tar cvf banks-$pver.tar --exclude="banks.xcodeproj" --exclude="lib" $pver/*
-	gzip banks-$pver.tar
+	rm -rf $locald/banks/tmp
+	mkdir -p $locald/banks/tmp/
+	cd $locald/banks/tmp/
+
+	wget https://github.com/maureeungaro/banks/archive/v$pver".tar.gz" -O banks-$pver.tar.gz
 	scp banks-$pver.tar.gz $remoted/banks
+	cd ..
+#	rm -rf tmp
 	exit
 endif
 
