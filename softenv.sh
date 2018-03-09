@@ -6,6 +6,8 @@
 
 # Set defaults if vars not already defined
 export    JLAB_ROOT="${JLAB_ROOT:=/site/12gev_phys}"
+
+# modify this so JLAB_VERSION must be set by user
 export JLAB_VERSION="${JLAB_VERSION:=2.2}"
 
 if [ -n "$1" ]; then
@@ -31,17 +33,8 @@ else
 fi
 
 case $- in
-  *i*)  # interactive shell
-  # Warning for CentOS2
-  if [ -r /etc/centos-release ]; then
-    if ` grep -q 'CentOS release 6.2' /etc/centos-release`; then
-      echo " > NOTE:  Not all 1.2 packages are supported under CentOS62."
-      echo " > Please move to the updated CentOS65 environment using"
-      echo " > ifarm65.jlab.org AND "OS: centos65" for farm submissions."
-      echo 
-    fi
-  fi
-  echo \ \>\> For documentation and a list of supported architectures please look at https://data.jlab.org
-  echo
-  ;;
+	*i*)  # interactive shell
+	echo \ \>\> For documentation on the environment please visit https://data.jlab.org
+	echo
+	;;
 esac
