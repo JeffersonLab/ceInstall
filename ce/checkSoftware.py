@@ -32,7 +32,11 @@ if softwareLocation == proposedSoftwareLocation:
 	if softwareVersion == 'notUsed':
 		print " >", name, "\t installed in ", softwareLocation
 	elif softwareVersion == softwareVersion:
-		print " >", name, "\t version: ", softwareVersion
+		# checking if this is a system installation
+		if os.path.islink(fileOrDirerify):
+			print " >", name, "\t using system installation"
+		else:
+			print " >", name, "\t version: ", softwareVersion
 	else:
 		print " >", name, "\t custom version: ", softwareVersion
 else:

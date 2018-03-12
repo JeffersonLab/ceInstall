@@ -22,31 +22,59 @@ else if(`echo $release | grep Linux | wc | awk '{print $1}'` == "1") then
 	set system = "Linux"
 endif
 
-echo
-echo $system detected. Downloading $filename
+# if option system is given, try to link to the system qt
+if($1 == "system") then
+	if($system == "Mac") then
+		set majorQtVersion = `\ls -rt /usr/local/Cellar | grep qt`
+		set minorQtVersion = `\ls -rt /usr/local/Cellar/$majorQtVersion | tail -1`
+		set SQTDIR = /usr/local/Cellar/$majorQtVersion/$minorQtVersion
+		echo
+		echo System QT detected in $SQTDIR
+		echo Linking to this qt installation.
+		echo
 
-rm $filename
-wget $repo/$filename
-chmod u+x $filename
+		rm -rf   $QTDIR
+		mkdir -p $QTDIR
 
-echo
-echo Please execute:
-echo
-     if($system == "Mac") then
-	echo open $filename
-else if($system == "Linux") then
-	echo ./$filename
+		# linking the relevant stuff
+		ln -sfn $SQTDIR/lib $QTDIR/lib
+		ln -sfn $SQTDIR/include $QTDIR/include
+		ln -sfn $SQTDIR/bin $QTDIR/bin
+		ln -sfn $SQTDIR/mkspecs $QTDIR/mkspecs
+		ln -sfn $SQTDIR/plugins $QTDIR/plugins
+
+	endif
+else
+	# Using offline Installer
+	echo
+	echo Installing QT using the offline installer.
+	echo
+	echo $system detected. Downloading $filename
+	echo
+
+	rm $filename
+	wget $repo/$filename
+	chmod u+x $filename
+
+	echo Download Successfull. Please execute:
+	echo
+	if($system == "Mac") then
+		echo open $filename
+	else if($system == "Linux") then
+		echo ./$filename
+	endif
+	echo
+	echo Then follow the installation instructions. You can skip the creation of a qt account.
+	echo
+	echo \!\!\! WARNING WARNING WARNING \!\!\!
+	echo
+	echo The qt installation program will ask to verify the installation folder.
+	echo Make sure to clear the default installation location and copy/parse this instead:
+	echo
+	echo $JLAB_SOFTWARE/qt/$QT_VERSION
+	echo
+	echo Make sure to include the Source Components during the installation process.
+	echo
 endif
-echo
-echo Then follow the installation instructions. You can skip the creation of a qt account.
-echo
-echo \!\!\! WARNING WARNING WARNING \!\!\!
-echo
-echo The qt installation program will ask to verify the installation folder.
-echo Make sure to clear the default installation location and copy/parse this instead:
-echo
-echo $JLAB_SOFTWARE/qt/$QT_VERSION
-echo
-echo Make sure to include the Source Components during the installation process. 
-echo
+
 
