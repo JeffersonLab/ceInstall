@@ -18,15 +18,18 @@ Version 2.2 includes these updates:
 - root:         6.08.04 > 6.12.06
 - xercesc:      3.1.4 > 3.2.0
 
-Starting from Wed, March 21 2018 the "production" scripts will require as a first argument the version number. This will ensure that:
+Starting from Wed, March 21 2018 the "production" scripts can still be used, but they are replaced by "softenv" scripts, and require as argument the version number.
+The renaming removes ambiguiries on what's production and what's development: all cases are specified by this mandatory argument.
 
-- JLAB_VERSION releases will not modify user environments by updating the production scripts
-- there's no ambiguity in the version number used by users
+This will ensure that:
+
+- JLAB_VERSION release cycles will not modify user environments
+- there's no ambiguity in the version number
 
 Additional notes:
  - The gcc and cmake versions requirements are dropped from the scripts as the CUE machines
    (and modern darwin/linux distributions) provide sufficient updated versions by default.
- - Starting from 3/9/18 the release mechanism of ceInstall will be the git release mechanism.
+ - Starting from 3/9/18 the release mechanism of ceInstall, mlibrary, scons build system, banks will be the git release mechanism.
  - The development version of the libraries will upgrade each package to the latest release.
    This will not happen all at once, and may happen more than once if a library is updated, so bewhare of using development.
 

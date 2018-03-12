@@ -23,6 +23,7 @@ TO RELEASE:
 - added templated installation instructions so we do not need to keep different versions of all
 - fix go_tar / go_reload with proper paths, adding local option to go_tar
 - mlibrary going to git releases for devel as well
+- mlibrary release 1.3 instead of 1.2 as git did not include "include" in 1.2
 
 3/9/18
  - portable command to get number of cpus
