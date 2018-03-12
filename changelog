@@ -1,4 +1,12 @@
-TODO: function to set SOFTWARE_ROOT_DIR SOFTWARE_VERSION depending if user already setting those
+TO RELEASE:
+
+- change release date in ce/jlab scripts
+- make sure versions.env is updated
+- make new releases as needed, remember to change changelog
+- copy sbsInstall/devel_install.html to the appropriate version and change all "devel"
+- test installation, copy initial log in sbsInstall/#_install.html
+
+- TODO: function to set SOFTWARE_ROOT_DIR SOFTWARE_VERSION depending if user already setting those
 
 -------------------------------------------
 

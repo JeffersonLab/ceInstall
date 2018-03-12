@@ -28,7 +28,7 @@
     <br>
     These are instructions to install JLAB_VERSION 2.2. You can find other JLAB_VERSION releases instructions below:<br>
     <ul>
-		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/devel_install.html"> Version 2.2</a><br></li>
+		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/devel_install.html"> Development Version</a><br></li>
 		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.1_install.html"> Version 2.1</a><br></li>
 		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.0_install.html"> Version 2.0</a><br></li>
      </ul>
@@ -171,7 +171,7 @@
             <pre>
                 cd $JLAB_ROOT
                 wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_2.2.tar.gz
-                tar -zxpvf ceInstall_2.2.tar.gz
+                tar -zxpvf ceInstall_2.2.tar.gz --strip-components 1 -C 2.2
             </pre>
             
         </li>

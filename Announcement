@@ -1,12 +1,5 @@
-TO RELEASE:
 
-- change release date in ce/jlab scripts
-- make sure versions.env is updated
-- make new releases as needed, remember to change changelog
-- copy sbsInstall/devel_install.html to the appropriate version and change all "devel"
-- test installation, copy initial log in sbsInstall/#_install.html
-
-Email Draft:
+2.2 Announcement
 
 A new version of the production JLab software libraries is available:
 
