@@ -20,7 +20,8 @@ TO RELEASE:
 - can use system qt if necessary
 - fixed ncpu command
 - updated announcement, untar command, instructions for devel and 2.2
-
+- added templated installation instructions so we do not need to keep different versions of all
+- fix go_tar / go_reload with proper paths, adding local option to go_tar
 
 3/9/18
  - portable command to get number of cpus

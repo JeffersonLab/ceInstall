@@ -3,10 +3,10 @@
 # First argument is package name
 # Second argument is version
 
-if($#argv != 2 && $1 != doc) then
+if($#argv != 2 && $#argv != 3) then
 	echo " "
 	echo "Usage:   "
-	echo  "  >> go_tar package version"
+	echo  "  >> go_tar package version [option]"
 	echo " "
 	exit 0
 endif
@@ -14,8 +14,11 @@ endif
 
 set pname   = $1
 set pver    = $2
+set option  = $3
 set remoted = "ftp.jlab.org:/u/group/12gev_phys/www/packages/sources"
 set locald  = /opt/projects
+
+set latestRelease = 2.2
 
 echo
 echo " Package: " $pname ", version: " $pver
@@ -24,16 +27,32 @@ echo
 
 # common environment
 if($pname == "ceInstall") then
-	rm -rf   $locald/ceInstall/tmp
-	mkdir -p $locald/ceInstall/tmp/
-	cd       $locald/ceInstall/tmp/
 
-	wget https://github.com/JeffersonLab/ceInstall/archive/v$pver".tar.gz" -O ceInstall_$pver.tar.gz
-	scp ceInstall_$pver.tar.gz $remoted/ceInstall
-	cd ..
-	rm -rf tmp
+	# to use development for next release
+	# extra check that we're using the latest release
+	if($option == "local" && $pver == $latestRelease) then
+		cd $locald
+		rm -f ceInstall_$pver.*
+		tar cvf ceInstall_$pver.tar  -L --exclude='go_tar' --exclude="doc" --exclude=".DS_Store" --exclude="releases.key" --exclude=".sconsign.dblite" --exclude=".git" ceInstall
+		gzip ceInstall_$pver.tar
+		scp ceInstall_$pver.tar.gz $remoted/ceInstall
+		rm -f ceInstall_$pver.*
+	else
+		rm -rf   $locald/ceInstall/tmp
+		mkdir -p $locald/ceInstall/tmp/
+		cd       $locald/ceInstall/tmp/
+		wget https://github.com/JeffersonLab/ceInstall/archive/v$pver".tar.gz" -O ceInstall_$pver.tar.gz
+		scp ceInstall_$pver.tar.gz $remoted/ceInstall
+		cd ..
+		rm -rf tmp
+	endif
+
+
+	cd $locald/ceInstall
 
 	# html instructions: these are the ones in the local dir, not coming from the git release
+	rm sbsInstall/$pver"_install.html"
+	sed "s/vvversiontoreplaceee/$pver/g" sbsInstall/template_install.html > sbsInstall/$pver"_install.html"
 	scp sbsInstall/* $remoted/ceInstall/
 
 	# main scripts: these are the ones in the local dir, not coming from the git release
