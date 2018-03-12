@@ -8,7 +8,7 @@ set name     = mlibrary
 set release  = `./get_coptions release`
 set repo     = `./get_coptions repo`/mlibrary
 set version  = $MLIBRARY_VERSION
-set filename =  mlibrary"-"$MLIBRARY_VERSION".tar.gz"
+set filename =  mlibrary_$MLIBRARY_VERSION".tar.gz"
 set arch     = `./get_coptions arch`
 set opt      = `./get_coptions copt`
 ./get_coptions log $name $version $filename $release $arch $opt 
@@ -27,13 +27,14 @@ echo
 # Getting source file
 echo " > Installing mlibrary - release "$release". Getting source package from repository..."
 rm -rf   $JLAB_SOFTWARE/mlibrary/$MLIBRARY_VERSION
-mkdir -p $JLAB_SOFTWARE/mlibrary
-cd       $JLAB_SOFTWARE/mlibrary
+mkdir -p $JLAB_SOFTWARE/mlibrary/$MLIBRARY_VERSION
+cd       $JLAB_SOFTWARE/mlibrary/
 
 rm             $filename
 wget     $repo/$filename
 echo Unpacking $filename
-tar -zxpf     $filename 
+tar -zxpf      $filename --strip-components 1 -C $MLIBRARY_VERSION
+
 
 # Compiling
 
