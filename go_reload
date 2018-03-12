@@ -4,7 +4,7 @@
 # and re-download them
 
 rm -f ceInstall_$JLAB_VERSION.tar.gz
-rm -rf ce install sbsInstall
+rm -rf ce install sbsInstall doc
 wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_$JLAB_VERSION.tar.gz
 tar -zxpf ceInstall_$JLAB_VERSION.tar.gz
 mv ceInstall/* .
