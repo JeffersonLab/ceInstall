@@ -45,11 +45,14 @@ endif
 
 # scons scripts
 if($pname == "bm") then
-	cd $locald/scons_bm/
-	rm -rf scons_bm-$pver.*
-	tar cvf scons_bm-$pver.tar $pver/*
-	gzip scons_bm-$pver.tar
-	scp scons_bm-$pver.tar.gz $remoted/scons_bm
+	rm -rf   $locald/scons_bm/tmp
+	mkdir -p $locald/scons_bm/tmp/
+	cd       $locald/scons_bm/tmp/
+
+	wget https://github.com/maureeungaro/scons_bm/archive/v$pver".tar.gz" -O scons_bm_$pver.tar.gz
+	scp scons_bm_$pver.tar.gz $remoted/scons_bm
+	cd ..
+	rm -rf tmp
 	exit
 endif
 

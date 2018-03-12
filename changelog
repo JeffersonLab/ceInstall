@@ -14,6 +14,14 @@ TO RELEASE:
 
  -------------------------------------------
 
+3/11/18
+- silencing untar with options instead of redirection
+- using git release mechanism for scons_bm
+- can use system qt if necessary
+- fixed ncpu command
+- updated announcement, untar command, instructions for devel and 2.2
+
+
 3/9/18
  - portable command to get number of cpus
  - cadmesh release made part of mlibrary (but it will still git-get the submodules assimp and tetgen)

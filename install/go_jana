@@ -31,7 +31,7 @@ rm -f          $filename
 wget     $repo/$filename
 
 echo Unpacking $filename
-tar -zxpvf     $filename >& /dev/null
+tar -zxpf     $filename 
 
 
 # Compiling

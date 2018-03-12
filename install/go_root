@@ -72,7 +72,7 @@ src:
 	wget     $repo/$filename
 
 	echo Unpacking $filename
-	tar -zxpvf     $filename >& /dev/null
+	tar -zxpf     $filename 
 
 if($1 == "src") exit
 

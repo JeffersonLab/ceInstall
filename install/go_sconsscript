@@ -8,7 +8,7 @@ set name     = scons_bm
 set release  = `./get_coptions release`
 set repo     = `./get_coptions repo`/scons_bm
 set version  = $SCONS_BM_VERSION
-set filename =  scons_bm"-"$SCONS_BM_VERSION".tar.gz"
+set filename =  scons_bm_$SCONS_BM_VERSION".tar.gz"
 
 
 echo
@@ -23,7 +23,7 @@ cd       $JLAB_ROOT/$JLAB_VERSION/scons_bm/
 
 rm -f       $filename
 wget  $repo/$filename
-tar -zxpvf  $filename >& /dev/null
+tar -zxpf  $filename --strip-components 1 
 
 echo "Done."
 echo
