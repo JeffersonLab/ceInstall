@@ -1,6 +1,8 @@
 <style type="text/css">
     .row { vertical-align: top; height:auto !important; }
     .list {display:none; }
+	pre {color: #050;}
+	code {color: #008;}
     .show {display: none; }
     .hide:target + .show {display: inline; }
     .hide:target {display: none; }
@@ -51,9 +53,9 @@
     <ul>
         <h3> MAC OS specific requirements</h3>
 		Make sure you have the latest xcode tools with:
-		<pre>
+		<pre><code>
  xcode-select --install
-		</pre>
+		</code></pre>
 
         You can install the dependencies with <a href="http://brew.sh"> homebrew</a>:<br/><br/>
         
@@ -148,33 +150,28 @@
     
     
     <ol>
-        <li>
-            Choose a place (JLAB_ROOT) to install the software<br><br>
-				A good choice for <b>JLAB_ROOT</b> is <b> /opt/jlab_software</b>:<br><br>
+		<li>
+			Choose a place (JLAB_ROOT) to install the software<br><br>
+			A good choice for <b>JLAB_ROOT</b> is <b> /opt/jlab_software</b>:<br>
 
-				<pre>
+			<pre><code>
  set JLAB_ROOT=/opt/jlab_software
-				</pre>
+			</code></pre>
+			Create the working directory:
 
-
-				<br>
-            Create the working directory:
-            
-            <pre>
-mkdir -p $JLAB_ROOT/vvversiontoreplaceee
-            </pre>
-            
-            
+			<pre><code>
+ mkdir -p $JLAB_ROOT/vvversiontoreplaceee
+			</code></pre>
         </li>
         
         
         
         <li>Get the installation scripts:
-            <pre>
+            <pre><code>
  cd $JLAB_ROOT
  wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_vvversiontoreplaceee.tar.gz
  tar -zxpf ceInstall_vvversiontoreplaceee.tar.gz --strip-components 1 -C vvversiontoreplaceee
-            </pre>
+           </code> </pre>
             
         </li>
         
@@ -182,10 +179,10 @@ mkdir -p $JLAB_ROOT/vvversiontoreplaceee
         <li>
             Set the environment variables. You should put these lines in your login script:
             
-            <pre>
+            <pre><code>
  setenv JLAB_ROOT /opt/jlab_software
  source $JLAB_ROOT/vvversiontoreplaceee/ce/jlab.csh
-            </pre>
+            </code></pre>
             
         </li>
         
@@ -217,14 +214,14 @@ mkdir -p $JLAB_ROOT/vvversiontoreplaceee
         If you do, great! The enviroment seems correct and you're ready to run the installation scripts. Every script that you run below will replace the warning log with a successful one.<br>
         Notice: if you already have some existing environment variables that you want to keep,
         use the option "keepmine":<br>
-        <pre>
+        <pre><code>
  source $JLAB_ROOT/vvversiontoreplaceee/ce/jlab.csh keepmine
-        </pre>
+        </code></pre>
         
         
         <li>
             Choose the packages you wish to install by executing the corresponding script:
-            <pre>
+            <pre><code>
  cd $JLAB_ROOT/vvversiontoreplaceee/install
 
  ./go_clhep
@@ -247,14 +244,14 @@ mkdir -p $JLAB_ROOT/vvversiontoreplaceee
  ./go_root
  ./go_banks
  ./go_jana
-            </pre>
+            </code></pre>
             
             All the packages listed above "go_gemc" are necessary to run gemc.
         </li>
     </ol>
-    <br><br><br>
+    <br><br>
     
-    Please email any comments/corrections/bug report/feature requests to <a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">Maurizio Ungaro</a>.
+	Please email any comments/corrections/bug report/feature requests to <a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">Maurizio Ungaro</a>.
     
     
     <br><br><br>

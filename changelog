@@ -20,6 +20,7 @@ TO RELEASE:
 - reversing order of cadmesh / scons so include files can be found
 - adding local version of mlibrary to release
 - updated instructions
+- a bit of colors in the instructions
 
 3/11/18
 - silencing untar with options instead of redirection
