@@ -29,8 +29,8 @@ if($1 == "system") then
 		set minorQtVersion = `\ls -rt /usr/local/Cellar/$majorQtVersion | tail -1`
 		set SQTDIR = /usr/local/Cellar/$majorQtVersion/$minorQtVersion
 		echo
-		echo System QT detected in $SQTDIR
-		echo Linking to this qt installation.
+		echo System QT selected
+		echo Linking to $SQTDIR installation.
 		echo
 
 		rm -rf   $QTDIR
@@ -49,23 +49,24 @@ if($1 == "system") then
 	# Using system QT for Linux.
 	else if(`uname` == "Linux") then
 
-	# Linux - fedora line
-	if( -f /etc/fedora-release || -f /etc/redhat-release) then
-		ln -sfn /usr/include $QTDIR/include
+		# Linux - fedora line
+		if( -f /etc/fedora-release || -f /etc/redhat-release) then
+			ln -sfn /usr/include $QTDIR/include
 
-		if($arch == "32") then
-			ln -sfn /usr/lib $QTDIR/lib
-		else if($arch == "64") then
-			ln -sfn /usr/lib64 $QTDIR/lib
-		endif
+			if($arch == "32") then
+				ln -sfn /usr/lib $QTDIR/lib
+			else if($arch == "64") then
+				ln -sfn /usr/lib64 $QTDIR/lib
+			endif
 
-	# Linux - Ubuntu line
-	else if( -f /etc/os-release) then
-		ln -sfn /usr/include/qt5 $QTDIR/include
-		if($arch == "32") then
-			ln -sfn /usr/lib/xi386-linux-gnu $QTDIR/lib
-		else if($arch == "64") then
-			ln -sfn /usr/lib/x86_64-linux-gnu $QTDIR/lib
+		# Linux - Ubuntu line
+		else if( -f /etc/os-release) then
+			ln -sfn /usr/include/qt5 $QTDIR/include
+			if($arch == "32") then
+				ln -sfn /usr/lib/xi386-linux-gnu $QTDIR/lib
+			else if($arch == "64") then
+				ln -sfn /usr/lib/x86_64-linux-gnu $QTDIR/lib
+			endif
 		endif
 	endif
 else
@@ -93,7 +94,7 @@ else
 	echo \!\!\! WARNING WARNING WARNING \!\!\!
 	echo
 	echo The qt installation program will ask to verify the installation folder.
-	echo Make sure to clear the default installation location and copy/parse this instead:
+	echo Make sure to clear the default installation location and copy/parse this path instead:
 	echo
 	echo $JLAB_SOFTWARE/qt/$QT_VERSION
 	echo

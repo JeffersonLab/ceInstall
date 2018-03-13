@@ -8,7 +8,7 @@ set name     = banks
 set release  = `./get_coptions release`
 set repo     = `./get_coptions repo`/banks
 set version  = $BANKS_VERSION
-set filename = banks-$BANKS_VERSION".tar.gz"
+set filename = banks_$BANKS_VERSION".tar.gz"
 set arch     = `./get_coptions arch`
 set opt      = `./get_coptions copt`
 ./get_coptions log $name $version $filename $release $arch $opt 
@@ -27,13 +27,13 @@ echo
 # Getting source file
 echo " > Installing banks - release "$release". Getting source package from repository..."
 rm -rf   $JLAB_SOFTWARE/banks/$BANKS_VERSION
-mkdir -p $JLAB_SOFTWARE/banks
+mkdir -p $JLAB_SOFTWARE/banks/$BANKS_VERSION
 cd       $JLAB_SOFTWARE/banks
 
 rm             $filename
 wget     $repo/$filename
 echo Unpacking $filename
-tar -zxpf     $filename 
+tar -zxpf      $filename --strip-components 1 -C $BANKS_VERSION
 
 
 # Compiling

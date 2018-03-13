@@ -3,6 +3,9 @@
     .list {display:none; }
 	pre {color: #050;}
 	code {color: #008;}
+	th { color: red; text-align: center;}
+	td { color: #929;  text-align: center;}
+	table {     padding: 15px; border-spacing: 5px;}
     .show {display: none; }
     .hide:target + .show {display: inline; }
     .hide:target {display: none; }
@@ -51,7 +54,7 @@
     
     
     <ul>
-        <h3> MAC OS specific requirements</h3>
+		<h3> &#x2318; MAC OS specific requirements</h3>
 		Make sure you have the latest xcode tools with:
 		<pre><code>
  xcode-select --install
@@ -87,7 +90,7 @@
     </ul>
     
     <ul>
-        <h3> Ubuntu (Debian-line) specific requirements</h3>
+        <h3> &#128039; Ubuntu (Debian-line) specific requirements</h3>
         
         You can install the dependencies with apt-get:<br/><br/>
         
@@ -121,7 +124,7 @@
     </ul>
     
     <ul>
-        <h3> Fedora (red-hat line) specific requirements</h3>
+        <h3>&#128039; Fedora (red-hat line) specific requirements</h3>
         You can install the dependencies with dnf (or yum):<br/><br/>
         
         
@@ -214,25 +217,33 @@
         If you do, great! The enviroment seems correct and you're ready to run the installation scripts. Every script that you run below will replace the warning log with a successful one.<br>
         Notice: if you already have some existing environment variables that you want to keep,
         use the option "keepmine":<br>
-        <pre><code>
+		<pre><code>
  source $JLAB_ROOT/vvversiontoreplaceee/ce/jlab.csh keepmine
-        </code></pre>
+		</code></pre>
         
         
         <li>
             Choose the packages you wish to install by executing the corresponding script:
-            <pre><code>
+			<pre><code>
  cd $JLAB_ROOT/vvversiontoreplaceee/install
 
  ./go_clhep
  ./go_xercesc
+			</code></pre>
 
  If you have a system installation of qt (see instructions on requirements on how to install it):
+ 			<pre><code>
  ./go_qt system
+			</code></pre>
 
- Otherwise the following command will downlowad the qt installer for you. Follow instructions for the installation:
+Otherwise the following command will downlowad the qt installer for you. Follow instructions for the installation:
+
+			<pre><code>
  ./go_qt
+			</code></pre>
+			Continue with the rest of the package installation:
 
+			<pre><code>
  ./go_geant4
  ./go_sconsscript
  ./go_evio
@@ -248,10 +259,41 @@
             
             All the packages listed above "go_gemc" are necessary to run gemc.
         </li>
-    </ol>
-    <br><br>
-    
-	Please email any comments/corrections/bug report/feature requests to <a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">Maurizio Ungaro</a>.
+
+<p>Typical installation times:</p>
+<table>
+	<tr>
+		<th>Package</th>
+		<th>Approx Installation Time</th>
+	</tr>
+	<tr> <td>clhep</td>                             <td>1 minute</td> </tr>
+	<tr> <td>xercesc</td>                           <td>1 minute</td> </tr>
+	<tr> <td>qt (if system installed)</td>          <td>1 second</td> </tr>
+	<tr> <td>qt (if installatin from scratch)</td>  <td>10-15 minutes</td> </tr>
+	<tr> <td>geant4&#8224;</td>                     <td>10 minutes </td> </tr>
+	<tr> <td>sconsscript</td>                       <td>1 second</td> </tr>
+	<tr> <td>evio</td>                              <td>10 seconds</td> </tr>
+	<tr> <td>mysql</td>                             <td>1 second</td> </tr>
+	<tr> <td>ccdb</td>                              <td>1 minute</td> </tr>
+	<tr> <td>mlibrary&#8225;</td>                   <td>2-3 minutes</td> </tr>
+	<tr> <td>gemc</td>                              <td>2-3 minutes</td> </tr>
+	<tr> <td>root</td>                              <td>30 minutes</td> </tr>
+	<tr> <td>banks</td>                             <td>5 seconds</td> </tr>
+	<tr> <td>jana</td>                              <td>Doe</td> </tr>
+	<tr> <td colspan=2><hr></td> </tr>
+
+	<tr> <td>Total (system qt)</td> <td>Doe</td> </tr>
+	<tr> <td>Total (qt from scratch)</td> <td>Doe</td> </tr>
+
+</table>
+	</ol>
+
+ <br>
+ &#8224; (needs fast connection to download the cross section data)   <br>
+ &#8225; you will see a lot of warnings you can ignore related to assimp.  <br><br><br>
+
+
+ Please email any comments/corrections/bug report/feature requests to <a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">Maurizio Ungaro</a>.
     
     
     <br><br><br>

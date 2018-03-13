@@ -53,10 +53,10 @@ if($1 == "src") exit
 make:
 	# Configuring and Compiling
 	# Compiling
-	echo " > Compiling evio source (log will be in "\$EVIO/"make_log)..."
+	echo " > Compiling evio source (log will be in "\$EVIO/"build_log)..."
 	cd $EVIO
 
-	scons $opt $oarch > make_log
+	scons $opt > build_log
 if($1 == "make") exit
 
 # Done!

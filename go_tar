@@ -118,8 +118,8 @@ if($pname == "banks") then
 	mkdir -p $locald/banks/tmp/
 	cd       $locald/banks/tmp/
 
-	wget https://github.com/maureeungaro/banks/archive/v$pver".tar.gz" -O banks-$pver.tar.gz
-	scp banks-$pver.tar.gz $remoted/banks
+	wget https://github.com/maureeungaro/banks/archive/v$pver".tar.gz" -O banks_$pver.tar.gz
+	scp banks_$pver.tar.gz $remoted/banks
 	cd ..
 	rm -rf tmp
 	exit
