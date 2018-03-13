@@ -42,6 +42,9 @@ if($1 == "system") then
 		ln -sfn $SQTDIR/bin $QTDIR/bin
 		ln -sfn $SQTDIR/mkspecs $QTDIR/mkspecs
 		ln -sfn $SQTDIR/plugins $QTDIR/plugins
+	echo
+	echo Done!
+	echo
 
 	# Using system QT for Linux.
 	else if(`uname` == "Linux") then
