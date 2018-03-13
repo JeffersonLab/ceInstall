@@ -43,6 +43,27 @@ if($1 == "system") then
 		ln -sfn $SQTDIR/mkspecs $QTDIR/mkspecs
 		ln -sfn $SQTDIR/plugins $QTDIR/plugins
 
+	# Using system QT for Linux.
+	else if(`uname` == "Linux") then
+
+	# Linux - fedora line
+	if( -f /etc/fedora-release || -f /etc/redhat-release) then
+		ln -sfn /usr/include $QTDIR/include
+
+		if($arch == "32") then
+			ln -sfn /usr/lib $QTDIR/lib
+		else if($arch == "64") then
+			ln -sfn /usr/lib64 $QTDIR/lib
+		endif
+
+	# Linux - Ubuntu line
+	else if( -f /etc/os-release) then
+		ln -sfn /usr/include/qt5 $QTDIR/include
+		if($arch == "32") then
+			ln -sfn /usr/lib/xi386-linux-gnu $QTDIR/lib
+		else if($arch == "64") then
+			ln -sfn /usr/lib/x86_64-linux-gnu $QTDIR/lib
+		endif
 	endif
 else
 	# Using offline Installer

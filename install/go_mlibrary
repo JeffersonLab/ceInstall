@@ -40,14 +40,14 @@ tar -zxpf      $filename --strip-components 1 -C $MLIBRARY_VERSION
 
 cd $JLAB_SOFTWARE/mlibrary/$MLIBRARY_VERSION
 
+echo
+echo " > Compiling cadmesh..."
+echo
+./compileCmesh
+
 echo " > Compiling mlibrary (log will be in "\$MLIBRARY"/build_log )..."
 
 scons $opt $ooarch  LIBRARY="shared" > $MLIBRARY/build_log
-
-echo
-echo " > Compiling cadmesh as part of mlibrary..."
-echo
-./compileCmesh
 
 # Done!
 echo done

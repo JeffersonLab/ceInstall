@@ -129,14 +129,28 @@ endif
 # mlibrary
 if($pname == "mlibrary") then
 
-	rm -rf   $locald/mlibrary/tmp
-	mkdir -p $locald/mlibrary/tmp/
-	cd       $locald/mlibrary/tmp/
+	# to use development for next release
+	# extra check that we're using the latest release
+	if($option == "local") then
+		cd $locald/mlibrary
+		scons -c
+		rm -rf cadmeshBuild bin lib
+		cd $locald
+		rm -f mlibrary_$pver.*
+		tar cvf mlibrary_$pver.tar  -L --exclude='go_tar' --exclude="doc" --exclude=".DS_Store" --exclude="releases.key" --exclude=".sconsign.dblite" --exclude=".git" mlibrary
+		gzip mlibrary_$pver.tar
+		scp mlibrary_$pver.tar.gz $remoted/mlibrary
+		rm -f mlibrary_$pver.*
+	else
+		rm -rf   $locald/mlibrary/tmp
+		mkdir -p $locald/mlibrary/tmp/
+		cd       $locald/mlibrary/tmp/
 
-	wget https://github.com/gemc/mlibrary/archive/v$pver".tar.gz" -O mlibrary_$pver.tar.gz
-	scp mlibrary_$pver.tar.gz $remoted/mlibrary
-	cd ..
-	rm -rf tmp
+		wget https://github.com/gemc/mlibrary/archive/v$pver".tar.gz" -O mlibrary_$pver.tar.gz
+		scp mlibrary_$pver.tar.gz $remoted/mlibrary
+		cd ..
+		rm -rf tmp
+endif
 	exit
 
 endif
