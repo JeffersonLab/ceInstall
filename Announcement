@@ -1,9 +1,8 @@
+email list in jlab_software contacts
 
 2.2 Announcement
 
-A new version of the production JLab software libraries is available:
-
-Version 2.2 includes these updates:
+Version 2.2 of the JLab software libraries will be available on March 21. It includes these updates:
 
 - scons build:  1.5 > 1.6
 - banks:        1.3 > 1.4
@@ -18,32 +17,30 @@ Version 2.2 includes these updates:
 - root:         6.08.04 > 6.12.06
 - xercesc:      3.1.4 > 3.2.0
 
-Starting from Wed, March 21 2018 the "production" scripts can still be used, but they are replaced by "softenv" scripts, and require as argument the version number.
-The renaming removes ambiguiries on what's production and what's development: all cases are specified by this mandatory argument.
+Starting from Wed, March 21 2018 the "production" scripts can still be used, but are replaced by "softenv" scripts, and require as argument the version number.
+The renaming removes ambiguisies on what is "production" and what is "development": the tags are specified by the mandatory argument.
 
-This will ensure that:
-
-- JLAB_VERSION release cycles will not modify user environments
-- there's no ambiguity in the version number
+This will ensure that JLAB_VERSION release cycles will not modify user environments. Users will have to change the argument to update to the latest release.
 
 Additional notes:
- - The gcc and cmake versions requirements are dropped from the scripts as the CUE machines
+ - The gcc and cmake versions requirements/checks are dropped from the scripts as the CUE machines
    (and modern darwin/linux distributions) provide sufficient updated versions by default.
- - Starting from 3/9/18 the release mechanism of ceInstall, mlibrary, scons build system, banks will be the git release mechanism.
- - The development version of the libraries will upgrade each package to the latest release.
-   This will not happen all at once, and may happen more than once if a library is updated, so bewhare of using development.
+ - Starting from 3/9/18 the release mechanism of ceInstall, mlibrary, scons build system, banks are ported to the git release mechanism.
+ - The development version of the libraries will upgrade each package to the latest release. This will not happen all at once, and may happen more than once if a library is updated, so bewhare of using development.
 
 To setup the environment to use 2.2:
 
 Csh:
 
-source /site/12gev_phys/production.csh 2.2
+source /site/12gev_phys/softenv.csh 2.2
 
 Bash:
 
-source /site/12gev_phys/production.sh 2.2
+source /site/12gev_phys/softenv.sh 2.2
 
-Please send questions/comments/suggestions to ungaro@jlab.org, or to helpdesk@jlab.org.
+Please send questions/comments/suggestions to helpdesk@jlab.org.
+
 Please also visit the Physics software documentation at http://data.jlab.org.
+
 
 
