@@ -33,9 +33,10 @@ Please note:
  - The "development" tag may upgrade individual packages to newer versions as they are released.
 
 
-Instructions for the JLab interactive nodes ifarm1401 or ifarm1402:
+Instructions for the JLab interactive nodes ifarm1401 or ifarm1402
+------------------------------------------------------------------
 
-To setup the environment to use tag 2.2:
+To setup the environment and use tag 2.2:
 
 Csh:
 
