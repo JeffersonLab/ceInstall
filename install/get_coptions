@@ -76,11 +76,18 @@ if($1 == "dir") exit
 # check the cmake version
 # Issue warning if it's not >= 3.3
 cmakev:
-	set cmake_version     = `cmake --version | head -1 | awk '{print $3}' | awk -F- '{print $1}' | awk -F. '{print $1"."$2}'`
-	if( `echo "$cmake_version < 3.3" | bc `) then
+ 	set cmake_major     = `cmake --version | head -1 | awk '{print $3}' | awk -F- '{print $1}' | awk -F. '{print $1}'`
+ 	set cmake_minor     = `cmake --version | head -1 | awk '{print $3}' | awk -F- '{print $1}' | awk -F. '{print $2}'`
+ 	if( ($cmake_major < 3) || ($cmake_major == 3 && $cmake_minor < 3)) then
 		echo cmake version is $cmake_version, 3.3 or higher is needed
 	else
 		echo OK
 	endif
 if($1 == "cmakev") exit
+
+
+
+
+
+
 

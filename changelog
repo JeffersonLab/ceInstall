@@ -15,6 +15,9 @@ TO RELEASE:
 
  -------------------------------------------
 
+3/21/18
+- fixed cmake version check script
+
 3/12/18
 - adding prototype for system qt in Linux distributions.
 - reversing order of cadmesh / scons so include files can be found
