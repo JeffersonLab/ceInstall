@@ -48,8 +48,9 @@ echo
 echo " > Compiling mlibrary (log will be in "\$MLIBRARY"/build_log )..."
 
 # Temp: forcing max 10 processes as the scons system
-# is based on the existing libraries
-scons -j10 $ooarch > $MLIBRARY/build_log
+# checks independently that the libraries exist
+# Adding LIBRARY="shared" in case gemc is built as a library
+scons -j10 $ooarch  LIBRARY="shared" > $MLIBRARY/build_log
 
 # Done!
 echo done

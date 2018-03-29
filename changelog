@@ -3,17 +3,31 @@ TO RELEASE:
 - change release date in ce/jlab scripts
 - make sure versions.env is updated
 - for ceInstall and mlibrary: use local go_tar option before making the git release
-- make new releases as needed, remember to change changelog. Notice, deleting a release is not enough! Need to delete the tag also.
-- copy sbsInstall/devel_install.html to the appropriate version and change all "devel"
+- make new releases as needed, remember to update changelog. Notice, deleting a release is not enough: need to delete the tag also.
 - test installation, copy initial log in sbsInstall/#_install.html, change username to mauri and replace address with 1.800.gemc.cool.org
 
-- TODO: function to set SOFTWARE_ROOT_DIR SOFTWARE_VERSION depending if user already setting those
+Note:
+- go_tar ceInstall will generate the _install.html based on the release number
+- for JLAB interactive farm. Usually it cannot access the outside web, but setting these bypass this:
+
+setenv http_proxy http://jprox.jlab.org:8082
+setenv https_proxy http://jprox.jlab.org:8082
+
+
+
+TODO:
+ - additional options to choose individual libraries
+ - add CERN LIBS if user so requests
 
 -------------------------------------------
 
  List of changes for all supported software
 
  -------------------------------------------
+
+3/29/18
+- added note on instructions
+- modified go_mlibrary to include LIBRARY="shared" option, in case users want to build gemc as a library (adds -fPic)
 
 .. Note::
 	3/21/18 ceInstall tag 2.2
