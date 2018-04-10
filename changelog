@@ -39,6 +39,10 @@ TODO:
 - compilation procedure standardized for package clhep
 - compilation procedure standardized for package xercesc
 - added geant4 copy script
+- removed clang_option
+- compilation procedure standardized for package geant4
+- added local scons_bm to packaging
+
 
 3/29/18
 - added note on instructions

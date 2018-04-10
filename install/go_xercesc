@@ -25,18 +25,16 @@ if($1 == "src"|| $1 == "make") goto $1
 
 # Source Build
 src:
-	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions installLog $name $version
+	# start message
+	$getCoptions installLog $name $version
 
-	# creating dirs
-	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions removeAndCreate $XERCESCROOT
-	cd $XERCESCROOT
-
-	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions removeAndCreate build
-	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions removeAndCreate source
+	# creating build and source dirs
+	$getCoptions removeAndCreate $XERCESCROOT/build
+	$getCoptions removeAndCreate $XERCESCROOT/source
 
 	# unpacking inside source
-	cd source
-	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions getAndUnpack $repo $filename
+	cd $XERCESCROOT/source
+	$getCoptions getAndUnpack $repo $filename
 if($1 == "src") exit
 
 # make
@@ -47,7 +45,7 @@ make:
 	cd $buildDir
 
 	# log start of compilation
-	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions logStart $blog $blogS
+	$getCoptions logStart $blog $blogS
 
 	cmake -DCMAKE_INSTALL_PREFIX=$XERCESCROOT $sourceDir >> $blog
 
@@ -55,8 +53,8 @@ make:
 	make install >> $blog
 
 	# log end of compilation, total time
-	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions logEnd  $blog
-	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions logTime $blog
+	$getCoptions logEnd  $blog
+	$getCoptions logTime $blog
 
 if($1 == "make") exit
 

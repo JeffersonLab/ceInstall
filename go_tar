@@ -65,14 +65,24 @@ endif
 
 # scons scripts
 if($pname == "bm") then
-	rm -rf   $locald/scons_bm/tmp
-	mkdir -p $locald/scons_bm/tmp/
-	cd       $locald/scons_bm/tmp/
+	# to use local disk version for a release
+	if($option == "local") then
+		cd $locald
+		rm -f scons_bm_$pver.tar.gz
+		tar cvf scons_bm_$pver.tar  -L --exclude='go_tar' --exclude="doc" --exclude=".DS_Store" --exclude="releases.key" --exclude=".sconsign.dblite" --exclude=".git" scons_bm
+		gzip scons_bm_$pver.tar
+		scp scons_bm_$pver.tar.gz $remoted/scons_bm
+		rm -f scons_bm_$pver.tar.gz
+	else
+		rm -rf   $locald/scons_bm/tmp
+		mkdir -p $locald/scons_bm/tmp/
+		cd       $locald/scons_bm/tmp/
 
-	wget https://github.com/maureeungaro/scons_bm/archive/v$pver".tar.gz" -O scons_bm_$pver.tar.gz
-	scp scons_bm_$pver.tar.gz $remoted/scons_bm
-	cd ..
-	rm -rf tmp
+		wget https://github.com/maureeungaro/scons_bm/archive/v$pver".tar.gz" -O scons_bm_$pver.tar.gz
+		scp scons_bm_$pver.tar.gz $remoted/scons_bm
+		cd ..
+		rm -rf tmp
+	endif
 	exit
 endif
 

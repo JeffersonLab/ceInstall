@@ -1,7 +1,7 @@
 #!/bin/csh -f
 
 
-if($1 == "release"|| $1 == "copt" || $1 == "arch" || $1 == "log"  || $1 == "repo" || $1 == "dir" || $1 == "env" || $1 == "cmakev" ||  $1 == "logFile" || $1 == "logFileS" || $1 == "logStart" || $1 == "logEnd"  ||  $1 == "logTime" || $1 == "removeAndCreate" || $1 == "getAndUnpack" || $1 == "installLog") then
+if($1 == "release"|| $1 == "copt" || $1 == "arch" || $1 == "log"  || $1 == "repo" || $1 == "dir" || $1 == "env" || $1 == "cmakev" ||  $1 == "logFile" || $1 == "logFileS" || $1 == "logStart" || $1 == "logEnd"  ||  $1 == "logTime" || $1 == "removeAndCreate" || $1 == "getAndUnpack" ||  $1 == "getAndUnpackTo" || $1 == "installLog") then
 	goto $1
 endif
 
@@ -48,7 +48,7 @@ if($1 == "arch") exit
 # Log to screen
 log:
 	echo
-	echo " # Package: " $2 " #"
+	echo " ### Package: "$2" ###"
 	echo
 	echo " > Version:                 " $3
 	echo " > Filename:                " $4
@@ -91,10 +91,10 @@ logFile:
 
 	if($2 == "clhep")    echo "$CLHEP_BASE_DIR/build_log"
 	if($2 == "xercesc")  echo "$XERCESCROOT/build_log"
-	if($2 == "geant4")   echo "$ROOTSYS/build_log"
-	if($2 == "ccdb")     echo "$ROOTSYS/build_log"
-	if($2 == "mlibrary") echo "$ROOTSYS/build_log"
-	if($2 == "gemc")     echo "$ROOTSYS/build_log"
+	if($2 == "geant4")   echo "$G4INSTALL/build_log"
+	if($2 == "ccdb")     echo "$CCDB_HOME/build_log"
+	if($2 == "mlibrary") echo "$MLIBRARY/build_log"
+	if($2 == "gemc")     echo "$GEMC/build_log"
 	if($2 == "root")     echo "$ROOTSYS/build_log"
 
 if($1 == "logFile") exit
@@ -105,10 +105,10 @@ logFileS:
 
 	if($2 == "clhep")    echo \$CLHEP_BASE_DIR/"build_log"
 	if($2 == "xercesc")  echo \$XERCESCROOT/"build_log"
-	if($2 == "geant4")   echo \$ROOTSYS/"build_log"
-	if($2 == "ccdb")     echo \$ROOTSYS/"build_log"
-	if($2 == "mlibrary") echo \$ROOTSYS/"build_log"
-	if($2 == "gemc")     echo \$ROOTSYS/"build_log"
+	if($2 == "geant4")   echo \$G4INSTALL/"build_log"
+	if($2 == "ccdb")     echo \$CCDB_HOME/"build_log"
+	if($2 == "mlibrary") echo \$MLIBRARY/"build_log"
+	if($2 == "gemc")     echo \$GEMC/"build_log"
 	if($2 == "root")     echo \$ROOTSYS/"build_log"
 
 if($1 == "logFileS") exit
@@ -156,6 +156,20 @@ getAndUnpack:
 	tar -zxpf  $3
 	echo
 if($1 == "getAndUnpack") exit
+
+# get and unpack a package.
+# $2 is package location
+# $3 is filename
+# $4 is destination directory
+getAndUnpackTo:
+	echo
+	echo " > Downloading" $3"..."
+	rm -f      $3
+	wget -q    $2/$3
+	echo " > Unpacking" $3"..."
+	tar -zxpf  $3 --strip-components -C $4
+	echo
+if($1 == "getAndUnpackTo") exit
 
 
 

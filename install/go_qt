@@ -2,6 +2,7 @@
 
 # Additional settings at the top of get_coptions
 source get_coptions env
+set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions 
 
 # Options, Screen Log, Warnings
 set arch     = `./get_coptions arch`

@@ -12,6 +12,7 @@
 
 # Additional settings at the top of get_coptions
 source get_coptions env
+set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions 
 
 # Options
 # not putting geant4 on the repo script because of the data path
@@ -22,23 +23,18 @@ set version  = $GEANT4_VERSION
 set filename = geant$GEANT4_VERSION".tar.gz"
 set arch     = `./get_coptions arch`
 set opt      = `./get_coptions copt`
+set blog     = `./get_coptions logFile geant4`
+set blogS    = `./get_coptions logFileS geant4`
 
 # Write options on screen
 ./get_coptions log $name $version $filename $release $arch $opt
-
-set oarch = ""
-if($arch == "32") then
-	set oarch = ' -DCMAKE_CXX_FLAGS=-m32 -DCPACK_SYSTEM_NAME=$OSRELEASE'
-endif
-echo " > Special Compilation Options: " $oarch 
-echo
 
 # By default data is set to off
 # Getting data from jlab repository
 # Because jlab farm machine are inside firewall
 # and G4 data servers cannot be accessed
 set DATA = 'OFF'
-echo " > Data set to: "$DATA
+echo " > Geant4 Data downloading during compilation set to: "$DATA
 
 set cdir    = (`pwd`)
 
@@ -48,21 +44,25 @@ endif
 
 # data
 data:
-	# Getting data file
-	echo " > Installing geant4 data "$version" - release "$release"."
+	set DATAINSTALL = $G4INSTALL/data/Geant4-$G4DATA_VERSION/data
 
-	rm   -rf $G4INSTALL/data/Geant4-$G4DATA_VERSION/data
-	mkdir -p $G4INSTALL/data/Geant4-$G4DATA_VERSION/data
-	cd       $G4INSTALL/data/Geant4-$G4DATA_VERSION/data
+	# get the file list manually. WARNING: This is linked to the geant4 version.
+	set DATAFILES = (G4ABLA.3.1.tar.gz G4EMLOW.7.3.tar.gz G4ENSDFSTATE.2.2.tar.gz G4NDL.4.5.tar.gz G4NEUTRONXS.1.4.tar.gz G4PII.1.3.tar.gz G4PhotonEvaporation.5.2.tar.gz G4RadioactiveDecay.5.2.tar.gz G4RealSurface.2.1.tar.gz G4SAIDDATA.1.1.tar.gz)
 
-	wget -r -np -nH --cut-dir=5 $repo/geant4_data/$GEANT4_VERSION/
-	rm -f index* robots.txt
+	$getCoptions removeAndCreate $DATAINSTALL
+	cd $DATAINSTALL
+
+	echo
+	echo " > Dowloading data"
+	foreach df ($DATAFILES)
+		wget -q --show-progress $repo/geant4_data/$GEANT4_VERSION/$df
+	end
 
 	set file = (`\ls *.tar.gz`)
+	echo " > Unarchiving data"
 	foreach f ($file)
-		echo Extracting $f
-		file $f
-		tar zxpf $f >& /dev/null
+		echo "   - $f"
+		tar zxpf $f
 	end
 	rm -f *.tar.gz
 if($1 == "data") exit
@@ -70,19 +70,16 @@ if($1 == "data") exit
 
 # Source Build
 src:
-	# Getting source file
-	echo " > Installing geant4 version "$version" - release "$release". Getting and unpacking" $filename"..."
+	# start message
+	$getCoptions installLog $name $version
 
-	rm -rf   $G4INSTALL/source $G4INSTALL/build
-	mkdir -p $G4INSTALL/source $G4INSTALL/build
+	# creating build and source dirs
+	$getCoptions removeAndCreate $G4INSTALL/source
+	$getCoptions removeAndCreate $G4INSTALL/build
 
-	# Unpacking file, patching if needed
+	# unpacking inside source
 	cd $G4INSTALL/source
-
-	rm -f              $filename
-	wget  $repo/geant4/$filename
-	echo Unpacking     $filename
-	tar -zxpf         $filename 
+	$getCoptions getAndUnpack $repo/geant4 $filename
 if($1 == "src") exit
 
 
@@ -94,52 +91,41 @@ make:
 	set conf_options = ""
 	set x11_option   = ""
 	set mt_option    = " -DGEANT4_BUILD_MULTITHREADED=ON"
-	set mt_option    = " -DGEANT4_BUILD_MULTITHREADED=OFF"
+	set mt_option    = " -DGEANT4_BUILD_MULTITHREADED=OFF" # comment for MT option ON
 
 	# Linux Options
 	if (`uname` == "Linux") then
 		set x11_option = "-DGEANT4_USE_OPENGL_X11=ON"
 
-		set opt1 = `echo -I$QTDIR/include`
-		set opt2 = `echo -I$QTDIR/include/QtOpenGL`
-		set opt3 = `echo -I$QTDIR/include/QtWidgets`
-		set opt4 = `echo -I$QTDIR/include/QtGui`
-		set opt5 = `echo -I$QTDIR/include/QtCore`
-		set opt6 = `echo -I$QTDIR/include/QtPrintSupport`
-		set opt7 = ' -W -Wall -pedantic -Wno-non-virtual-dtor -Wno-long-long -Wwrite-strings -Wpointer-arith -Woverloaded-virtual -pipe'
+		set opt1 = `echo -I$QTDIR/include -I$QTDIR/include/QtOpenGL -I$QTDIR/include/QtWidgets`
+		set opt2 = `echo -I$QTDIR/include/QtGui -I$QTDIR/include/QtCore -I$QTDIR/include/QtPrintSupport`
+		set opt3 = ' -W -Wall -pedantic -Wno-non-virtual-dtor -Wno-long-long -Wwrite-strings -Wpointer-arith -Woverloaded-virtual -pipe'
 
-		# not used currently, need to check if we need them
-		set conf_options = "$opt1 $opt2 $opt3 $opt4 $opt5 $opt6 $opt7"
+		# need to check if QtPrintSupport is needed
+		set conf_options = "$opt1 $opt2 $opt3"
 	endif
 
-	# making sure we use CLANG in mac
-	set clang_option = ""
-	if (`uname` == "Darwin") then
-		set clang_option = " -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++"
-	endif
+	# geant4 options
+	set g4Options1 = "-DGEANT4_USE_GDML=ON -DXERCESC_ROOT_DIR=$XERCESCROOT -DGEANT4_USE_QT=ON -DQT_QMAKE_EXECUTABLE=$QTDIR/bin/qmake -DCMAKE_INSTALL_DATAROOTDIR=$G4INSTALL/data"
+	set g4Options2 = "-DCLHEP_ROOT_DIR=$CLHEP_BASE_DIR -DGEANT4_INSTALL_DATA=$DATA"
+	set g4Options  = "$g4Options1 $g4Options2"
 
-	# Compiling
-    echo " > Starting source compilation on --- " `date` > $G4INSTALL/make_log
+	set sourceDir = $G4INSTALL/source/"geant"$GEANT4_VERSION
+	set buildDir  = $G4INSTALL/build
+	cd $buildDir
 
-	cd $G4INSTALL/build
-	cmake $oarch $x11_option $mt_option $clang_option\
-								-DCMAKE_INSTALL_PREFIX=$G4INSTALL \
-								-DGEANT4_USE_GDML=ON \
-								-DXERCESC_ROOT_DIR=$XERCESCROOT \
-								-DGEANT4_USE_QT=ON \
-								-DQT_QMAKE_EXECUTABLE=$QTDIR/bin/qmake \
-								-DCMAKE_INSTALL_DATAROOTDIR=$G4INSTALL/data \
-								-DCLHEP_ROOT_DIR=$CLHEP_BASE_DIR \
-								-DGEANT4_INSTALL_DATA=$DATA \
-								-DGEANT4_BUILD_EXAMPLES=OFF \
-								-DCMAKE_CXX_FLAGS="$conf_options" \
-							    $G4INSTALL/source/"geant"$GEANT4_VERSION
+	# log start of compilation
+	$getCoptions logStart $blog $blogS
+	echo $g4Options >> $blog
 
-	echo " > Compiling geant4 source (log will be in "\$G4INSTALL/"make_log)..."
-	make $opt                                          >> $G4INSTALL/make_log
-	make install $opt                                  >> $G4INSTALL/make_log
-    echo " > Ending source compilation on --- " `date` >> $G4INSTALL/make_log
-    grep "ing source compilation "                        $G4INSTALL/make_log
+	cmake $x11_option $mt_option $g4Options -DCMAKE_INSTALL_PREFIX=$G4INSTALL -DCMAKE_CXX_FLAGS="$conf_options" $sourceDir  >> $blog
+
+	make $opt    >> $blog
+	make install >> $blog
+
+	# log end of compilation, total time
+	$getCoptions logEnd  $blog
+	$getCoptions logTime $blog
 
 if($1 == "make") exit
 

@@ -4,6 +4,7 @@
 
 # Additional settings at the top of get_coptions
 source get_coptions env
+set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions 
 
 # Options
 set name     = clhep
@@ -23,19 +24,16 @@ if($1 == "src"|| $1 == "make") goto $1
 
 # Source Build
 src:
-	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions installLog $name $version
+	# start message
+	$getCoptions installLog $name $version
 
-	# creating dirs
-	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions removeAndCreate $CLHEP_BASE_DIR
-	cd $CLHEP_BASE_DIR/..
-
-	# build and source are created. Inside source
-	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions removeAndCreate build
-	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions removeAndCreate source
+	# creating build and source dirs
+	$getCoptions removeAndCreate $CLHEP_BASE_DIR/../source
+	$getCoptions removeAndCreate $CLHEP_BASE_DIR/../build
 
 	# unpacking inside source
-	cd source
-	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions getAndUnpack $repo $filename
+	cd $CLHEP_BASE_DIR/../source
+	$getCoptions getAndUnpack $repo $filename
 if($1 == "src") exit
 
 # make
@@ -46,7 +44,7 @@ make:
 	cd $buildDir
 
 	# log start of compilation
-	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions logStart $blog $blogS
+	$getCoptions logStart $blog $blogS
 
 	cmake -DCMAKE_INSTALL_PREFIX=$CLHEP_BASE_DIR  $sourceDir >> $blog
 
@@ -54,8 +52,8 @@ make:
 	make install >> $blog
 
 	# log end of compilation, total time
-	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions logEnd  $blog
-	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions logTime $blog
+	$getCoptions logEnd  $blog
+	$getCoptions logTime $blog
 
 if($1 == "make") exit
 
