@@ -42,6 +42,7 @@ TODO:
 - removed clang_option
 - compilation procedure standardized for package geant4
 - added local scons_bm to packaging
+- compilation procedure standardized for package evio
 
 
 3/29/18

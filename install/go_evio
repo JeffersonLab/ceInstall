@@ -22,16 +22,12 @@ set version  = $EVIO_VERSION
 set filename = evio-$EVIO_VERSION".tar.gz"
 set arch     = `./get_coptions arch`
 set opt      = `./get_coptions copt`
+set blog     = `./get_coptions logFile clhep`
+set blogS    = `./get_coptions logFileS clhep`
+
+# Write options on screen
 ./get_coptions log $name $version $filename $release $arch $opt
 
-
-# Checking if the OS is 32 bit. 
-set oarch = ""
-if($arch == "32") then
-	set oarch = 'ARCHI=x86'
-endif
-echo " > Special Compilation Options: " $oarch 
-echo
 
 
 if($1 == "src"|| $1 == "make") goto $1
@@ -39,25 +35,23 @@ if($1 == "src"|| $1 == "make") goto $1
 # Source Build
 src:
 
-	# Getting source file
-	echo " > Installing evio version "$version" - release "$release". Getting and unpacking" $filename"..."
-	rm -rf $EVIO
-	mkdir -p $JLAB_SOFTWARE/evio
-	cd $JLAB_SOFTWARE/evio
-	rm -f          $filename
-	wget -q  $repo/$filename
-	echo Unpacking $filename
-	tar -zxpf     $filename 
+	# start message
+	$getCoptions installLog $name $version
+
+	$getCoptions removeAndCreate $EVIO
+	cd $EVIO/..
+
+	$getCoptions getAndUnpackTo $repo $filename $version
 if($1 == "src") exit
 
 # make
 make:
-	# Configuring and Compiling
-	# Compiling
-	echo " > Compiling evio source (log will be in "\$EVIO/"build_log)..."
+	# log start of compilation
+	$getCoptions logStart $blog $blogS
+
 	cd $EVIO
 
-	scons $opt > build_log
+	scons $opt >> $blog
 if($1 == "make") exit
 
 # Done!
