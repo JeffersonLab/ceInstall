@@ -17,36 +17,48 @@ set version  = $CCDB_VERSION
 set filename =  ccdb"-"$CCDB_VERSION".tar.gz"
 set arch     = `./get_coptions arch`
 set opt      = `./get_coptions copt`
+set blog     = `./get_coptions logFile ccdb`
+set blogS    = `./get_coptions logFileS ccdb`
+
+# Write options on screen
 ./get_coptions log $name $version $filename $release $arch $opt
 
+if($1 == "src"|| $1 == "make") goto $1
 
-# Build
-# Getting source file
-echo " > Installing ccdb - release "$release". Getting package source from repository..."
-rm -rf   $JLAB_SOFTWARE/ccdb
-mkdir -p $JLAB_SOFTWARE/ccdb
-cd       $JLAB_SOFTWARE/ccdb
+# Source Build
+src:
+	# start message
+	$getCoptions installLog $name $version
 
-rm -f          $filename
-wget -q  $repo/$filename
-echo Unpacking $filename
-tar -zxpf     $filename 
+	# creating build and source dirs
+	$getCoptions removeAndCreate $JLAB_SOFTWARE/ccdb
 
+	# unpacking inside source
+	cd $JLAB_SOFTWARE/ccdb
+	$getCoptions getAndUnpack $repo $filename
+if($1 == "src") exit
 
-# Compiling - notice naming convention changes
-echo " > Compiling ccdb source (log will be in "\$JLAB_SOFTWARE/"jana/jana_$CCDB_VERSION/build_log )..."
-cd $JLAB_SOFTWARE/ccdb/ccdb"-"$CCDB_VERSION
+# make
+make:
 
+	# log start of compilation
+	$getCoptions logStart $blog $blogS
 
-scons $opt
+	cd $JLAB_SOFTWARE/ccdb/ccdb"-"$CCDB_VERSION
+	scons $opt >> $blog
 
+	# log end of compilation, total time
+	$getCoptions logEnd  $blog
+	$getCoptions logTime $blog
 
-# Removing tar file
+if($1 == "make") exit
+
+# Cleaning up
+echo " > Cleaning up..."
+# uncomment this if they need debugging
 rm -rf $JLAB_SOFTWARE/ccdb/$filename
 
-
-# Done!
-echo done
+# Done
+echo " > Done."
 echo
-
 

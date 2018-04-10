@@ -1,9 +1,7 @@
 #!/bin/csh -f
 
 # Options
-set release  = `./get_coptions release`
 set arch     = `./get_coptions arch`
-set opt      = `./get_coptions copt`
 
 # Linking mysql distributions from OS release
 # These need to be pre-installed
@@ -11,7 +9,7 @@ echo
 echo " > Linking to local mysql distributions"
 
 mkdir -p $JLAB_SOFTWARE/mysql
-# Darwin
+# Darwin: assuming brew installation
 if(`uname` == "Darwin") then
 	set msqlver    = `ls -t /usr/local/Cellar | grep mysql | head -1`
 	set msqlverver = `ls -t /usr/local/Cellar/$msqlver | head -1`
@@ -45,8 +43,7 @@ else if(`uname` == "Linux") then
 	endif
 endif
 
-
-echo "Done."
+echo " > Done."
 echo
 
 

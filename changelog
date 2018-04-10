@@ -43,6 +43,7 @@ TODO:
 - compilation procedure standardized for package geant4
 - added local scons_bm to packaging
 - compilation procedure standardized for package evio
+- compilation procedure standardized for package ccdb
 
 
 3/29/18
