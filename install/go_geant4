@@ -3,22 +3,12 @@
 # More geant4 build options:
 # http://geant4.web.cern.ch/geant4/UserDocumentation/UsersGuides/InstallationGuide/html/ch02s03.html
 #
-# Added includes manually for cmake.
-# cmake 3.0+ can accept directives where the include dirs are separated by semi-colon
+# Added qt includes manually for cmake in Linux.
 #
 # To compile the Geant4 Examples:
 # mkdir example-b3 ; cd example-b3
 # cmake -DGeant4_DIR=$G4INSTALL/lib/Geant$GEANT4_VERSION $G4INSTALL/source/Geant$GEANT4_VERSION/examples/basic/B3
 # make
-#
-# DATA:
-# To copy data (remember to change destination dir)
-#
-# foreach f (`\ls *.tar`)
-#  gzip $f
-#  scp $f".gz" ftp:/u/group/12gev_phys/www/packages/sources/geant4_data/4.10.03
-#  rm $f".gz"
-# end
 
 # Additional settings at the top of get_coptions
 source get_coptions env

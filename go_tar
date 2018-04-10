@@ -3,6 +3,10 @@
 # First argument is package name
 # Second argument is version
 
+if($1 == "g4data") then
+	goto $1
+endif
+
 if($#argv != 2 && $#argv != 3) then
 	echo " "
 	echo "Usage:   "
@@ -147,15 +151,36 @@ if($pname == "mlibrary") then
 		scp mlibrary_$pver.tar.gz $remoted/mlibrary
 		cd ..
 		rm -rf tmp
-endif
+	endif
 	exit
 
 endif
 
-
-
-
 echo
 echo
+exit
+
+g4data:
+	# data is downloaded to Downloads from the geant4 downloads.
+	# make sure to move it to the a tmp dir inside download
+	# make sure it is not unzipped
+	cd /Users/ungaro/Downloads/tmp
+
+	# checking number of files
+	set nFiles = `\ls | wc | awk '{print $1}'`
+	if($nFiles != "10") then
+		echo
+		echo Error: we should have 10 files but we have $nFiles
+		echo
+	endif
+
+	set G4DATAVERSION = 4.10.04.p01
+	set REMOTEDIR      = /u/group/12gev_phys/www/packages/sources/geant4_data/
+
+	cd /Users/ungaro/Downloads
+	mv tmp $G4DATAVERSION
+	scp -r $G4DATAVERSION ftp:$REMOTEDIR
+if($1 == "g4data") exit
+
 
 
