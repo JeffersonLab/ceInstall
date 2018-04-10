@@ -30,8 +30,8 @@ copt:
 
 	# limiting max parallel compilation to 24
 	# just in case there are local limits (for example, some JLab nodes)
-	if($ncpu > 24) then
-		set opt = " -j24"
+	if($ncpu > 10) then
+		set opt = " -j10"
 	endif
 
 	echo $opt
@@ -169,7 +169,7 @@ getAndUnpackTo:
 	rm -f      $3
 	wget -q    $2/$3
 	echo " > Unpacking" $3"..."
-	tar -zxpf  $3 --strip-components -C $4
+	tar -zxpf  $3 --strip-components 1 -C $4
 	echo
 if($1 == "getAndUnpackTo") exit
 

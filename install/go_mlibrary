@@ -9,52 +9,60 @@ set name     = mlibrary
 set release  = `./get_coptions release`
 set repo     = `./get_coptions repo`/mlibrary
 set version  = $MLIBRARY_VERSION
-set filename =  mlibrary_$MLIBRARY_VERSION".tar.gz"
+set filename =  mlibrary"_"$MLIBRARY_VERSION".tar.gz"
 set arch     = `./get_coptions arch`
 set opt      = `./get_coptions copt`
-./get_coptions log $name $version $filename $release $arch $opt 
+set blog     = `./get_coptions logFile mlibrary`
+set blogS    = `./get_coptions logFileS mlibrary`
 
-# Checking if the OS is 32 bit. 
-set oarch = ""
-if($arch == "32") then
-	set oarch = 'ARCHI=x86'
-endif
-set ooarch = $oarch" OPT=1"
-echo " > Special Compilation Options: " $ooarch 
+# Write options on screen
+./get_coptions log $name $version $filename $release $arch $opt
+
+if($1 == "src"|| $1 == "make") goto $1
+
+# Source Build
+src:
+	# start message
+	$getCoptions installLog $name $version
+
+	# creating build and source dirs
+	$getCoptions removeAndCreate $JLAB_SOFTWARE/mlibrary/$MLIBRARY_VERSION
+
+	# unpacking inside source
+	cd $JLAB_SOFTWARE/mlibrary
+	$getCoptions getAndUnpackTo $repo $filename $MLIBRARY_VERSION
+if($1 == "src") exit
+
+# make
+make:
+
+	cd $MLIBRARY
+
+	# log start of compilation
+	$getCoptions logStart $blog $blogS
+
+	echo
+	echo " > Compiling cadmesh..."
+	echo
+	./compileCmesh
+
+	# Temp: forcing max 10 processes as the scons system
+	# checks independently that the libraries exist
+	# Adding LIBRARY="shared" in case gemc is built as a library
+	scons $copt LIBRARY="shared" >>  $blog
+
+
+	# log end of compilation, total time
+	$getCoptions logEnd  $blog
+	$getCoptions logTime $blog
+
+if($1 == "make") exit
+
+# Done
+echo " > Done."
 echo
 
 
-# Build
-# Getting source file
-echo " > Installing mlibrary - release "$release". Getting source package from repository..."
-rm -rf   $JLAB_SOFTWARE/mlibrary/$MLIBRARY_VERSION
-mkdir -p $JLAB_SOFTWARE/mlibrary/$MLIBRARY_VERSION
-cd       $JLAB_SOFTWARE/mlibrary/
 
-rm -f          $filename
-wget -q  $repo/$filename
-echo Unpacking $filename
-tar -zxpf      $filename --strip-components 1 -C $MLIBRARY_VERSION
-
-
-# Compiling
-
-cd $JLAB_SOFTWARE/mlibrary/$MLIBRARY_VERSION
-
-echo
-echo " > Compiling cadmesh..."
-echo
-./compileCmesh
-
-echo " > Compiling mlibrary (log will be in "\$MLIBRARY"/build_log )..."
-
-# Temp: forcing max 10 processes as the scons system
-# checks independently that the libraries exist
-# Adding LIBRARY="shared" in case gemc is built as a library
-scons -j10 $ooarch  LIBRARY="shared" > $MLIBRARY/build_log
-
-# Done!
-echo done
-echo
 
 

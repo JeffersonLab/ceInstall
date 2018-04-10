@@ -148,7 +148,7 @@ if($pname == "mlibrary") then
 		rm -rf cadmeshBuild bin lib
 		cd $locald
 		rm -f mlibrary_$pver.*
-		tar cvf mlibrary_$pver.tar  -L --exclude='go_tar' --exclude="doc" --exclude=".DS_Store" --exclude="releases.key" --exclude=".sconsign.dblite" --exclude=".git" mlibrary
+		tar cvf mlibrary_$pver.tar  -L --exclude='go_tar' --exclude='external'  --exclude="doc" --exclude=".DS_Store" --exclude="releases.key" --exclude=".sconsign.dblite" --exclude=".git" mlibrary
 		gzip mlibrary_$pver.tar
 		scp mlibrary_$pver.tar.gz $remoted/mlibrary
 		rm -f mlibrary_$pver.*
