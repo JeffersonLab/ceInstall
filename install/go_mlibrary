@@ -46,10 +46,10 @@ make:
 	echo
 	./compileCmesh
 
-	# Temp: forcing max 10 processes as the scons system
-	# checks independently that the libraries exist
 	# Adding LIBRARY="shared" in case gemc is built as a library
-	scons $copt LIBRARY="shared" >>  $blog
+	echo " > Compiling mlibrary..."
+	echo
+	scons $opt LIBRARY="shared" >>  $blog
 
 
 	# log end of compilation, total time

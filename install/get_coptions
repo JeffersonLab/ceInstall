@@ -28,8 +28,8 @@ copt:
 	set ncpu = `getconf _NPROCESSORS_ONLN`
 	set opt = " -j"$ncpu" "
 
-	# limiting max parallel compilation to 24
-	# just in case there are local limits (for example, some JLab nodes)
+	# Temp: forcing max 10 processes as the scons system
+	# checks independently that the libraries exist
 	if($ncpu > 10) then
 		set opt = " -j10"
 	endif
