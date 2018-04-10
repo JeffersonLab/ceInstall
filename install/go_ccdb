@@ -27,7 +27,7 @@ mkdir -p $JLAB_SOFTWARE/ccdb
 cd       $JLAB_SOFTWARE/ccdb
 
 rm -f          $filename
-wget     $repo/$filename
+wget -q  $repo/$filename
 echo Unpacking $filename
 tar -zxpf     $filename 
 

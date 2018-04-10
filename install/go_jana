@@ -28,7 +28,7 @@ mkdir -p $JANA_HOME
 cd       $JLAB_SOFTWARE/jana
 
 rm -f          $filename
-wget     $repo/$filename
+wget -q  $repo/$filename
 
 echo Unpacking $filename
 tar -zxpf     $filename 

@@ -1,7 +1,7 @@
 #!/bin/csh -f
 
 
-if($1 == "release"|| $1 == "copt" || $1 == "arch" || $1 == "log"  || $1 == "repo" || $1 == "dir" || $1 == "env" || $1 == "cmakev") then
+if($1 == "release"|| $1 == "copt" || $1 == "arch" || $1 == "log"  || $1 == "repo" || $1 == "dir" || $1 == "env" || $1 == "cmakev" ||  $1 == "logFile" || $1 == "logFileS" || $1 == "logStart" || $1 == "logEnd"  ||  $1 == "logTime" || $1 == "removeAndCreate" || $1 == "getAndUnpack" || $1 == "installLog") then
 	goto $1
 endif
 
@@ -48,7 +48,7 @@ if($1 == "arch") exit
 # Log to screen
 log:
 	echo
-	echo " > " $2 " < "
+	echo " # Package: " $2 " #"
 	echo
 	echo " > Version:                 " $3
 	echo " > Filename:                " $4
@@ -84,6 +84,110 @@ cmakev:
 		echo OK
 	endif
 if($1 == "cmakev") exit
+
+
+# log file for each system
+logFile:
+
+	if($2 == "clhep")    echo "$CLHEP_BASE_DIR/build_log"
+	if($2 == "xercesc")  echo "$ROOTSYS/build_log"
+	if($2 == "geant4")   echo "$ROOTSYS/build_log"
+	if($2 == "ccdb")     echo "$ROOTSYS/build_log"
+	if($2 == "mlibrary") echo "$ROOTSYS/build_log"
+	if($2 == "gemc")     echo "$ROOTSYS/build_log"
+	if($2 == "root")     echo "$ROOTSYS/build_log"
+
+if($1 == "logFile") exit
+
+
+# log file for each system - with env variable as path
+logFileS:
+
+	if($2 == "clhep")    echo \$CLHEP_BASE_DIR/"build_log"
+	if($2 == "xercesc")  echo \$ROOTSYS/"build_log"
+	if($2 == "geant4")   echo \$ROOTSYS/"build_log"
+	if($2 == "ccdb")     echo \$ROOTSYS/"build_log"
+	if($2 == "mlibrary") echo \$ROOTSYS/"build_log"
+	if($2 == "gemc")     echo \$ROOTSYS/"build_log"
+	if($2 == "root")     echo \$ROOTSYS/"build_log"
+
+if($1 == "logFileS") exit
+
+
+# log start message
+logStart:
+	echo " > Source compilation started on --- " `date` > $2
+	echo " > Compiling source. Log will be in" $3
+if($1 == "logStart") exit
+
+
+# log end message
+logEnd:
+	echo " > Source compilation ended on --- " `date` >> $2
+if($1 == "logEnd") exit
+
+
+# log time elapsed from for compilation on screen
+logTime:
+	echo
+	grep "Source compilation started on --- " $2
+	grep "Source compilation ended on --- " $2
+	echo
+if($1 == "logTime") exit
+
+
+
+# remove a directory and recreate it
+removeAndCreate:
+	rm -rf   $2
+	mkdir -p $2
+if($1 == "removeAndCreate") exit
+
+
+# get and unpack a package.
+# $2 is package location
+# $3 is filename
+getAndUnpack:
+	echo
+	echo " > Downloading" $3"..."
+	rm -f      $3
+	wget -q    $2/$3
+	echo " > Unpacking" $3"..."
+	tar -zxpf  $3
+	echo
+if($1 == "getAndUnpack") exit
+
+
+
+# get and unpack a package.
+# $2 is the package name
+# $3 is the package version
+installLog:
+	echo " > Installing "$2" version "$3
+if($1 == "installLog") exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

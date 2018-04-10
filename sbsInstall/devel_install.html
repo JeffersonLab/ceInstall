@@ -1,6 +1,11 @@
 <style type="text/css">
     .row { vertical-align: top; height:auto !important; }
     .list {display:none; }
+	pre {color: #050;}
+	code {color: #008;}
+	th { color: red; text-align: center;}
+	td { color: #929;  text-align: center;}
+	table {     padding: 15px; border-spacing: 5px;}
     .show {display: none; }
     .hide:target + .show {display: inline; }
     .hide:target {display: none; }
@@ -15,9 +20,7 @@
     These instructions are verified on:
     <ul> <b>Linux:</b></ul>
     <ul>
-        <li> CentOS 6.5</li>
-        <li> Ubuntu 12.04</li>
-        <li> Fedora 23</li>
+        <li> CentOS 7</li>
     </ul>
     
     <ul> <b>Mac:</b></ul>
@@ -45,16 +48,17 @@
         <li> wget</li>
         <li> scons version 2 to 2.5.1</li>
         <li> mysql</li>
-        <li> git</li>
+		<li> git</li>
+		<li> recommended: qt</li>
     </ul>
     
     
     <ul>
-        <h3> MAC OS specific requirements</h3>
+		<h3> &#x2318; MAC OS specific requirements</h3>
 		Make sure you have the latest xcode tools with:
-		<pre>
-	xcode-select --install
-		</pre>
+		<pre><code>
+ xcode-select --install
+		</code></pre>
 
         You can install the dependencies with <a href="http://brew.sh"> homebrew</a>:<br/><br/>
         
@@ -68,9 +72,11 @@
                     <li>brew install cmake</li>
 					<li>brew install mysql</li>
 					<li>brew install openssl</li>
-                    <br><br>* if you are on High Sierra, brew will install scons3. Not good. Go to http://scons.org/pages/download.html instead and use
+					Recommended: the system version of qt):
+					<li>brew install qt</li>
+                    <br><br>* if you are on High Sierra, brew will install scons3. Not good, CCDB scons does not support it. Go to http://scons.org/pages/download.html instead and use
                     <pre>
-                        python setup.py install
+ python setup.py install
                     </pre>
                     inside the untarred 2.5.1 dir.
                     <br><br>You can upgrade a package by using "upgrade" instead of "install"
@@ -84,7 +90,7 @@
     </ul>
     
     <ul>
-        <h3> Ubuntu (Debian-line) specific requirements</h3>
+        <h3> &#128039; Ubuntu (Debian-line) specific requirements</h3>
         
         You can install the dependencies with apt-get:<br/><br/>
         
@@ -104,10 +110,10 @@
                     <li>sudo apt-get install libxmu-dev</li>
                     <li>sudo apt-get install libxrender-dev</li>
                     <li>sudo apt-get install libexpat1-dev</li>
-		    		<li>sudo apt-get install libxft-dev</li>
+                    <li>sudo apt-get install libxft-dev</li>
                     <li>sudo apt-get install tcsh</li>
                     <li>sudo apt-get install cmake</li>
-		    		<li>sudo apt-get install git</li>
+                    <li>sudo apt-get install git</li>
                     <li>sudo apt-get install libafterimage-dev</li>
                     <li>sudo apt-get install scons</li>
                 </ul>
@@ -118,7 +124,7 @@
     </ul>
     
     <ul>
-        <h3> Fedora (red-hat line) specific requirements</h3>
+        <h3>&#128039; Fedora (red-hat line) specific requirements</h3>
         You can install the dependencies with dnf (or yum):<br/><br/>
         
         
@@ -133,7 +139,10 @@
                     <li>dnf install libXmu-devel</li>
                     <li>dnf install expat-devel</li>
                     <li>dnf install zlib-devel</li>
-					<li>dnf install community-mysql-embedded-mysql <br/>(the mysql package name may vary depends on the OS, you can dnf yum search mysql to find out the available version)</li>
+					<li>dnf install community-mysql-embedded-mysql <br/>(the mysql package name may vary depends on the OS, you can dnf yum search mysql to find out the available version)</li><br>
+					Recommended: the system version of qt:
+					<li>dnf install qt5-qtbase qt5-qtbase-devel qt5-qtwebkit qt5-qtwebkit-devel qt5-qtx11extras qt5-qtbase-mysql</li>
+
                 </ul>
             </div>
         </div>
@@ -147,33 +156,28 @@
     
     
     <ol>
-        <li>
-            Choose a place (JLAB_ROOT) to install the software<br>
-				A good choice for <b>JLAB_ROOT</b> is <b> /opt/jlab_software</b>:<br><br>
+		<li>
+			Choose a place (JLAB_ROOT) to install the software<br><br>
+			A good choice for <b>JLAB_ROOT</b> is <b> /opt/jlab_software</b>:<br>
 
-				<pre>
-                set JLAB_ROOT=/opt/jlab_software
-				</pre>
+			<pre><code>
+ set JLAB_ROOT=/opt/jlab_software
+			</code></pre>
+			Create the working directory:
 
-
-				<br>
-            Create the working directory:
-            
-            <pre>
-                mkdir -p $JLAB_ROOT/devel
-            </pre>
-            
-            
+			<pre><code>
+ mkdir -p $JLAB_ROOT/devel
+			</code></pre>
         </li>
         
         
         
         <li>Get the installation scripts:
-            <pre>
-                cd $JLAB_ROOT
-                wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_devel.tar.gz
-				tar -zxpvf ceInstall_devel.tar.gz --strip-components 1 -C devel
-            </pre>
+            <pre><code>
+ cd $JLAB_ROOT
+ wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_devel.tar.gz
+ tar -zxpf ceInstall_devel.tar.gz --strip-components 1 -C devel
+           </code> </pre>
             
         </li>
         
@@ -181,10 +185,10 @@
         <li>
             Set the environment variables. You should put these lines in your login script:
             
-            <pre>
-                setenv JLAB_ROOT /opt/jlab_software
-                source $JLAB_ROOT/devel/ce/jlab.csh
-            </pre>
+            <pre><code>
+ setenv JLAB_ROOT /opt/jlab_software
+ source $JLAB_ROOT/devel/ce/jlab.csh
+            </code></pre>
             
         </li>
         
@@ -216,38 +220,83 @@
         If you do, great! The enviroment seems correct and you're ready to run the installation scripts. Every script that you run below will replace the warning log with a successful one.<br>
         Notice: if you already have some existing environment variables that you want to keep,
         use the option "keepmine":<br>
-        <pre>
-            source $JLAB_ROOT/devel/ce/jlab.csh keepmine
-        </pre>
+		<pre><code>
+ source $JLAB_ROOT/devel/ce/jlab.csh keepmine
+		</code></pre>
         
         
         <li>
             Choose the packages you wish to install by executing the corresponding script:
-            <pre>
-                cd $JLAB_ROOT/devel/install
-                
-                ./go_clhep
-                ./go_xercesc
-                ./go_qt
-                ./go_geant4
-                ./go_sconsscript
-                ./go_evio
-                ./go_mysql
-                ./go_ccdb
-                ./go_mlibrary
-                ./go_gemc
-                ./go_fields
-                ./go_root
-                ./go_banks
-                ./go_jana
-            </pre>
+			<pre><code>
+ cd $JLAB_ROOT/devel/install
+
+ ./go_clhep
+ ./go_xercesc
+			</code></pre>
+
+ If you have a system installation of qt (see instructions on requirements on how to install it):
+ 			<pre><code>
+ ./go_qt system
+			</code></pre>
+
+Otherwise the following command will downlowad the qt installer for you. Follow instructions for the installation:
+
+			<pre><code>
+ ./go_qt
+			</code></pre>
+			Continue with the rest of the package installation:
+
+			<pre><code>
+ ./go_geant4
+ ./go_sconsscript
+ ./go_evio
+ ./go_mysql
+ ./go_ccdb
+ ./go_mlibrary
+ ./go_gemc
+ ./go_fields
+ ./go_root
+ ./go_banks
+ ./go_jana
+            </code></pre>
             
             All the packages listed above "go_gemc" are necessary to run gemc.
         </li>
-    </ol>
-    <br><br><br>
-    
-    Please email any comments/corrections/bug report/feature requests to <a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">Maurizio Ungaro</a>.
+
+<p>Typical installation times:</p>
+<table>
+	<tr>
+		<th>Package</th>
+		<th>Approx Installation Time</th>
+	</tr>
+	<tr> <td>clhep</td>                             <td>1-2 minutes</td> </tr>
+	<tr> <td>xercesc</td>                           <td>2 minute2</td> </tr>
+	<tr> <td>qt (if system installed)</td>          <td>1 second</td> </tr>
+	<tr> <td>qt (if installatin from scratch)</td>  <td>20 minutes</td> </tr>
+	<tr> <td>geant4&#8224;</td>                     <td>10 minutes </td> </tr>
+	<tr> <td>sconsscript</td>                       <td>1 second</td> </tr>
+	<tr> <td>evio</td>                              <td>10 seconds</td> </tr>
+	<tr> <td>mysql</td>                             <td>1 second</td> </tr>
+	<tr> <td>ccdb</td>                              <td>1 minute</td> </tr>
+	<tr> <td>mlibrary&#8225;</td>                   <td>2-3 minutes</td> </tr>
+	<tr> <td>gemc</td>                              <td>2-3 minutes</td> </tr>
+	<tr> <td>root</td>                              <td>25 minutes</td> </tr>
+	<tr> <td>banks</td>                             <td>5 seconds</td> </tr>
+	<tr> <td>jana</td>                              <td>1 minute</td> </tr>
+	<tr> <td colspan=2><hr></td> </tr>
+
+	<tr> <td>Total (system qt)</td> <td>40 minutes</td> </tr>
+	<tr> <td>Total (qt from scratch)</td> <td>1 hour</td> </tr>
+
+</table>
+	</ol>
+
+ <br>
+ &#8224; (needs fast connection to download the cross section data)   <br>
+ &#8225; you will see a lot of warnings you can ignore related to assimp.  <br><br><br>
+
+
+ Please email any comments/corrections/bug report/feature requests to <a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">Maurizio Ungaro</a>.
     
     
     <br><br><br>

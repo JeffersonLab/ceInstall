@@ -44,7 +44,7 @@ src:
 	mkdir -p $JLAB_SOFTWARE/evio
 	cd $JLAB_SOFTWARE/evio
 	rm -f          $filename
-	wget     $repo/$filename
+	wget -q  $repo/$filename
 	echo Unpacking $filename
 	tar -zxpf     $filename 
 if($1 == "src") exit

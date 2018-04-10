@@ -18,7 +18,6 @@ set option  = $3
 set remoted = "ftp.jlab.org:/u/group/12gev_phys/www/packages/sources"
 set locald  = /opt/projects
 
-set latestRelease = 2.2
 
 echo
 echo " Package: " $pname ", version: " $pver
@@ -28,9 +27,8 @@ echo
 # common environment
 if($pname == "ceInstall") then
 
-	# to use development for next release
-	# extra check that we're using the latest release
-	if($option == "local" && $pver == $latestRelease) then
+	# to use local disk version for a release
+	if($option == "local") then
 		cd $locald
 		rm -f ceInstall_$pver.*
 		tar cvf ceInstall_$pver.tar  -L --exclude='go_tar' --exclude="doc" --exclude=".DS_Store" --exclude="releases.key" --exclude=".sconsign.dblite" --exclude=".git" ceInstall
@@ -46,7 +44,6 @@ if($pname == "ceInstall") then
 		cd ..
 		rm -rf tmp
 	endif
-
 
 	cd $locald/ceInstall
 

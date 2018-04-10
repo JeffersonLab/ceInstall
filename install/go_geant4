@@ -78,8 +78,6 @@ data:
 if($1 == "data") exit
 
 
-
-
 # Source Build
 src:
 	# Getting source file
@@ -131,6 +129,8 @@ make:
 	endif
 
 	# Compiling
+    echo " > Starting source compilation on --- " `date` > $G4INSTALL/make_log
+
 	cd $G4INSTALL/build
 	cmake $oarch $x11_option $mt_option $clang_option\
 								-DCMAKE_INSTALL_PREFIX=$G4INSTALL \
@@ -146,8 +146,10 @@ make:
 							    $G4INSTALL/source/"geant"$GEANT4_VERSION
 
 	echo " > Compiling geant4 source (log will be in "\$G4INSTALL/"make_log)..."
-	make $opt          > $G4INSTALL/make_log
-	make install $opt >> $G4INSTALL/make_log
+	make $opt                                          >> $G4INSTALL/make_log
+	make install $opt                                  >> $G4INSTALL/make_log
+    echo " > Ending source compilation on --- " `date` >> $G4INSTALL/make_log
+    grep "ing source compilation "                        $G4INSTALL/make_log
 
 if($1 == "make") exit
 

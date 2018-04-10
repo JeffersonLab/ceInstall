@@ -31,7 +31,7 @@ mkdir -p $JLAB_SOFTWARE/mlibrary/$MLIBRARY_VERSION
 cd       $JLAB_SOFTWARE/mlibrary/
 
 rm -f          $filename
-wget     $repo/$filename
+wget -q  $repo/$filename
 echo Unpacking $filename
 tar -zxpf      $filename --strip-components 1 -C $MLIBRARY_VERSION
 

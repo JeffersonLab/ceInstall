@@ -69,7 +69,7 @@ src:
 	cd $ROOTROOT
 
 	rm -f          $filename
-	wget     $repo/$filename
+	wget -q  $repo/$filename
 
 	echo Unpacking $filename
 	tar -zxpf     $filename 
@@ -80,11 +80,18 @@ if($1 == "src") exit
 make:
 
 	cd $ROOTBUILD
-	cmake -DCMAKE_INSTALL_PREFIX=$ROOTSYS $toDisable $toEnable $ROOTSOURCE
+    echo " > Starting source compilation on --- " `date` > $ROOTSYS/make_log
+
+    cmake -DCMAKE_INSTALL_PREFIX=$ROOTSYS $toDisable $toEnable $ROOTSOURCE
 
 	echo " > Compiling root source (log will be in "\$ROOTSYS/"make_log)..."
-	make $opt          > $ROOTSYS/make_log
-	make install $opt >> $ROOTSYS/make_log
+
+    make $opt                                          >> $ROOTSYS/make_log
+	make install $opt                                  >> $ROOTSYS/make_log
+
+    # ending log
+    echo " > Ending source compilation on --- " `date` >> $ROOTSYS/make_log
+    grep "ing source compilation "                        $ROOTSYS/make_log
 
 if($1 == "make") exit
 

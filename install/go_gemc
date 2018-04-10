@@ -31,7 +31,7 @@ mkdir -p $JLAB_SOFTWARE/gemc
 cd       $JLAB_SOFTWARE/gemc
 
 rm             $filename
-wget     $repo/$filename
+wget -q  $repo/$filename
 echo Unpacking $filename
 tar -zxpf     $filename 
 

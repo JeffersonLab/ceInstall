@@ -31,7 +31,7 @@ mkdir -p $JLAB_SOFTWARE/banks/$BANKS_VERSION
 cd       $JLAB_SOFTWARE/banks
 
 rm             $filename
-wget     $repo/$filename
+wget -q  $repo/$filename
 echo Unpacking $filename
 tar -zxpf      $filename --strip-components 1 -C $BANKS_VERSION
 

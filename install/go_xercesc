@@ -14,64 +14,65 @@ set version  = $XERCESC_VERSION
 set filename = xerces-c-$XERCESC_VERSION".tar.gz"
 set arch     = `./get_coptions arch`
 set opt      = `./get_coptions copt`
+set blog     = `./get_coptions logFile clhep`
+set blogS    = `./get_coptions logFileS clhep`
+
+# Write options on screen
 ./get_coptions log $name $version $filename $release $arch $opt
-
-# Checking if the OS is 32 bit. 
-set oarch = ""
-if($arch == "32" && `uname` == "Darwin") then
-	set oarch = '--disable-dependency-tracking'
-endif
-
-echo " > Special Compilation Options: " $oarch 
-echo
 
 if($1 == "src"|| $1 == "make") goto $1
 
 
 # Source Build
 src:
-	# Getting source file
-	echo " > Installing xerces version "$version" - release "$release". Getting and unpacking" $filename"..."
-	rm -rf   $XERCESCROOT
-	mkdir -p $XERCESCROOT
+	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions installLog $name $version
 
-	# Unpacking file. For XERCES, we need source dir different than destination dir
+	# creating dirs
+	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions removeAndCreate $XERCESCROOT
 	cd $XERCESCROOT
-	rm -f          $filename
-	wget     $repo/$filename
-	echo Unpacking $filename
-	tar -zxpf     $filename 
+
+	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions removeAndCreate build
+	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions removeAndCreate source
+
+	# unpacking inside source
+	cd source
+	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions getAndUnpack $repo $filename
 if($1 == "src") exit
 
 # make
 make:
-	set xercesdir = `\ls $XERCESCROOT | grep -v gz | grep -v log | grep -v include | grep -v lib | grep -v bin`
-	# Configuring and Compiling
-	echo " > Configuring and compiling XERCES source (log will be in "\$XERCESCROOT/"make_log)..."
 
-	cd $XERCESCROOT/$xercesdir/
+	set sourceDir = $XERCESCROOT"/xerces-"$version
+	set buildDir  = $XERCESCROOT/build
+	cd $buildDir
 
-	if($arch == "32" && `uname` == "Darwin") then
-		./configure $oarch CXXFLAGS="-arch i386" CFLAGS="-arch i386"  -prefix=$XERCESCROOT  > $XERCESCROOT/make_log
-	else if($1 == "WITHICONV" || $2 == "WITHICONV") then
-    	    ./configure $oarch -prefix=$XERCESCROOT  DFLAGS="-L/usr/local/lib" LIBS="-liconv" > $XERCESCROOT/make_log
+	# log start of compilation
+	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions logStart $blog $blogS
+
+	if($1 == "WITHICONV" || $2 == "WITHICONV") then
+    	    ./configure -prefix=$XERCESCROOT  DFLAGS="-L/usr/local/lib" LIBS="-liconv" >> $blog
 	else
-		./configure $oarch -prefix=$XERCESCROOT  > $XERCESCROOT/make_log
+		./configure -prefix=$XERCESCROOT $sourceDir >> $blog
 	endif
 
-	make $opt    >> $XERCESCROOT/make_log
-	make install >> $XERCESCROOT/make_log
+	make $opt    >> $blog
+	make install >> $blog
+
+	# log end of compilation, total time
+	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions logEnd  $blog
+	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions logTime $blog
+
 if($1 == "make") exit
 
 # Cleaning up
+echo " > Cleaning up..."
 cd $XERCESCROOT
 rm -rf $version $filename
 
 # Done!
-echo done
-echo
-echo Notice: If you have undefined reference to libiconv_open warnings, use the option WITHICONV
-echo
-echo " ./go_xercesc WITHICONV"
-echo
+echo " > Done."
+
+# Notice: If you had undefined reference to libiconv_open warnings, try the option WITHICONV
+#  ./go_xercesc WITHICONV
+
 

@@ -4,7 +4,7 @@ TO RELEASE:
 - make sure versions.env is updated
 - for ceInstall and mlibrary: use local go_tar option before making the git release
 - make new releases as needed, remember to update changelog. Notice, deleting a release is not enough: need to delete the tag also.
-- test installation, copy initial log in sbsInstall/#_install.html, change username to mauri and replace address with 1.800.gemc.cool.org
+- test installation, copy initial log in sbsInstall/template_install.html
 
 
 NOTES:
@@ -31,6 +31,13 @@ TODO:
  List of changes
  ---------------
 
+4/10/18
+- added utility functions to get build log (and its shortcut name)
+- added utility function to log the start and ending of the compilation
+- quiet option to src wget
+- removed 32 bit options checks
+- compilation procedure standardized for package clhep
+- compilation procedure standardized for package xercesc
 
 3/29/18
 - added note on instructions
