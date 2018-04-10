@@ -14,8 +14,8 @@ set version  = $XERCESC_VERSION
 set filename = xerces-c-$XERCESC_VERSION".tar.gz"
 set arch     = `./get_coptions arch`
 set opt      = `./get_coptions copt`
-set blog     = `./get_coptions logFile clhep`
-set blogS    = `./get_coptions logFileS clhep`
+set blog     = `./get_coptions logFile xercesc`
+set blogS    = `./get_coptions logFileS xercesc`
 
 # Write options on screen
 ./get_coptions log $name $version $filename $release $arch $opt
@@ -42,18 +42,14 @@ if($1 == "src") exit
 # make
 make:
 
-	set sourceDir = $XERCESCROOT"/xerces-"$version
+	set sourceDir = $XERCESCROOT"/source/xerces-c-"$version
 	set buildDir  = $XERCESCROOT/build
 	cd $buildDir
 
 	# log start of compilation
 	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions logStart $blog $blogS
 
-	if($1 == "WITHICONV" || $2 == "WITHICONV") then
-    	    ./configure -prefix=$XERCESCROOT  DFLAGS="-L/usr/local/lib" LIBS="-liconv" >> $blog
-	else
-		./configure -prefix=$XERCESCROOT $sourceDir >> $blog
-	endif
+	cmake -DCMAKE_INSTALL_PREFIX=$XERCESCROOT $sourceDir >> $blog
 
 	make $opt    >> $blog
 	make install >> $blog

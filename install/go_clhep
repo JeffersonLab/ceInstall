@@ -45,17 +45,10 @@ make:
 	set buildDir  = $CLHEP_BASE_DIR/../build
 	cd $buildDir
 
-
-	# making sure we use CLANG in mac
-	set clang_option = ""
-	if (`uname` == "Darwin") then
-		set clang_option = " -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++"
-	endif
-
 	# log start of compilation
 	$JLAB_ROOT/$JLAB_VERSION/install/get_coptions logStart $blog $blogS
 
-	cmake $clang_option -DCMAKE_INSTALL_PREFIX=$CLHEP_BASE_DIR  $sourceDir >> $blog
+	cmake -DCMAKE_INSTALL_PREFIX=$CLHEP_BASE_DIR  $sourceDir >> $blog
 
 	make $opt    >> $blog
 	make install >> $blog
