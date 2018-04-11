@@ -31,6 +31,13 @@ TODO:
  List of changes
  ---------------
 
+4/11/18
+- compilation procedure standardized for package gemc
+- compilation procedure standardized for package root
+- root version for devel
+- compilation procedure standardized for package banks
+- compilation procedure standardized for package jana
+
 4/10/18
 - added utility functions to get build log (and its shortcut name)
 - added utility function to log the start and ending of the compilation

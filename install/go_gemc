@@ -12,38 +12,49 @@ set version  = $GEMC_VERSION
 set filename =  gemc"-"$GEMC_VERSION".tar.gz"
 set arch     = `./get_coptions arch`
 set opt      = `./get_coptions copt`
-./get_coptions log $name $version $filename $release $arch $opt 
+set blog     = `./get_coptions logFile gemc`
+set blogS    = `./get_coptions logFileS gemc`
 
-# Checking if the OS is 32 bit. 
-set oarch = ""
-if($arch == "32") then
-	set oarch = 'ARCHI=x86'
-endif
-set ooarch = $oarch" OPT=1"
-echo " > Special Compilation Options: " $ooarch 
+# Write options on screen
+./get_coptions log $name $version $filename $release $arch $opt
+
+if($1 == "src"|| $1 == "make") goto $1
+
+# Source Build
+src:
+	# start message
+	$getCoptions installLog $name $version
+
+	# creating build and source dirs
+	$getCoptions removeAndCreate $JLAB_SOFTWARE/gemc/$GEMC_VERSION
+
+	# unpacking inside source
+	cd $JLAB_SOFTWARE/gemc
+	$getCoptions getAndUnpackTo $repo $filename $GEMC_VERSION
+if($1 == "src") exit
+
+# make
+make:
+
+	cd $GEMC
+
+	# log start of compilation
+	$getCoptions logStart $blog $blogS
+
+	# Adding LIBRARY="shared" in case gemc is built as a library
+	echo " > Compiling gemc..."
+	echo
+	scons $opt OPT=1 LIBRARY="shared" >>  $blog
+
+	# log end of compilation, total time
+	$getCoptions logEnd  $blog
+	$getCoptions logTime $blog
+
+if($1 == "make") exit
+
+# Done
+echo " > Done."
 echo
 
-
-# Build
-# Getting source file
-echo " > Installing gemc - release "$release". Getting source package from repository..."
-rm -rf   $JLAB_SOFTWARE/gemc/$GEMC_VERSION
-mkdir -p $JLAB_SOFTWARE/gemc
-cd       $JLAB_SOFTWARE/gemc
-
-rm             $filename
-wget -q  $repo/$filename
-echo Unpacking $filename
-tar -zxpf     $filename 
-
-# Compiling
-cd $JLAB_SOFTWARE/gemc/$GEMC_VERSION
-echo " > Compiling gemc source (log will be in "\$GEMC"/build_log )..."
-
-scons $opt $ooarch  LIBRARY="shared" > $GEMC/build_log
-
-# Done!
-echo done
-echo
 
 

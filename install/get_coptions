@@ -97,6 +97,8 @@ logFile:
 	if($2 == "mlibrary") echo "$MLIBRARY/build_log"
 	if($2 == "gemc")     echo "$GEMC/build_log"
 	if($2 == "root")     echo "$ROOTSYS/build_log"
+	if($2 == "banks")    echo "$JLAB_SOFTWARE/banks/$BANKS_VERSION/build_log"
+	if($2 == "jana")     echo "$JANA_HOME/build_log"
 
 if($1 == "logFile") exit
 
@@ -112,6 +114,8 @@ logFileS:
 	if($2 == "mlibrary") echo \$MLIBRARY/"build_log"
 	if($2 == "gemc")     echo \$GEMC/"build_log"
 	if($2 == "root")     echo \$ROOTSYS/"build_log"
+	if($2 == "banks")    echo \$JLAB_SOFTWARE/"banks/$BANKS_VERSION/build_log"
+	if($2 == "jana")     echo \$JANA_HOME/"build_log"
 
 if($1 == "logFileS") exit
 

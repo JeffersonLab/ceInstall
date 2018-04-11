@@ -17,33 +17,51 @@ set version  = $JANA_VERSION
 set filename =  jana"_"$JANA_VERSION".tgz"
 set arch     = `./get_coptions arch`
 set opt      = `./get_coptions copt`
+set blog     = `./get_coptions logFile jana`
+set blogS    = `./get_coptions logFileS jana`
+
+# Write options on screen
 ./get_coptions log $name $version $filename $release $arch $opt
 
+if($1 == "src"|| $1 == "make") goto $1
+
+# Source Build
+src:
+	# start message
+	$getCoptions installLog $name $version
+
+	# creating build and source dirs
+	$getCoptions removeAndCreate $JANA_HOME
+
+	# unpacking inside source
+	cd $JLAB_SOFTWARE/jana
+	$getCoptions getAndUnpack $repo $filename
+if($1 == "src") exit
+
+# make
+	make:
+
+	# log start of compilation
+	$getCoptions logStart $blog $blogS
+
+	setenv BMS_OSNAME $OSRELEASE
+	cd $JLAB_SOFTWARE/jana/jana_$JANA_VERSION
+
+	scons $opt install >> $blog
+	mv $BMS_OSNAME/* $JANA_HOME
+
+	# log end of compilation, total time
+	$getCoptions logEnd  $blog
+	$getCoptions logTime $blog
+
+if($1 == "make") exit
+
+# Done
+echo " > Done."
+echo
 
 
-# Build
-# Getting source file
-echo " > Installing jana - release "$release". Getting package source from repository..."
-rm -rf   $JANA_HOME
-mkdir -p $JANA_HOME
-cd       $JLAB_SOFTWARE/jana
 
-rm -f          $filename
-wget -q  $repo/$filename
-
-echo Unpacking $filename
-tar -zxpf     $filename 
-
-
-# Compiling
-echo " > Compiling jana source (log will be in "\$JANA_HOME"/build_log )..."
-cd $JLAB_SOFTWARE/jana/jana_$JANA_VERSION
-
-setenv BMS_OSNAME $OSRELEASE
-
-scons $opt install >& $JANA_HOME/build_log
-
-mv $BMS_OSNAME/* $JANA_HOME
 
 
 # Clean ups

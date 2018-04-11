@@ -4,7 +4,7 @@
 
 # Additional settings at the top of get_coptions
 source get_coptions env
-set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions 
+set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions
 
 # Options
 set name     = clhep

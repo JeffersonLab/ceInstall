@@ -51,7 +51,7 @@ make:
 
 	cd $EVIO
 
-	scons $opt >> $blog
+	scons $opt OPT=1 >> $blog
 if($1 == "make") exit
 
 # Done!

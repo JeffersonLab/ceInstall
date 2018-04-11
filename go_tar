@@ -125,14 +125,25 @@ endif
 
 # banks
 if($pname == "banks") then
-	rm -rf   $locald/banks/tmp
-	mkdir -p $locald/banks/tmp/
-	cd       $locald/banks/tmp/
+	if($option == "local") then
+		cd $BANKS
+		scons -c
+		cd $locald
+		rm -f banks_$pver.tar.gz
+		tar cvf banks_$pver.tar  -L --exclude='go_tar' --exclude="doc" --exclude=".DS_Store" --exclude="releases.key" --exclude=".sconsign.dblite" --exclude=".git" banks
+		gzip banks_$pver.tar
+		scp banks_$pver.tar.gz $remoted/banks
+		rm -f banks_$pver.tar.gz
+	else
+		rm -rf   $locald/banks/tmp
+		mkdir -p $locald/banks/tmp/
+		cd       $locald/banks/tmp/
 
-	wget https://github.com/maureeungaro/banks/archive/v$pver".tar.gz" -O banks_$pver.tar.gz
-	scp banks_$pver.tar.gz $remoted/banks
-	cd ..
-	rm -rf tmp
+		wget https://github.com/maureeungaro/banks/archive/v$pver".tar.gz" -O banks_$pver.tar.gz
+		scp banks_$pver.tar.gz $remoted/banks
+		cd ..
+		rm -rf tmp
+endif
 	exit
 endif
 

@@ -49,8 +49,7 @@ make:
 	# Adding LIBRARY="shared" in case gemc is built as a library
 	echo " > Compiling mlibrary..."
 	echo
-	scons $opt LIBRARY="shared" >>  $blog
-
+	scons $opt OPT=1 LIBRARY="shared" >>  $blog
 
 	# log end of compilation, total time
 	$getCoptions logEnd  $blog
