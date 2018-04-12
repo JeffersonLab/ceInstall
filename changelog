@@ -1,6 +1,7 @@
 TO RELEASE:
 
 - change release date in ce/jlab scripts
+- change default JLAB_VERSION in jlab.csh and jlab.sh
 - make sure versions.env is updated
 - for ceInstall and mlibrary: use local go_tar option before making the git release
 - make new releases as needed, remember to update changelog. Notice, deleting a release is not enough: need to delete the tag also.

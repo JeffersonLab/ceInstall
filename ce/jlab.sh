@@ -12,9 +12,11 @@
 # Maintainer:  Brad Sawatky <brads@jlab.org>  (Nov 17, 2016)
 #   - rework of script by Maurik Holtop
 
+# set JLAB_VERSION to devel if it's not set yet
+: ${JLAB_VERSION=devel}
 
 TMPF=`mktemp`
-tcsh ${TCSH_ARG} -c "source ${JLAB_ROOT}/${JLAB_VERSION}/ce/jlab.csh ${JLAB_VERSION}; printenv" | perl -e '
+tcsh ${TCSH_ARG} -c "source ${JLAB_ROOT}/${JLAB_VERSION}/ce/jlab.csh; printenv" | perl -e '
   my %IGNORE;
   ## Add variables to ignore to the space-delimited list below
   foreach( qw(

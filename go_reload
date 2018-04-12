@@ -3,6 +3,8 @@
 # This script will delete the current version of ceInstall
 # and re-download them
 
+set JLAB_VERSION=devel
+
 echo
 echo Deleting scripts for version $JLAB_VERSION
 

@@ -5,6 +5,10 @@ if($1 == "keepmine") then
 	setenv overwrite "no"
 endif
 
+if(!$?JLAB_VERSION) then
+	setenv JLAB_VERSION devel
+endif
+
 # Get date from:
 # git log -1
 set CE_DATE = "(Wed April 10 2018)"
