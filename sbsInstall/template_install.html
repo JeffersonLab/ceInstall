@@ -1,309 +1,309 @@
 <style type="text/css">
-    .row { vertical-align: top; height:auto !important; }
-    .list {display:none; }
+	.row { vertical-align: top; height:auto !important; }
+	.list {display:none; }
 	pre {color: #050;}
 	code {color: #008;}
 	th { color: red; text-align: center;}
 	td { color: #929;  text-align: center;}
 	table {     padding: 15px; border-spacing: 5px;}
-    .show {display: none; }
-    .hide:target + .show {display: inline; }
-    .hide:target {display: none; }
-    .hide:target ~ .list {display:inline; }
-    @media print { .hide, .show { display: none; } }
-    </style>
+	.show {display: none; }
+	.hide:target + .show {display: inline; }
+	.hide:target {display: none; }
+	.hide:target ~ .list {display:inline; }
+	@media print { .hide, .show { display: none; } }
+	</style>
 
 <html>
-    
-    <h2> Software installation instructions (JLAB_VERSION vvversiontoreplaceee) </h2>
-    
-    These instructions are verified on:
-    <ul> <b>Linux:</b></ul>
-    <ul>
-        <li> CentOS 7</li>
-    </ul>
-    
-    <ul> <b>Mac:</b></ul>
-    <ul>
-        <li> Sierra</li>
+	
+	<h2> Software installation instructions (JLAB_VERSION vvversiontoreplaceee) </h2>
+	
+	These instructions are verified on:
+	<ul> <b>Linux:</b></ul>
+	<ul>
+		<li> CentOS 7</li>
+	</ul>
+	
+	<ul> <b>Mac:</b></ul>
+	<ul>
+		<li> Sierra</li>
 		<li> High Sierra</li>
-    </ul>
-    <br>
-    These are instructions to install JLAB_VERSION vvversiontoreplaceee. You can find supported JLAB_VERSION releases instructions below:<br>
-    <ul>
+	</ul>
+	<br>
+	These are instructions to install JLAB_VERSION vvversiontoreplaceee. You can find supported JLAB_VERSION releases instructions below:<br>
+	<ul>
 		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/devel_install.html"> Development Version</a><br></li>
 		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.2_install.html"> Version 2.2</a><br></li>
 		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.1_install.html"> Version 2.1</a><br></li>
 		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.0_install.html"> Version 2.0</a><br></li>
-     </ul>
-    
-    <hr>
-    
-    <h2> General Requirements:</h2>
-    
-    <ul>
-        <li> csh shell </li>
-        <li> cmake >= 3.3 (for geant4. check with <i>cmake --version</i>)</li>
-        <li> network connection to download the various packages during installation</li>
-        <li> wget</li>
-        <li> scons version 2 to 2.5.1</li>
-        <li> mysql</li>
+	</ul>
+	
+	<hr>
+	
+	<h2> General Requirements:</h2>
+	
+	<ul>
+		<li> csh shell </li>
+		<li> cmake >= 3.3 (for geant4. check with <i>cmake --version</i>)</li>
+		<li> network connection to download the various packages during installation</li>
+		<li> wget</li>
+		<li> scons version 2 to 2.5.1</li>
+		<li> mysql</li>
 		<li> git</li>
 		<li> recommended: qt</li>
-    </ul>
-    
-    
-    <ul>
+	</ul>
+	
+	
+	<ul>
 		<h3> &#x2318; MAC OS specific requirements</h3>
 		Make sure you have the latest xcode tools with:
 		<pre><code>
- xcode-select --install
+			xcode-select --install
 		</code></pre>
-
-        You can install the dependencies with <a href="http://brew.sh"> homebrew</a>:<br/><br/>
-        
-        <div class="row">
-            <a href="#hide1" class="hide" id="hide1">List of packages</a>
-            <a href="#show1" class="show" id="show1">Collapse List</a>
-            <div class="list">
-                <ul>
-                    <li>brew install wget</li>
-                    <li>brew install scons*</li>
-                    <li>brew install cmake</li>
+		
+		You can install the dependencies with <a href="http://brew.sh"> homebrew</a>:<br/><br/>
+		
+		<div class="row">
+			<a href="#hide1" class="hide" id="hide1">List of packages</a>
+			<a href="#show1" class="show" id="show1">Collapse List</a>
+			<div class="list">
+				<ul>
+					<li>brew install wget</li>
+					<li>brew install scons*</li>
+					<li>brew install cmake</li>
 					<li>brew install mysql</li>
 					<li>brew install openssl</li>
 					Recommended: the system version of qt):
 					<li>brew install qt</li>
-                    <br><br>* if you are on High Sierra, brew will install scons3. Not good, CCDB scons does not support it. Go to https://sourceforge.net/projects/scons/files/scons/2.5.1/ instead and use
-                    <pre>
- python setup.py install
-                    </pre>
-                    inside the untarred 2.5.1 dir.
-                    <br><br>You can upgrade a package by using "upgrade" instead of "install"
+					<br><br>* if you are on High Sierra, brew will install scons3. Not good, CCDB scons does not support it. Go to https://sourceforge.net/projects/scons/files/scons/2.5.1/ instead and use
+					<pre>
+						python setup.py install
+					</pre>
+					inside the untarred 2.5.1 dir.
+					<br><br>You can upgrade a package by using "upgrade" instead of "install"
 					<br><br>Notice: mysql56 or mysql@56 are no longer supported. If you have it installed, please issue the command:  brew remove homebrew/versions/mysql56
-              </ul>
-            </div>
-        </div>
-        <br/>
-        
-        
-    </ul>
-    
-    <ul>
-        <h3> &#128039; Ubuntu (Debian-line) specific requirements</h3>
-        
-        You can install the dependencies with apt-get:<br/><br/>
-        
-        
-        <div class="row">
-            <a href="#hide2" class="hide" id="hide2">List of packages</a>
-            <a href="#show2" class="show" id="show2">Collapse List</a>
-            <div class="list">
-                <ul>
-                    <li>sudo apt-get install g++</li>
-                    <li>sudo apt-get install mysql-client</li>
-                    <li>sudo apt-get install libmysqlclient-dev</li>
-                    <li>sudo apt-get install libX11-dev</li>
-                    <li>sudo apt-get install libxext-dev</li>
-                    <li>sudo apt-get install libglu1-mesa-dev</li>
-                    <li>sudo apt-get install libxt-dev</li>
-                    <li>sudo apt-get install libxmu-dev</li>
-                    <li>sudo apt-get install libxrender-dev</li>
-                    <li>sudo apt-get install libexpat1-dev</li>
-                    <li>sudo apt-get install libxft-dev</li>
-                    <li>sudo apt-get install tcsh</li>
-                    <li>sudo apt-get install cmake</li>
-                    <li>sudo apt-get install git</li>
-                    <li>sudo apt-get install libafterimage-dev</li>
-                    <li>sudo apt-get install scons</li>
-                </ul>
-            </div>
-        </div>
-        <br/>
-        
-    </ul>
-    
-    <ul>
-        <h3>&#128039; Fedora (red-hat line) specific requirements</h3>
-        You can install the dependencies with dnf (or yum):<br/><br/>
-        
-        
-        <div class="row">
-            <a href="#hide3" class="hide" id="hide3">List of packages</a>
-            <a href="#show3" class="show" id="show3">Collapse List</a>
-            <div class="list">
-                <ul>
-                    <li>dnf install gcc-c++</li>
-                    <li>dnf install libx11-devel</li>
-                    <li>dnf install mesa-libGLU-devel</li>
-                    <li>dnf install libXmu-devel</li>
-                    <li>dnf install expat-devel</li>
-                    <li>dnf install zlib-devel</li>
+				</ul>
+			</div>
+		</div>
+		<br/>
+		
+		
+	</ul>
+	
+	<ul>
+		<h3> &#128039; Ubuntu (Debian-line) specific requirements</h3>
+		
+		You can install the dependencies with apt-get:<br/><br/>
+		
+		
+		<div class="row">
+			<a href="#hide2" class="hide" id="hide2">List of packages</a>
+			<a href="#show2" class="show" id="show2">Collapse List</a>
+			<div class="list">
+				<ul>
+					<li>sudo apt-get install g++</li>
+					<li>sudo apt-get install mysql-client</li>
+					<li>sudo apt-get install libmysqlclient-dev</li>
+					<li>sudo apt-get install libX11-dev</li>
+					<li>sudo apt-get install libxext-dev</li>
+					<li>sudo apt-get install libglu1-mesa-dev</li>
+					<li>sudo apt-get install libxt-dev</li>
+					<li>sudo apt-get install libxmu-dev</li>
+					<li>sudo apt-get install libxrender-dev</li>
+					<li>sudo apt-get install libexpat1-dev</li>
+					<li>sudo apt-get install libxft-dev</li>
+					<li>sudo apt-get install tcsh</li>
+					<li>sudo apt-get install cmake</li>
+					<li>sudo apt-get install git</li>
+					<li>sudo apt-get install libafterimage-dev</li>
+					<li>sudo apt-get install scons</li>
+				</ul>
+			</div>
+		</div>
+		<br/>
+		
+	</ul>
+	
+	<ul>
+		<h3>&#128039; Fedora (red-hat line) specific requirements</h3>
+		You can install the dependencies with dnf (or yum):<br/><br/>
+		
+		
+		<div class="row">
+			<a href="#hide3" class="hide" id="hide3">List of packages</a>
+			<a href="#show3" class="show" id="show3">Collapse List</a>
+			<div class="list">
+				<ul>
+					<li>dnf install gcc-c++</li>
+					<li>dnf install libx11-devel</li>
+					<li>dnf install mesa-libGLU-devel</li>
+					<li>dnf install libXmu-devel</li>
+					<li>dnf install expat-devel</li>
+					<li>dnf install zlib-devel</li>
 					<li>dnf install community-mysql-embedded-mysql <br/>(the mysql package name may vary depends on the OS, you can dnf yum search mysql to find out the available version)</li><br>
 					Recommended: the system version of qt:
 					<li>dnf install qt5-qtbase qt5-qtbase-devel qt5-qtwebkit qt5-qtwebkit-devel qt5-qtx11extras qt5-qtbase-mysql</li>
-
-                </ul>
-            </div>
-        </div>
-        <br/>
-        
-    </ul>
-    <br>
-    <hr>
-    
-    <h2> Installation:</h2>
-    
-    
-    <ol>
+					
+				</ul>
+			</div>
+		</div>
+		<br/>
+		
+	</ul>
+	<br>
+	<hr>
+	
+	<h2> Installation:</h2>
+	
+	
+	<ol>
 		<li>
 			Choose a place to install the software. This place will be called JLAB_ROOT.  <br><br>
 			A standard (but not necessary) choice for <b>JLAB_ROOT</b> is <b> /opt/jlab_software</b>:<br>
-
+			
 			<pre><code>
- set JLAB_ROOT=/opt/jlab_software
+				set JLAB_ROOT=/opt/jlab_software
 			</code></pre>
 			Create the working directory:
-
+			
 			<pre><code>
- mkdir -p $JLAB_ROOT/vvversiontoreplaceee
+				mkdir -p $JLAB_ROOT/vvversiontoreplaceee
 			</code></pre>
-        </li>
-        
-        
-        
-        <li>Get the installation scripts:
-            <pre><code>
- cd $JLAB_ROOT
- wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_vvversiontoreplaceee.tar.gz
- tar -zxpf ceInstall_vvversiontoreplaceee.tar.gz --strip-components 1 -C vvversiontoreplaceee
-           </code> </pre>
-            
-        </li>
-        
-        
-        <li>
-            Set the environment variables. You should put these lines in your login script:
-            
-            <pre><code>
- setenv JLAB_ROOT /opt/jlab_software
- source $JLAB_ROOT/vvversiontoreplaceee/ce/jlab.csh
-            </code></pre>
-            
-        </li>
-        
-        
-        <li>Start a new shell. Now you should see a log similar to this
-            <pre>
- > Common Environment Version: <vvversiontoreplaceee>  (Wed March 18 2018)
- > Running as mauri on 1.800.gemc.cool.org
- > OS Release:    Darwin_macosx10.13-x86_64-clang9.0.0
- > JLAB_ROOT set to:     /opt/jlab_software
- > '/opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0' is not a directory. Creating it.
-
- !! Attention:  BANKS  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/banks/1.4/bin  not found
- !! Attention:  CCDB  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/ccdb/ccdb-1.06.02/lib  not found
- !! Attention:  CLHEP  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/clhep/2.3.4.5/lib  not found
- !! Attention:  EVIO  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/evio/5.1/bin  not found
- !! Attention:  GEANT4  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/geant4/4.10.03.p02/bin  not found
- !! Attention:  GEMC  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/gemc/2.7/gemc  not found
- !! Attention:  JANA  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/jana/0.7.7p1/bin/jana  not found
- !! Attention:  MLIBRARY  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/mlibrary/1.2/lib  not found
- !! Attention:  MYSQL  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/mysql/lib  not found
- !! Attention:  QT    installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/qt/5.9.1/5.9.1/clang_64/lib  not found
- !! Attention:  ROOT  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/root/6.12.06/bin/root-config  not found
- !! Attention:  SCONS  installation check /opt/jlab_software/vvversiontoreplaceee/scons_bm/1.6/site_tools  not found
- !! Attention:  XERCESC  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/xercesc/3.2.0/lib  not found
-			</pre>
-            
-        </li>
-        If you do, great! The enviroment seems correct and you're ready to run the installation scripts. Every script that you run below will replace the warning log with a successful one.<br>
-        Notice: if you already have some existing environment variables that you want to keep,
-        use the option "keepmine":<br>
+		</li>
+		
+		
+		
+		<li>Get the installation scripts:
+			<pre><code>
+				cd $JLAB_ROOT
+				wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_vvversiontoreplaceee.tar.gz
+				tar -zxpf ceInstall_vvversiontoreplaceee.tar.gz --strip-components 1 -C vvversiontoreplaceee
+			</code> </pre>
+			
+		</li>
+		
+		
+		<li>
+			Set the environment variables. You should put these lines in your login script:
+			
+			<pre><code>
+				setenv JLAB_ROOT /opt/jlab_software
+				source $JLAB_ROOT/vvversiontoreplaceee/ce/jlab.csh
+			</code></pre>
+			
+		</li>
+		
+		
+		<li>Start a new shell. Now you should see a log similar to this
+			<pre>
+				> Common Environment Version: <vvversiontoreplaceee>  (Wed March 18 2018)
+					> Running as mauri on 1.800.gemc.cool.org
+					> OS Release:    Darwin_macosx10.13-x86_64-clang9.0.0
+					> JLAB_ROOT set to:     /opt/jlab_software
+					> '/opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0' is not a directory. Creating it.
+					
+					!! Attention:  BANKS  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/banks/1.4/bin  not found
+					!! Attention:  CCDB  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/ccdb/ccdb-1.06.02/lib  not found
+					!! Attention:  CLHEP  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/clhep/2.3.4.5/lib  not found
+					!! Attention:  EVIO  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/evio/5.1/bin  not found
+					!! Attention:  GEANT4  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/geant4/4.10.03.p02/bin  not found
+					!! Attention:  GEMC  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/gemc/2.7/gemc  not found
+					!! Attention:  JANA  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/jana/0.7.7p1/bin/jana  not found
+					!! Attention:  MLIBRARY  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/mlibrary/1.2/lib  not found
+					!! Attention:  MYSQL  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/mysql/lib  not found
+					!! Attention:  QT    installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/qt/5.9.1/5.9.1/clang_64/lib  not found
+					!! Attention:  ROOT  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/root/6.12.06/bin/root-config  not found
+					!! Attention:  SCONS  installation check /opt/jlab_software/vvversiontoreplaceee/scons_bm/1.6/site_tools  not found
+					!! Attention:  XERCESC  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/xercesc/3.2.0/lib  not found
+					</pre>
+			
+		</li>
+		If you do, great! The enviroment seems correct and you're ready to run the installation scripts. Every script that you run below will replace the warning log with a successful one.<br>
+		Notice: if you already have some existing environment variables that you want to keep,
+		use the option "keepmine":<br>
 		<pre><code>
- source $JLAB_ROOT/vvversiontoreplaceee/ce/jlab.csh keepmine
+			source $JLAB_ROOT/vvversiontoreplaceee/ce/jlab.csh keepmine
 		</code></pre>
-        
-        
-        <li>
-            Choose the packages you wish to install by executing the corresponding script:
+		
+		
+		<li>
+			Choose the packages you wish to install by executing the corresponding script:
 			<pre><code>
- cd $JLAB_ROOT/vvversiontoreplaceee/install
-
- ./go_clhep
- ./go_xercesc
+				cd $JLAB_ROOT/vvversiontoreplaceee/install
+				
+				./go_clhep
+				./go_xercesc
 			</code></pre>
-
- If you have a system installation of qt (see instructions on requirements on how to install it):
- 			<pre><code>
- ./go_qt system
-			</code></pre>
-
-Otherwise the following command will downlowad the qt installer for you. Follow instructions for the installation:
-
+			
+			If you have a system installation of qt (see instructions on requirements on how to install it):
 			<pre><code>
- ./go_qt
+				./go_qt system
+			</code></pre>
+			
+			Otherwise the following command will downlowad the qt installer for you. Follow instructions for the installation:
+			
+			<pre><code>
+				./go_qt
 			</code></pre>
 			Continue with the rest of the package installation:
-
+			
 			<pre><code>
- ./go_geant4
- ./go_sconsscript
- ./go_evio
- ./go_mysql
- ./go_ccdb
- ./go_mlibrary
- ./go_gemc
- ./go_fields
- ./go_root
- ./go_banks
- ./go_jana
-            </code></pre>
-            
-            All the packages listed above "go_gemc" are necessary to run gemc.
-        </li>
-
-<p>Typical installation times:</p>
-<table>
-	<tr>
-		<th>Package</th>
-		<th>Approx Installation Time</th>
-	</tr>
-	<tr> <td>clhep</td>                             <td>1-2 minutes</td> </tr>
-	<tr> <td>xercesc</td>                           <td>2 minute2</td> </tr>
-	<tr> <td>qt (if system installed)</td>          <td>1 second</td> </tr>
-	<tr> <td>qt (if installatin from scratch)</td>  <td>20 minutes</td> </tr>
-	<tr> <td>geant4&#8224;</td>                     <td>10 minutes </td> </tr>
-	<tr> <td>sconsscript</td>                       <td>1 second</td> </tr>
-	<tr> <td>evio</td>                              <td>10 seconds</td> </tr>
-	<tr> <td>mysql</td>                             <td>1 second</td> </tr>
-	<tr> <td>ccdb</td>                              <td>20 seconds</td> </tr>
-	<tr> <td>mlibrary&#8225;</td>                   <td>2-3 minutes</td> </tr>
-	<tr> <td>gemc</td>                              <td>2 minutes</td> </tr>
-	<tr> <td>root</td>                              <td>25 minutes</td> </tr>
-	<tr> <td>banks</td>                             <td>5 seconds</td> </tr>
-	<tr> <td>jana</td>                              <td>1 minute</td> </tr>
-	<tr> <td colspan=2><hr></td> </tr>
-
-	<tr> <td>Total (system qt)</td> <td>40 minutes</td> </tr>
-	<tr> <td>Total (qt from scratch)</td> <td>1 hour</td> </tr>
-
-</table>
+				./go_geant4
+				./go_sconsscript
+				./go_evio
+				./go_mysql
+				./go_ccdb
+				./go_mlibrary
+				./go_gemc
+				./go_fields
+				./go_root
+				./go_banks
+				./go_jana
+			</code></pre>
+			
+			All the packages listed above "go_gemc" are necessary to run gemc.
+		</li>
+		
+		<p>Typical installation times:</p>
+		<table>
+			<tr>
+				<th>Package</th>
+				<th>Approx Installation Time</th>
+			</tr>
+			<tr> <td>clhep</td>                             <td>1-2 minutes</td> </tr>
+			<tr> <td>xercesc</td>                           <td>2 minute2</td> </tr>
+			<tr> <td>qt (if system installed)</td>          <td>1 second</td> </tr>
+			<tr> <td>qt (if installatin from scratch)</td>  <td>20 minutes</td> </tr>
+			<tr> <td>geant4&#8224;</td>                     <td>10 minutes </td> </tr>
+			<tr> <td>sconsscript</td>                       <td>1 second</td> </tr>
+			<tr> <td>evio</td>                              <td>10 seconds</td> </tr>
+			<tr> <td>mysql</td>                             <td>1 second</td> </tr>
+			<tr> <td>ccdb</td>                              <td>20 seconds</td> </tr>
+			<tr> <td>mlibrary&#8225;</td>                   <td>2-3 minutes</td> </tr>
+			<tr> <td>gemc</td>                              <td>2 minutes</td> </tr>
+			<tr> <td>root</td>                              <td>25 minutes</td> </tr>
+			<tr> <td>banks</td>                             <td>5 seconds</td> </tr>
+			<tr> <td>jana</td>                              <td>1 minute</td> </tr>
+			<tr> <td colspan=2><hr></td> </tr>
+			
+			<tr> <td>Total (system qt)</td> <td>40 minutes</td> </tr>
+			<tr> <td>Total (qt from scratch)</td> <td>1 hour</td> </tr>
+			
+		</table>
 	</ol>
-
- <br>
- &#8224; (needs fast connection to download the cross section data)   <br>
- &#8225; you will see a lot of warnings you can ignore related to assimp.  <br><br><br>
-
-
- Please email any comments/corrections/bug report/feature requests to <a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">Maurizio Ungaro</a>.
-    
-    
-    <br><br><br>
-    <br><br><br>
-    <br><br><br>
-    
-    
+	
+	<br>
+	&#8224; (needs fast connection to download the cross section data)   <br>
+	&#8225; you will see a lot of warnings you can ignore related to assimp.  <br><br><br>
+	
+	
+	Please email any comments/corrections/bug report/feature requests to <a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">Maurizio Ungaro</a>.
+	
+	
+	<br><br><br>
+	<br><br><br>
+	<br><br><br>
+	
+	
 </html>
 
 
