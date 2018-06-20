@@ -8,7 +8,7 @@
 
 ./go_clhep
 ./go_xercesc
-./go_qt
+./go_qt system
 ./go_geant4
 ./go_sconsscript
 ./go_evio
