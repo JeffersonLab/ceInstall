@@ -14,7 +14,7 @@ cd       $JLAB_ROOT/noarch/data
 rm -rf srr* clas12*
 
 wget http://clasweb.jlab.org/12gev/field_maps/clas12SolenoidFieldMap.dat
-wget http://clasweb.jlab.org/12gev/field_maps/clas12TorusOriginalMap.dat
+wget http://clasweb.jlab.org/12gev/field_maps/TorusSymmetric.dat
 echo " > done."
 echo
 
