@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 #
 # You must source this script.
 #   - It requires JLAB_ROOT and JLAB_VERSION to be set to something sensible
@@ -16,7 +16,7 @@
 : ${JLAB_VERSION=devel}
 
 TMPF=`mktemp`
-tcsh ${TCSH_ARG} -c "source ${JLAB_ROOT}/${JLAB_VERSION}/ce/jlab.csh; printenv" | perl -e '
+tcsh ${TCSH_ARG} -c "source ${JLAB_ROOT}/${JLAB_VERSION}/ce/jlab.csh $1; printenv" | perl -e '
   my %IGNORE;
   ## Add variables to ignore to the space-delimited list below
   foreach( qw(
