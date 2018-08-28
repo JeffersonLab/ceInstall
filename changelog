@@ -32,6 +32,11 @@ TODO:
  List of changes
  ---------------
 
+8/28/18
+- qt system is now the default mode. DEFAULT_QT_VERSION is set to system, and go_qt checks QT_SYSTEM
+- clhep env sets the path
+- jana env sets the path and plugin path
+
 4/11/18
 - compilation procedure standardized for package gemc
 - compilation procedure standardized for package root

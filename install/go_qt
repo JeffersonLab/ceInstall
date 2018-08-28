@@ -15,22 +15,21 @@ if(`echo $release | grep mac | wc | awk '{print $1}'` == "1") then
 	set filename = "qt-opensource-mac-x64-"$QT_VERSION".dmg"
 	set system = "Mac"
 else if(`echo $release | grep Linux | wc | awk '{print $1}'` == "1") then
-	if($arch == "32") then
-		set filename = "qt-opensource-linux-x86-"$QT_VERSION".run"
-	else
-		set filename = "qt-opensource-linux-x64-"$QT_VERSION".run"
-	endif
+	set filename = "qt-opensource-linux-x64-"$QT_VERSION".run"
 	set system = "Linux"
 endif
 
-# if option system is given, try to link to the system qt
-if($1 == "system") then
+# if QT_VERSION is system, link to the system qt
+# As of Aug 28 2018 this is the default mode
+if($QT_VERSION == "system") then
+
 	if($system == "Mac") then
+
 		set majorQtVersion = `\ls -rt /usr/local/Cellar | grep qt`
 		set minorQtVersion = `\ls -rt /usr/local/Cellar/$majorQtVersion | tail -1`
 		set SQTDIR = /usr/local/Cellar/$majorQtVersion/$minorQtVersion
 		echo
-		echo System QT selected
+		echo System QT, version $minorQtVersion selected
 		echo Linking to $SQTDIR installation.
 		echo
 
@@ -38,44 +37,56 @@ if($1 == "system") then
 		mkdir -p $QTDIR
 
 		# linking the relevant stuff
-		ln -sfn $SQTDIR/lib $QTDIR/lib
+		ln -sfn $SQTDIR/lib     $QTDIR/lib
 		ln -sfn $SQTDIR/include $QTDIR/include
-		ln -sfn $SQTDIR/bin $QTDIR/bin
+		ln -sfn $SQTDIR/bin     $QTDIR/bin
 		ln -sfn $SQTDIR/mkspecs $QTDIR/mkspecs
 		ln -sfn $SQTDIR/plugins $QTDIR/plugins
-	echo
-	echo Done!
-	echo
 
 	# Using system QT for Linux.
-	else if(`uname` == "Linux") then
+	else if($system == "Linux") then
 
+		set minorQtVersion = `qmake --version | grep Qt | awk '{print $4}'`
 
-		# Linux - fedora line
+		echo
+		echo System QT, version $minorQtVersion selected
+		echo Linking to $SQTDIR installation.
+		echo
+
+		# RedHat - Fedora - CentOS line
 		if( -f /etc/fedora-release || -f /etc/redhat-release) then
 
-	set QT_VERSION
+			set LQTDIR = /usr/lib64        # libraries like libQt5Xml.so
+			set IQTDIR = /usr/include/qt5  # includes
+			set SQTDIR = $LQTDIR/qt5       # binaries, mkspecs and plugins
 
-			ln -sfn /usr/include $QTDIR/include
-
-ln -sfn /usr/lib64 $QTDIR/lib
-
-			ln -sfn $SQTDIR/lib $QTDIR/lib
-			ln -sfn $SQTDIR/include $QTDIR/include
-			ln -sfn $SQTDIR/bin $QTDIR/bin
+			# linking the relevant stuff
+			ln -sfn $LQTDIR         $QTDIR/lib
+			ln -sfn $IQTDIR         $QTDIR/include
+			ln -sfn $SQTDIR/bin     $QTDIR/bin
 			ln -sfn $SQTDIR/mkspecs $QTDIR/mkspecs
 			ln -sfn $SQTDIR/plugins $QTDIR/plugins
 
-		# Linux - Ubuntu line
+
+		# Ubuntu line NEEDS TO BE VERIFIED
 		else if( -f /etc/os-release) then
-			ln -sfn /usr/include/qt5 $QTDIR/include
-			if($arch == "32") then
-				ln -sfn /usr/lib/xi386-linux-gnu $QTDIR/lib
-			else if($arch == "64") then
-				ln -sfn /usr/lib/x86_64-linux-gnu $QTDIR/lib
-			endif
+
+			set LQTDIR = /usr/x86_64-linux-gnu # libraries like libQt5Xml.so
+			set IQTDIR = /usr/include/qt5      # includes
+			set SQTDIR = $LQTDIR/qt5           # binaries, mkspecs and plugins
+
+			# linking the relevant stuff
+			ln -sfn $LQTDIR         $QTDIR/lib
+			ln -sfn $IQTDIR         $QTDIR/include
+			ln -sfn $SQTDIR/bin     $QTDIR/bin
+			ln -sfn $SQTDIR/mkspecs $QTDIR/mkspecs
+			ln -sfn $SQTDIR/plugins $QTDIR/plugins
 		endif
 	endif
+
+	echo
+	echo Done!
+	echo
 else
 	# Using offline Installer
 	echo
