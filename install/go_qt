@@ -11,7 +11,7 @@ set repo     = `./get_coptions repo`/qt
 
 set system = ""
 set filename = ""
-if(`echo $release | grep mac   | wc | awk '{print $1}'` == "1") then
+if(`echo $release | grep mac | wc | awk '{print $1}'` == "1") then
 	set filename = "qt-opensource-mac-x64-"$QT_VERSION".dmg"
 	set system = "Mac"
 else if(`echo $release | grep Linux | wc | awk '{print $1}'` == "1") then
@@ -50,15 +50,21 @@ if($1 == "system") then
 	# Using system QT for Linux.
 	else if(`uname` == "Linux") then
 
+
 		# Linux - fedora line
 		if( -f /etc/fedora-release || -f /etc/redhat-release) then
+
+	set QT_VERSION
+
 			ln -sfn /usr/include $QTDIR/include
 
-			if($arch == "32") then
-				ln -sfn /usr/lib $QTDIR/lib
-			else if($arch == "64") then
-				ln -sfn /usr/lib64 $QTDIR/lib
-			endif
+ln -sfn /usr/lib64 $QTDIR/lib
+
+			ln -sfn $SQTDIR/lib $QTDIR/lib
+			ln -sfn $SQTDIR/include $QTDIR/include
+			ln -sfn $SQTDIR/bin $QTDIR/bin
+			ln -sfn $SQTDIR/mkspecs $QTDIR/mkspecs
+			ln -sfn $SQTDIR/plugins $QTDIR/plugins
 
 		# Linux - Ubuntu line
 		else if( -f /etc/os-release) then
