@@ -57,7 +57,7 @@
 		<h3> &#x2318; MAC OS specific requirements</h3>
 		Make sure you have the latest xcode tools with:
 		<pre><code>
-			xcode-select --install
+xcode-select --install
 		</code></pre>
 		
 		You can install the dependencies with <a href="http://brew.sh"> homebrew</a>:<br/><br/>
@@ -175,7 +175,7 @@ mkdir -p $JLAB_ROOT/devel
 		<li>Get the installation scripts:
 			<pre><code>
 cd $JLAB_ROOT
-wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_devel.tar.gz
+wget -qc http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_devel.tar.gz
 tar -zxpf ceInstall_devel.tar.gz --strip-components 1 -C devel
 			</code> </pre>
 			
