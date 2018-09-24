@@ -6,8 +6,8 @@ set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions
 
 # Options
 set name     = scons_bm
-set release  = `./get_coptions release`
-set repo     = `./get_coptions repo`/scons_bm
+set release  = `$getCoptions release`
+set repo     = `$getCoptions repo`/scons_bm
 set version  = $SCONS_BM_VERSION
 set filename =  scons_bm_$SCONS_BM_VERSION".tar.gz"
 

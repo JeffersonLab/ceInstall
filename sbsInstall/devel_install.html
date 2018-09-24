@@ -175,7 +175,7 @@ mkdir -p $JLAB_ROOT/devel
 		<li>Get the installation scripts:
 			<pre><code>
 cd $JLAB_ROOT
-wget -qc http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_devel.tar.gz
+wget -c http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_devel.tar.gz
 tar -zxpf ceInstall_devel.tar.gz --strip-components 1 -C devel
 			</code> </pre>
 			
@@ -232,21 +232,7 @@ cd $JLAB_ROOT/devel/install
 				
 ./go_clhep
 ./go_xercesc
-			</code></pre>
-			
-			If you have a system installation of qt (see instructions on requirements on how to install it):
-			<pre><code>
-./go_qt system
-			</code></pre>
-			
-			Otherwise the following command will downlowad the qt installer for you. Follow instructions for the installation:
-			
-			<pre><code>
 ./go_qt
-			</code></pre>
-			Continue with the rest of the package installation:
-			
-			<pre><code>
 ./go_geant4
 ./go_sconsscript
 ./go_evio
@@ -254,15 +240,15 @@ cd $JLAB_ROOT/devel/install
 ./go_ccdb
 ./go_mlibrary
 ./go_gemc
-./go_fields
 ./go_root
 ./go_banks
 ./go_jana
 			</code></pre>
 			
-			All the packages listed above "go_gemc" are necessary to run gemc.
+			All the packages listed above "go_gemc" are necessary to run gemc. <br><br>
 		</li>
-		
+
+
 		<p>Typical installation times:</p>
 		<table>
 			<tr>
@@ -272,7 +258,7 @@ cd $JLAB_ROOT/devel/install
 			<tr> <td>clhep</td>                             <td>1-2 minutes</td> </tr>
 			<tr> <td>xercesc</td>                           <td>2 minute2</td> </tr>
 			<tr> <td>qt (if system installed)</td>          <td>1 second</td> </tr>
-			<tr> <td>qt (if installatin from scratch)</td>  <td>20 minutes</td> </tr>
+			<tr> <td>qt (if installatin from scratch)&#8226</td>  <td>20 minutes</td> </tr>
 			<tr> <td>geant4&#8224;</td>                     <td>10 minutes </td> </tr>
 			<tr> <td>sconsscript</td>                       <td>1 second</td> </tr>
 			<tr> <td>evio</td>                              <td>10 seconds</td> </tr>
@@ -293,8 +279,13 @@ cd $JLAB_ROOT/devel/install
 	
 	<br>
 	&#8224; (needs fast connection to download the cross section data)   <br>
-	&#8225; you will see a lot of warnings you can ignore related to assimp.  <br><br><br>
-	
+	&#8225; you will see a lot of warnings you can ignore related to assimp.  <br>
+	&#8226; The JLab environment is setup to use the system installation of Qt. If you want to install qt using their offline installer, set the environment variable QT_VERSION:
+	<pre><code>
+setenv QT_VERSION 5.10.1
+	</code></pre>
+  <br><br><br>
+
 	
 	Please email any comments/corrections/bug report/feature requests to <a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">Maurizio Ungaro</a>.
 	

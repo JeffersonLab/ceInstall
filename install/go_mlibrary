@@ -6,17 +6,17 @@ set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions
 
 # Options, Screen Log, Warnings
 set name     = mlibrary
-set release  = `./get_coptions release`
-set repo     = `./get_coptions repo`/mlibrary
+set release  = `$getCoptions release`
+set repo     = `$getCoptions repo`/mlibrary
 set version  = $MLIBRARY_VERSION
 set filename =  mlibrary"_"$MLIBRARY_VERSION".tar.gz"
-set arch     = `./get_coptions arch`
-set opt      = `./get_coptions copt`
-set blog     = `./get_coptions logFile mlibrary`
-set blogS    = `./get_coptions logFileS mlibrary`
+set arch     = `$getCoptions arch`
+set opt      = `$getCoptions copt`
+set blog     = `$getCoptions logFile mlibrary`
+set blogS    = `$getCoptions logFileS mlibrary`
 
 # Write options on screen
-./get_coptions log $name $version $filename $release $arch $opt
+$getCoptions log $name $version $filename $release $arch $opt
 
 if($1 == "src"|| $1 == "make") goto $1
 

@@ -16,17 +16,17 @@ set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions
 
 # Options
 set name     = evio
-set release  = `./get_coptions release`
-set repo     = `./get_coptions repo`/evio
+set release  = `$getCoptions release`
+set repo     = `$getCoptions repo`/evio
 set version  = $EVIO_VERSION
 set filename = evio-$EVIO_VERSION".tar.gz"
-set arch     = `./get_coptions arch`
-set opt      = `./get_coptions copt`
-set blog     = `./get_coptions logFile clhep`
-set blogS    = `./get_coptions logFileS clhep`
+set arch     = `$getCoptions arch`
+set opt      = `$getCoptions copt`
+set blog     = `$getCoptions logFile clhep`
+set blogS    = `$getCoptions logFileS clhep`
 
 # Write options on screen
-./get_coptions log $name $version $filename $release $arch $opt
+$getCoptions log $name $version $filename $release $arch $opt
 
 
 

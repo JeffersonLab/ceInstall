@@ -10,17 +10,17 @@ set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions
 
  # Options
 set name     = root
-set release  = `./get_coptions release`
-set repo     = `./get_coptions repo`/root
+set release  = `$getCoptions release`
+set repo     = `$getCoptions repo`/root
 set version  = $ROOT_VERSION
 set filename = "root_v"$ROOT_VERSION".source.tar.gz"
-set arch     = `./get_coptions arch`
-set opt      = `./get_coptions copt`
-set blog     = `./get_coptions logFile root`
-set blogS    = `./get_coptions logFileS root`
+set arch     = `$getCoptions arch`
+set opt      = `$getCoptions copt`
+set blog     = `$getCoptions logFile root`
+set blogS    = `$getCoptions logFileS root`
 
 # Write options on screen
-./get_coptions log $name $version $filename $release $arch $opt
+$getCoptions log $name $version $filename $release $arch $opt
 
 # write permissions for JLab 12gev group
 if($1 == "perm") then

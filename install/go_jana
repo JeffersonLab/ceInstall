@@ -11,17 +11,17 @@ set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions
 
 # Options, Screen Log, Warnings
 set name     = jana
-set release  = `./get_coptions release`
-set repo     = `./get_coptions repo`/jana
+set release  = `$getCoptions release`
+set repo     = `$getCoptions repo`/jana
 set version  = $JANA_VERSION
 set filename =  jana"_"$JANA_VERSION".tgz"
-set arch     = `./get_coptions arch`
-set opt      = `./get_coptions copt`
-set blog     = `./get_coptions logFile jana`
-set blogS    = `./get_coptions logFileS jana`
+set arch     = `$getCoptions arch`
+set opt      = `$getCoptions copt`
+set blog     = `$getCoptions logFile jana`
+set blogS    = `$getCoptions logFileS jana`
 
 # Write options on screen
-./get_coptions log $name $version $filename $release $arch $opt
+$getCoptions log $name $version $filename $release $arch $opt
 
 if($1 == "src"|| $1 == "make") goto $1
 
