@@ -5,13 +5,14 @@
 setenv JLAB_ROOT /site/12gev_phys
 
 # Making sure we use one of the supported versions:
-if($1 != "2.2" && $1 != "2.1" && $1 != "2.0" && $1 != "devel") then
+if($1 != "2.3" && $1 != "2.2" && $1 != "2.1" && $1 != "2.0" && $1 != "devel") then
 	echo
 	echo "  Usage:  'source $JLAB_ROOT/softenv.csh <version>'"
 	echo "    Supported Versions: "
-	echo "     - 2.0 "
-	echo "     - 2.1 "
+	echo "     - 2.3 "
 	echo "     - 2.2 "
+	echo "     - 2.1 "
+	echo "     - 2.0 "
 	echo "     - devel "
 	echo; echo
 	exit

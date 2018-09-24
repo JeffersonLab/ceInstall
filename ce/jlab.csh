@@ -5,7 +5,7 @@ if($1 == "keepmine") then
 	setenv overwrite "no"
 endif
 
-if(!$?JLAB_VERSION) then
+if( ! $?JLAB_VERSION) then
 	setenv JLAB_VERSION devel
 endif
 

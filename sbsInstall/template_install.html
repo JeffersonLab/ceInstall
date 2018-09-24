@@ -161,12 +161,12 @@
 			A standard (but not necessary) choice for <b>JLAB_ROOT</b> is <b> /opt/jlab_software</b>:<br>
 			
 			<pre><code>
-				set JLAB_ROOT=/opt/jlab_software
+set JLAB_ROOT=/opt/jlab_software
 			</code></pre>
 			Create the working directory:
 			
 			<pre><code>
-				mkdir -p $JLAB_ROOT/vvversiontoreplaceee
+mkdir -p $JLAB_ROOT/vvversiontoreplaceee
 			</code></pre>
 		</li>
 		
@@ -174,9 +174,9 @@
 		
 		<li>Get the installation scripts:
 			<pre><code>
-				cd $JLAB_ROOT
-				wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_vvversiontoreplaceee.tar.gz
-				tar -zxpf ceInstall_vvversiontoreplaceee.tar.gz --strip-components 1 -C vvversiontoreplaceee
+cd $JLAB_ROOT
+wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_vvversiontoreplaceee.tar.gz
+tar -zxpf ceInstall_vvversiontoreplaceee.tar.gz --strip-components 1 -C vvversiontoreplaceee
 			</code> </pre>
 			
 		</li>
@@ -186,8 +186,8 @@
 			Set the environment variables. You should put these lines in your login script:
 			
 			<pre><code>
-				setenv JLAB_ROOT /opt/jlab_software
-				source $JLAB_ROOT/vvversiontoreplaceee/ce/jlab.csh
+setenv JLAB_ROOT /opt/jlab_software
+source $JLAB_ROOT/vvversiontoreplaceee/ce/jlab.csh
 			</code></pre>
 			
 		</li>
@@ -195,26 +195,26 @@
 		
 		<li>Start a new shell. Now you should see a log similar to this
 			<pre>
-				> Common Environment Version: <vvversiontoreplaceee>  (Wed March 18 2018)
-					> Running as mauri on 1.800.gemc.cool.org
-					> OS Release:    Darwin_macosx10.13-x86_64-clang9.0.0
-					> JLAB_ROOT set to:     /opt/jlab_software
-					> '/opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0' is not a directory. Creating it.
-					
-					!! Attention:  BANKS  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/banks/1.4/bin  not found
-					!! Attention:  CCDB  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/ccdb/ccdb-1.06.02/lib  not found
-					!! Attention:  CLHEP  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/clhep/2.3.4.5/lib  not found
-					!! Attention:  EVIO  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/evio/5.1/bin  not found
-					!! Attention:  GEANT4  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/geant4/4.10.03.p02/bin  not found
-					!! Attention:  GEMC  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/gemc/2.7/gemc  not found
-					!! Attention:  JANA  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/jana/0.7.7p1/bin/jana  not found
-					!! Attention:  MLIBRARY  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/mlibrary/1.2/lib  not found
-					!! Attention:  MYSQL  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/mysql/lib  not found
-					!! Attention:  QT    installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/qt/5.9.1/5.9.1/clang_64/lib  not found
-					!! Attention:  ROOT  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/root/6.12.06/bin/root-config  not found
-					!! Attention:  SCONS  installation check /opt/jlab_software/vvversiontoreplaceee/scons_bm/1.6/site_tools  not found
-					!! Attention:  XERCESC  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang9.0.0/xercesc/3.2.0/lib  not found
-					</pre>
+> Common Environment Version: <vvversiontoreplaceee>  (Mon September 24 2018)
+	> Running as mauri on 1.800.gemc.org
+	> OS Release:    Darwin_macosx10.13-x86_64-clang10.0.0
+	> JLAB_ROOT set to:     /opt/jlab_software
+	> '/opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0' is not a directory. Creating it.
+
+	!! Attention:  BANKS  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/banks/1.4/bin  not found
+	!! Attention:  CCDB  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/ccdb/ccdb-1.06.02/lib  not found
+	!! Attention:  CLHEP  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/clhep/2.3.4.5/lib  not found
+	!! Attention:  EVIO  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/evio/5.1/bin  not found
+	!! Attention:  GEANT4  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/geant4/4.10.03.p02/bin  not found
+	!! Attention:  GEMC  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/gemc/2.7/gemc  not found
+	!! Attention:  JANA  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/jana/0.7.7p1/bin/jana  not found
+	!! Attention:  MLIBRARY  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/mlibrary/1.2/lib  not found
+	!! Attention:  MYSQL  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/mysql/lib  not found
+	!! Attention:  QT    installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/qt/5.9.1/5.9.1/clang_64/lib  not found
+	!! Attention:  ROOT  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/root/6.12.06/bin/root-config  not found
+	!! Attention:  SCONS  installation check /opt/jlab_software/vvversiontoreplaceee/scons_bm/1.6/site_tools  not found
+	!! Attention:  XERCESC  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/xercesc/3.2.0/lib  not found
+	</pre>
 			
 		</li>
 		If you do, great! The enviroment seems correct and you're ready to run the installation scripts. Every script that you run below will replace the warning log with a successful one.<br>
@@ -228,36 +228,36 @@
 		<li>
 			Choose the packages you wish to install by executing the corresponding script:
 			<pre><code>
-				cd $JLAB_ROOT/vvversiontoreplaceee/install
+	cd $JLAB_ROOT/vvversiontoreplaceee/install
 				
-				./go_clhep
-				./go_xercesc
+./go_clhep
+./go_xercesc
 			</code></pre>
 			
 			If you have a system installation of qt (see instructions on requirements on how to install it):
 			<pre><code>
-				./go_qt system
+./go_qt system
 			</code></pre>
 			
 			Otherwise the following command will downlowad the qt installer for you. Follow instructions for the installation:
 			
 			<pre><code>
-				./go_qt
+./go_qt
 			</code></pre>
 			Continue with the rest of the package installation:
 			
 			<pre><code>
-				./go_geant4
-				./go_sconsscript
-				./go_evio
-				./go_mysql
-				./go_ccdb
-				./go_mlibrary
-				./go_gemc
-				./go_fields
-				./go_root
-				./go_banks
-				./go_jana
+./go_geant4
+./go_sconsscript
+./go_evio
+./go_mysql
+./go_ccdb
+./go_mlibrary
+./go_gemc
+./go_fields
+./go_root
+./go_banks
+./go_jana
 			</code></pre>
 			
 			All the packages listed above "go_gemc" are necessary to run gemc.

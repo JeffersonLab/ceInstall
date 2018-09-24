@@ -27,6 +27,20 @@ echo
 echo " Package: " $pname ", version: " $pver
 echo
 
+set exT1  = '--exclude=.git'
+set exT2  = '--exclude=releaseScheme.key'
+set exT3  = '--exclude=.sconsign.dblite'
+set exT4  = '--exclude=.DS_Store'
+set exT5  = '--exclude=doc'
+set exT6  = '--exclude=.gitignore'
+set exT7  = '--exclude=go_tar'
+set exT8  = '--exclude=.entitlements'
+set exT9  = '--exclude=lib'
+set exT10 = '--exclude=bin'
+set exT11 = '--exclude=external'
+set exT12 = '--exclude=template_install.html'
+
+set excludeFromTar = $exT1" "$exT2" "$exT3" "$exT4" "$exT5" "$exT6" "$exT7" "$exT8" "$exT9" "$exT10" "$exT11" "$exT12
 
 # common environment
 if($pname == "ceInstall") then
@@ -35,14 +49,12 @@ if($pname == "ceInstall") then
 	if($option == "local") then
 		cd $locald
 		rm -f ceInstall_$pver.*
-		tar cvf ceInstall_$pver.tar  -L --exclude='go_tar' --exclude="doc" --exclude=".DS_Store" --exclude="releases.key" --exclude=".sconsign.dblite" --exclude=".git" ceInstall
+		tar cvf ceInstall_$pver.tar  -L $excludeFromTar ceInstall
 		gzip ceInstall_$pver.tar
 		scp ceInstall_$pver.tar.gz $remoted/ceInstall
 		rm -f ceInstall_$pver.*
 	else
-		rm -rf   $locald/ceInstall/tmp
-		mkdir -p $locald/ceInstall/tmp/
-		cd       $locald/ceInstall/tmp/
+		mcd $locald/ceInstall/tmp
 		wget https://github.com/JeffersonLab/ceInstall/archive/v$pver".tar.gz" -O ceInstall_$pver.tar.gz
 		scp ceInstall_$pver.tar.gz $remoted/ceInstall
 		cd ..
@@ -69,15 +81,12 @@ if($pname == "bm") then
 	if($option == "local") then
 		cd $locald
 		rm -f scons_bm_$pver.tar.gz
-		tar cvf scons_bm_$pver.tar  -L --exclude='go_tar' --exclude="doc" --exclude=".DS_Store" --exclude="releases.key" --exclude=".sconsign.dblite" --exclude=".git" scons_bm
+		tar cvf scons_bm_$pver.tar  -L $excludeFromTar scons_bm
 		gzip scons_bm_$pver.tar
 		scp scons_bm_$pver.tar.gz $remoted/scons_bm
 		rm -f scons_bm_$pver.tar.gz
 	else
-		rm -rf   $locald/scons_bm/tmp
-		mkdir -p $locald/scons_bm/tmp/
-		cd       $locald/scons_bm/tmp/
-
+		mcd $locald/scons_bm/tmp
 		wget https://github.com/maureeungaro/scons_bm/archive/v$pver".tar.gz" -O scons_bm_$pver.tar.gz
 		scp scons_bm_$pver.tar.gz $remoted/scons_bm
 		cd ..
@@ -96,7 +105,7 @@ if($pname == "evio") then
 	scons -c ; rm -rf lib bin
 	cd ..
 	rm -rf evio-$pver.*
-	tar cvf  evio-$pver.tar --exclude="doc" --exclude="java" --exclude="tar" $pver/*
+	tar cvf  evio-$pver.tar --exclude="java" $excludeFromTar $pver/*
 	gzip evio-$pver.tar
 	scp evio-$pver.tar.gz $remoted/evio
 	exit
@@ -116,7 +125,7 @@ if($pname == "gemc") then
 	cp -r $locald/gemc/api .
 	cd $locald/gemc/releases
 	rm -rf gemc-$pver.*
-	tar cvf gemc-$pver.tar  --exclude=".DS_Store"  --exclude=".gitignore" --exclude=".sconsign.dblite" --exclude=".git" --exclude=".entitlements" --exclude="lib" $pver
+	tar cvf gemc-$pver.tar $excludeFromTar $pver
 	gzip gemc-$pver.tar
 	scp gemc-$pver.tar.gz $remoted/gemc
 	rm -rf $locald/gemc/releases/$pver/api
@@ -130,15 +139,12 @@ if($pname == "banks") then
 		scons -c
 		cd $locald
 		rm -f banks_$pver.tar.gz
-		tar cvf banks_$pver.tar  -L --exclude='go_tar' --exclude="doc" --exclude=".DS_Store" --exclude="releases.key" --exclude=".sconsign.dblite" --exclude=".git" banks
+		tar cvf banks_$pver.tar  -L $excludeFromTar banks
 		gzip banks_$pver.tar
 		scp banks_$pver.tar.gz $remoted/banks
 		rm -f banks_$pver.tar.gz
 	else
-		rm -rf   $locald/banks/tmp
-		mkdir -p $locald/banks/tmp/
-		cd       $locald/banks/tmp/
-
+		mcd $locald/banks/tmp
 		wget https://github.com/maureeungaro/banks/archive/v$pver".tar.gz" -O banks_$pver.tar.gz
 		scp banks_$pver.tar.gz $remoted/banks
 		cd ..
@@ -159,15 +165,12 @@ if($pname == "mlibrary") then
 		rm -rf cadmeshBuild bin lib
 		cd $locald
 		rm -f mlibrary_$pver.*
-		tar cvf mlibrary_$pver.tar  -L --exclude='go_tar' --exclude='external'  --exclude="doc" --exclude=".DS_Store" --exclude="releases.key" --exclude=".sconsign.dblite" --exclude=".git" mlibrary
+		tar cvf mlibrary_$pver.tar  -L $excludeFromTar mlibrary
 		gzip mlibrary_$pver.tar
 		scp mlibrary_$pver.tar.gz $remoted/mlibrary
 		rm -f mlibrary_$pver.*
 	else
-		rm -rf   $locald/mlibrary/tmp
-		mkdir -p $locald/mlibrary/tmp/
-		cd       $locald/mlibrary/tmp/
-
+		mcd $locald/mlibrary/tmp
 		wget https://github.com/gemc/mlibrary/archive/v$pver".tar.gz" -O mlibrary_$pver.tar.gz
 		scp mlibrary_$pver.tar.gz $remoted/mlibrary
 		cd ..
