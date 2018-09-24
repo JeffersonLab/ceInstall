@@ -57,7 +57,7 @@
 		<h3> &#x2318; MAC OS specific requirements</h3>
 		Make sure you have the latest xcode tools with:
 		<pre><code>
-			xcode-select --install
+xcode-select --install
 		</code></pre>
 		
 		You can install the dependencies with <a href="http://brew.sh"> homebrew</a>:<br/><br/>
@@ -175,7 +175,7 @@ mkdir -p $JLAB_ROOT/vvversiontoreplaceee
 		<li>Get the installation scripts:
 			<pre><code>
 cd $JLAB_ROOT
-wget http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_vvversiontoreplaceee.tar.gz
+wget -qc http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_vvversiontoreplaceee.tar.gz
 tar -zxpf ceInstall_vvversiontoreplaceee.tar.gz --strip-components 1 -C vvversiontoreplaceee
 			</code> </pre>
 			
@@ -196,39 +196,39 @@ source $JLAB_ROOT/vvversiontoreplaceee/ce/jlab.csh
 		<li>Start a new shell. Now you should see a log similar to this
 			<pre>
 > Common Environment Version: <vvversiontoreplaceee>  (Mon September 24 2018)
-	> Running as mauri on 1.800.gemc.org
-	> OS Release:    Darwin_macosx10.13-x86_64-clang10.0.0
-	> JLAB_ROOT set to:     /opt/jlab_software
-	> '/opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0' is not a directory. Creating it.
+> Running as mauri on 1.800.gemc.org
+> OS Release:    Darwin_macosx10.13-x86_64-clang10.0.0
+> JLAB_ROOT set to:     /opt/jlab_software
+> '/opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0' is not a directory. Creating it.
 
-	!! Attention:  BANKS  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/banks/1.4/bin  not found
-	!! Attention:  CCDB  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/ccdb/ccdb-1.06.02/lib  not found
-	!! Attention:  CLHEP  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/clhep/2.3.4.5/lib  not found
-	!! Attention:  EVIO  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/evio/5.1/bin  not found
-	!! Attention:  GEANT4  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/geant4/4.10.03.p02/bin  not found
-	!! Attention:  GEMC  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/gemc/2.7/gemc  not found
-	!! Attention:  JANA  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/jana/0.7.7p1/bin/jana  not found
-	!! Attention:  MLIBRARY  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/mlibrary/1.2/lib  not found
-	!! Attention:  MYSQL  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/mysql/lib  not found
-	!! Attention:  QT    installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/qt/5.9.1/5.9.1/clang_64/lib  not found
-	!! Attention:  ROOT  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/root/6.12.06/bin/root-config  not found
-	!! Attention:  SCONS  installation check /opt/jlab_software/vvversiontoreplaceee/scons_bm/1.6/site_tools  not found
-	!! Attention:  XERCESC  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/xercesc/3.2.0/lib  not found
-	</pre>
+!! Attention:  BANKS  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/banks/1.4/bin  not found
+!! Attention:  CCDB  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/ccdb/ccdb-1.06.02/lib  not found
+!! Attention:  CLHEP  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/clhep/2.3.4.5/lib  not found
+!! Attention:  EVIO  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/evio/5.1/bin  not found
+!! Attention:  GEANT4  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/geant4/4.10.03.p02/bin  not found
+!! Attention:  GEMC  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/gemc/2.7/gemc  not found
+!! Attention:  JANA  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/jana/0.7.7p1/bin/jana  not found
+!! Attention:  MLIBRARY  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/mlibrary/1.2/lib  not found
+!! Attention:  MYSQL  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/mysql/lib  not found
+!! Attention:  QT    installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/qt/5.9.1/5.9.1/clang_64/lib  not found
+!! Attention:  ROOT  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/root/6.12.06/bin/root-config  not found
+!! Attention:  SCONS  installation check /opt/jlab_software/vvversiontoreplaceee/scons_bm/1.6/site_tools  not found
+!! Attention:  XERCESC  installation check /opt/jlab_software/vvversiontoreplaceee/Darwin_macosx10.13-x86_64-clang10.0.0/xercesc/3.2.0/lib  not found
+			</pre>
 			
 		</li>
 		If you do, great! The enviroment seems correct and you're ready to run the installation scripts. Every script that you run below will replace the warning log with a successful one.<br>
 		Notice: if you already have some existing environment variables that you want to keep,
 		use the option "keepmine":<br>
 		<pre><code>
-			source $JLAB_ROOT/vvversiontoreplaceee/ce/jlab.csh keepmine
+source $JLAB_ROOT/vvversiontoreplaceee/ce/jlab.csh keepmine
 		</code></pre>
 		
 		
 		<li>
 			Choose the packages you wish to install by executing the corresponding script:
 			<pre><code>
-	cd $JLAB_ROOT/vvversiontoreplaceee/install
+cd $JLAB_ROOT/vvversiontoreplaceee/install
 				
 ./go_clhep
 ./go_xercesc

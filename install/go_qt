@@ -96,7 +96,7 @@ else
 	echo
 
 	rm $filename
-	wget $repo/$filename
+	wget -c $repo/$filename
 	chmod u+x $filename
 
 	echo Download Successfull. Please execute:

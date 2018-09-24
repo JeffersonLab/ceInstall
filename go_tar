@@ -38,7 +38,7 @@ set exT8  = '--exclude=.entitlements'
 set exT9  = '--exclude=lib'
 set exT10 = '--exclude=bin'
 set exT11 = '--exclude=external'
-set exT12 = '--exclude=template_install.html'
+set exT12 = '--exclude=template\_install.html'
 
 set excludeFromTar = $exT1" "$exT2" "$exT3" "$exT4" "$exT5" "$exT6" "$exT7" "$exT8" "$exT9" "$exT10" "$exT11" "$exT12
 
@@ -55,7 +55,7 @@ if($pname == "ceInstall") then
 		rm -f ceInstall_$pver.*
 	else
 		mcd $locald/ceInstall/tmp
-		wget https://github.com/JeffersonLab/ceInstall/archive/v$pver".tar.gz" -O ceInstall_$pver.tar.gz
+		wget -qc https://github.com/JeffersonLab/ceInstall/archive/v$pver".tar.gz" -O ceInstall_$pver.tar.gz
 		scp ceInstall_$pver.tar.gz $remoted/ceInstall
 		cd ..
 		rm -rf tmp
@@ -87,7 +87,7 @@ if($pname == "bm") then
 		rm -f scons_bm_$pver.tar.gz
 	else
 		mcd $locald/scons_bm/tmp
-		wget https://github.com/maureeungaro/scons_bm/archive/v$pver".tar.gz" -O scons_bm_$pver.tar.gz
+		wget -qc https://github.com/maureeungaro/scons_bm/archive/v$pver".tar.gz" -O scons_bm_$pver.tar.gz
 		scp scons_bm_$pver.tar.gz $remoted/scons_bm
 		cd ..
 		rm -rf tmp
@@ -145,7 +145,7 @@ if($pname == "banks") then
 		rm -f banks_$pver.tar.gz
 	else
 		mcd $locald/banks/tmp
-		wget https://github.com/maureeungaro/banks/archive/v$pver".tar.gz" -O banks_$pver.tar.gz
+		wget -qc https://github.com/maureeungaro/banks/archive/v$pver".tar.gz" -O banks_$pver.tar.gz
 		scp banks_$pver.tar.gz $remoted/banks
 		cd ..
 		rm -rf tmp
@@ -171,7 +171,7 @@ if($pname == "mlibrary") then
 		rm -f mlibrary_$pver.*
 	else
 		mcd $locald/mlibrary/tmp
-		wget https://github.com/gemc/mlibrary/archive/v$pver".tar.gz" -O mlibrary_$pver.tar.gz
+		wget -qc https://github.com/gemc/mlibrary/archive/v$pver".tar.gz" -O mlibrary_$pver.tar.gz
 		scp mlibrary_$pver.tar.gz $remoted/mlibrary
 		cd ..
 		rm -rf tmp

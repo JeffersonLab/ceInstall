@@ -157,7 +157,7 @@ getAndUnpack:
 	echo
 	echo " > Downloading" $3"..."
 	rm -f      $3
-	wget -q    $2/$3
+	wget -qc    $2/$3
 	echo " > Unpacking" $3"..."
 	tar -zxpf  $3
 	echo
@@ -171,7 +171,7 @@ getAndUnpackTo:
 	echo
 	echo " > Downloading" $3"..."
 	rm -f      $3
-	wget -q    $2/$3
+	wget -qc    $2/$3
 	echo " > Unpacking" $3"..."
 	tar -zxpf  $3 --strip-components 1 -C $4
 	echo

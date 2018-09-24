@@ -6,6 +6,7 @@
 - formatting go_tar exclude from tar
 - better README and walkthrough explanation
 - better step-by-step instruction formatting
+- added qc option to wget: quiet and do not retrieve if file exists already (avoids writing duplicates)
 
 8/28/18
 - qt system is now the default mode. DEFAULT_QT_VERSION is set to system, and go_qt checks QT_SYSTEM
