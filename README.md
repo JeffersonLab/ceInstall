@@ -19,12 +19,13 @@ Installation and environment settings of the following libraries:
 
 Both installation and system environment are independent of the location and OS of the software, provided it is recent enough.
 
+To release a JLAB_VERSION, tag the libraries below.
 
-To release a JLAB_VERSION:
+Remember that go_tar supports the "local" third option to create a "debug" tar file instead of using the github tag feature.
 
-- tag banks
-- tag gemc 
-- tag mlibrary
-- tag scons_bm
+- banks
+- gemc 
+- mlibrary
+- scons_bm
 
 
