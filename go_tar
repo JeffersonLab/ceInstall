@@ -67,6 +67,7 @@ if($pname == "ceInstall") then
 	rm sbsInstall/$pver"_install.html"
 	sed "s/vvversiontoreplaceee/$pver/g" sbsInstall/template_install.html > sbsInstall/$pver"_install.html"
 	scp sbsInstall/* $remoted/ceInstall/
+	scp sbsInstall/.jlab_software $remoted/ceInstall/
 
 	# main scripts: these are the ones in the local dir, not coming from the git release
 	scp softenv.* ftp.jlab.org:/site/12gev_phys
@@ -165,7 +166,7 @@ if($pname == "mlibrary") then
 		rm -rf cadmeshBuild bin lib
 		cd $locald
 		rm -f mlibrary_$pver.*
-		tar cvf mlibrary_$pver.tar  -L $excludeFromTar mlibrary
+		tar cvf mlibrary_$pver.tar -L $excludeFromTar mlibrary
 		gzip mlibrary_$pver.tar
 		scp mlibrary_$pver.tar.gz $remoted/mlibrary
 		rm -f mlibrary_$pver.*

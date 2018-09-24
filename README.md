@@ -27,7 +27,7 @@ To release a JLAB_VERSION:
 - make sure versions.env is updated
 - make new tag as needed, remember to update changelog. Notice, deleting a github release is not enough: need to delete the tag also.
 - test installation, copy log in sbsInstall/template_install.html
-- tag the libraries below.
+- tag the libraries below. To tag, use v1.4 and 1.4 as release name. Add notes.
 
 Remember that go_tar supports the "local" third option to create a "debug" tar file instead of using the github tag feature.
 

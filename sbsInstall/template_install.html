@@ -152,10 +152,23 @@ xcode-select --install
 	<br>
 	<hr>
 	
-	<h2> Installation:</h2>
+	<h1> Installation:</h1>
 	
 	
 	<ol>
+		<li>
+			(Optional): create a file in your home directory: <pre>.jlab_software</pre> that contains one line only,
+			with the packages you're interested in. The default (also works if no such file is present):
+			<pre><code>
+banks ccdb clhep evio geant4 gemc jana mlibrary mysql qt root scons xercesc
+			</code></pre>
+			Click <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/.jlab_software"> here </a> for a version of .jlab_software
+			that only has clhep, geant4, qt and xercesc. <br>
+			<h4>Only the packages inside <i>.jlab_software</i> will be considered when setting the environment.</h4><br>
+
+		</li>
+
+
 		<li>
 			Choose a place to install the software. This place will be called JLAB_ROOT.  <br><br>
 			A standard (but not necessary) choice for <b>JLAB_ROOT</b> is <b> /opt/jlab_software</b>:<br>

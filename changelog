@@ -10,6 +10,8 @@
 - added doc for default system installation of qt
 - using $getCoptions throughout the installation scripts
 - added wget --show-progress option
+- added support for custom list of software library: only the packages in .jlab_software will be considered in the environment
+- getting ready to release 2.3
 
 8/28/18
 - qt system is now the default mode. DEFAULT_QT_VERSION is set to system, and go_qt checks QT_SYSTEM

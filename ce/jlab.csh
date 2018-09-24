@@ -18,6 +18,9 @@ setenv PATH $JLAB_ROOT/$JLAB_VERSION/ce:$PATH
 
 # Software packages
 set packages = (banks ccdb clhep evio geant4 gemc jana mlibrary mysql qt root scons xercesc)
+if ( -f ~/.jlab_software) then
+	set packages = `cat ~/.jlab_software`
+endif
 
 # Only print out if there's a prompt
 alias echo 'if($?prompt) echo \!*  '
