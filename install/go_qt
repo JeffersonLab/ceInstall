@@ -49,7 +49,7 @@ if($QT_VERSION == "system") then
 		set minorQtVersion = `qmake --version | grep Qt | awk '{print $4}'`
 
 		echo
-		echo System QT, version $minorQtVersion selected
+		echo System QT, system version $minorQtVersion will be used
 		echo Linking to $SQTDIR installation.
 		echo
 
@@ -84,7 +84,6 @@ if($QT_VERSION == "system") then
 		endif
 	endif
 
-	echo
 	echo Done!
 	echo
 else
@@ -96,7 +95,7 @@ else
 	echo
 
 	rm $filename
-	wget -c $repo/$filename
+	wget -qc --show-progress $repo/$filename
 	chmod u+x $filename
 
 	echo Download Successfull. Please execute:

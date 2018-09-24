@@ -9,6 +9,7 @@
 - added qc option to wget: quiet and do not retrieve if file exists already (avoids writing duplicates)
 - added doc for default system installation of qt
 - using $getCoptions throughout the installation scripts
+- added wget --show-progress option
 
 8/28/18
 - qt system is now the default mode. DEFAULT_QT_VERSION is set to system, and go_qt checks QT_SYSTEM
