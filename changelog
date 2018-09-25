@@ -6,6 +6,7 @@
 - removed 32 bit support
 - preparing Announcement for 2.3
 - setting wget command is different on Linux or Darwin. Moving -qc and show-progress options to a shell variable mwget
+- xercesc: in linux, linking lib64 to lib. Why oh why they keep doing this.
 
 9/24/18
 - formatting go_tar exclude from tar
