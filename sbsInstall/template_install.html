@@ -246,6 +246,7 @@ cd $JLAB_ROOT/vvversiontoreplaceee/install
 ./go_clhep
 ./go_xercesc
 ./go_qt
+(see notes below on non system-qt installation)
 ./go_geant4
 ./go_sconsscript
 ./go_evio
@@ -293,9 +294,10 @@ cd $JLAB_ROOT/vvversiontoreplaceee/install
 	<br>
 	&#8224; (needs fast connection to download the cross section data)   <br>
 	&#8225; you will see a lot of warnings you can ignore related to assimp.  <br>
-	&#8226; The JLab environment is setup to use the system installation of Qt. If you want to install qt using their offline installer, set the environment variable QT_VERSION:
+	&#8226; The JLab environment is setup to use the system installation of Qt. If you want to install qt using their offline installer, set the environment variable QT_VERSION then use 'keepmine' on the jlab script:
 	<pre><code>
 setenv QT_VERSION 5.10.1
+source $JLAB_ROOT/devel/ce/jlab.csh keepmine
 	</code></pre>
   <br><br><br>
 

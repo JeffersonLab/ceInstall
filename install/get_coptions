@@ -9,7 +9,7 @@ else if (`uname` == "Darwin") then
 endif
 
 
-if($1 == "release"|| $1 == "copt" || $1 == "log"  || $1 == "repo" || $1 == "dir" || $1 == "cmakev" ||  $1 == "logFile" || $1 == "logFileS" || $1 == "logStart" || $1 == "logEnd"  ||  $1 == "logTime" || $1 == "removeAndCreate" || $1 == "getAndUnpack" ||  $1 == "getAndUnpackTo" || $1 == "installLog") then
+if($1 == "release"|| $1 == "copt" || $1 == "log"  || $1 == "repo" || $1 == "dir" || $1 == "cmakev" ||  $1 == "logFile" || $1 == "logFileS" || $1 == "logStart" || $1 == "logEnd"  ||  $1 == "logTime" || $1 == "removeAndCreate" || $1 == "getAndUnpack" ||  $1 == "download" ||  $1 == "getAndUnpackTo" || $1 == "installLog") then
 	goto $1
 endif
 
@@ -141,6 +141,17 @@ removeAndCreate:
 	mkdir -p $2
 if($1 == "removeAndCreate") exit
 
+# get a package.
+# $2 is package location
+# $3 is filename
+download:
+	echo
+	echo " > Downloading" $3"..."
+	rm -f     $3
+	$mwget $2/$3
+	echo
+if($1 == "download") exit
+
 
 # get and unpack a package.
 # $2 is package location
@@ -148,7 +159,7 @@ if($1 == "removeAndCreate") exit
 getAndUnpack:
 	echo
 	echo " > Downloading" $3"..."
-	rm -f      $3
+	rm -f     $3
 	$mwget $2/$3
 	echo " > Unpacking" $3"..."
 	tar -zxpf  $3

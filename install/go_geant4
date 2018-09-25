@@ -17,7 +17,7 @@ set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions
 # not putting geant4 on the repo script because of the data path
 set name     = geant4
 set release  = `$getCoptions release`
-set repo     = `$getCoptions repo`
+set repo     = `$getCoptions repo`/geant4
 set version  = $GEANT4_VERSION
 set filename = geant$GEANT4_VERSION".tar.gz"
 set opt      = `$getCoptions copt`
@@ -77,7 +77,7 @@ src:
 
 	# unpacking inside source
 	cd $G4INSTALL/source
-	$getCoptions getAndUnpack $repo/geant4 $filename
+	$getCoptions getAndUnpack $repo $filename
 if($1 == "src") exit
 
 

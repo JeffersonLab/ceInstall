@@ -92,11 +92,9 @@ else
 	echo $system detected. Downloading $filename
 	echo
 
-	rm $filename
-	$mwget $repo/$filename
+	$getCoptions download $repo $filename
 	chmod u+x $filename
 
-	echo Download Successfull. Please execute:
 	echo
 	if($system == "Mac") then
 		echo open $filename
