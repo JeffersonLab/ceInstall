@@ -1,9 +1,10 @@
 #!/bin/csh -f
 
 
-if($1 == "release"|| $1 == "copt" || $1 == "arch" || $1 == "log"  || $1 == "repo" || $1 == "dir" || $1 == "env" || $1 == "cmakev" ||  $1 == "logFile" || $1 == "logFileS" || $1 == "logStart" || $1 == "logEnd"  ||  $1 == "logTime" || $1 == "removeAndCreate" || $1 == "getAndUnpack" ||  $1 == "getAndUnpackTo" || $1 == "installLog") then
+if($1 == "release"|| $1 == "copt" || $1 == "log"  || $1 == "repo" || $1 == "dir" || $1 == "env" || $1 == "cmakev" ||  $1 == "logFile" || $1 == "logFileS" || $1 == "logStart" || $1 == "logEnd"  ||  $1 == "logTime" || $1 == "removeAndCreate" || $1 == "getAndUnpack" ||  $1 == "getAndUnpackTo" || $1 == "installLog") then
 	goto $1
 endif
+
 
 # Additional environment
 env:
@@ -33,17 +34,9 @@ copt:
 	if($ncpu > 10) then
 		set opt = " -j10"
 	endif
-
 	echo $opt
 if($1 == "copt") exit
 
-
-# 32 or 64 bit
-arch:
-set is_32bit = (`echo $OSRELEASE | grep -v x86_64 | grep 86 | wc | awk '{print $1}'`)
-	if($is_32bit == "1") echo 32
-	if($is_32bit == "0") echo 64
-if($1 == "arch") exit
 
 # Log to screen
 log:
@@ -53,8 +46,7 @@ log:
 	echo " > Version:                 " $3
 	echo " > Filename:                " $4
 	echo " > Release:                 " $5
-	echo " > Architecture:            " $6
-	echo " > Multithread Compilation: " $7
+	echo " > Multithread Compilation: " $6
 	echo
 if($1 == "log") exit
 
@@ -69,8 +61,6 @@ if($1 == "repo") exit
 dir:
 	echo  "/u/group/12gev_phys/www/packages/sources"
 if($1 == "dir") exit
-
-
 
 
 # check the cmake version

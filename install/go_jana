@@ -14,14 +14,13 @@ set name     = jana
 set release  = `$getCoptions release`
 set repo     = `$getCoptions repo`/jana
 set version  = $JANA_VERSION
-set filename =  jana"_"$JANA_VERSION".tgz"
-set arch     = `$getCoptions arch`
+set filename =  JANA"-"$JANA_VERSION".tgz"
 set opt      = `$getCoptions copt`
 set blog     = `$getCoptions logFile jana`
 set blogS    = `$getCoptions logFileS jana`
 
 # Write options on screen
-$getCoptions log $name $version $filename $release $arch $opt
+$getCoptions log $name $version $filename $release $opt
 
 if($1 == "src"|| $1 == "make") goto $1
 
@@ -45,7 +44,7 @@ if($1 == "src") exit
 	$getCoptions logStart $blog $blogS
 
 	setenv BMS_OSNAME $OSRELEASE
-	cd $JLAB_SOFTWARE/jana/jana_$JANA_VERSION
+	cd $JLAB_SOFTWARE/jana/JANA-$JANA_VERSION
 
 	scons $opt install >> $blog
 	mv $BMS_OSNAME/* $JANA_HOME

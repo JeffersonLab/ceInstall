@@ -3,6 +3,13 @@
 # At JLab Robert Michaels is taking care of the ROOT installation
 # chgrp -R 12gev_phys root
 # chmod -R 775 root
+#
+# On mac the new root requires mysql @ version 5.7 as the new one (version 8) got rid of typedef my_bool
+# To install 5.7 on the mac:
+# brew unlink mysql
+# brew install mysql@5.7
+# brew link mysql@5.7 --force
+
 
 # Additional settings at the top of get_coptions
 source get_coptions env
@@ -14,13 +21,12 @@ set release  = `$getCoptions release`
 set repo     = `$getCoptions repo`/root
 set version  = $ROOT_VERSION
 set filename = "root_v"$ROOT_VERSION".source.tar.gz"
-set arch     = `$getCoptions arch`
 set opt      = `$getCoptions copt`
 set blog     = `$getCoptions logFile root`
 set blogS    = `$getCoptions logFileS root`
 
 # Write options on screen
-$getCoptions log $name $version $filename $release $arch $opt
+$getCoptions log $name $version $filename $release $opt
 
 # write permissions for JLab 12gev group
 if($1 == "perm") then
@@ -58,7 +64,7 @@ if($1 == "src") exit
 make:
 
 	# disabling stuff we don't need, enabling stuff we want
-	set disablePackages = ("alien" "asimag" "bonjour" "builtin_afterimage" "castor" "chirp" "dcache" "fitsio" "gfal" "glite" "hdfs" "krb5" "odbc" "sapdb" "shadowpw" "srp")
+	set disablePackages = ("mysql", "alien" "asimag" "bonjour" "builtin_afterimage" "castor" "chirp" "dcache" "fitsio" "gfal" "glite" "hdfs" "krb5" "odbc" "sapdb" "shadowpw" "srp")
 	set enablePackages = ("roofit" "minuit2" "python" )
 	set toDisable = ""
 	set toEnable = ""
@@ -69,11 +75,10 @@ make:
 		set toEnable="$toEnable -D$p=ON"
 	end
 
-
 	cd $ROOTBUILD
+
 	# log start of compilation
 	$getCoptions logStart $blog $blogS
-
 
 	cmake -DCMAKE_INSTALL_PREFIX=$ROOTSYS $toDisable $toEnable $ROOTSOURCE >> $blog
 

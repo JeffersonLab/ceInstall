@@ -10,13 +10,12 @@ set release  = `$getCoptions release`
 set repo     = `$getCoptions repo`/banks
 set version  = $BANKS_VERSION
 set filename = banks_$BANKS_VERSION".tar.gz"
-set arch     = `$getCoptions arch`
 set opt      = `$getCoptions copt`
 set blog     = `$getCoptions logFile banks`
 set blogS    = `$getCoptions logFileS banks`
 
 # Write options on screen
-$getCoptions log $name $version $filename $release $arch $opt
+$getCoptions log $name $version $filename $release $opt
 
 if($1 == "src"|| $1 == "make") goto $1
 

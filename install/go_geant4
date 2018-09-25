@@ -21,13 +21,12 @@ set release  = `$getCoptions release`
 set repo     = `$getCoptions repo`
 set version  = $GEANT4_VERSION
 set filename = geant$GEANT4_VERSION".tar.gz"
-set arch     = `$getCoptions arch`
 set opt      = `$getCoptions copt`
 set blog     = `$getCoptions logFile geant4`
 set blogS    = `$getCoptions logFileS geant4`
 
 # Write options on screen
-$getCoptions log $name $version $filename $release $arch $opt
+$getCoptions log $name $version $filename $release $opt
 
 # By default data is set to off
 # Getting data from jlab repository

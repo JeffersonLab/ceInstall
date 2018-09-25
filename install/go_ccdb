@@ -15,13 +15,12 @@ set release  = `$getCoptions release`
 set repo     = `$getCoptions repo`/ccdb
 set version  = $CCDB_VERSION
 set filename =  ccdb"-"$CCDB_VERSION".tar.gz"
-set arch     = `$getCoptions arch`
 set opt      = `$getCoptions copt`
 set blog     = `$getCoptions logFile ccdb`
 set blogS    = `$getCoptions logFileS ccdb`
 
 # Write options on screen
-$getCoptions log $name $version $filename $release $arch $opt
+$getCoptions log $name $version $filename $release $opt
 
 if($1 == "src"|| $1 == "make") goto $1
 

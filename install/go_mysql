@@ -1,8 +1,5 @@
 #!/bin/csh -f
 
-# Options
-set arch     = `$getCoptions arch`
-
 # Linking mysql distributions from OS release
 # These need to be pre-installed
 echo
@@ -27,19 +24,10 @@ else if(`uname` == "Linux") then
 
 	# Linux - fedora line
 	if( -f /etc/fedora-release || -f /etc/redhat-release) then
-		if($arch == "32") then
-			ln -sfn /usr/lib/mysql $JLAB_SOFTWARE/mysql/lib
-		else if($arch == "64") then
-			ln -sfn /usr/lib64/mysql $JLAB_SOFTWARE/mysql/lib
-	endif
-
+		ln -sfn /usr/lib64/mysql $JLAB_SOFTWARE/mysql/lib
 	# Linux - Ubuntu line
 	else if( -f /etc/os-release) then
-		if($arch == "32") then
-			ln -sfn /usr/lib/xi386-linux-gnu $JLAB_SOFTWARE/mysql/lib
-		else if($arch == "64") then
-			ln -sfn /usr/lib/x86_64-linux-gnu $JLAB_SOFTWARE/mysql/lib
-		endif
+		ln -sfn /usr/lib/x86_64-linux-gnu $JLAB_SOFTWARE/mysql/lib
 	endif
 endif
 

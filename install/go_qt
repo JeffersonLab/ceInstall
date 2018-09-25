@@ -5,7 +5,6 @@ source get_coptions env
 set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions 
 
 # Options, Screen Log, Warnings
-set arch     = `$getCoptions arch`
 set release  = `$getCoptions release`
 set repo     = `$getCoptions repo`/qt
 

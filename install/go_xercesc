@@ -13,13 +13,12 @@ set release  = `$getCoptions release`
 set repo     = `$getCoptions repo`/xercesc
 set version  = $XERCESC_VERSION
 set filename = xerces-c-$XERCESC_VERSION".tar.gz"
-set arch     = `$getCoptions arch`
 set opt      = `$getCoptions copt`
 set blog     = `$getCoptions logFile xercesc`
 set blogS    = `$getCoptions logFileS xercesc`
 
 # Write options on screen
-$getCoptions log $name $version $filename $release $arch $opt
+$getCoptions log $name $version $filename $release $opt
 
 if($1 == "src"|| $1 == "make") goto $1
 

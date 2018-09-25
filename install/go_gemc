@@ -10,13 +10,12 @@ set release  = `$getCoptions release`
 set repo     = `$getCoptions repo`/gemc
 set version  = $GEMC_VERSION
 set filename =  gemc"-"$GEMC_VERSION".tar.gz"
-set arch     = `$getCoptions arch`
 set opt      = `$getCoptions copt`
 set blog     = `$getCoptions logFile gemc`
 set blogS    = `$getCoptions logFileS gemc`
 
 # Write options on screen
-$getCoptions log $name $version $filename $release $arch $opt
+$getCoptions log $name $version $filename $release $opt
 
 if($1 == "src"|| $1 == "make") goto $1
 
