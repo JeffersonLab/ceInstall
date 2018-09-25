@@ -1,10 +1,5 @@
 email list in jlab_software contacts
 
-In the email add links to http://data.jlab.org to both:
-
-1. JLab Physics Software Libraries
-2. http://data.jlab.org
-
 Hi all,
 
 Please find below the announcement for new release of the Scientific Computing Physics Libraries.
@@ -31,7 +26,14 @@ Production tag 2.3 of the JLab Physics Software Libraries will be available on O
 - xercesc:      stays 3.2.0
 
 New "softenv" scripts are available to setup the environment.
-The "production" scripts will not be deleted but will no longer be maintained.
+Version 2.3 comes with the possibility of selecting a subset of the supported libraries by
+listing them in a ~/.jlab_software user file. For example, for geant4 only support, that file would read:
+
+   clhep geant4 qt xercesc
+
+The complete set of supported libraries is:
+
+banks ccdb clhep evio geant4 gemc jana mlibrary mysql qt root scons xercesc
 
 Please note:
 - The "development" tag may upgrade individual packages to newer versions as they are released.

@@ -94,7 +94,7 @@ else
 	echo
 
 	rm $filename
-	wget -qc --show-progress $repo/$filename
+	wget $repo/$filename
 	chmod u+x $filename
 
 	echo Download Successfull. Please execute:

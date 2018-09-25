@@ -5,6 +5,7 @@
 9/25/18
 - removed 32 bit support
 - preparing Announcement for 2.3
+- aliasing wget is different on Linux or Darwin. Moving -qc and show-progress options to the alias
 
 9/24/18
 - formatting go_tar exclude from tar

@@ -6,9 +6,14 @@ if($1 == "release"|| $1 == "copt" || $1 == "log"  || $1 == "repo" || $1 == "dir"
 endif
 
 
-# Additional environment
+# Additional environment: disabling checking
 env:
-	alias wget "wget --no-check-certificate"
+# Linux: -c = do not get file if already done.
+	if (`uname` == "Linux") then
+		alias wget "wget -c --no-check-certificate"
+	else if (`uname` == "Darwin") then
+		alias wget "wget -wc --show-progress --no-check-certificate"
+	endif
 if($1 == "env") exit
 
 
@@ -147,7 +152,7 @@ getAndUnpack:
 	echo
 	echo " > Downloading" $3"..."
 	rm -f      $3
-	wget -qc --show-progress $2/$3
+	wget $2/$3
 	echo " > Unpacking" $3"..."
 	tar -zxpf  $3
 	echo
@@ -161,7 +166,7 @@ getAndUnpackTo:
 	echo
 	echo " > Downloading" $3"..."
 	rm -f      $3
-	wget -qc --show-progress $2/$3
+	wget $2/$3
 	echo " > Unpacking" $3"..."
 	tar -zxpf  $3 --strip-components 1 -C $4
 	echo

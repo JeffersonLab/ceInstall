@@ -13,7 +13,8 @@ rm -rf ce install sbsInstall
 
 echo Re-installing scripts for version $JLAB_VERSION
 
-wget -qc --show-progress http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_$JLAB_VERSION.tar.gz
+rm -f ceInstall_$JLAB_VERSION.tar.gz
+wget -c http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_$JLAB_VERSION.tar.gz
 mkdir ceInstall
 tar -zxpf ceInstall_$JLAB_VERSION.tar.gz --strip-components 1 -C ceInstall
 mv ceInstall/* .

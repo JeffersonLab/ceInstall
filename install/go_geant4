@@ -54,7 +54,7 @@ data:
 	echo
 	echo " > Dowloading data"
 	foreach df ($DATAFILES)
-		wget -qc --show-progress $repo/geant4_data/$GEANT4_VERSION/$df
+		wget $repo/geant4_data/$GEANT4_VERSION/$df
 	end
 
 	set file = (`\ls *.tar.gz`)
