@@ -45,7 +45,8 @@ data:
 	set DATAINSTALL = $G4INSTALL/data/Geant4-$G4DATA_VERSION/data
 
 	# get the file list manually. WARNING: This is linked to the geant4 version.
-	set DATAFILES = (G4ABLA.3.1.tar.gz G4EMLOW.7.3.tar.gz G4ENSDFSTATE.2.2.tar.gz G4NDL.4.5.tar.gz G4NEUTRONXS.1.4.tar.gz G4PII.1.3.tar.gz G4PhotonEvaporation.5.2.tar.gz G4RadioactiveDecay.5.2.tar.gz G4RealSurface.2.1.tar.gz G4SAIDDATA.1.1.tar.gz)
+	# obtain with: ls /u/group/12gev_phys/www/packages/sources/geant4_data/4.10.04.p02/
+	set DATAFILES = (G4ABLA.3.1.tar.gz  G4EMLOW.7.3.tar.gz  G4ENSDFSTATE.2.2.tar.gz  G4NDL.4.5.tar.gz  G4NEUTRONXS.1.4.tar.gz  G4PhotonEvaporation.5.2.tar.gz  G4PII.1.3.tar.gz  G4RadioactiveDecay.5.2.tar.gz  G4RealSurface.2.1.tar.gz  G4SAIDDATA.1.1.tar.gz)
 
 	$getCoptions removeAndCreate $DATAINSTALL
 	cd $DATAINSTALL
@@ -53,7 +54,7 @@ data:
 	echo
 	echo " > Dowloading data"
 	foreach df ($DATAFILES)
-		$mwget $repo/geant4_data/$GEANT4_VERSION/$df
+		$getCoptions download $repo/../geant4_data/$GEANT4_VERSION $df
 	end
 
 	set file = (`\ls *.tar.gz`)

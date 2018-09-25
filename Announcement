@@ -31,12 +31,16 @@ listing them in a ~/.jlab_software user file. For example, for geant4 only suppo
 
    clhep geant4 qt xercesc
 
+Version 2.3 re-introduce the system-qt default: users can use their existing qt installation. If users need to use the offline qt installer they can
+still do so by setting the environment variable QT_VERSION.
+
 The complete set of supported libraries is:
 
 banks ccdb clhep evio geant4 gemc jana mlibrary mysql qt root scons xercesc
 
 Please note:
 - The "development" tag may upgrade individual packages to newer versions as they are released.
+- The "production" and "devel" scripts have been removed from /site. Please use the softenv scripts instead.
 
 
 Instructions for the JLab interactive nodes ifarm1401 or ifarm1402

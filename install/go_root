@@ -33,6 +33,8 @@ if($1 == "perm") then
 	mkdir root
 	chgrp -R 12gev_phys root
 	chmod -R 775 root
+	cd root
+	echo install root version $ROOT_VERSION in `pwd`
 	exit
 endif
 
