@@ -11,7 +11,6 @@
 # make
 
 # Additional settings at the top of get_coptions
-source get_coptions env
 set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions 
 
 # Options
@@ -54,7 +53,7 @@ data:
 	echo
 	echo " > Dowloading data"
 	foreach df ($DATAFILES)
-		wget $repo/geant4_data/$GEANT4_VERSION/$df
+		$mwget $repo/geant4_data/$GEANT4_VERSION/$df
 	end
 
 	set file = (`\ls *.tar.gz`)

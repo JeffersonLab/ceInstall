@@ -4,7 +4,6 @@
 # /u/group/clas/www/clasweb/html/12gev/field_maps
 
 # Additional settings at the top of get_coptions
-source get_coptions env
 set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions 
 
 # Magnetic Fields Maps Installation
@@ -13,8 +12,8 @@ mkdir -p $JLAB_ROOT/noarch/data
 cd       $JLAB_ROOT/noarch/data
 rm -rf srr* clas12*
 
-wget http://clasweb.jlab.org/12gev/field_maps/clas12SolenoidFieldMap.dat
-wget http://clasweb.jlab.org/12gev/field_maps/TorusSymmetric.dat
+$mwget http://clasweb.jlab.org/12gev/field_maps/clas12SolenoidFieldMap.dat
+$mwget http://clasweb.jlab.org/12gev/field_maps/TorusSymmetric.dat
 echo " > done."
 echo
 

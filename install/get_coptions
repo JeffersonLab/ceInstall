@@ -1,20 +1,17 @@
 #!/bin/csh -f
 
-
-if($1 == "release"|| $1 == "copt" || $1 == "log"  || $1 == "repo" || $1 == "dir" || $1 == "env" || $1 == "cmakev" ||  $1 == "logFile" || $1 == "logFileS" || $1 == "logStart" || $1 == "logEnd"  ||  $1 == "logTime" || $1 == "removeAndCreate" || $1 == "getAndUnpack" ||  $1 == "getAndUnpackTo" || $1 == "installLog") then
-	goto $1
+# Linux: -c = do not get file if already done.
+if (`uname` == "Linux") then
+	set mwget = "wget -c --no-check-certificate"
+# Mac: makes it quite and show nice progress
+else if (`uname` == "Darwin") then
+	set mwget = "wget -qc --show-progress --no-check-certificate"
 endif
 
 
-# Additional environment: disabling checking
-env:
-# Linux: -c = do not get file if already done.
-	if (`uname` == "Linux") then
-		alias wget "wget -c --no-check-certificate"
-	else if (`uname` == "Darwin") then
-		alias wget "wget -wc --show-progress --no-check-certificate"
-	endif
-if($1 == "env") exit
+if($1 == "release"|| $1 == "copt" || $1 == "log"  || $1 == "repo" || $1 == "dir" || $1 == "cmakev" ||  $1 == "logFile" || $1 == "logFileS" || $1 == "logStart" || $1 == "logEnd"  ||  $1 == "logTime" || $1 == "removeAndCreate" || $1 == "getAndUnpack" ||  $1 == "getAndUnpackTo" || $1 == "installLog") then
+	goto $1
+endif
 
 
 # Release
@@ -152,7 +149,7 @@ getAndUnpack:
 	echo
 	echo " > Downloading" $3"..."
 	rm -f      $3
-	wget $2/$3
+	$mwget $2/$3
 	echo " > Unpacking" $3"..."
 	tar -zxpf  $3
 	echo
@@ -166,7 +163,7 @@ getAndUnpackTo:
 	echo
 	echo " > Downloading" $3"..."
 	rm -f      $3
-	wget $2/$3
+	$mwget $2/$3
 	echo " > Unpacking" $3"..."
 	tar -zxpf  $3 --strip-components 1 -C $4
 	echo

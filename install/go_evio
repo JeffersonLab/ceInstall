@@ -11,7 +11,6 @@
 # gzip evio-$version.tar
 # scp evio-$version.tar.gz ftp:/u/group/12gev_phys/www/packages/sources/evio
 
-source get_coptions env
 set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions 
 
 # Options
