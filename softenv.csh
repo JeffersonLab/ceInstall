@@ -8,12 +8,14 @@ setenv JLAB_ROOT /site/12gev_phys
 if($1 != "2.3" && $1 != "2.2" && $1 != "2.1" && $1 != "2.0" && $1 != "devel") then
 	echo
 	echo "  Usage:  'source $JLAB_ROOT/softenv.csh <version>'"
-	echo "    Supported Versions: "
-	echo "     - 2.3 "
-	echo "     - 2.2 "
-	echo "     - 2.1 "
-	echo "     - 2.0 "
-	echo "     - devel "
+	echo
+	echo "  Supported Versions: "
+	echo
+	echo "   - 2.3 "
+	echo "   - 2.2 (production)"
+	echo "   - 2.1 "
+	echo "   - 2.0 "
+	echo "   - devel "
 	echo; echo
 	exit
 endif
@@ -24,8 +26,9 @@ setenv JLAB_VERSION $1
 set OVERWRITE="yes"  # will overwrite user settings
 
 # version 2.3 at JLAB has the QT_VERSION set to 5.10.1
-if($1 == "2.3")
+if( $1 == "2.3" ) then
 	setenv QT_VERSION 5.10.1
+	set OVERWRITE=keepmine
 endif
 
 if( "$2" == "keepmine") then

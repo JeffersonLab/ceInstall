@@ -16,6 +16,7 @@
 - added geant4 data default env and utils to print out settings in printVersion.csh
 - updated jana package name
 - 2.3 release finalized
+- better log of softenv
 
 9/25/18
 - removed 32 bit support

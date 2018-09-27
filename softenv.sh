@@ -26,16 +26,18 @@ case "$JLAB_VERSION" in
     ;;
 
   *)
-    echo
-    echo "  Usage:  'source $JLAB_ROOT/softenv.sh <version>'"
-    echo "    Supported Versions: "
-	 echo "     - 2.3 "
-    echo "     - 2.2 "
-    echo "     - 2.1 "
-    echo "     - 2.0 "
-    echo "     - devel "
-    echo; echo
-    return 1
+	echo
+	echo "  Usage:  'source $JLAB_ROOT/softenv.csh <version>'"
+	echo
+	echo "  Supported Versions: "
+	echo
+	echo "   - 2.3 "
+	echo "   - 2.2 (production)"
+	echo "   - 2.1 "
+	echo "   - 2.0 "
+	echo "   - devel "
+	echo; echo
+   return 1
     ;;
 esac
 
