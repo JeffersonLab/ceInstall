@@ -2,6 +2,9 @@
  List of changes
  ---------------
 
+9/27/18
+- gemc moved to github release mechanism
+
 9/25/18
 - removed 32 bit support
 - preparing Announcement for 2.3

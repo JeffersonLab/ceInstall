@@ -22,6 +22,9 @@ set option  = $3
 set remoted = "ftp.jlab.org:/u/group/12gev_phys/www/packages/sources"
 set locald  = /opt/projects
 
+# delete, make dir and cd to it
+# defined in myenv but we do not source it here (-f option to this script)
+alias mcd 'rm -rf \!*; mkdir -p \!* ; cd \!*'
 
 echo
 echo " Package: " $pname ", version: " $pver
@@ -121,15 +124,17 @@ if($pname == "gemc") then
 		cd $locald/gemc/releases/
 		rm -rf devel ; cp -r ../source devel
 	endif
-	cd $locald/gemc/releases/$pver
-	scons -c ;
+	mcd $locald/gemc/tmp
+	wget -qc --show-progress https://github.com/gemc/source/archive/v$pver.tar.gz -O gemc_$pver.tar.gz
+	tar -zxpvf gemc_$pver.tar.gz
+	rm gemc_$pver.tar.gz
+	cd source-$pver
 	cp -r $locald/gemc/api .
-	cd $locald/gemc/releases
-	rm -rf gemc-$pver.*
-	tar cvf gemc-$pver.tar $excludeFromTar $pver
-	gzip gemc-$pver.tar
-	scp gemc-$pver.tar.gz $remoted/gemc
-	rm -rf $locald/gemc/releases/$pver/api
+	cd ..
+	tar cvf gemc_$pver.tar.gz source-$pver
+	scp gemc_$pver.tar.gz $remoted/gemc
+	cd ..
+	rm -rf tmp
 	exit
 endif
 

@@ -162,7 +162,7 @@ getAndUnpack:
 	rm -f     $3
 	$mwget $2/$3
 	echo " > Unpacking" $3"..."
-	tar -zxpf  $3
+	tar -zxpf $3
 	echo
 if($1 == "getAndUnpack") exit
 
@@ -173,10 +173,10 @@ if($1 == "getAndUnpack") exit
 getAndUnpackTo:
 	echo
 	echo " > Downloading" $3"..."
-	rm -f      $3
+	rm -f     $3
 	$mwget $2/$3
 	echo " > Unpacking" $3"..."
-	tar -zxpf  $3 --strip-components 1 -C $4
+	tar -zxpf $3 --strip-components 1 -C $4
 	echo
 if($1 == "getAndUnpackTo") exit
 
