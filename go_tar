@@ -132,7 +132,8 @@ if($pname == "gemc") then
 	cd source-$pver
 	cp -r $locald/gemc/api .
 	cd ..
-	tar cvf gemc-$pver.tar.gz source-$pver
+	tar cvf gemc-$pver.tar source-$pver
+	gzip gemc-$pver.tar
 	scp gemc-$pver.tar.gz $remoted/gemc
 	cd ..
 	rm -rf tmp
@@ -162,6 +163,7 @@ endif
 
 
 # mlibrary
+# notice: cadmesh from github "master" is not compiling properly. Use version 1.1
 if($pname == "mlibrary") then
 
 	# to use development for next release
