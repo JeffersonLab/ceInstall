@@ -2,8 +2,20 @@
  List of changes
  ---------------
 
+
+
+.. Note::
+	9/27/18 ceInstall tag 2.3
+
+|
+
+
 9/27/18
 - gemc moved to github release mechanism
+- at JLAB QT_VERSION is 5.10.1 not the system
+- added geant4 data default env and utils to print out settings in printVersion.csh
+- updated jana package name
+- 2.3 release finalized
 
 9/25/18
 - removed 32 bit support

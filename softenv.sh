@@ -29,14 +29,19 @@ case "$JLAB_VERSION" in
     echo
     echo "  Usage:  'source $JLAB_ROOT/softenv.sh <version>'"
     echo "    Supported Versions: "
-    echo "     - 2.0 "
-    echo "     - 2.1 "
+	 echo "     - 2.3 "
     echo "     - 2.2 "
+    echo "     - 2.1 "
+    echo "     - 2.0 "
     echo "     - devel "
     echo; echo
     return 1
     ;;
 esac
+
+if [ "${JLAB_ROOT}" == "2.3" ]; then
+	export QT_VERSION=5.10.1
+endif
 
 config_sh="${JLAB_ROOT}/${JLAB_VERSION}/ce/jlab.sh"
 

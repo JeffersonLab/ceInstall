@@ -20,12 +20,13 @@ Production tag 2.3 of the JLab Physics Software Libraries will be available on O
 - gemc:         2.6 > 2.7
 - jana:         0.7.7p1 > 0.8.0
 - mlibrary:     1.2 > 1.3
-- qt:           5.9.1 to system defaults
+- qt:           5.9.1 to system defaults (currently 5.10.1 on most systems)
 - root:         6.12.06 > 6.14.04
 - scons build:  1.6 > 1.7
 - xercesc:      stays 3.2.0
 
-New "softenv" scripts are available to setup the environment.
+The "softenv" scripts are available to setup the environment, replacing the deprecated production scripts.
+
 Version 2.3 comes with the possibility of selecting a subset of the supported libraries by
 listing them in a ~/.jlab_software user file. For example, for geant4 only support, that file would read:
 
@@ -40,7 +41,6 @@ banks ccdb clhep evio geant4 gemc jana mlibrary mysql qt root scons xercesc
 
 Please note:
 - The "development" tag may upgrade individual packages to newer versions as they are released.
-- The "production" and "devel" scripts have been removed from /site. Please use the softenv scripts instead.
 
 
 Instructions for the JLab interactive nodes ifarm1401 or ifarm1402

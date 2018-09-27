@@ -22,6 +22,12 @@ endif
 setenv JLAB_VERSION $1
 
 set OVERWRITE="yes"  # will overwrite user settings
+
+# version 2.3 at JLAB has the QT_VERSION set to 5.10.1
+if($1 == "2.3")
+	setenv QT_VERSION 5.10.1
+endif
+
 if( "$2" == "keepmine") then
 	set OVERWRITE=keepmine
 endif

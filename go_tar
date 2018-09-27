@@ -67,7 +67,7 @@ if($pname == "ceInstall") then
 	cd $locald/ceInstall
 
 	# html instructions: these are the ones in the local dir, not coming from the git release
-	rm sbsInstall/$pver"_install.html"
+	rm -f sbsInstall/$pver"_install.html"
 	sed "s/vvversiontoreplaceee/$pver/g" sbsInstall/template_install.html > sbsInstall/$pver"_install.html"
 	scp sbsInstall/* $remoted/ceInstall/
 	scp sbsInstall/.jlab_software $remoted/ceInstall/
@@ -117,6 +117,7 @@ endif
 
 # gemc
 # copying API in gemc
+# notice the github tag has _ but we turned it into -
 if($pname == "gemc") then
 	if($pver == "devel") then
 		cd $GEMC
@@ -131,8 +132,8 @@ if($pname == "gemc") then
 	cd source-$pver
 	cp -r $locald/gemc/api .
 	cd ..
-	tar cvf gemc_$pver.tar.gz source-$pver
-	scp gemc_$pver.tar.gz $remoted/gemc
+	tar cvf gemc-$pver.tar.gz source-$pver
+	scp gemc-$pver.tar.gz $remoted/gemc
 	cd ..
 	rm -rf tmp
 	exit

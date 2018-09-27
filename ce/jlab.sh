@@ -12,8 +12,8 @@
 # Maintainer:  Brad Sawatky <brads@jlab.org>  (Nov 17, 2016)
 #   - rework of script by Maurik Holtop
 
-# set JLAB_VERSION to devel if it's not set yet
-: ${JLAB_VERSION=devel}
+# set JLAB_VERSION to the wanted tag if it's not set yet
+: ${JLAB_VERSION=2.3}
 
 TMPF=`mktemp`
 tcsh ${TCSH_ARG} -c "source ${JLAB_ROOT}/${JLAB_VERSION}/ce/jlab.csh $1; printenv" | perl -e '

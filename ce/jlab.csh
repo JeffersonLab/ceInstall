@@ -6,12 +6,12 @@ if($1 == "keepmine") then
 endif
 
 if( ! $?JLAB_VERSION) then
-	setenv JLAB_VERSION devel
+	setenv JLAB_VERSION 2.3
 endif
 
 # Get date from:
 # git log -1
-set CE_DATE = "(Wed April 10 2018)"
+set CE_DATE = "(Wed October 3 2018)"
 
 
 setenv PATH $JLAB_ROOT/$JLAB_VERSION/ce:$PATH

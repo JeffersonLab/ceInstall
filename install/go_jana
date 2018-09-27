@@ -13,7 +13,7 @@ set name     = jana
 set release  = `$getCoptions release`
 set repo     = `$getCoptions repo`/jana
 set version  = $JANA_VERSION
-set filename =  JANA"-"$JANA_VERSION".tgz"
+set filename =  JANA"-"$JANA_VERSION".tar.gz"
 set opt      = `$getCoptions copt`
 set blog     = `$getCoptions logFile jana`
 set blogS    = `$getCoptions logFileS jana`
@@ -58,15 +58,10 @@ if($1 == "make") exit
 echo " > Done."
 echo
 
-
-
-
-
 # Clean ups
 rm -rf $JANA_HOME/src
 rm -rf $JLAB_SOFTWARE/jana/$filename
 rm -rf $JLAB_SOFTWARE/jana/jana_$JANA_VERSION
-
 
 # Done!
 echo done
