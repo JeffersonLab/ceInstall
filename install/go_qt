@@ -44,12 +44,16 @@ if($QT_VERSION == "system") then
 	# Using system QT for Linux.
 	else if($system == "Linux") then
 
+		# notice: in CentOS qmake doesn't exist, it's actually qmake-qt5.
 		set minorQtVersion = `qmake --version | grep Qt | awk '{print $4}'`
 
 		echo
 		echo System QT, system version $minorQtVersion will be used
-		echo Linking to $SQTDIR installation.
+		echo Linking to $minorQtVersion installation.
 		echo
+
+		rm -rf   $QTDIR
+		mkdir -p $QTDIR
 
 		# RedHat - Fedora - CentOS line
 		if( -f /etc/fedora-release || -f /etc/redhat-release) then
