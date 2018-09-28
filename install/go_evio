@@ -20,8 +20,8 @@ set repo     = `$getCoptions repo`/evio
 set version  = $EVIO_VERSION
 set filename = evio-$EVIO_VERSION".tar.gz"
 set opt      = `$getCoptions copt`
-set blog     = `$getCoptions logFile clhep`
-set blogS    = `$getCoptions logFileS clhep`
+set blog     = `$getCoptions logFile evio`
+set blogS    = `$getCoptions logFileS evio`
 
 # Write options on screen
 $getCoptions log $name $version $filename $release $opt
