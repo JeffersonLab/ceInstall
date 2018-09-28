@@ -12,6 +12,7 @@
 9/28/18
 - fixed go_qt for Linux CentOS flavor
 - fixed go_evio log
+- fixed go_reload for 2.3
 
 9/27/18
 - gemc moved to github release mechanism

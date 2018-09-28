@@ -20,7 +20,7 @@ fi
 
 ## Make sure we use one of the supported versions
 case "$JLAB_VERSION" in
-  2.[012] )  ## Match good versions here
+  2.[0123] )  ## Match good versions here
     ;;
   devel )    ## Match good versions here
     ;;
