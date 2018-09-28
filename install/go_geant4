@@ -117,7 +117,8 @@ make:
 	$getCoptions logStart $blog $blogS
 	echo $g4Options >> $blog
 
-	cmake $x11_option $mt_option $g4Options -DCMAKE_INSTALL_PREFIX=$G4INSTALL -DCMAKE_CXX_FLAGS="$conf_options" $sourceDir  >> $blog
+	# the  -Wno-dev  flag is to ignore the project developers cmake warnings for policy CMP0075
+	cmake -Wno-dev  $x11_option $mt_option $g4Options -DCMAKE_INSTALL_PREFIX=$G4INSTALL -DCMAKE_CXX_FLAGS="$conf_options" $sourceDir  >> $blog
 
 	make $opt    >> $blog
 	make install >> $blog

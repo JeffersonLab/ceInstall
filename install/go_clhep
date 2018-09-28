@@ -44,7 +44,8 @@ make:
 	# log start of compilation
 	$getCoptions logStart $blog $blogS
 
-	cmake -DCMAKE_INSTALL_PREFIX=$CLHEP_BASE_DIR  $sourceDir >> $blog
+	# the  -Wno-dev  flag is to ignore the project developers cmake warnings for policy CMP0075
+	cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=$CLHEP_BASE_DIR  $sourceDir >> $blog
 
 	make $opt    >> $blog
 	make install >> $blog
