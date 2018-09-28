@@ -14,6 +14,7 @@
 - fixed go_evio log
 - fixed go_reload for 2.3
 - added  -Wno-dev to suppress cmake warnings
+- fixed softenv.sh typo
 
 9/27/18
 - gemc moved to github release mechanism

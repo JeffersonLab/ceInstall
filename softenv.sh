@@ -43,7 +43,7 @@ esac
 
 if [ "${JLAB_ROOT}" == "2.3" ]; then
 	export QT_VERSION=5.10.1
-endif
+fi
 
 config_sh="${JLAB_ROOT}/${JLAB_VERSION}/ce/jlab.sh"
 

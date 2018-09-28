@@ -115,6 +115,7 @@ if($1 == "logFileS") exit
 # log start message
 logStart:
 	echo " > Source compilation started on --- " `date` > $2
+	echo " > Source compilation started on --- " `date` 
 	echo " > Compiling source. Log will be in" $3
 if($1 == "logStart") exit
 
