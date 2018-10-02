@@ -11,6 +11,7 @@
 
 10/02/18
 - fixed get_coptions logFile and logFileS if needed else ifs
+- xercesc version increased to 3.2.2. Splitting env lib/lib64 check for Darwin/Linux
 
 9/28/18
 - fixed go_qt for Linux CentOS flavor
