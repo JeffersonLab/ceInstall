@@ -80,35 +80,53 @@ if($1 == "cmakev") exit
 
 # log file for each system
 logFile:
-
-	if($2 == "clhep")    echo "$CLHEP_BASE_DIR/build_log"
-	if($2 == "xercesc")  echo "$XERCESCROOT/build_log"
-	if($2 == "geant4")   echo "$G4INSTALL/build_log"
-	if($2 == "ccdb")     echo "$CCDB_HOME/build_log"
-	if($2 == "evio")     echo "$EVIO/build_log"
-	if($2 == "mlibrary") echo "$MLIBRARY/build_log"
-	if($2 == "gemc")     echo "$GEMC/build_log"
-	if($2 == "root")     echo "$ROOTSYS/build_log"
-	if($2 == "banks")    echo "$JLAB_SOFTWARE/banks/$BANKS_VERSION/build_log"
-	if($2 == "jana")     echo "$JANA_HOME/build_log"
-
+	if($2 == "clhep") then
+		echo "$CLHEP_BASE_DIR/build_log"
+	else if($2 == "xercesc") then
+		echo "$XERCESCROOT/build_log"
+	else if($2 == "geant4")   then
+		echo "$G4INSTALL/build_log"
+	else if($2 == "ccdb")     then
+		echo "$CCDB_HOME/build_log"
+	else if($2 == "evio")     then
+		echo "$EVIO/build_log"
+	else if($2 == "mlibrary") then
+		echo "$MLIBRARY/build_log"
+	else if($2 == "gemc")     then
+		echo "$GEMC/build_log"
+	else if($2 == "root")     then
+		echo "$ROOTSYS/build_log"
+	else if($2 == "banks")    then
+		echo "$JLAB_SOFTWARE/banks/$BANKS_VERSION/build_log"
+	else if($2 == "jana") then
+		echo "$JANA_HOME/build_log"
+	endif
 if($1 == "logFile") exit
 
 
 # log file for each system - with env variable as path
 logFileS:
-
-	if($2 == "clhep")    echo \$CLHEP_BASE_DIR/"build_log"
-	if($2 == "xercesc")  echo \$XERCESCROOT/"build_log"
-	if($2 == "geant4")   echo \$G4INSTALL/"build_log"
-	if($2 == "ccdb")     echo \$CCDB_HOME/"build_log"
-	if($2 == "evio")     echo \$EVIO/"build_log"
-	if($2 == "mlibrary") echo \$MLIBRARY/"build_log"
-	if($2 == "gemc")     echo \$GEMC/"build_log"
-	if($2 == "root")     echo \$ROOTSYS/"build_log"
-	if($2 == "banks")    echo \$JLAB_SOFTWARE/"banks/$BANKS_VERSION/build_log"
-	if($2 == "jana")     echo \$JANA_HOME/"build_log"
-
+	if($2 == "clhep") then
+		echo \$CLHEP_BASE_DIR/"build_log"
+	else if($2 == "xercesc") then
+		echo \$XERCESCROOT/"build_log"
+	else if($2 == "geant4")   then
+		echo \$G4INSTALL/"build_log"
+	else if($2 == "ccdb")     then
+		echo \$CCDB_HOME/"build_log"
+	else if($2 == "evio")     then
+		echo \$EVIO/"build_log"
+	else if($2 == "mlibrary") then
+		echo \$MLIBRARY/"build_log"
+	else if($2 == "gemc")     then
+		echo \$GEMC/"build_log"
+	else if($2 == "root")     then
+		echo \$ROOTSYS/"build_log"
+	else if($2 == "banks")    then
+		echo \$JLAB_SOFTWARE/"banks/$BANKS_VERSION/build_log"
+	else if($2 == "jana") then
+		echo \$JANA_HOME/"build_log"
+	endif
 if($1 == "logFileS") exit
 
 

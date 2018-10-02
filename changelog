@@ -5,9 +5,12 @@
 
 
 .. Note::
-	9/28/18 ceInstall tag 2.3
+	10/02/18 ceInstall tag 2.3
 
 |
+
+10/02/18
+- fixed get_coptions logFile and logFileS if needed else ifs
 
 9/28/18
 - fixed go_qt for Linux CentOS flavor
