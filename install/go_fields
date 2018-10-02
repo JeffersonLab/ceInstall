@@ -12,7 +12,7 @@ mkdir -p $JLAB_ROOT/noarch/data
 cd       $JLAB_ROOT/noarch/data
 rm -rf srr* clas12*
 
-$mwget http://clasweb.jlab.org/12gev/field_maps/clas12SolenoidFieldMap.dat
+$mwget http://clasweb.jlab.org/12gev/field_maps/clas12NewSolenoidFieldMap.dat
 $mwget http://clasweb.jlab.org/12gev/field_maps/TorusSymmetric.dat
 echo " > done."
 echo
