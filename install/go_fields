@@ -6,6 +6,15 @@
 # Additional settings at the top of get_coptions
 set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions 
 
+# Linux: -c = do not get file if already done.
+if (`uname` == "Linux") then
+	set mwget = "wget -c -nv --no-check-certificate"
+# Mac: makes it quite and show nice progress
+else if (`uname` == "Darwin") then
+	set mwget = "wget -qc --show-progress --no-check-certificate"
+endif
+
+
 # Magnetic Fields Maps Installation
 echo " > Getting maps from the repository."
 mkdir -p $JLAB_ROOT/noarch/data
