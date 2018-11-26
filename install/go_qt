@@ -73,7 +73,7 @@ if($QT_VERSION == "system") then
 		# Ubuntu line NEEDS TO BE VERIFIED
 		else if( -f /etc/os-release) then
 
-			set LQTDIR = /usr/x86_64-linux-gnu # libraries like libQt5Xml.so
+			set LQTDIR = /usr/lib/x86_64-linux-gnu # libraries like libQt5Xml.so
 			set IQTDIR = /usr/include/qt5      # includes
 			set SQTDIR = $LQTDIR/qt5           # binaries, mkspecs and plugins
 
