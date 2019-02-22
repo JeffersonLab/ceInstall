@@ -42,6 +42,10 @@ Remember that go_tar supports the "local" third option to create a "debug" tar f
 - scons_bm
 
 
+Location to copy the tar.gz files:
+
+/u/group/12gev_phys/www/packages/sources
+
 NOTES:
 
 - go_tar ceInstall will generate the _install.html based on the release number
