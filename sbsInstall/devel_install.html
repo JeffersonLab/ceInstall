@@ -28,14 +28,14 @@
 		<li> Sierra</li>
 		<li> High Sierra</li>
 	</ul>
-	<br>
-	These are instructions to install JLAB_VERSION devel. You can find supported JLAB_VERSION releases instructions below:<br>
+	<br/>
+	These are instructions to install JLAB_VERSION devel. You can find supported JLAB_VERSION releases instructions below:<br/>
 	<ul>
-		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/devel_install.html"> Development Version</a><br></li>
-		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.3_install.html"> Version 2.3</a><br></li>
-		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.2_install.html"> Version 2.2</a><br></li>
-		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.1_install.html"> Version 2.1</a><br></li>
-		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.0_install.html"> Version 2.0</a><br></li>
+		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/devel_install.html"> Development Version</a><br/></li>
+		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.3_install.html"> Version 2.3</a><br/></li>
+		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.2_install.html"> Version 2.2</a><br/></li>
+		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.1_install.html"> Version 2.1</a><br/></li>
+		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.0_install.html"> Version 2.0</a><br/></li>
 	</ul>
 	
 	<hr>
@@ -65,23 +65,17 @@ xcode-select --install
 		
 		<div class="row">
 			<a href="#hide1" class="hide" id="hide1">List of packages</a>
-			<a href="#show1" class="show" id="show1">Collapse List</a>
+			<a href="#show1" class="show" id="show1">Collapse List</a><br/>
 			<div class="list">
 				<ul>
-					<li>brew install wget</li>
-					<li>brew install scons*</li>
-					<li>brew install cmake</li>
-					<li>brew install mysql</li>
-					<li>brew install openssl</li>
-					Recommended: the system version of qt):
-					<li>brew install qt</li>
-					<br><br>* if you are on High Sierra, brew will install scons3. Not good, CCDB scons does not support it. Go to https://sourceforge.net/projects/scons/files/scons/2.5.1/ instead and use
+					<li>brew install wget cmake mysql openssl qt</li><br/>
+               <li>scons: * if you are on High Sierra, brew will install scons3. Not good, CCDB scons does not support it. Go to https://sourceforge.net/projects/scons/files/scons/2.5.1/ instead and use<br/><br/>
 					<pre>
-						python setup.py install
+python setup.py install
 					</pre>
-					inside the untarred 2.5.1 dir.
-					<br><br>You can upgrade a package by using "upgrade" instead of "install"
-					<br><br>Notice: mysql56 or mysql@56 are no longer supported. If you have it installed, please issue the command:  brew remove homebrew/versions/mysql56
+					inside the untarred 2.5.1 dir.</li><br/>
+					<li>You can upgrade a package by using "upgrade" instead of "install"</li>
+					<li>Notice: mysql56 or mysql@56 are no longer supported. If you have it installed, please issue the command:  brew remove homebrew/versions/mysql56 </li>
 				</ul>
 			</div>
 		</div>
@@ -101,22 +95,8 @@ xcode-select --install
 			<a href="#show2" class="show" id="show2">Collapse List</a>
 			<div class="list">
 				<ul>
-					<li>sudo apt-get install g++</li>
-					<li>sudo apt-get install mysql-client</li>
-					<li>sudo apt-get install libmysqlclient-dev</li>
-					<li>sudo apt-get install libX11-dev</li>
-					<li>sudo apt-get install libxext-dev</li>
-					<li>sudo apt-get install libglu1-mesa-dev</li>
-					<li>sudo apt-get install libxt-dev</li>
-					<li>sudo apt-get install libxmu-dev</li>
-					<li>sudo apt-get install libxrender-dev</li>
-					<li>sudo apt-get install libexpat1-dev</li>
-					<li>sudo apt-get install libxft-dev</li>
-					<li>sudo apt-get install tcsh</li>
-					<li>sudo apt-get install cmake</li>
-					<li>sudo apt-get install git</li>
-					<li>sudo apt-get install libafterimage-dev</li>
-					<li>sudo apt-get install scons</li>
+					<li>sudo apt-get install g++ mysql-client libmysqlclient-dev libexpat1-dev tcsh cmake git scons</li>
+					<li>sudo apt-get install libx11-dev libxext-dev libglu1-mesa-dev libxt-dev libxmu-dev libxrender-dev libxft-dev libafterimage-dev </li>
 				</ul>
 			</div>
 		</div>
@@ -134,13 +114,9 @@ xcode-select --install
 			<a href="#show3" class="show" id="show3">Collapse List</a>
 			<div class="list">
 				<ul>
-					<li>dnf install gcc-c++</li>
-					<li>dnf install libx11-devel</li>
-					<li>dnf install mesa-libGLU-devel</li>
-					<li>dnf install libXmu-devel</li>
-					<li>dnf install expat-devel</li>
-					<li>dnf install zlib-devel</li>
-					<li>dnf install community-mysql-embedded-mysql <br/>(the mysql package name may vary depends on the OS, you can dnf yum search mysql to find out the available version)</li><br>
+					<li>dnf install gcc-c++ expat-devel zlib-devel</li>
+					<li>dnf install libx11-devel mesa-libGLU-devel libXmu-devel </li>
+					<li>dnf install community-mysql-embedded-mysql <br/>(the mysql package name may vary depends on the OS, you can dnf yum search mysql to find out the available version)</li><br/>
 					Recommended: the system version of qt:
 					<li>dnf install qt5-qtbase qt5-qtbase-devel qt5-qtwebkit qt5-qtwebkit-devel qt5-qtx11extras qt5-qtbase-mysql</li>
 					
@@ -150,7 +126,7 @@ xcode-select --install
 		<br/>
 		
 	</ul>
-	<br>
+	<br/>
 	<hr>
 	
 	<h1> Installation:</h1>
@@ -164,15 +140,15 @@ xcode-select --install
 banks ccdb clhep evio geant4 gemc jana mlibrary mysql qt root scons xercesc
 			</code></pre>
 			Click <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/.jlab_software"> here </a> for a version of .jlab_software
-			that only has clhep, geant4, qt and xercesc. <br>
-			<h4>Only the packages inside <i>.jlab_software</i> will be considered when setting the environment.</h4><br>
+			that only has clhep, geant4, qt and xercesc. <br/>
+			<h4>Only the packages inside <i>.jlab_software</i> will be considered when setting the environment.</h4><br/>
 
 		</li>
 
 
 		<li>
-			Choose a place to install the software. This place will be called JLAB_ROOT.  <br><br>
-			A standard (but not necessary) choice for <b>JLAB_ROOT</b> is <b> /opt/jlab_software</b>:<br>
+			Choose a place to install the software. This place will be called JLAB_ROOT.  <br/><br/>
+			A standard (but not necessary) choice for <b>JLAB_ROOT</b> is <b> /opt/jlab_software</b>:<br/>
 			
 			<pre><code>
 set JLAB_ROOT=/opt/jlab_software
@@ -209,7 +185,7 @@ source $JLAB_ROOT/devel/ce/jlab.csh
 		
 		<li>Start a new shell. Now you should see a log similar to this
 			<pre>
-> Common Environment Version: <devel>  (Mon September 24 2018)
+> Common Environment Version: <devel>  (Wed October 3 2018)
 > Running as mauri on 1.800.gemc.org
 > OS Release:    Darwin_macosx10.13-x86_64-clang10.0.0
 > JLAB_ROOT set to:     /opt/jlab_software
@@ -231,9 +207,9 @@ source $JLAB_ROOT/devel/ce/jlab.csh
 			</pre>
 			
 		</li>
-		If you do, great! The enviroment seems correct and you're ready to run the installation scripts. Every script that you run below will replace the warning log with a successful one.<br>
+		If you do, great! The enviroment seems correct and you're ready to run the installation scripts. Every script that you run below will replace the warning log with a successful one.<br/>
 		Notice: if you already have some existing environment variables that you want to keep,
-		use the option "keepmine":<br>
+		use the option "keepmine":<br/>
 		<pre><code>
 source $JLAB_ROOT/devel/ce/jlab.csh keepmine
 		</code></pre>
@@ -247,7 +223,7 @@ cd $JLAB_ROOT/devel/install
 ./go_clhep
 ./go_xercesc
 ./go_qt
-(see notes below on non system-qt installation)
+(see notes below for non system-qt installation)
 ./go_geant4
 ./go_sconsscript
 ./go_evio
@@ -260,7 +236,7 @@ cd $JLAB_ROOT/devel/install
 ./go_jana
 			</code></pre>
 			
-			All the packages listed above "go_gemc" are necessary to run gemc. <br><br>
+			All the packages listed above "go_gemc" are necessary to run gemc. <br/><br/>
 		</li>
 
 
@@ -292,23 +268,23 @@ cd $JLAB_ROOT/devel/install
 		</table>
 	</ol>
 	
-	<br>
-	&#8224; (needs fast connection to download the cross section data)   <br>
-	&#8225; you will see a lot of warnings you can ignore related to assimp.  <br>
+	<br/>
+	&#8224; (needs fast connection to download the cross section data)   <br/>
+	&#8225; you will see a lot of warnings you can ignore related to assimp.  <br/>
 	&#8226; The JLab environment is setup to use the system installation of Qt. If you want to install qt using their offline installer, set the environment variable QT_VERSION then use 'keepmine' on the jlab script:
 	<pre><code>
 setenv QT_VERSION 5.10.1
 source $JLAB_ROOT/devel/ce/jlab.csh keepmine
 	</code></pre>
-  <br><br><br>
+  <br/><br/><br/>
 
 	
 	Please email any comments/corrections/bug report/feature requests to <a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">Maurizio Ungaro</a>.
 	
 	
-	<br><br><br>
-	<br><br><br>
-	<br><br><br>
+	<br/><br/><br/>
+	<br/><br/><br/>
+	<br/><br/><br/>
 	
 	
 </html>

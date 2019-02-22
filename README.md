@@ -27,12 +27,13 @@ To release a JLAB_VERSION:
 3. change default JLAB_VERSION in go_reload
 4. make sure versions.env is updated
 5. if necessary add the QT_VERSION tag in softenv.csh and jlab.sh for JLAB.
-6. add the tag in sbsinstall/template alternative installation lines. Notice you need to add that line in devel_install as that one is not overwritten.
-7. Use go_tar ceInstall tag local. 
-8. test installation, copy log in sbsInstall/template_install.html
-9. test installation on docker
-10. after test add github tag. Notice: deleting a github release is not enough: need to delete the tag also.
-11. tag the libraries below. To tag, use v1.4 and 1.4 as release name. Add notes.
+6. make sure the geant4 data versions are correct, in geant4.env AND in go_geant4
+7. add the tag in sbsinstall/template alternative installation lines. Notice you need to add that line in devel_install as that one is not overwritten.
+8. Use go_tar ceInstall tag local. 
+9. test installation, copy log in sbsInstall/template_install.html
+10. test installation on docker
+11. after test add github tag. Notice: deleting a github release is not enough: need to delete the tag also.
+12. tag the libraries below. To tag, use v1.4 and 1.4 as release name. Add notes.
 
 Remember that go_tar supports the "local" third option to create a "debug" tar file instead of using the github tag feature.
 
