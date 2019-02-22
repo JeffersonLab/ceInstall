@@ -100,6 +100,8 @@ logFile:
 		echo "$JLAB_SOFTWARE/banks/$BANKS_VERSION/build_log"
 	else if($2 == "jana") then
 		echo "$JANA_HOME/build_log"
+	else if($2 == "podd") then
+		echo "$PODD/build_log"
 	endif
 if($1 == "logFile") exit
 
@@ -126,6 +128,8 @@ logFileS:
 		echo \$JLAB_SOFTWARE/"banks/$BANKS_VERSION/build_log"
 	else if($2 == "jana") then
 		echo \$JANA_HOME/"build_log"
+	else if($2 == "podd") then
+		echo \$PODD/"build_log"
 	endif
 if($1 == "logFileS") exit
 
