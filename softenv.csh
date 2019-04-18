@@ -11,8 +11,8 @@ if($1 != "2.3" && $1 != "2.2" && $1 != "2.1" && $1 != "2.0" && $1 != "devel") th
 	echo
 	echo "  Supported Versions: "
 	echo
-	echo "   - 2.3 "
-	echo "   - 2.2 (production)"
+	echo "   - 2.3 (production)"
+	echo "   - 2.2 "
 	echo "   - 2.1 "
 	echo "   - 2.0 "
 	echo "   - devel "

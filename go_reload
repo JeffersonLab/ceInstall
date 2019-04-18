@@ -3,7 +3,21 @@
 # This script will delete the current version of ceInstall
 # and re-download them
 
-set JLAB_VERSION=2.3
+# Making sure we use one of the supported versions:
+if($1 != "2.3" && $1 != "devel") then
+	echo
+	echo "  Usage:  'go_reload <version>'"
+	echo
+	echo "  Supported Versions: "
+	echo
+	echo "   - 2.3 "
+	echo "   - devel "
+	echo; echo
+	exit
+endif
+
+
+set JLAB_VERSION=devel
 
 echo
 echo Deleting scripts for version $JLAB_VERSION

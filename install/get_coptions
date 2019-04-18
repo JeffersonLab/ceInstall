@@ -82,24 +82,34 @@ if($1 == "cmakev") exit
 logFile:
 	if($2 == "clhep") then
 		echo "$CLHEP_BASE_DIR/build_log"
+		xterm -geometry 150x40+100+100 -e tail -f $CLHEP_BASE_DIR/build_log
 	else if($2 == "xercesc") then
 		echo "$XERCESCROOT/build_log"
+		xterm -geometry 150x40+100+100 -e tail -f $XERCESCROOT/build_log
 	else if($2 == "geant4")   then
 		echo "$G4INSTALL/build_log"
+		xterm -geometry 150x40+100+100 -e tail -f $G4INSTALL/build_log
 	else if($2 == "ccdb")     then
 		echo "$CCDB_HOME/build_log"
+		xterm -geometry 150x40+100+100 -e tail -f $CCDB_HOME/build_log
 	else if($2 == "evio")     then
 		echo "$EVIO/build_log"
+		xterm -geometry 150x40+100+100 -e tail -f $EVIO/build_log
 	else if($2 == "mlibrary") then
 		echo "$MLIBRARY/build_log"
+		xterm -geometry 150x40+100+100 -e tail -f $MLIBRARY/build_log
 	else if($2 == "gemc")     then
 		echo "$GEMC/build_log"
+		xterm -geometry 150x40+100+100 -e tail -f $GEMC/build_log
 	else if($2 == "root")     then
 		echo "$ROOTSYS/build_log"
+		xterm -geometry 150x40+100+100 -e tail -f $ROOTSYS/build_log
 	else if($2 == "banks")    then
 		echo "$JLAB_SOFTWARE/banks/$BANKS_VERSION/build_log"
+		xterm -geometry 150x40+100+100 -e tail -f $JLAB_SOFTWARE/build_log
 	else if($2 == "jana") then
 		echo "$JANA_HOME/build_log"
+		xterm -geometry 150x40+100+100 -e tail -f $JANA_HOME/build_log
 	endif
 if($1 == "logFile") exit
 
