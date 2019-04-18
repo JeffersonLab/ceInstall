@@ -23,7 +23,7 @@ Both installation and system environment are independent of the location and OS 
 To release a JLAB_VERSION: 
 
 1. change release date in ce/jlab.csh script
-2. change default JLAB_VERSION in jlab.csh and jlab.sh (usually from devel to tag). 
+2. change default JLAB_VERSION in jlab.csh and jlab.sh (usually from devel to tag).  Change (production) on softenv.*
 3. change default JLAB_VERSION in go_reload
 4. make sure versions.env is updated
 5. if necessary add the QT_VERSION tag in softenv.csh and jlab.sh for JLAB.
