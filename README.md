@@ -17,9 +17,6 @@ Installation and environment settings of the following libraries:
 - xercesc
 
 
-Both installation and system environment are independent of the location and OS of the software, provided it is recent enough.
-
-
 To release a JLAB_VERSION: 
 
 1. change release date in ce/jlab.csh script

@@ -8,6 +8,9 @@
 - fixed go_reload with correct argument
 - added xterm command with compilation log
 - fixed documentation
+- changed released date
+- move ccdb ssl note to go_ccdb
+- mlibrary log fix
 
 
 .. Note::

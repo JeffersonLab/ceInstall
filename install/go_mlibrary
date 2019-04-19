@@ -39,13 +39,11 @@ make:
 	# log start of compilation
 	$getCoptions logStart $blog $blogS
 
-	echo
-	echo " > Compiling cadmesh..."
-	echo
-	./compileCmesh
-
 	# start showing log on xterm
 	$getCoptions xLog mlibrary
+
+	# cadmesg
+	./compileCmesh >>  $blog
 
 	# Adding LIBRARY="shared" in case gemc is built as a library
 	scons $opt OPT=1 LIBRARY="shared" >>  $blog

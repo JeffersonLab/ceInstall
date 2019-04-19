@@ -43,7 +43,7 @@ make:
 	$getCoptions logStart $blog $blogS
 
 	# start showing log on xterm
-	$getCoptions xLog clhep
+	$getCoptions xLog ccdb
 
 	cd $JLAB_SOFTWARE/ccdb/ccdb"-"$CCDB_VERSION
 	scons $opt >> $blog
@@ -62,4 +62,11 @@ rm -rf $JLAB_SOFTWARE/ccdb/$filename
 # Done
 echo " > Done."
 echo
+
+
+#
+# if the ssl library is not found in Mojave, for now go to $CCDB_HOME and
+# type scons, then remove ssl and crypto from the command line.
+# remember to mv tmp/Library/libccdb.dylib lib/
+#
 
