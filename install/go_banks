@@ -37,8 +37,10 @@ make:
 	# log start of compilation
 	$getCoptions logStart $blog $blogS
 
-	cd $JLAB_SOFTWARE/banks/$BANKS_VERSION
+	# start showing log on xterm
+	$getCoptions xLog banks
 
+	cd $JLAB_SOFTWARE/banks/$BANKS_VERSION
 	scons $opt OPT=1 >> $blog
 
 	# log end of compilation, total time

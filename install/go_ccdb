@@ -42,6 +42,9 @@ make:
 	# log start of compilation
 	$getCoptions logStart $blog $blogS
 
+	# start showing log on xterm
+	$getCoptions xLog clhep
+
 	cd $JLAB_SOFTWARE/ccdb/ccdb"-"$CCDB_VERSION
 	scons $opt >> $blog
 

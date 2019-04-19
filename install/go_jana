@@ -45,6 +45,9 @@ if($1 == "src") exit
 	setenv BMS_OSNAME $OSRELEASE
 	cd $JLAB_SOFTWARE/jana/JANA-$JANA_VERSION
 
+	# start showing log on xterm
+	$getCoptions xLog jana
+
 	scons $opt install >> $blog
 	mv $BMS_OSNAME/* $JANA_HOME
 

@@ -17,7 +17,7 @@ if($1 != "2.3" && $1 != "devel") then
 endif
 
 
-set JLAB_VERSION=devel
+set JLAB_VERSION=$1
 
 echo
 echo Deleting scripts for version $JLAB_VERSION

@@ -2,6 +2,12 @@
  List of changes
  ---------------
 
+4/19/19
+- added ccdb notes for ssl
+- devel version with new geant4, clhep
+- fixed go_reload with correct argument
+- added xterm command with compilation log
+- fixed documentation
 
 
 .. Note::

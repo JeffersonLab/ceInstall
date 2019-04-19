@@ -47,9 +47,12 @@ make:
 	# log start of compilation
 	$getCoptions logStart $blog $blogS
 
-	cd $EVIO
+	# start showing log on xterm
+	$getCoptions xLog evio
 
+	cd $EVIO
 	scons $opt OPT=1 >> $blog
+
 if($1 == "make") exit
 
 # Done!

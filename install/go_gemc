@@ -34,14 +34,15 @@ if($1 == "src") exit
 # make
 make:
 
-	cd $GEMC
 
 	# log start of compilation
 	$getCoptions logStart $blog $blogS
 
+	# start showing log on xterm
+	$getCoptions xLog gemc
+
 	# Adding LIBRARY="shared" in case gemc is built as a library
-	echo " > Compiling gemc..."
-	echo
+	cd $GEMC
 	scons $opt OPT=1 LIBRARY="shared" >>  $blog
 
 	# log end of compilation, total time
