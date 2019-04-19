@@ -11,7 +11,7 @@
 - changed released date
 - move ccdb ssl note to go_ccdb
 - mlibrary log fix
-
+- reformatting geant4 data and adding 2 missing tables 
 
 .. Note::
 	10/02/18 ceInstall tag 2.3

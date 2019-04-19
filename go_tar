@@ -195,19 +195,20 @@ exit
 
 g4data:
 	# data is downloaded to Downloads from the geant4 downloads.
-	# make sure to move it to the a tmp dir inside download
-	# make sure it is not unzipped
+	# 1. make sure to move it to the a tmp dir inside download
+	# 2. make sure it is not unzipped
 	cd /Users/ungaro/Downloads/tmp
 
 	# checking number of files
 	set nFiles = `\ls | wc | awk '{print $1}'`
-	if($nFiles != "10") then
+	if($nFiles != "11") then
 		echo
-		echo Error: we should have 10 files but we have $nFiles
+		echo Error: we should have 11 files but we have $nFiles
 		echo
+		exit
 	endif
 
-	set G4DATAVERSION = 4.10.04.p01
+	set G4DATAVERSION = 4.10.05.p01
 	set REMOTEDIR      = /u/group/12gev_phys/www/packages/sources/geant4_data/
 
 	cd /Users/ungaro/Downloads
