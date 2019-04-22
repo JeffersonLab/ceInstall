@@ -61,19 +61,32 @@ src:
 	$getCoptions getAndUnpack $repo $filename
 if($1 == "src") exit
 
-# notes: ROOT switched to cmake
 make:
 
 	# disabling stuff we don't need, enabling stuff we want
-	set disablePackages = ("mysql", "alien" "asimag" "bonjour" "builtin_afterimage" "castor" "chirp" "dcache" "fitsio" "gfal" "glite" "hdfs" "krb5" "odbc" "sapdb" "shadowpw" "srp")
+	# get this list from the cmake log "Enabled support"
+	# notice the SPACE between the -D and the directive
+	# complete list at:
+
+	set disablePackages1 = ( "asimage" "astiff" "bonjour" "builtin_afterimage" "builtin_glew" "castor" "chirp" "dcache" "builtin_davix" "davix" "exceptions" )
+	set disablePackages2 = ("explicitlink" "fitsio" "gfal" "glite"  "http" "mysql" "sqlite" "ssl" "srp" "tmva" "tmva-cpu" "tmva-pymva" "pch" "thread" )
+
+set disablePackages1 = ( "asimage" "astiff" "bonjour" "castor" "chirp" "dcache"  "davix" )
+set disablePackages2 = ("explicitlink" "fitsio" "gfal" "glite"  "http" "mysql" "sqlite" "ssl" "srp" "tmva" "tmva-cpu" "tmva-pymva" )
+
+set disablePackages  = "$disablePackages1 $disablePackages2"
+
+# set disablePackages  =  ("asimage")
+
+
 	set enablePackages = ("roofit" "minuit2" "python" )
 	set toDisable = ""
 	set toEnable = ""
 	foreach p ($disablePackages)
-		set toDisable="$toDisable -D$p=OFF"
+		set toDisable="$toDisable -D $p=OFF"
 	end
 	foreach p ($enablePackages)
-		set toEnable="$toEnable -D$p=ON"
+		set toEnable="$toEnable -D $p=ON"
 	end
 
 	cd $ROOTBUILD
@@ -98,7 +111,7 @@ if($1 == "make") exit
 
 # Cleaning up
 echo " > Cleaning up..."
-rm -rf $ROOTSYS/root
+#rm -rf $ROOTSYS/root
 
 # Done
 echo " > Done."

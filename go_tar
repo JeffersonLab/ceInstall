@@ -119,24 +119,31 @@ endif
 # copying API in gemc
 # notice the github tag has _ but we turned it into -
 if($pname == "gemc") then
+	# development is automatically local
 	if($pver == "devel") then
 		cd $GEMC
 		scons -c
 		cd $locald/gemc/releases/
 		rm -rf devel ; cp -r ../source devel
+		rm -f gemc-devel.tar.gz
+		tar cvf gemc-devel.tar -L $excludeFromTar devel
+		gzip gemc-devel.tar
+		scp gemc-devel.tar.gz $remoted/gemc
+		rm -f gemc-devel.tar.gz
+	else
+		mcd $locald/gemc/tmp
+		wget -qc --show-progress https://github.com/gemc/source/archive/v$pver.tar.gz -O gemc_$pver.tar.gz
+		tar -zxpvf gemc_$pver.tar.gz
+		rm gemc_$pver.tar.gz
+		cd source-$pver
+		cp -r $locald/gemc/api .
+		cd ..
+		tar cvf gemc-$pver.tar source-$pver
+		gzip gemc-$pver.tar
+		scp gemc-$pver.tar.gz $remoted/gemc
+		cd ..
+		rm -rf tmp
 	endif
-	mcd $locald/gemc/tmp
-	wget -qc --show-progress https://github.com/gemc/source/archive/v$pver.tar.gz -O gemc_$pver.tar.gz
-	tar -zxpvf gemc_$pver.tar.gz
-	rm gemc_$pver.tar.gz
-	cd source-$pver
-	cp -r $locald/gemc/api .
-	cd ..
-	tar cvf gemc-$pver.tar source-$pver
-	gzip gemc-$pver.tar
-	scp gemc-$pver.tar.gz $remoted/gemc
-	cd ..
-	rm -rf tmp
 	exit
 endif
 
@@ -165,10 +172,8 @@ endif
 # mlibrary
 # notice: cadmesh from github "master" is not compiling properly. Use version 1.1
 if($pname == "mlibrary") then
-
-	# to use development for next release
-	# extra check that we're using the latest release
-	if($option == "local") then
+	# development is automatically local
+	if($pver == "devel") then
 		cd $locald/mlibrary
 		scons -c
 		rm -rf cadmeshBuild bin lib
