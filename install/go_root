@@ -66,18 +66,13 @@ make:
 	# disabling stuff we don't need, enabling stuff we want
 	# get this list from the cmake log "Enabled support"
 	# notice the SPACE between the -D and the directive
-	# complete list at:
+	# complete list on the root website "building root"
+	# Notice on Mojave: cannot disable explicitlink
 
-	set disablePackages1 = ( "asimage" "astiff" "bonjour" "builtin_afterimage" "builtin_glew" "castor" "chirp" "dcache" "builtin_davix" "davix" "exceptions" )
-	set disablePackages2 = ("explicitlink" "fitsio" "gfal" "glite"  "http" "mysql" "sqlite" "ssl" "srp" "tmva" "tmva-cpu" "tmva-pymva" "pch" "thread" )
+	set disablePackages1 = ( "alien" "asimage" "astiff" "bonjour" "builtin_afterimage" "builtin_glew" "castor" "chirp" "dcache" "builtin_davix" "davix" "exceptions" )
+	set disablePackages2 = ( "fitsio" "gfal" "glite"  "http" "ldap" "monalisa" "mysql" "odbc" "sapdb" "sqlite" "ssl" "srp" "tmva" "tmva-cpu" "tmva-pymva" "pch" "thread" )
 
-set disablePackages1 = ( "asimage" "astiff" "bonjour" "castor" "chirp" "dcache"  "davix" )
-set disablePackages2 = ("explicitlink" "fitsio" "gfal" "glite"  "http" "mysql" "sqlite" "ssl" "srp" "tmva" "tmva-cpu" "tmva-pymva" )
-
-set disablePackages  = "$disablePackages1 $disablePackages2"
-
-# set disablePackages  =  ("asimage")
-
+	set disablePackages  = "$disablePackages1 $disablePackages2"
 
 	set enablePackages = ("roofit" "minuit2" "python" )
 	set toDisable = ""

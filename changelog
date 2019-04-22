@@ -6,6 +6,8 @@
 - fixed go_root disabling packages
 - changed compilation log screen size
 - fixed devel cases for gemc and mlibrary
+- devel has devel version for banks, gemc, mlibrary and ceinstall
+- found optimal (hopefully) configuration for root
 
 4/19/19
 - added ccdb notes for ssl
