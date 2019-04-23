@@ -69,7 +69,9 @@ echo
 
 
 foreach p ($packages)
-	source $JLAB_ROOT/$JLAB_VERSION/ce/$p".env"
+	if( -f $JLAB_ROOT/$JLAB_VERSION/ce/$p".env") then
+		source $JLAB_ROOT/$JLAB_VERSION/ce/$p".env"
+	endif
 end
 
 
