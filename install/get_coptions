@@ -123,7 +123,7 @@ xLog:
 	else if($2 == "root")     then
 		xterm -geometry 240x60+100+100 -e tail -f $ROOTSYS/build_log &
 	else if($2 == "banks")    then
-		xterm -geometry 240x60+100+100 -e tail -f $JLAB_SOFTWARE/build_log &
+		xterm -geometry 240x60+100+100 -e tail -f $JLAB_SOFTWARE/banks/$BANKS_VERSION/build_log &
 	else if($2 == "jana") then
 		xterm -geometry 240x60+100+100 -e tail -f $JANA_HOME/build_log &
 	endif
