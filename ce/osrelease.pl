@@ -34,7 +34,7 @@ my $release = 'unknown';
 if ($uname eq 'Linux')
 {
 	### Fedora
-    # time to make these general
+	# time to make these general
 	if (-e '/etc/fedora-release')
 	{
 		my     $release_string = `cat /etc/fedora-release`;
@@ -87,10 +87,10 @@ if ($uname eq 'Linux')
 		print STDERR "unrecognized Linux release\n";
 		$release = 'linuxUnknown';
 	}
-    my $compV = qx(gcc -dumpversion);
-    # chomp it to remove carriage return
-    chomp $compV;
-    $compilerVersion = "gcc".$compV;
+	my $compV = qx(gcc -dumpversion);
+	# chomp it to remove carriage return
+	chomp $compV;
+	$compilerVersion = "gcc".$compV;
 }
 
 ### Mac ###################
@@ -110,15 +110,16 @@ elsif ($uname eq 'Darwin')
 		print STDERR "unrecognized Mac OS release: $release_string\n";
 		$release = 'macosxUnknown';
 	}
-
-    
-    # the output of clang -v is to stderr so redirecting output to stdout
-    my $clangV = qx( clang -v 2>&1 | head -1);
-    # removing first words from outout
-    $clangV =~ s/Apple LLVM version//;
-    # getting just the version number
-    my @clangN = split " ", $clangV;
-    $compilerVersion = "clang".$clangN[0];
+	
+	
+	# the output of clang -v is to stderr so redirecting output to stdout
+	my $clangV = qx( clang -v 2>&1 | head -1);
+	# removing first words from outout
+	$clangV =~ s/Apple LLVM version//;
+	$clangV =~ s/Apple vlang version//;
+	# getting just the version number
+	my @clangN = split " ", $clangV;
+	$compilerVersion = "clang".$clangN[0];
 }
 
 # This part sets the processor type and compiler version number
