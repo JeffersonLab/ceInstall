@@ -116,7 +116,7 @@ elsif ($uname eq 'Darwin')
 	my $clangV = qx( clang -v 2>&1 | head -1);
 	# removing first words from outout
 	$clangV =~ s/Apple LLVM version//;
-	$clangV =~ s/Apple vlang version//;
+	$clangV =~ s/Apple clang version//;
 	# getting just the version number
 	my @clangN = split " ", $clangV;
 	$compilerVersion = "clang".$clangN[0];

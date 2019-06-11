@@ -18,7 +18,7 @@ endif
 
 set pname   = $1
 set pver    = $2
-set option  = $3
+set option  = $3  # option local to use the local repo instead of a git tag
 set remoted = "ftp.jlab.org:/u/group/12gev_phys/www/packages/sources"
 set locald  = /opt/projects
 
