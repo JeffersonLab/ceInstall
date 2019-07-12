@@ -2,6 +2,12 @@
  List of changes
  ---------------
 
+7/12/19
+
+- copying mysql files instead of making links:
+  The files are small and this solve the problem of a central installation and user mounting that installation from remote computer cause the link would point to their local /usr/lib
+
+
 6/11/19
 - added support for newest clang 
 
