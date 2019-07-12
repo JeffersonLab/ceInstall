@@ -1,11 +1,22 @@
 #!/bin/csh -f
 
+# Additional settings at the top of get_coptions
+set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions
+
 # Linking mysql distributions from OS release
 # These need to be pre-installed
 echo
 echo " > Linking to local mysql distributions"
 
 mkdir -p $JLAB_SOFTWARE/mysql
+
+$getCoptions removeAndCreate $JLAB_SOFTWARE/mysql/include
+$getCoptions removeAndCreate $JLAB_SOFTWARE/mysql/lib
+
+# We copy the libraries and includes instead of making symlinks with ln -sfn
+# The files are small and this solve the problem of a central installation and user mounting that installation from
+# remote computer cause the link would point to their local /usr/lib
+
 # Darwin: assuming brew installation
 if(`uname` == "Darwin") then
 	set msqlver    = `ls -t /usr/local/Cellar | grep mysql | head -1`
@@ -13,21 +24,19 @@ if(`uname` == "Darwin") then
 
 	echo "   MYSQL version $msqlver detailed version $msqlverver"
 
-	rm -rf $JLAB_SOFTWARE/mysql/include $JLAB_SOFTWARE/mysql/lib
-
-	ln -sfn /usr/local/Cellar/$msqlver/$msqlverver/include/mysql $JLAB_SOFTWARE/mysql/include
-	ln -sfn /usr/local/Cellar/$msqlver/$msqlverver/lib           $JLAB_SOFTWARE/mysql/
+	cp -r /usr/local/Cellar/$msqlver/$msqlverver/include/mysql/* $JLAB_SOFTWARE/mysql/include/
+	cp /usr/local/Cellar/$msqlver/$msqlverver/lib/*           $JLAB_SOFTWARE/mysql/lib
 
 # Linux
 else if(`uname` == "Linux") then
-	ln -sfn /usr/include/mysql $JLAB_SOFTWARE/mysql/include
+	cp -r /usr/include/mysql/* $JLAB_SOFTWARE/mysql/include/
 
 	# Linux - fedora line
 	if( -f /etc/fedora-release || -f /etc/redhat-release) then
-		ln -sfn /usr/lib64/mysql $JLAB_SOFTWARE/mysql/lib
+		cp /usr/lib64/mysql/* $JLAB_SOFTWARE/mysql/lib/
 	# Linux - Ubuntu line
 	else if( -f /etc/os-release) then
-		ln -sfn /usr/lib/x86_64-linux-gnu $JLAB_SOFTWARE/mysql/lib
+		cp /usr/lib/x86_64-linux-gnu/* $JLAB_SOFTWARE/mysql/lib/
 	endif
 endif
 
