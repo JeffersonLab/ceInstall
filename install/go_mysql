@@ -19,13 +19,12 @@ $getCoptions removeAndCreate $JLAB_SOFTWARE/mysql/lib
 
 # Darwin: assuming brew installation
 if(`uname` == "Darwin") then
-	set msqlver    = `ls -t /usr/local/Cellar | grep mysql | head -1`
-	set msqlverver = `ls -t /usr/local/Cellar/$msqlver | head -1`
+	set msqlver    = `ls -t /usr/local/Cellar/mysql | head -1`
 
-	echo "   MYSQL version $msqlver detailed version $msqlverver"
+	echo "   MYSQL version $msqlver"
 
-	cp -r /usr/local/Cellar/$msqlver/$msqlverver/include/mysql/* $JLAB_SOFTWARE/mysql/include/
-	cp /usr/local/Cellar/$msqlver/$msqlverver/lib/*           $JLAB_SOFTWARE/mysql/lib
+	cp -r /usr/local/Cellar/mysql/$msqlver/include/mysql/* $JLAB_SOFTWARE/mysql/include/
+	cp -r /usr/local/Cellar/mysql/$msqlver/lib/*           $JLAB_SOFTWARE/mysql/lib
 
 # Linux
 else if(`uname` == "Linux") then
