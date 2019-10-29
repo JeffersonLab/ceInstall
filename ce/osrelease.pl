@@ -104,7 +104,8 @@ elsif ($uname eq 'Darwin')
 	elsif ($release_string =~ /^15.*/) { $release = 'macosx10.11'; }
 	elsif ($release_string =~ /^16.*/) { $release = 'macosx10.12'; }
 	elsif ($release_string =~ /^17.*/) { $release = 'macosx10.13'; }
-	elsif ($release_string =~ /^18.*/) { $release = 'macosx10.14'; }
+    elsif ($release_string =~ /^18.*/) { $release = 'macosx10.14'; }
+    elsif ($release_string =~ /^19.*/) { $release = 'macosx10.15'; }
 	else
 	{
 		print STDERR "unrecognized Mac OS release: $release_string\n";
