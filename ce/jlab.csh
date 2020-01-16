@@ -11,7 +11,7 @@ endif
 
 # Get date from:
 # git log -1
-set CE_DATE = "(Fri April 19 2019)"
+set CE_DATE = "(Fri Jan 17 2020)"
 
 
 setenv PATH $JLAB_ROOT/$JLAB_VERSION/ce:$PATH
