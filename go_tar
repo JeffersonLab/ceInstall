@@ -213,7 +213,7 @@ g4data:
 		exit
 	endif
 
-	set G4DATAVERSION = 4.10.05.p01
+	set G4DATAVERSION = 4.10.06
 	set REMOTEDIR      = /u/group/12gev_phys/www/packages/sources/geant4_data/
 
 	cd /Users/ungaro/Downloads
