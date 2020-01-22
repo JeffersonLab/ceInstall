@@ -36,7 +36,7 @@ echo " > Geant4 Data downloading during compilation set to: "$DATA
 
 set cdir    = (`pwd`)
 
-if($1 == "data" || $1 == "src" || $1 == "make") then
+if($1 == "data" || $1 == "src" || $1 == "make" || $1 == "makeMT") then
 	goto $1
 endif
 
@@ -73,10 +73,7 @@ src:
 
 	# creating build and source dirs
 	$getCoptions removeAndCreate $G4INSTALL/source
-	$getCoptions removeAndCreate $G4INSTALL/build
 
-	# MT ON option
-	$getCoptions removeAndCreate $G4INSTALL"MT"/buildMT
 
 	# unpacking inside source.
 	# Notice: source is the same for both MT On and OFF
@@ -86,12 +83,16 @@ if($1 == "src") exit
 
 
 
-# make
+# make MT OFF
 # build options on chapter 2 s 3
 # http://geant4.web.cern.ch/geant4/UserDocumentation/UsersGuides/InstallationGuide/html/ch02s03.html
 make:
 	set conf_options = ""
 	set x11_option   = ""
+
+	set buildDir  = $G4INSTALL/build
+	$getCoptions removeAndCreate $buildDir
+	cd $buildDir
 
 	# Linux Options
 	if (`uname` == "Linux") then
@@ -113,13 +114,8 @@ make:
 	set sourceDir = $G4INSTALL/source/"geant"$GEANT4_VERSION
 
 
-	# Compiling for both MT OFF
-	# ------------------------
 
-	echo "Compiling geant4 with MT OFF\n" >> $blog
-
-	set buildDir  = $G4INSTALL/build
-	cd $buildDir
+	echo " > Compiling geant4 with MT OFF"
 	set mt_option    = " -DGEANT4_BUILD_MULTITHREADED=OFF" # comment for MT option ON
 	set INSTALLDIR = $G4INSTALL
 
@@ -140,14 +136,54 @@ make:
 	$getCoptions logEnd  $blog
 	$getCoptions logTime $blog
 
+if($1 == "make") exit
+
+
+
+
+# make MT ON
+# build options on chapter 2 s 3
+# http://geant4.web.cern.ch/geant4/UserDocumentation/UsersGuides/InstallationGuide/html/ch02s03.html
+makeMT:
+	set conf_options = ""
+	set x11_option   = ""
+
+	# making the link to the single threaded data dir
+	cd $G4INSTALL"MT"/
+	mkdir -p data/Geant4-$G4DATA_VERSION"MT"
+	cd data/Geant4-$G4DATA_VERSION"MT"
+	ln -s $G4INSTALL/data/Geant4-$G4DATA_VERSION/data .
+
+
+	set buildDir  = $G4INSTALL"MT"/build
+	$getCoptions removeAndCreate $buildDir
+	cd $buildDir
+
+
+	# Linux Options
+	if (`uname` == "Linux") then
+		set x11_option = "-DGEANT4_USE_OPENGL_X11=ON"
+
+		set opt1 = `echo -I$QTDIR/include -I$QTDIR/include/QtOpenGL -I$QTDIR/include/QtWidgets`
+		set opt2 = `echo -I$QTDIR/include/QtGui -I$QTDIR/include/QtCore -I$QTDIR/include/QtPrintSupport`
+		set opt3 = ' -W -Wall -pedantic -Wno-non-virtual-dtor -Wno-long-long -Wwrite-strings -Wpointer-arith -Woverloaded-virtual -pipe'
+
+		# need to check if QtPrintSupport is needed
+		set conf_options = "$opt1 $opt2 $opt3"
+	endif
+
+	# geant4 options
+	set g4Options1 = "-DGEANT4_USE_GDML=ON -DXERCESC_ROOT_DIR=$XERCESCROOT -DGEANT4_USE_QT=ON -DQT_QMAKE_EXECUTABLE=$QTDIR/bin/qmake -DCMAKE_INSTALL_DATAROOTDIR=$G4INSTALL/data"
+	set g4Options2 = "-DCLHEP_ROOT_DIR=$CLHEP_BASE_DIR -DGEANT4_INSTALL_DATA=$DATA"
+	set g4Options  = "$g4Options1 $g4Options2"
+
+	set sourceDir = $G4INSTALL/source/"geant"$GEANT4_VERSION
+
 	# Compiling for both MT ON
 	# ------------------------
 
-	echo "Compiling geant4 with MT ON\n" >> $blog
-
-	set buildDir  = $G4INSTALL"MT"/build
-	cd $buildDir
-	set mt_option    = " -DGEANT4_BUILD_MULTITHREADED=OFF" # comment for MT option ON
+	echo " > Compiling geant4 with MT ON"
+	set mt_option    = " -DGEANT4_BUILD_MULTITHREADED=ON" # comment for MT option ON
 	set INSTALLDIR = $G4INSTALL"MT"
 
 	# log start of compilation
@@ -167,8 +203,7 @@ make:
 	$getCoptions logEnd  $blog
 	$getCoptions logTime $blog
 
-
-if($1 == "make") exit
+if($1 == "makeMT") exit
 
 # Cleaning up
 rm -rf $G4INSTALL/build

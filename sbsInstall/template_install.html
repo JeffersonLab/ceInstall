@@ -44,41 +44,34 @@
 	
 	<ul>
 		<li> csh shell </li>
-		<li> cmake >= 3.3 (for geant4. check with <i>cmake --version</i>)</li>
 		<li> network connection to download the various packages during installation</li>
 		<li> wget</li>
-		<li> scons version 2 to 2.5.1</li>
-		<li> mysql (including devel)</li>
 		<li> git</li>
+		<li> cmake >= 3.3 (for geant4. check with <i>cmake --version</i>)</li>
+		<li> scons version >= 3</li>
+		<li> mysql (including devel)</li>
 		<li> recommended: qt</li>
 	</ul>
 	
 	
 	<ul>
 		<h3> &#x2318; MAC OS specific requirements</h3>
+		<i> NOTICE: if you try these and see packages are missing or not needed anymore, please
+			<a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">let me know</a>.<br/><br/>
+		</i>
 		Remember to update brew:
-		<pre><code>
-brew update
-		</code></pre>
-		
+		<pre>
+brew upgrade
+		</pre>
+
+
 		You can install the dependencies with <a href="http://brew.sh"> homebrew</a>:<br/><br/>
 		
 		<div class="row">
-			<a href="#hide1" class="hide" id="hide1">List of packages</a>
-			<a href="#show1" class="show" id="show1">Collapse List</a><br/>
-			<div class="list">
-				<ul>
-					<li>brew install wget cmake mysql openssl qt</li><br/>
-               <li>scons: * if you are on High Sierra, brew will install scons3. Not good, CCDB scons does not support it. Go to https://sourceforge.net/projects/scons/files/scons/2.5.1/ instead and use<br/><br/>
-					<pre>
-python setup.py install
-					</pre>
-					inside the untarred 2.5.1 dir.</li><br/>
-					<li>You can upgrade a package by using "upgrade" instead of "install"</li>
-					<li>Notice: mysql56 or mysql@56 are no longer supported. If you have it installed, please issue the command:  brew remove homebrew/versions/mysql56 </li>
-				</ul>
-			</div>
-		</div>
+			<a href="#hide1" class="hide" id="hide1">List of packages:</a><br/><br/>
+			<pre>
+brew install wget cmake mysql openssl qt<br/>
+			</pre>
 		<br/>
 		
 		
@@ -86,7 +79,9 @@ python setup.py install
 	
 	<ul>
 		<h3> &#128039; Ubuntu (Debian-line) specific requirements</h3>
-		
+		<i> NOTICE: if you try these and see packages are missing or not needed anymore, please
+			 <a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">let me know</a>.<br/><br/>
+		</i>
 		You can install the dependencies with apt-get:<br/><br/>
 		
 		
@@ -106,6 +101,9 @@ python setup.py install
 	
 	<ul>
 		<h3>&#128039; Fedora (red-hat line) specific requirements</h3>
+		<i> NOTICE: if you try these and see packages are missing or not needed anymore, please
+			<a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">let me know</a>.<br/><br/>
+		</i>
 		You can install the dependencies with dnf (or yum):<br/><br/>
 		
 		
@@ -185,7 +183,7 @@ source $JLAB_ROOT/vvversiontoreplaceee/ce/jlab.csh
 		
 		<li>Start a new shell. Now you should see a log similar to this
 			<pre>
-> Common Environment Version: <vvversiontoreplaceee>  (Wed October 3 2018)
+> Common Environment Version: <vvversiontoreplaceee>  (Wed January 22 2020)
 > Running as mauri on 1.800.gemc.org
 > OS Release:    Darwin_macosx10.13-x86_64-clang10.0.0
 > JLAB_ROOT set to:     /opt/jlab_software
