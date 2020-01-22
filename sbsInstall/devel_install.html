@@ -44,10 +44,10 @@
 	
 	<ul>
 		<li> csh shell </li>
-		<li> git</li>
-		<li> cmake >= 3.3 (for geant4. check with <i>cmake --version</i>)</li>
 		<li> network connection to download the various packages during installation</li>
 		<li> wget</li>
+		<li> git</li>
+		<li> cmake >= 3.3 (for geant4. check with <i>cmake --version</i>)</li>
 		<li> scons version >= 3</li>
 		<li> mysql (including devel)</li>
 		<li> recommended: qt</li>
@@ -60,16 +60,18 @@
 			<a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">let me know</a>.<br/><br/>
 		</i>
 		Remember to update brew:
-		<pre><code>
+		<pre>
 brew upgrade
-		</code></pre>
+		</pre>
 
 
 		You can install the dependencies with <a href="http://brew.sh"> homebrew</a>:<br/><br/>
 		
 		<div class="row">
 			<a href="#hide1" class="hide" id="hide1">List of packages:</a><br/><br/>
-			brew install wget cmake mysql openssl qt<br/>
+			<pre>
+brew install wget cmake mysql openssl qt<br/>
+			</pre>
 		<br/>
 		
 		
@@ -181,25 +183,25 @@ source $JLAB_ROOT/devel/ce/jlab.csh
 		
 		<li>Start a new shell. Now you should see a log similar to this
 			<pre>
-> Common Environment Version: <devel>  (Wed January 22 2020)
-> Running as mauri on 1.800.gemc.org
-> OS Release:    Darwin_macosx10.13-x86_64-clang10.0.0
-> JLAB_ROOT set to:     /opt/jlab_software
-> '/opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang10.0.0' is not a directory. Creating it.
+ > Common Environment Version: <devel>  (Wed Jan 22 2020)
+ > Running as ungaro on enpungarombp.jlab.org
+ > OS Release:    Darwin_macosx10.15-x86_64-clang11.0.0
+ > JLAB_ROOT set to:     /opt/jlab_software
+ > JLAB_SOFTWARE set to: /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0
 
-!! Attention:  BANKS  installation check /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang10.0.0/banks/1.4/bin  not found
-!! Attention:  CCDB  installation check /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang10.0.0/ccdb/ccdb-1.06.02/lib  not found
-!! Attention:  CLHEP  installation check /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang10.0.0/clhep/2.3.4.5/lib  not found
-!! Attention:  EVIO  installation check /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang10.0.0/evio/5.1/bin  not found
-!! Attention:  GEANT4  installation check /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang10.0.0/geant4/4.10.03.p02/bin  not found
-!! Attention:  GEMC  installation check /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang10.0.0/gemc/2.7/gemc  not found
-!! Attention:  JANA  installation check /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang10.0.0/jana/0.7.7p1/bin/jana  not found
-!! Attention:  MLIBRARY  installation check /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang10.0.0/mlibrary/1.2/lib  not found
-!! Attention:  MYSQL  installation check /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang10.0.0/mysql/lib  not found
-!! Attention:  QT    installation check /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang10.0.0/qt/5.9.1/5.9.1/clang_64/lib  not found
-!! Attention:  ROOT  installation check /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang10.0.0/root/6.12.06/bin/root-config  not found
-!! Attention:  SCONS  installation check /opt/jlab_software/devel/scons_bm/1.6/site_tools  not found
-!! Attention:  XERCESC  installation check /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang10.0.0/xercesc/3.2.0/lib  not found
+ !! Attention:  BANKS  installation check /opt/projects/banks/bin  not found
+ !! Attention:  CCDB  installation check /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/ccdb/ccdb-1.06.02/lib  not found
+ !! Attention:  CLHEP  installation check /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/clhep/2.4.1.3/lib  not found
+ !! Attention:  EVIO  installation check /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/evio/5.1/bin  not found
+ !! Attention:  GEANT4  installation check /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/geant4/4.10.06/bin  not found
+ !! Attention:  GEMC  installation check /opt/projects/gemc/source/gemc  not found
+ !! Attention:  JANA  installation check /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/jana/0.8.0/bin/jana  not found
+ !! Attention:  MLIBRARY  installation check /opt/projects/mlibrary/lib  not found
+ !! Attention:  MYSQL  installation check /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/mysql/lib  not found
+ !! Attention:  QT    installation check /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/qt/system/clang_64/lib  not found
+ !! Attention:  ROOT  installation check /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/root/6.18.04/bin/root-config  not found
+ !! Attention:  SCONS  installation check /opt/jlab_software/devel/scons_bm/site_tools  not found
+ !! Attention:  XERCESC  installation check /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/xercesc/3.2.2/  not found
 			</pre>
 			
 		</li>
