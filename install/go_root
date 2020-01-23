@@ -69,19 +69,19 @@ make:
 	# complete list on the root website "building root"
 	# Notice on Mojave: cannot disable explicitlink
 
-	set disablePackages1 = ( "alien" "asimage" "astiff" "bonjour" "builtin_afterimage" "builtin_glew" "castor" "chirp" "dcache" "builtin_davix" "davix" "exceptions" )
+	set disablePackages1 = ( "alien" "asimage" "astiff" "bonjour" "builtin_afterimage" "castor" "chirp" "dcache" "builtin_davix" "davix" "exceptions" )
 	set disablePackages2 = ( "fitsio" "gfal" "glite"  "http" "ldap" "monalisa" "mysql" "odbc" "sapdb" "sqlite" "ssl" "srp" "tmva" "tmva-cpu" "tmva-pymva" "pch" "thread" )
 
 	set disablePackages  = "$disablePackages1 $disablePackages2"
 
-	set enablePackages = ("roofit" "minuit2" "python" )
+	set enablePackages = ("roofit" "minuit2" "python" "cxx11" )
 	set toDisable = ""
 	set toEnable = ""
 	foreach p ($disablePackages)
-		set toDisable="$toDisable -D $p=OFF"
+		set toDisable="$toDisable -D$p=OFF"
 	end
 	foreach p ($enablePackages)
-		set toEnable="$toEnable -D $p=ON"
+		set toEnable="$toEnable -D$p=ON"
 	end
 
 	cd $ROOTBUILD
