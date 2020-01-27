@@ -5,6 +5,11 @@
 # and copy to:
 # ftp:/u/group/12gev_phys/www/packages/sources/ccdb
 
+# Updates: Currently only 1.07 branch is working with scons and python 3.
+# To use, switch to that branch, remove .git and tar cvf to: ccdb-1.07.00.tar then zip it
+# and scp to /u/group/12gev_phys/www/packages/sources/ccdb
+
+
 # Additional settings at the top of get_coptions
 set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions 
 
