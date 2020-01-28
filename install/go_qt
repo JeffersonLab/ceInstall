@@ -1,5 +1,19 @@
 #!/bin/csh -f
 
+
+# Making sure we use one of the supported versions:
+if($1 != "$QT_VERSION" && $1 != "system") then
+	echo
+	echo "  Usage:  'go_qt <version>'"
+	echo
+	echo "  Supported Versions: "
+	echo
+	echo "   - $QT_VERSION"
+	echo "   - system "
+	echo; echo
+	exit
+endif
+
 # Additional settings at the top of get_coptions
 set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions 
 
@@ -18,8 +32,7 @@ else if(`echo $release | grep Linux | wc | awk '{print $1}'` == "1") then
 endif
 
 # if QT_VERSION is system, link to the system qt
-# As of Aug 28 2018 this is the default mode
-if($QT_VERSION == "system") then
+if($1 == "system") then
 
 	if($system == "Mac") then
 

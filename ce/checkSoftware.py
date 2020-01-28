@@ -34,7 +34,7 @@ if softwareLocation == proposedSoftwareLocation:
 	elif softwareVersion == softwareVersion:
 		# checking if this is a system installation
 		if os.path.islink(fileOrDirerify):
-			print " >", name, "\t using system installation"
+			print " >", name, "\t using system installation in ", fileOrDirerify
 		else:
 			print " >", name, "\t version: ", softwareVersion
 	else:

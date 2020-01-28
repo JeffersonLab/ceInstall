@@ -74,7 +74,6 @@ src:
 	# creating build and source dirs
 	$getCoptions removeAndCreate $G4INSTALL/source
 
-
 	# unpacking inside source.
 	# Notice: source is the same for both MT On and OFF
 	cd $G4INSTALL/source
