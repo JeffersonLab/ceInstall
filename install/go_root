@@ -63,25 +63,34 @@ if($1 == "src") exit
 
 make:
 
-	# disabling stuff we don't need, enabling stuff we want
-	# get this list from the cmake log "Enabled support"
 	# notice the SPACE between the -D and the directive
 	# complete list on the root website "building root"
-	# Notice on Mojave: cannot disable explicitlink
 
-	set disablePackages1 = ( "alien" "asimage" "astiff" "bonjour" "builtin_afterimage" "castor" "chirp" "dcache" "builtin_davix" "davix" "exceptions" )
-	set disablePackages2 = ( "fitsio" "gfal" "glite"  "http" "ldap" "monalisa" "mysql" "odbc" "sapdb" "sqlite" "ssl" "srp" "tmva" "tmva-cpu" "tmva-pymva" "pch" "thread" )
+	# Disable packages:
+	# ----------------
 
-	set disablePackages  = "$disablePackages1 $disablePackages2"
+	# Disabling stuff is proving to be more work than installing all ROOT defaults
+	# This list changes quite a bit with time
 
-	set enablePackages = ("roofit" "minuit2" "python" "cxx11" )
-	set toDisable = ""
+	# disabling stuff we don't need, enabling stuff we want
+	# get this list from the cmake log "Enabled support"
+
+	# set disablePackages1 = ( "alien" "asimage" "astiff" "bonjour" "builtin_afterimage" "castor" "chirp" "dcache" "builtin_davix" "davix" "exceptions" )
+	# set disablePackages2 = ( "fitsio" "gfal" "glite"  "http" "ldap" "monalisa" "mysql" "odbc" "sapdb" "sqlite" "ssl" "srp" "tmva" "tmva-cpu" "tmva-pymva" "pch" "thread" )
+	# set disablePackages  = "$disablePackages1 $disablePackages2"
+
+	# set toDisable = ""
+	#	foreach p ($disablePackages)
+	#		set toDisable="$toDisable -D $p=OFF"
+	#	end
+
+	# Enable packages:
+	# ----------------
+
+	set enablePackages = ("roofit" "minuit2" "python" )
 	set toEnable = ""
-	foreach p ($disablePackages)
-		set toDisable="$toDisable -D$p=OFF"
-	end
 	foreach p ($enablePackages)
-		set toEnable="$toEnable -D$p=ON"
+		set toEnable="$toEnable -D $p=ON"
 	end
 
 	cd $ROOTBUILD
@@ -93,6 +102,7 @@ make:
 	$getCoptions xLog root
 
 	# the  -Wno-dev  flag is to ignore the project developers cmake warnings for policy CMP0075
+	#cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=$ROOTSYS $toDisable $toEnable $ROOTSOURCE >> $blog
 	cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=$ROOTSYS $toDisable $toEnable $ROOTSOURCE >> $blog
 
 	make $opt    >> $blog

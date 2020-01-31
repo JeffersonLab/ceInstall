@@ -2,9 +2,30 @@ email list in jlab_software contacts
 
 Hi all,
 
-Please find below the announcement for new release of the Scientific Computing Physics Libraries.
-Sandy: could you send it out to the user community by next Wednesday October 3, 2018?
-I would appreciate feedback/comments/suggestions by or before that date.
+I'm working on the JLAB_VERSION tag "devel". There are some significant changes:
+
+1. use the new geant4
+2. the new g4 requires a compiler version > what's present in CentOS7.7 so I picked the last one: version 9.2.0 in /apps
+3. use python 3 as python 2 is being deprecated everywhere. Python 3 comes as default in all new OS.
+4. use scons 3 for the same reason. scons 3 comes as default in all new OS.
+
+Here's the list of changes:
+
+gcc: 4.8.5 > 9.2.0
+python: 2 to 3
+scons 2 to 3
+clhep: 2.4.1.3
+geant4: 4.10.06, both in single and multithreaded mode
+root 6.18.04
+ccdb: 1.06 to 1.07
+
+
+
+
+The big change is geant4, just released in December with a physics fix which is crucial for JLab experiments using A=2 or A=3 targets.
+I'll compile it in both single and MT modes. Users can choose which one by setting the GEANT4_VERSION env variable.
+
+
 
 
 JLab Physics Software Libraries Release Announcement

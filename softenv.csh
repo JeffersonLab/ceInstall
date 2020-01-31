@@ -26,12 +26,20 @@ setenv JLAB_VERSION $1
 set OVERWRITE="yes"  # will overwrite user settings
 
 # version 2.3 at JLAB has the QT_VERSION set to 5.10.1
+# notice: on the new ifarm QTDIR is set. So we can't use keepmine
+# unless we unsetenv it
+# notice: this is effectively rendering the overwrite feature useless for QT
+# but it's ok: no one ever used it since the start of this project many years ago
+# So now we have an non elegant solution that conceptually is also wrong.
+# The use of "module" for the next iteration of these script is more and more appealing.
 if( $1 == "2.3" || $1 == "devel") then
+	unsetenv QTDIR
 	setenv QT_VERSION 5.10.1
 	set OVERWRITE=keepmine
 endif
 
 if( "$2" == "keepmine") then
+	unsetenv QTDIR
 	set OVERWRITE=keepmine
 endif
 
