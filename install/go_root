@@ -79,7 +79,8 @@ make:
 	# set disablePackages2 = ( "fitsio" "gfal" "glite"  "http" "ldap" "monalisa" "mysql" "odbc" "sapdb" "sqlite" "ssl" "srp" "tmva" "tmva-cpu" "tmva-pymva" "pch" "thread" )
 	# set disablePackages  = "$disablePackages1 $disablePackages2"
 
-	# set toDisable = ""
+	# Do not uncomment, it's used below just in case
+	set toDisable = ""
 	#	foreach p ($disablePackages)
 	#		set toDisable="$toDisable -D $p=OFF"
 	#	end
