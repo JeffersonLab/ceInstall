@@ -23,6 +23,13 @@ endif
 # version is ok, can continue
 setenv JLAB_VERSION $1
 
+# using new compiler just for devel for now
+if ($JLAB_VERSION == "devel") then
+	module use /apps/modulefiles
+	module load cmake/3.13.4
+	module load gcc/9.2.0
+endif
+
 set OVERWRITE="yes"  # will overwrite user settings
 
 # version 2.3 at JLAB has the QT_VERSION set to 5.10.1
