@@ -24,7 +24,9 @@ endif
 setenv JLAB_VERSION $1
 
 # using new compiler just for devel for now
+# also, using python3
 if ($JLAB_VERSION == "devel") then
+	alias python python3
 	module use /apps/modulefiles
 	module load cmake/3.13.4
 	module load gcc/9.2.0
