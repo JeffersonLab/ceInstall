@@ -30,6 +30,10 @@ if ($JLAB_VERSION == "devel") then
 	module use /apps/modulefiles
 	module load cmake/3.13.4
 	module load gcc/9.2.0
+
+	# needed otherwise cmake could pick up the system cc
+	setenv CC gcc
+	setenv CXX g++
 endif
 
 set OVERWRITE="yes"  # will overwrite user settings

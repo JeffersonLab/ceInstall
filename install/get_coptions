@@ -33,9 +33,10 @@ copt:
 
 	# Temp: forcing max 10 processes as the scons system
 	# checks independently that the libraries exist
-	if($ncpu > 10) then
-		set opt = " -j10"
-	endif
+	# Feb 2020: looks like this is not needed anymore
+	#if($ncpu > 10) then
+	#	set opt = " -j10"
+	#endif
 	echo $opt
 if($1 == "copt") exit
 
