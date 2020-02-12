@@ -1,6 +1,8 @@
-JLAB_SOFTWARE = /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.1.0
+// location of libraries
+JLAB_SOFTWARE = /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0
 
-MYBUILDDIR = /Users/ungaro/Library/Mobile Documents/com~apple~CloudDocs/builds
+// build directory is on the home dir
+MYBUILDDIR = /Users/ungaro/builds
 
 // The path to JLAB_SOFTWARE is set in each project settings.
 // This file should be included in any project xcode settings
@@ -24,23 +26,23 @@ QT_ARCH    = clang_64
 QTDIR      = $JLAB_SOFTWARE/qt/$QT_VERSION
 QTFRAMES   = $QTDIR/$QT_SYSTEM/$QT_ARCH/lib
 QTBASE     = $QTDIR/$QT_SYSTEM/Src/qtbase/include
-QT_HEADS   = $QTBASE $QTFRAMES/QtCore.framework/Headers $QTFRAMES/QtGui.framework/Headers $QTFRAMES/QtWidgets.framework/Headers $QTFRAMES/QtXml.framework/Headers
+QT_HEADS   = $QTBASE $QTFRAMES/QtCore.framework/Headers $QTFRAMES/QtGui.framework/Headers $QTFRAMES/QtWidgets.framework/Headers
 
 // CCDB
 // adding includes here
-CCDB_VERSION = 1.06.02
+CCDB_VERSION = 1.07.00
 CCDB_ROOT    = $JLAB_SOFTWARE/ccdb/ccdb-$CCDB_VERSION
 CCDB_HEADS   = $CCDB_ROOT/include
 
 // CLHEP
 // for libraries: open $CLHEP_BASE_DIR/lib/
-CLHEP_VERSION = 2.4.0.4
+CLHEP_VERSION = 2.4.1.3
 CLHEP_ROOT    = $JLAB_SOFTWARE/clhep/$CLHEP_VERSION
 CLHEP_HEADS   = $CLHEP_ROOT/include $CLHEP_ROOT/include/CLHEP
 
 // GEANT4
 // for libraries: open $G4LIB/
-GEANT4_VERSION = 4.10.04.p01
+GEANT4_VERSION = 4.10.06
 GEANT4_ROOT    = $JLAB_SOFTWARE/geant4/$GEANT4_VERSION
 GEANT4_HEADS   = $GEANT4_ROOT/include/Geant4
 
@@ -49,17 +51,17 @@ GEANT4_HEADS   = $GEANT4_ROOT/include/Geant4
 // - core
 // - RIO for files
 // - TTree for trees
-ROOT_VERSION = 6.13.02
+ROOT_VERSION = 6.18.04
 ROOTSYS      = $JLAB_SOFTWARE/root/$ROOT_VERSION
 ROOT_HEADS   = $ROOTSYS/include
 
 
-// MLIBRARY
+// GLIBRARY
 // adding includes here
-MLIB_ROOT    = /opt/projects/mlibrary
-MLIB_HEADS1  = $MLIB_ROOT/options $MLIB_ROOT/translationTable $MLIB_ROOT/splash $MLIB_ROOT/gruns $MLIB_ROOT/ghit
-MLIB_HEADS2  = $MLIB_ROOT/textProgressBar $MLIB_ROOT/gstring $MLIB_ROOT/qtButtonsWidget $MLIB_ROOT/gfactory
-MLIB_HEADS3  = $MLIB_ROOT/gvolume $MLIB_ROOT/g4volume $MLIB_ROOT/g4display $MLIB_ROOT/gtouchable $MLIB_ROOT/gdynamic
-MLIB_HEADS4  = $MLIB_ROOT/gdata $MLIB_ROOT/gmedia
-MLIB_MESH    = $MLIB_ROOT/cadmesh/include $MLIB_ROOT/cadmesh/external/tetgen $MLIB_ROOT/cadmesh/external/assimp/include/
-MLIB_HEADS   = $MLIB_HEADS1 $MLIB_HEADS2 $MLIB_HEADS3 $MLIB_HEADS4 $MLIB_MESH
+GLIB_ROOT    = /opt/projects/mlibrary
+//GLIB_HEADS1  = $GLIB_ROOT/goptions $GLIB_ROOT/translationTable $GLIB_ROOT/splash $GLIB_ROOT/gruns $GLIB_ROOT/ghit
+//GLIB_HEADS2  = $GLIB_ROOT/textProgressBar $GLIB_ROOT/gstring $GLIB_ROOT/qtButtonsWidget $GLIB_ROOT/gfactory
+//GLIB_HEADS3  = $GLIB_ROOT/gvolume $GLIB_ROOT/g4volume $GLIB_ROOT/g4display $GLIB_ROOT/gtouchable $GLIB_ROOT/gdynamic
+//GLIB_HEADS4  = $GLIB_ROOT/gdata $GLIB_ROOT/gmedia
+//GLIB_CMESH    = $GLIB_ROOT/cadmesh/include $GLIB_ROOT/cadmesh/external/tetgen $GLIB_ROOT/cadmesh/external/assimp/include/
+//GLIB_HEADS   = $GLIB_HEADS1 $GLIB_HEADS2 $GLIB_HEADS3 $GLIB_HEADS4 $GLIB_MESH
