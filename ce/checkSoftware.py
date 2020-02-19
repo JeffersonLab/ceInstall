@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # arguments:
 # 1. software name
@@ -22,7 +22,7 @@ script, name, softwareLocation, proposedSoftwareLocation, softwareVersion, defau
 
 # first check that the directory exist - if not print error and exit
 if not os.path.exists(fileOrDirerify):
-	print " !! Attention: ", name, " installation check", fileOrDirerify, " not found"
+	print (" !! Attention: ", name, " installation check", fileOrDirerify, " not found")
 	sys.exit(0)
 
 # if the location was not set by user (softwareLocation different than proposedSoftwareLocation)
@@ -30,15 +30,15 @@ if not os.path.exists(fileOrDirerify):
 # adds "custom version" if the version was different than the defaultVersion
 if softwareLocation == proposedSoftwareLocation:
 	if softwareVersion == 'notUsed':
-		print " >", name, "\t installed in ", softwareLocation
+		print (" >", name, "\t installed in ", softwareLocation)
 	elif softwareVersion == softwareVersion:
 		# checking if this is a system installation
 		if os.path.islink(fileOrDirerify):
-			print " >", name, "\t using system installation in ", fileOrDirerify
+			print (" >", name, "\t using system installation in ", fileOrDirerify)
 		else:
-			print " >", name, "\t version: ", softwareVersion
+			print (" >", name, "\t version: ", softwareVersion)
 	else:
-		print " >", name, "\t custom version: ", softwareVersion
+		print (" >", name, "\t custom version: ", softwareVersion)
 else:
-	print " >", name, "\t custom location: ", softwareLocation
+	print (" >", name, "\t custom location: ", softwareLocation)
 
