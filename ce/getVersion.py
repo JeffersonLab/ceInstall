@@ -21,8 +21,8 @@ script, versionExist, defaultVersionValue, overwrite = argv
 # if the version is not set, or if overwrite is yes,
 # return the defaultVersionValue
 if not versionExist in os.environ or overwrite == "yes":
-	print defaultVersionValue
+	print (defaultVersionValue)
 else:
-	print os.environ[versionExist]
+	print (os.environ[versionExist])
 
 
