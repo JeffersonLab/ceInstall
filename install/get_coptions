@@ -106,27 +106,30 @@ if($1 == "logFile") exit
 
 # log file for each system
 xLog:
-	echo " > Starting xterm showing compilation log"
-	if($2 == "clhep") then
-		xterm -geometry 240x60+100+100 -e tail -f $CLHEP_BASE_DIR/build_log &
-	else if($2 == "xercesc") then
-		xterm -geometry 240x60+100+100 -e tail -f $XERCESCROOT/build_log &
-	else if($2 == "geant4")   then
-		xterm -geometry 240x60+100+100 -e tail -f $G4INSTALL/build_log &
-	else if($2 == "ccdb")     then
-		xterm -geometry 240x60+100+100 -e tail -f $CCDB_HOME/build_log &
-	else if($2 == "evio")     then
-		xterm -geometry 240x60+100+100 -e tail -f $EVIO/build_log &
-	else if($2 == "mlibrary") then
-		xterm -geometry 240x60+100+100 -e tail -f $MLIBRARY/build_log &
-	else if($2 == "gemc")     then
-		xterm -geometry 240x60+100+100 -e tail -f $GEMC/build_log &
-	else if($2 == "root")     then
-		xterm -geometry 240x60+100+100 -e tail -f $ROOTSYS/build_log &
-	else if($2 == "banks")    then
-		xterm -geometry 240x60+100+100 -e tail -f $JLAB_SOFTWARE/banks/$BANKS_VERSION/build_log &
-	else if($2 == "jana") then
-		xterm -geometry 240x60+100+100 -e tail -f $JANA_HOME/build_log &
+
+	if ($?DISPLAY) then      # parentheses not strictly needed in this simple case
+		echo " > Starting xterm showing compilation log"
+		if($2 == "clhep") then
+			xterm -geometry 240x60+100+100 -e tail -f $CLHEP_BASE_DIR/build_log &
+		else if($2 == "xercesc") then
+			xterm -geometry 240x60+100+100 -e tail -f $XERCESCROOT/build_log &
+		else if($2 == "geant4")   then
+			xterm -geometry 240x60+100+100 -e tail -f $G4INSTALL/build_log &
+		else if($2 == "ccdb")     then
+			xterm -geometry 240x60+100+100 -e tail -f $CCDB_HOME/build_log &
+		else if($2 == "evio")     then
+			xterm -geometry 240x60+100+100 -e tail -f $EVIO/build_log &
+		else if($2 == "mlibrary") then
+			xterm -geometry 240x60+100+100 -e tail -f $MLIBRARY/build_log &
+		else if($2 == "gemc")     then
+			xterm -geometry 240x60+100+100 -e tail -f $GEMC/build_log &
+		else if($2 == "root")     then
+			xterm -geometry 240x60+100+100 -e tail -f $ROOTSYS/build_log &
+		else if($2 == "banks")    then
+			xterm -geometry 240x60+100+100 -e tail -f $JLAB_SOFTWARE/banks/$BANKS_VERSION/build_log &
+		else if($2 == "jana") then
+			xterm -geometry 240x60+100+100 -e tail -f $JANA_HOME/build_log &
+		endif
 	endif
 if($1 == "xLog") exit
 

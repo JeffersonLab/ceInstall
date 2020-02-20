@@ -3,9 +3,11 @@
 # First argument is package name
 # Second argument is version
 
-if($1 == "g4data") then
+if($1 == "g4data")  then
 	goto $1
 endif
+
+
 
 if($#argv != 2 && $#argv != 3) then
 	echo " "
