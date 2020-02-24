@@ -57,8 +57,8 @@ if($1 == "system") then
 	# Using system QT for Linux.
 	else if($system == "Linux") then
 
-		# notice: in CentOS qmake doesn't exist, it's actually qmake-qt5.
-		set minorQtVersion = `qmake --version | grep Qt | awk '{print $4}'`
+		# explicit path to qmake
+		set minorQtVersion = `/usr/lib64/qt5/bin/qmake --version | grep Qt | awk '{print $4}'`
 
 		echo
 		echo System QT, system version $minorQtVersion will be used
