@@ -27,6 +27,7 @@ setenv JLAB_VERSION $1
 # also, using python3
 if ($JLAB_VERSION == "devel") then
 	alias python python3
+	source /etc/profile.d/modules.csh
 	module use /apps/modulefiles
 	module load cmake/3.13.4
 	module load gcc/9.2.0
