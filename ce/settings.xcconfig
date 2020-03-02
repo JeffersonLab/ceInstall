@@ -58,10 +58,11 @@ ROOT_HEADS   = $ROOTSYS/include
 
 // GLIBRARY
 // adding includes here
-GLIB_ROOT    = /opt/projects/mlibrary
-//GLIB_HEADS1  = $GLIB_ROOT/goptions $GLIB_ROOT/translationTable $GLIB_ROOT/splash $GLIB_ROOT/gruns $GLIB_ROOT/ghit
+GLIB_ROOT    = /opt/projects/gemc/glibrary
+GLIB_HEADS1  = $GLIB_ROOT/gstring
 //GLIB_HEADS2  = $GLIB_ROOT/textProgressBar $GLIB_ROOT/gstring $GLIB_ROOT/qtButtonsWidget $GLIB_ROOT/gfactory
 //GLIB_HEADS3  = $GLIB_ROOT/gvolume $GLIB_ROOT/g4volume $GLIB_ROOT/g4display $GLIB_ROOT/gtouchable $GLIB_ROOT/gdynamic
 //GLIB_HEADS4  = $GLIB_ROOT/gdata $GLIB_ROOT/gmedia
 //GLIB_CMESH    = $GLIB_ROOT/cadmesh/include $GLIB_ROOT/cadmesh/external/tetgen $GLIB_ROOT/cadmesh/external/assimp/include/
 //GLIB_HEADS   = $GLIB_HEADS1 $GLIB_HEADS2 $GLIB_HEADS3 $GLIB_HEADS4 $GLIB_MESH
+GLIB_HEADS   = $GLIB_HEADS1
