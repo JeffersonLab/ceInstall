@@ -1,10 +1,7 @@
 #!/usr/bin/python3
 
-
 import os
 import platform
-
-
 
 sysname, nodename, release, version, machine = os.uname()
 
