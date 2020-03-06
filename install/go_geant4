@@ -92,6 +92,7 @@ make:
 	set buildDir  = $G4INSTALL/build
 	$getCoptions removeAndCreate $buildDir
 	cd $buildDir
+	echo Build Directory: $buildDir
 
 	# Linux Options
 	if (`uname` == "Linux") then
@@ -111,8 +112,7 @@ make:
 	set g4Options  = "$g4Options1 $g4Options2"
 
 	set sourceDir = $G4INSTALL/source/"geant"$GEANT4_VERSION
-
-
+	echo sourceDir Directory: $sourceDir
 
 	echo " > Compiling geant4 with MT OFF"
 	set mt_option    = " -DGEANT4_BUILD_MULTITHREADED=OFF" # comment for MT option ON
@@ -156,7 +156,7 @@ makeMT:
 	set buildDir  = $G4INSTALL"MT"/build
 	$getCoptions removeAndCreate $buildDir
 	cd $buildDir
-
+	echo Build Directory: $buildDir
 
 	# Linux Options
 	if (`uname` == "Linux") then
@@ -176,9 +176,7 @@ makeMT:
 	set g4Options  = "$g4Options1 $g4Options2"
 
 	set sourceDir = $G4INSTALL/source/"geant"$GEANT4_VERSION
-
-	# Compiling for both MT ON
-	# ------------------------
+	echo sourceDir Directory: $sourceDir
 
 	echo " > Compiling geant4 with MT ON"
 	set mt_option    = " -DGEANT4_BUILD_MULTITHREADED=ON" # comment for MT option ON
