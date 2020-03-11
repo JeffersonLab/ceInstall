@@ -13,9 +13,11 @@ MYBUILDDIR = /Users/ungaro/builds
 // $QTBASE is needed because some qt headers call that instead of the frameworks headers
 // Looks like it's not really needed but it's very convenient to define QT_HEADS easily
 // directory to manually link in subdirs of (need creation?) /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/qt/5.10.1/5.10.1/Src/qtbase/include
-// cd /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/qt/5.10.1/5.10.1/Src/qtbase/include
+// cd /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/qt/5.10.1/5.10.1
+// mkdir -p Src/qtbase/include
+// cd       Src/qtbase/include
+// mkdir QtCore QtWidgets QtGui
 // ln -s /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/qt/5.10.1/5.10.1/clang_64/lib/QtCore.framework/Versions/Current/Headers/*    QtCore/
-// ln -s /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/qt/5.10.1/5.10.1/clang_64/lib/QtXml.framework/Versions/Current/Headers/*     QtXml/
 // ln -s /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/qt/5.10.1/5.10.1/clang_64/lib/QtWidgets.framework/Versions/Current/Headers/* QtWidgets/
 // ln -s /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/qt/5.10.1/5.10.1/clang_64/lib/QtGui.framework/Versions/Current/Headers/*     QtGui/
 // if qt threads
@@ -43,7 +45,7 @@ CLHEP_HEADS   = $CLHEP_ROOT/include $CLHEP_ROOT/include/CLHEP
 
 // GEANT4
 // for libraries: open $G4LIB/
-GEANT4_VERSION = 4.10.06
+GEANT4_VERSION = 4.10.06MT
 GEANT4_ROOT    = $JLAB_SOFTWARE/geant4/$GEANT4_VERSION
 GEANT4_HEADS   = $GEANT4_ROOT/include/Geant4
 
