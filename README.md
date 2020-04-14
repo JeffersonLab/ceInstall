@@ -47,17 +47,6 @@ Location to copy the tar.gz files:
 NOTES:
 
 - go_tar ceInstall will generate the _install.html based on the release number
-- for JLAB interactive farm. Usually it cannot access the outside web, but setting these bypass this:
-
-a. setenv http_proxy http://jprox.jlab.org:8082
-b. setenv https_proxy http://jprox.jlab.org:8082
-
-For ROOT in particular one can also download these "src" and put them in the "dst".
-
-a. src1='http://lcgpackages.web.cern.ch/lcgpackages/tarFiles/sources/lz4-v1.7.5.tar.gz' to: dst1='/group/halla/analysis/rootbuild/ifarm1402/root-6.12.06/build/LZ4-prefix/src/lz4-v1.7.5.tar.gz'
-b. src2='http://lcgpackages.web.cern.ch/lcgpackages/tarFiles/sources/tbb2017_U5.tar.gz' to: dst2='/group/halla/analysis/rootbuild/ifarm1402/root-6.12.06/build/TBB-prefix/src/tbb2017_U5.tar.gz'
-
-
 
 TODO:
 
