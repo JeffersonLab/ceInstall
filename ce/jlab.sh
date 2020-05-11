@@ -16,7 +16,17 @@
 : ${JLAB_VERSION=2.3}
 
 TMPF=`mktemp`
-tcsh ${TCSH_ARG} -c "source ${JLAB_ROOT}/${JLAB_VERSION}/ce/jlab.csh $1; printenv" | perl -e '
+env -i tcsh ${TCSH_ARG} -c "
+    set home=${HOME} ;
+    setenv JLAB_ROOT ${JLAB_ROOT} ;
+    setenv JLAB_VERSION ${JLAB_VERSION} ;
+    setenv OSTYPE ${OSTYPE}
+    setenv TERM ${TERM} ;
+    setenv PATH ${PATH} ;
+    setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH} ;
+    setenv DYLD_LIBRARY_PATH ${DYLD_LIBRARY_PATH} ;
+    source ${JLAB_ROOT}/${JLAB_VERSION}/ce/jlab.csh $1 ;
+    printenv" | perl -e '
   my %IGNORE;
   ## Add variables to ignore to the space-delimited list below
   foreach( qw(
@@ -27,7 +37,7 @@ tcsh ${TCSH_ARG} -c "source ${JLAB_ROOT}/${JLAB_VERSION}/ce/jlab.csh $1; printen
     chomp;
 
     ## Look for and treat variables from printenv here
-    if(/(.*?)=(.*)/) {
+    if(/^([_a-zA-Z0-9]*?)=(.*)$/) {
       my $var = $1;
       my $arg = $2;
 
