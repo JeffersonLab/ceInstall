@@ -1,0 +1,67 @@
+#!/bin/csh -f
+
+# Get the Podd tar file from the website:
+# https://redmine.jlab.org/projects/podd/wiki
+
+# Additional settings at the top of get_coptions
+set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions
+
+# Options
+set name     = podd
+set release  = `$getCoptions release`
+set repo     = `$getCoptions repo`/podd
+set version  = $PODD_VERSION
+set filename =  "analyzer-1.6.6.tar.gz"
+set opt      = `$getCoptions copt`
+set blog     = `$getCoptions logFile podd`
+set blogS    = `$getCoptions logFileS podd`
+set sourceDir = $PODD/dist
+
+# Write options on screen
+$getCoptions log $name $version $filename $release $opt
+
+if($1 == "src"|| $1 == "make") goto $1
+
+# Source Build
+src:
+    # start message
+    $getCoptions installLog $name $version
+
+    # create dirs
+    $getCoptions removeAndCreate $PODD/dist/build
+
+    # unpacking inside source
+    cd $sourceDir
+    $getCoptions getAndUnpackTo $repo $filename .
+if($1 == "src") exit
+
+# make
+make:
+
+    set buildDir  = $sourceDir/build
+    cd $buildDir
+
+    # log start of compilation
+    $getCoptions logStart $blog $blogS
+
+    # the  -Wno-dev  flag is to ignore the project developers cmake warnings for policy CMP0075
+    cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=$PODD -DCMAKE_INSTALL_LIBDIR=$PODD/lib $sourceDir >> $blog
+
+    make $opt    >> $blog
+    make install >> $blog
+
+    # log end of compilation, total time
+    $getCoptions logEnd  $blog
+    $getCoptions logTime $blog
+
+if($1 == "make") exit
+
+# Cleaning up
+echo " > Cleaning up..."
+cd $PODD
+# comment this if they need debugging
+rm -rf $sourceDir
+
+# Done
+echo " > Done."
+echo
