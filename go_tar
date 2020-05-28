@@ -106,6 +106,7 @@ endif
 # Get evio from here:
 # https://coda.jlab.org/drupal/content/event-io-evio
 # then replace the SConstruct there with the old $EVIO/SConstruct and re-pack with (one dir up)
+# At this point the stuff installed on disk is different than the CODA evio releases
 if($pname == "evio") then
 	cd $JLAB_SOFTWARE/evio/$pver
 	scons -c ; rm -rf lib bin
