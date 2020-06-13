@@ -3,20 +3,18 @@
 import os
 import platform
 
-sysname, nodename, release, version, machine = os.uname()
-
-osreleasVersion = ""
-compilerVersion = ""
+osreleasVersion = ''
+compilerVersion = ''
 
 # Darwin
-if sysname == 'Darwin':
+if platform.system() == 'Darwin':
     # Getting macos version
     # platform.mac_ver() returns:
     # ('10.15.3', ('', '', ''), 'x86_64')
     version, dummy1, dummy2 = platform.mac_ver()
-    major, minor, tooSmall = version.split(".")
-    osreleasVersion = "macosx" + major + "." + minor
-   
+    major, minor, tooSmall = version.split('.')
+    osreleasVersion = 'macosx' + major + '.' + minor
+
     # Getting clang version
     # This assumes a return from clang like this:
     #
@@ -28,11 +26,30 @@ if sysname == 'Darwin':
     clangVersion = 'clang --version'
     stream = os.popen(clangVersion)
     output = stream.readlines()
-    clangVersions = output[0].split(" ")
-    compilerVersion = "clang" + clangVersions[3]
+    clangVersions = output[0].split(' ')
+    compilerVersion = 'clang' + clangVersions[3]
 
+elif platform.system() == 'Linux':
 
-osname = sysname + "_" + osreleasVersion + "_" + compilerVersion
+# deprecated in 3.8:
+#    flavor,version,variant = platform.linux_distribution()
+#    osreleasVersion = flavor.replace('Linux','').strip() + version
+
+    if os.path.exists('/etc/redhat-release'):
+        with open('/etc/redhat-release') as f:
+          columns = f.read().strip().split()
+          osreleasVersion = columns[0]+columns[3]
+    else:
+      raise ValueError('Unsupported Linux Version')
+
+    compilerVersion = os.popen('gcc --version').readlines()
+    compilerVersion = 'gcc'+compilerVersion[0].split()[2]
+
+else:
+    raise ValueError(('Unsupported platform: '+platform.system()))
+
+osname = platform.system() + '_' + osreleasVersion
+osname += '-' + platform.machine() + '-' + compilerVersion
 
 print (osname)
 
