@@ -13,7 +13,7 @@
 #   - rework of script by Maurik Holtop
 
 # set JLAB_VERSION to the wanted tag if it's not set yet
-: ${JLAB_VERSION=2.3}
+: ${JLAB_VERSION=2.4}
 
 TMPF=`mktemp`
 env -i tcsh ${TCSH_ARG} -c "

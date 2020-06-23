@@ -6,12 +6,12 @@ if($1 == "keepmine") then
 endif
 
 if( ! $?JLAB_VERSION) then
-	setenv JLAB_VERSION 2.3
+	setenv JLAB_VERSION 2.4
 endif
 
 # Get date from:
 # git log -1
-set CE_DATE = "(Fri Jan 17 2020)"
+set CE_DATE = "(Tue Jun 23 2020)"
 
 
 setenv PATH $JLAB_ROOT/$JLAB_VERSION/ce:$PATH
@@ -40,7 +40,7 @@ if( ! $?PYTHONPATH) then
 endif
 
 # Looking for custom defined OSRELEASE
-set DEFAULT_OSRELEASE = `$JLAB_ROOT/$JLAB_VERSION/ce/osrelease.pl`
+set DEFAULT_OSRELEASE = `$JLAB_ROOT/$JLAB_VERSION/ce/osrelease.py`
 if($?OSRELEASE) then
 	if($OSRELEASE != $DEFAULT_OSRELEASE) then
 		echo " >> User defined OSRELEASE set to:"  $OSRELEASE

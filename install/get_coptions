@@ -16,7 +16,7 @@ endif
 
 # Release
 release:
-	set release  = (`../ce/osrelease.pl`)
+	set release  = (`../ce/osrelease.py`)
 	# overwriting OSRELEASE if user want to
 	if($OSRELEASE != $release) then
 		set release = $OSRELEASE

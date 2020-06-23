@@ -20,7 +20,7 @@ fi
 
 ## Make sure we use one of the supported versions
 case "$JLAB_VERSION" in
-  2.[0123] )  ## Match good versions here
+  2.[01234] )  ## Match good versions here
     ;;
   devel )    ## Match good versions here
     ;;
@@ -41,7 +41,7 @@ case "$JLAB_VERSION" in
     ;;
 esac
 
-if [ "${JLAB_ROOT}" == "2.3" ]; then
+if [ "${JLAB_ROOT}" == "2.3" || "${JLAB_ROOT}" == "2.4" ]; then
 	export QT_VERSION=5.10.1
 fi
 

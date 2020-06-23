@@ -5,13 +5,14 @@
 setenv JLAB_ROOT /site/12gev_phys
 
 # Making sure we use one of the supported versions:
-if($1 != "2.3" && $1 != "2.2" && $1 != "2.1" && $1 != "2.0" && $1 != "devel") then
+if($1 != "2.4" && $1 != "2.3" && $1 != "2.2" && $1 != "2.1" && $1 != "2.0" && $1 != "devel") then
 	echo
 	echo "  Usage:  'source $JLAB_ROOT/softenv.csh <version>'"
 	echo
 	echo "  Supported Versions: "
 	echo
-	echo "   - 2.3 (production)"
+	echo "   - 2.4 (production)"
+	echo "   - 2.3 "
 	echo "   - 2.2 "
 	echo "   - 2.1 "
 	echo "   - 2.0 "
@@ -25,7 +26,7 @@ setenv JLAB_VERSION $1
 
 # using new compiler just for devel for now
 # also, using python3
-if ($JLAB_VERSION == "devel") then
+if ($JLAB_VERSION == "devel" || $JLAB_VERSION == "2.4") then
 	alias python python3
 	source /etc/profile.d/modules.csh
 	module use /apps/modulefiles
@@ -46,7 +47,7 @@ set OVERWRITE="yes"  # will overwrite user settings
 # but it's ok: no one ever used it since the start of this project many years ago
 # So now we have an non elegant solution that conceptually is also wrong.
 # The use of "module" for the next iteration of these script is more and more appealing.
-if( $1 == "2.3" || $1 == "devel") then
+if( $1 == "2.4" || $1 == "2.3" || $1 == "devel") then
 	unsetenv QTDIR
 	setenv QT_VERSION 5.10.1
 	set OVERWRITE=keepmine
