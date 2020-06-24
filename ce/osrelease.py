@@ -49,7 +49,7 @@ else:
     raise ValueError(('Unsupported platform: '+platform.system()))
 
 osname = platform.system() + '_' + osreleasVersion
-osname += '-' + platform.machine() + '-' + compilerVersion
+osname += '-' + compilerVersion
 
 print (osname)
 
