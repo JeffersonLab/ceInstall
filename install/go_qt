@@ -36,9 +36,8 @@ if($1 == "system") then
 
 	if($system == "Mac") then
 
-		set majorQtVersion = `\ls -rt /usr/local/Cellar | grep qt`
-		set minorQtVersion = `\ls -rt /usr/local/Cellar/$majorQtVersion | tail -1`
-		set SQTDIR = /usr/local/Cellar/$majorQtVersion/$minorQtVersion
+		set minorQtVersion = `\ls -rt /usr/local/Cellar/qt@5 | tail -1`
+		set SQTDIR = /usr/local/Cellar/qt@5/$minorQtVersion
 		echo
 		echo System QT, version $minorQtVersion selected
 		echo Linking to $SQTDIR installation.
@@ -76,9 +75,7 @@ if($1 == "system") then
 			set SQTDIR = $LQTDIR/qt5       # binaries, mkspecs and plugins
 
 			# linking the relevant stuff
-			# important: only link the qt libraries here
-			ln -sfn $LQTDIR/libQt* $QTDIR/lib
-
+			ln -sfn $LQTDIR         $QTDIR/lib
 			ln -sfn $IQTDIR         $QTDIR/include
 			ln -sfn $SQTDIR/bin     $QTDIR/bin
 			ln -sfn $SQTDIR/mkspecs $QTDIR/mkspecs
@@ -93,7 +90,7 @@ if($1 == "system") then
 			set SQTDIR = $LQTDIR/qt5           # binaries, mkspecs and plugins
 
 			# linking the relevant stuff
-			ln -sfn $LQTDIR/libQt*  $QTDIR/lib
+			ln -sfn $LQTDIR         $QTDIR/lib
 			ln -sfn $IQTDIR         $QTDIR/include
 			ln -sfn $SQTDIR/bin     $QTDIR/bin
 			ln -sfn $SQTDIR/mkspecs $QTDIR/mkspecs
