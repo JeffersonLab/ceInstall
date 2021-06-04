@@ -1,0 +1,62 @@
+#!/bin/csh -f
+
+
+# Additional settings at the top of get_coptions
+# Get hipo from here:
+# https://coda.jlab.org/drupal/content/event-io-hipo
+# then replace the SConstruct there with the old $HIPO/SConstruct and re-pack with (one dir up)
+# Also need to copy
+# set version = 5.1
+# tar cvf hipo-$version.tar --exclude="doc" --exclude="java" --exclude="tar" hipo-$version/*
+# gzip hipo-$version.tar
+# scp hipo-$version.tar.gz ftp:/u/group/12gev_phys/www/packages/sources/hipo
+
+set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions 
+
+# Options
+set name     = hipo
+set release  = `$getCoptions release`
+set repo     = `$getCoptions repo`/hipo
+set version  = $HIPO_VERSION
+set filename = hipo-$HIPO_VERSION".tar.gz"
+set opt      = `shlib $getCoptions copt`
+set blog     = `$getCoptions logFile hipo`
+set blogS    = `$getCoptions logFileS hipo`
+
+# Write options on screen
+$getCoptions log $name $version $filename $release $opt
+
+
+
+if($1 == "src"|| $1 == "make") goto $1
+
+# Source Build
+src:
+
+	# start message
+	$getCoptions installLog $name $version
+
+	$getCoptions removeAndCreate $HIPO
+	cd $HIPO/..
+
+	$getCoptions getAndUnpackTo $repo $filename $version
+if($1 == "src") exit
+
+# make
+make:
+	# log start of compilation
+	$getCoptions logStart $blog $blogS
+
+	# start showing log on xterm
+	$getCoptions xLog hipo
+
+	cd $HIPO
+	make $opt OPT=1 >> $blog
+
+if($1 == "make") exit
+
+# Done!
+echo done
+echo
+
+
