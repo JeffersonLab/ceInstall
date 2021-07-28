@@ -88,7 +88,7 @@ make:
 	# Enable packages:
 	# ----------------
 
-	set enablePackages = ("roofit" "minuit2" "python" )
+	set enablePackages = ("roofit" "minuit2" "python", "builtin_glew" )
 	set toEnable = ""
 	foreach p ($enablePackages)
 		set toEnable="$toEnable -D $p=ON"
