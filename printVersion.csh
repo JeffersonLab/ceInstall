@@ -11,7 +11,6 @@ echo evio:       $DEFAULT_EVIO_VERSION
 echo geant4:     $DEFAULT_GEANT4_VERSION
 echo geant4Data: $DEFAULT_G4DATA_VERSION
 echo gemc:       $DEFAULT_GEMC_VERSION
-echo jana:       $DEFAULT_JANA_VERSION
 echo mlibrary:   $DEFAULT_MLIBRARY_VERSION
 echo qt:         $DEFAULT_QT_VERSION
 echo root:       $DEFAULT_ROOT_VERSION
@@ -31,4 +30,3 @@ echo setenv G4SAIDXSDATA       '$'G4DATA_DIR/`\ls $G4DATA_DIR| grep G4SAIDDATA` 
 echo setenv G4ABLADATA         '$'G4DATA_DIR/`\ls $G4DATA_DIR| grep G4ABLA`            # Data for G4ABLA
 echo setenv G4ENSDFSTATEDATA   '$'G4DATA_DIR/`\ls $G4DATA_DIR| grep G4ENSDFSTATE`      # Data for G4ENSDFSTATE
 echo
-
