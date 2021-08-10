@@ -7,7 +7,7 @@
 #
 # To compile the Geant4 Examples:
 # mkdir example-b3 ; cd example-b3
-# cmake -DGeant4_DIR=$G4INSTALL/lib/Geant$GEANT4_VERSION $G4INSTALL/source/Geant$GEANT4_VERSION/examples/basic/B3
+# cmake -DGeant4_DIR=$G4INSTALL/lib $G4INSTALL/source/Geant$GEANT4_VERSION/examples/basic/B3
 # make
 
 # Additional settings at the top of get_coptions
@@ -45,8 +45,8 @@ data:
 	set DATAINSTALL = $G4INSTALL/data/Geant4-$G4DATA_VERSION/data
 
 	# get the file list manually. WARNING: This is linked to the geant4 version.
-	# obtained with: ls /u/group/12gev_phys/www/packages/sources/geant4_data/4.10.06.p02
-	set DATAFILES = (G4ABLA.3.1.tar.gz  G4EMLOW.7.9.1.tar.gz  G4ENSDFSTATE.2.2.tar.gz  G4INCL.1.0.tar.gz  G4NDL.4.6.tar.gz  G4PARTICLEXS.2.1.tar.gz  G4PhotonEvaporation.5.5.tar.gz  G4PII.1.3.tar.gz  G4RadioactiveDecay.5.4.tar.gz  G4RealSurface.2.1.1.tar.gz  G4SAIDDATA.2.0.tar.gz )
+	# obtained with: ls /u/group/12gev_phys/www/packages/sources/geant4_data/4.10.07.p02
+	set DATAFILES = (G4ABLA.3.1.tar.gz G4ENSDFSTATE.2.3.tar.gz G4NDL.4.6.tar.gz G4PhotonEvaporation.5.7.tar.gz G4RadioactiveDecay.5.6.tar.gz G4SAIDDATA.2.0.tar.gz G4EMLOW.7.13.tar.gz G4INCL.1.0.tar.gz G4PARTICLEXS.3.1.1.tar.gz G4PII.1.3.tar.gz G4RealSurface.2.2.tar.gz  G4TENDL.1.3.2.tar.gz)
 	$getCoptions removeAndCreate $DATAINSTALL
 	cd $DATAINSTALL
 

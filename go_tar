@@ -16,7 +16,7 @@ endif
 if($#argv != 2 && $#argv != 3) then
 	echo " "
 	echo "Usage:   "
-	echo  "  >> go_tar package version [option]"
+	echo  "  >> go_tar version [option]"
 	echo " "
 	exit 0
 endif
@@ -72,7 +72,7 @@ if($pname == "ceInstall") then
 	scp sbsInstall/* sbsInstall/.jlab_software $remoted/ceInstall/
 
 	# main scripts: these are the ones in the local dir, not coming from the git release
-	scp softenv.* ftp.jlab.org:/site/12gev_phys
+	#scp softenv.* ftp.jlab.org:/site/12gev_phys
 
 	exit
 endif
@@ -199,21 +199,33 @@ echo
 exit
 
 g4data:
-	# data is downloaded to Downloads from the geant4 downloads.
-	# 1. make sure to move it to the a tmp dir inside download
-	# 2. make sure it is not unzipped
+
+	# data is downloaded to Downloads from the geant4 downloads, but in the process (mac) it's unzipped
+	# this will move the G4 files onto a tmp dir in downloads, zip them and copy them to the proper dir
+
+	cd /Users/ungaro/Downloads
+	mkdir -p tmp
+	mv G4* tmp
+
+
 	cd /Users/ungaro/Downloads/tmp
 
 	# checking number of files
 	set nFiles = `\ls | wc | awk '{print $1}'`
-	if($nFiles != "11") then
+	if($nFiles != "12") then
 		echo
 		echo Error: we should have 11 files but we have $nFiles
 		echo
 		exit
 	endif
 
-	set G4DATAVERSION = 4.10.06.p02
+	foreach f (`ls`)
+		echo gzipping $f
+		gzip $f
+	end
+
+
+	set G4DATAVERSION = 4.10.07.p02
 
 	cd /Users/ungaro/Downloads
 	mv tmp $G4DATAVERSION

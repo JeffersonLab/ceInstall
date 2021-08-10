@@ -4,12 +4,13 @@
 # and re-download them
 
 # Making sure we use one of the supported versions:
-if($1 != "2.4" && $1 != "2.3" && $1 != "devel") then
+if($1 != "2.5" && $1 != "2.4" && $1 != "2.3" && $1 != "devel") then
 	echo
 	echo "  Usage:  'go_reload <version>'"
 	echo
 	echo "  Supported Versions: "
 	echo
+	echo "   - 2.5 "
 	echo "   - 2.4 "
 	echo "   - 2.3 "
 	echo "   - devel "
