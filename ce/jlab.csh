@@ -17,7 +17,7 @@ set CE_DATE = "(Tue Jun 23 2020)"
 setenv PATH $JLAB_ROOT/$JLAB_VERSION/ce:$PATH
 
 # Software packages
-set packages = (banks ccdb clhep evio geant4 gemc mlibrary mysql qt root scons xercesc)
+set packages = (banks ccdb clhep evio geant4 gemc  mysql qt root scons xercesc)
 if ( -f ~/.jlab_software) then
 	set packages = `cat ~/.jlab_software`
 endif

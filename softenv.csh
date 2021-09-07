@@ -26,7 +26,7 @@ setenv JLAB_VERSION $1
 
 # using new compiler just for devel for now
 # also, using python3
-if ($JLAB_VERSION == "devel" || $JLAB_VERSION == "2.4") then
+if ($JLAB_VERSION == "devel" || $JLAB_VERSION == "2.4" || $JLAB_VERSION == "2.5") then
 	alias python python3
 	source /etc/profile.d/modules.csh
 	module use /apps/modulefiles
