@@ -148,9 +148,9 @@ makeMT:
 	set x11_option   = ""
 
 	# making the link to the single threaded data dir
-	mkdir -p $G4INSTALL"MT"/data/Geant4-$G4DATA_VERSION
-	cd $G4INSTALL"MT"/data/Geant4-$G4DATA_VERSION
-	ln -s $G4INSTALL/data/Geant4-$G4DATA_VERSION/data .
+	# mkdir -p $G4INSTALL"MT"/data/Geant4-$G4DATA_VERSION
+	# cd $G4INSTALL"MT"/data/Geant4-$G4DATA_VERSION
+	# ln -s $G4INSTALL/data/Geant4-$G4DATA_VERSION/data .
 
 
 	set buildDir  = $G4INSTALL"MT"/build

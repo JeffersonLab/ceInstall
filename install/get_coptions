@@ -93,6 +93,8 @@ logFile:
 		echo "$EVIO/build_log"
 	else if($2 == "mlibrary") then
 		echo "$MLIBRARY/build_log"
+	else if($2 == "glibrary") then
+		echo "$GLIBRARY/build_log"
 	else if($2 == "gemc")     then
 		echo "$GEMC/build_log"
 	else if($2 == "root")     then
@@ -121,6 +123,8 @@ xLog:
 			xterm -geometry 240x60+100+100 -e tail -f $EVIO/build_log &
 		else if($2 == "mlibrary") then
 			xterm -geometry 240x60+100+100 -e tail -f $MLIBRARY/build_log &
+		else if($2 == "glibrary") then
+			xterm -geometry 240x60+100+100 -e tail -f $GLIBRARY/build_log &
 		else if($2 == "gemc")     then
 			xterm -geometry 240x60+100+100 -e tail -f $GEMC/build_log &
 		else if($2 == "root")     then
@@ -148,6 +152,8 @@ logFileS:
 		echo \$EVIO/"build_log"
 	else if($2 == "mlibrary") then
 		echo \$MLIBRARY/"build_log"
+	else if($2 == "glibrary") then
+		echo \$GLIBRARY/"build_log"
 	else if($2 == "gemc")     then
 		echo \$GEMC/"build_log"
 	else if($2 == "root")     then

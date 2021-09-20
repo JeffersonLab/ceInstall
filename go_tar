@@ -170,7 +170,7 @@ endif
 
 
 # mlibrary
-# notice: cadmesh from github "master" is not compiling properly. Use version 1.1
+# notice: cadmesh from github "master" is not compiling properly.
 if($pname == "mlibrary") then
 	# development is automatically local
 	if($pver == "devel") then
@@ -194,9 +194,24 @@ if($pname == "mlibrary") then
 
 endif
 
+# glibrary
+if($pname == "glibrary") then
+	mcd $locald/gemc/glibrary/tmp
+	wget -qc --show-progress https://github.com/gemc/glibrary/archive/$pver".tar.gz" -O glibrary_$pver.tar.gz
+	scp glibrary_$pver.tar.gz $remoted/glibrary
+	cd ..
+	rm -rf tmp
+	exit
+
+endif
 echo
 echo
 exit
+
+
+
+
+
 
 g4data:
 

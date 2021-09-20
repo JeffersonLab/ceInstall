@@ -39,7 +39,7 @@ if($1 == "system") then
 		set minorQtVersion = `\ls -rt /usr/local/Cellar/qt@5 | tail -1`
 		set SQTDIR = /usr/local/Cellar/qt@5/$minorQtVersion
 		echo
-		echo System QT, version $minorQtVersion selected
+		echo System QT, version $minorQtVersion 
 		echo Linking to $SQTDIR installation.
 		echo
 

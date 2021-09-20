@@ -4,19 +4,19 @@
 set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions 
 
 # Options, Screen Log, Warnings
-set name     = gemc
+set name     = glibrary
 set release  = `$getCoptions release`
-set repo     = `$getCoptions repo`/gemc
-set version  = $GEMC_VERSION
-set filename =  gemc"-"$GEMC_VERSION".tar.gz"
+set repo     = `$getCoptions repo`/glibrary
+set version  = $GLIBRARY_VERSION
+set filename =  glibrary"_"$GLIBRARY_VERSION".tar.gz"
 set opt      = `$getCoptions copt`
-set blog     = `$getCoptions logFile gemc`
-set blogS    = `$getCoptions logFileS gemc`
+set blog     = `$getCoptions logFile glibrary`
+set blogS    = `$getCoptions logFileS glibrary`
 
 # Write options on screen
 $getCoptions log $name $version $filename $release $opt
 
-if($1 == "src"|| $1 == "make" || $1 == "3.0") goto $1
+if($1 == "src"|| $1 == "make") goto $1
 
 # Source Build
 src:
@@ -24,26 +24,29 @@ src:
 	$getCoptions installLog $name $version
 
 	# creating build and source dirs
-	$getCoptions removeAndCreate $JLAB_SOFTWARE/gemc/$GEMC_VERSION
+	$getCoptions removeAndCreate $JLAB_SOFTWARE/glibrary/$GLIBRARY_VERSION
 
 	# unpacking inside source
-	cd $JLAB_SOFTWARE/gemc
-	$getCoptions getAndUnpackTo $repo $filename $GEMC_VERSION
+	cd $JLAB_SOFTWARE/glibrary
+	$getCoptions getAndUnpackTo $repo $filename $GLIBRARY_VERSION
 if($1 == "src") exit
 
 # make
-make:
+cadmesh:
 
+	cd $GLIBRARY
 
 	# log start of compilation
 	$getCoptions logStart $blog $blogS
 
 	# start showing log on xterm
-	$getCoptions xLog gemc
+	$getCoptions xLog glibrary
+
+	# cadmesg
+	./compileCmesh >>  $blog
 
 	# Adding LIBRARY="shared" in case gemc is built as a library
-	cd $GEMC
-	scons $opt OPT=1 LIBRARY="shared" >>  $blog
+	scons $opt OPT=1  >>  $blog
 
 	# log end of compilation, total time
 	$getCoptions logEnd  $blog
@@ -51,21 +54,11 @@ make:
 
 if($1 == "make") exit
 
-
-3.0:
-
-	cd $JLAB_SOFTWARE/gemc
-	git clone http://github.com/gemc/src.git $GEMC_VERSION
-	cd $GEMC_VERSION
-	scons $opt OPT=1 >>  $blog
-
-if($1 == "3.0") exit
-
-
-
 # Done
 echo " > Done."
 echo
+
+
 
 
 

@@ -4,130 +4,47 @@
 # chgrp -R 12gev_phys root
 # chmod -R 775 root
 #
-# On mac the new root requires mysql @ version 5.7 as the new one (version 8) got rid of typedef my_bool
-# To install 5.7 on the mac:
-# brew unlink mysql
-# brew install mysql@5.7
-# brew link mysql@5.7 --force
+# Everywhere else root is installed with brew or yum
 
 
-# Additional settings at the top of get_coptions
-set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions 
+#!/bin/csh -f
 
- # Options
-set name     = root
-set release  = `$getCoptions release`
-set repo     = `$getCoptions repo`/root
-set version  = $ROOT_VERSION
-set filename = "root_v"$ROOT_VERSION".source.tar.gz"
-set opt      = `$getCoptions copt`
-set blog     = `$getCoptions logFile root`
-set blogS    = `$getCoptions logFileS root`
 
-# Write options on screen
-$getCoptions log $name $version $filename $release $opt
 
-# write permissions for JLab 12gev group
-if($1 == "perm") then
-	cd $JLAB_SOFTWARE
-	mkdir root
-	chgrp -R 12gev_phys root
-	chmod -R 775 root
-	cd root
-	echo install root version $ROOT_VERSION in `pwd`
-	exit
+if($system == "Mac") then
+
+	set rootVersion = `\ls -rt /usr/local/Cellar/root | tail -1`
+	set SROOT = /usr/local/Cellar/root/rootVersion
+	echo
+	echo System ROOT, version $rootVersion
+	echo Linking to $SROOT installation.
+	echo
+
+	rm -rf   $ROOTSYS
+	mkdir -p $ROOTSYS
+
+#	 linking the relevant stuff
+	ln -sfn $SROOT/lib     $ROOTSYS/lib
+	ln -sfn $SROOT/include $ROOTSYS/include
+	ln -sfn $SROOT/bin     $ROOTSYS/bin
+	ln -sfn $SROOT/etc     $ROOTSYS/etc
+	ln -sfn $SROOT/share   $ROOTSYS/share
+
+# Using system QT for Linux.
+else if($system == "Linux") then
+
+	# explicit path to qmake
+	set minorQtVersion = `/usr/lib64/qt5/bin/qmake --version | grep Qt | awk '{print $4}'`
+
+	echo
+	echo System QT, system version $minorQtVersion will be used
+	echo Linking to $minorQtVersion installation.
+	echo
+
+	rm -rf   $QTDIR
+	mkdir -p $QTDIR
+
 endif
 
-set ROOTSOURCE = "$JLAB_SOFTWARE/root/root-$ROOT_VERSION"
-set ROOTBUILD  = "$JLAB_SOFTWARE/root/root-$ROOT_VERSION-build"
-
-if($1 == "src"|| $1 == "make") then
-	goto $1
-endif
-
-# Source Build
-src:
-
-	# start message
-	$getCoptions installLog $name $version
-
-	# creating build and source dirs
-	$getCoptions removeAndCreate $ROOTSYS
-	$getCoptions removeAndCreate $ROOTSOURCE
-	$getCoptions removeAndCreate $ROOTBUILD
-
-	# unpacking inside source
-	cd $JLAB_SOFTWARE/root
-	$getCoptions getAndUnpack $repo $filename
-if($1 == "src") exit
-
-make:
-
-	# notice the SPACE between the -D and the directive
-	# complete list on the root website "building root"
-
-	# Disable packages:
-	# ----------------
-
-	# Disabling stuff is proving to be more work than installing all ROOT defaults
-	# This list changes quite a bit with time
-
-	# disabling stuff we don't need, enabling stuff we want
-	# get this list from the cmake log "Enabled support"
-
-	# set disablePackages1 = ( "alien" "asimage" "astiff" "bonjour" "builtin_afterimage" "castor" "chirp" "dcache" "builtin_davix" "davix" "exceptions" )
-	# set disablePackages2 = ( "fitsio" "gfal" "glite"  "http" "ldap" "monalisa" "mysql" "odbc" "sapdb" "sqlite" "ssl" "srp" "tmva" "tmva-cpu" "tmva-pymva" "pch" "thread" )
-	# set disablePackages  = "$disablePackages1 $disablePackages2"
-
-	# Do not uncomment, it's used below just in case
-	set toDisable = ""
-	#	foreach p ($disablePackages)
-	#		set toDisable="$toDisable -D $p=OFF"
-	#	end
-
-	# Enable packages:
-	# ----------------
-
-	set enablePackages = ("roofit" "minuit2" "python", "builtin_glew" )
-	set toEnable = ""
-	foreach p ($enablePackages)
-		set toEnable="$toEnable -D $p=ON"
-	end
-
-	cd $ROOTBUILD
-
-	# log start of compilation
-	$getCoptions logStart $blog $blogS
-
-	# start showing log on xterm
-	$getCoptions xLog root
-
-	# the  -Wno-dev  flag is to ignore the project developers cmake warnings for policy CMP0075
-	#cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=$ROOTSYS $toDisable $toEnable $ROOTSOURCE >> $blog
-	cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=$ROOTSYS $toDisable $toEnable $ROOTSOURCE >> $blog
-
-	make $opt    >> $blog
-	make install >> $blog
-
-	# log end of compilation, total time
-	$getCoptions logEnd  $blog
-	$getCoptions logTime $blog
-
-if($1 == "make") exit
-
-# Cleaning up
-echo " > Cleaning up..."
-#rm -rf $ROOTSYS/root
-
-# Done
-echo " > Done."
+echo Done!
 echo
-
-
-
-
-
-
-
-
-
