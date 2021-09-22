@@ -54,9 +54,20 @@ if($1 == "make") exit
 
 3.0:
 
+	# start message
+	$getCoptions installLog $name $GEMC_VERSION
+	rm -rf $JLAB_SOFTWARE/gemc/$GEMC_VERSION
+	mkdir $JLAB_SOFTWARE/gemc
 	cd $JLAB_SOFTWARE/gemc
 	git clone http://github.com/gemc/src.git $GEMC_VERSION
-	cd $GEMC_VERSION
+
+	# log start of compilation
+	$getCoptions logStart $blog $blogS
+
+	# start showing log on xterm
+	$getCoptions xLog gemc
+
+	cd $JLAB_SOFTWARE/gemc/$GEMC_VERSION
 	scons $opt OPT=1 >>  $blog
 
 if($1 == "3.0") exit

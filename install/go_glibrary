@@ -16,9 +16,9 @@ set blogS    = `$getCoptions logFileS glibrary`
 # Write options on screen
 $getCoptions log $name $version $filename $release $opt
 
-if($1 == "src"|| $1 == "make") goto $1
+if($1 == "src"|| $1 == "cadmesh" || $1 == "make") goto $1
 
-# Source Build
+# get source code
 src:
 	# start message
 	$getCoptions installLog $name $version
@@ -29,11 +29,12 @@ src:
 	# unpacking inside source
 	cd $JLAB_SOFTWARE/glibrary
 	$getCoptions getAndUnpackTo $repo $filename $GLIBRARY_VERSION
+
 if($1 == "src") exit
 
-# make
-cadmesh:
 
+# build cadmesh
+cadmesh:
 	cd $GLIBRARY
 
 	# log start of compilation
@@ -45,14 +46,27 @@ cadmesh:
 	# cadmesg
 	./compileCmesh >>  $blog
 
-	# Adding LIBRARY="shared" in case gemc is built as a library
-	scons $opt OPT=1  >>  $blog
-
 	# log end of compilation, total time
 	$getCoptions logEnd  $blog
 	$getCoptions logTime $blog
 
+if($1 == "cadmesh") exit
+
+# build glibrary
+make:
+	cd $GLIBRARY
+
+	# log start of compilation
+	$getCoptions logStart $blog $blogS
+
+	# start showing log on xterm
+	$getCoptions xLog glibrary
+
+	# Adding LIBRARY="shared" in case gemc is built as a library
+	scons $opt OPT=1  >>  $blog
+
 if($1 == "make") exit
+
 
 # Done
 echo " > Done."

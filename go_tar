@@ -69,10 +69,10 @@ if($pname == "ceInstall") then
 	# html instructions: these are the ones in the local dir, not coming from the git release
 	rm -f sbsInstall/$pver"_install.html"
 	sed "s/vvversiontoreplaceee/$pver/g" sbsInstall/template_install.html > sbsInstall/$pver"_install.html"
-	scp sbsInstall/* sbsInstall/.jlab_software $remoted/ceInstall/
+	# scp sbsInstall/* sbsInstall/.jlab_software $remoted/ceInstall/
 
 	# main scripts: these are the ones in the local dir, not coming from the git release
-	#scp softenv.* ftp.jlab.org:/site/12gev_phys
+	# scp softenv.* ftp.jlab.org:/site/12gev_phys
 
 	exit
 endif

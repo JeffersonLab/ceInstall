@@ -12,7 +12,8 @@ if platform.system() == 'Darwin':
     # platform.mac_ver() returns:
     # ('10.15.3', ('', '', ''), 'x86_64')
     version, dummy1, dummy2 = platform.mac_ver()
-    major, minor, tooSmall = version.split('.')
+    # setting the maxsplit parameter to 1, will return a list with 2 elements
+    major, minor = version.split('.', 1)
     osreleasVersion = 'macosx' + major + '.' + minor
 
     # Getting clang version

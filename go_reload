@@ -24,12 +24,11 @@ set JLAB_VERSION=$1
 echo
 echo Deleting scripts for version $JLAB_VERSION
 
-rm -f ceInstall_$JLAB_VERSION.tar.gz
-rm -rf ce install sbsInstall
+rm -f  ceInstall_$JLAB_VERSION.tar.gz
+rm -rf ce install sbsInstall modules
 
 echo Re-installing scripts for version $JLAB_VERSION
 
-rm -f ceInstall_$JLAB_VERSION.tar.gz
 wget -c http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_$JLAB_VERSION.tar.gz
 mkdir ceInstall
 tar -zxpf ceInstall_$JLAB_VERSION.tar.gz --strip-components 1 -C ceInstall
