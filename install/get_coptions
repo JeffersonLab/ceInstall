@@ -18,9 +18,9 @@ endif
 release:
 	set release  = (`../ce/osrelease.py`)
 	# overwriting OSRELEASE if user want to
-	if($OSRELEASE != $release) then
-		set release = $OSRELEASE
-	endif
+	#if($OSRELEASE != $release) then
+	#	set release = $OSRELEASE
+	#endif
 	echo $release
 if($1 == "release") exit
 

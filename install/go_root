@@ -7,7 +7,26 @@
 # Everywhere else root is installed with brew or yum
 
 
-#!/bin/csh -f
+# write permissions for JLab 12gev group
+if($1 == "perm") then
+	cd $JLAB_SOFTWARE
+	mkdir root
+	chgrp -R 12gev_phys root
+	chmod -R 775 root
+	cd root
+	echo install root version $ROOT_VERSION in `pwd`
+	exit
+endif
+
+
+set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions
+set release  = `$getCoptions release`
+set system = ""
+if(`echo $release | grep mac | wc | awk '{print $1}'` == "1") then
+	set system = "Mac"
+else if(`echo $release | grep Linux | wc | awk '{print $1}'` == "1") then
+	set system = "Linux"
+endif
 
 
 
