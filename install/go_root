@@ -33,7 +33,7 @@ endif
 if($system == "Mac") then
 
 	set rootVersion = `\ls -rt /usr/local/Cellar/root | tail -1`
-	set SROOT = /usr/local/Cellar/root/rootVersion
+	set SROOT = /usr/local/Cellar/root/$rootVersion
 	echo
 	echo System ROOT, version $rootVersion
 	echo Linking to $SROOT installation.
