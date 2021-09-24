@@ -52,16 +52,23 @@ if($system == "Mac") then
 # Using system QT for Linux.
 else if($system == "Linux") then
 
+	rm -rf   $ROOTSYS
+	mkdir -p $ROOTSYS
+
 	# explicit path to qmake
-	set minorQtVersion = `/usr/lib64/qt5/bin/qmake --version | grep Qt | awk '{print $4}'`
+	set systemLibROOT     = /usr/lib64/root
+	set systemIncludeROOT = /usr/include/root
+	set systemBinROOT     = /usr/bin
+	set systemShareROOT   = /usr/share/root
 
 	echo
-	echo System QT, system version $minorQtVersion will be used
-	echo Linking to $minorQtVersion installation.
+	echo System ROOT, linking to system in /usr
 	echo
 
-	rm -rf   $QTDIR
-	mkdir -p $QTDIR
+	ln -sfn $systemLibROOT     $ROOTSYS/lib
+	ln -sfn $systemIncludeROOT $ROOTSYS/include
+	ln -sfn $systemBinROOT     $ROOTSYS/bin
+	ln -sfn $systemShareROOT   $ROOTSYS/share
 
 endif
 
