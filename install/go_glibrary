@@ -20,15 +20,14 @@ if($1 == "src"|| $1 == "cadmesh" || $1 == "make") goto $1
 
 # get source code
 src:
+
+
 	# start message
-	$getCoptions installLog $name $version
-
-	# creating build and source dirs
-	$getCoptions removeAndCreate $JLAB_SOFTWARE/glibrary/$GLIBRARY_VERSION
-
-	# unpacking inside source
+	$getCoptions installLog $name $GLIBRARY_VERSION
+	rm -rf $JLAB_SOFTWARE/glibrary/$GLIBRARY_VERSION
+	mkdir $JLAB_SOFTWARE/glibrary
 	cd $JLAB_SOFTWARE/glibrary
-	$getCoptions getAndUnpackTo $repo $filename $GLIBRARY_VERSION
+	git clone https://github.com/gemc/glibrary $GLIBRARY_VERSION
 
 if($1 == "src") exit
 
