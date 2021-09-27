@@ -38,7 +38,7 @@ elif platform.system() == 'Linux':
           if columns[0] == 'Fedora':
             osreleasVersion = columns[0]+columns[2]
           else:
-            osreleasVersion = columns[0]+columns[3]    else:
+            osreleasVersion = columns[0]+columns[3]   
       raise ValueError('Unsupported Linux Version')
 
     compilerVersion = os.popen('gcc --version').readlines()
