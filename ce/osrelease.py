@@ -32,15 +32,13 @@ if platform.system() == 'Darwin':
 
 elif platform.system() == 'Linux':
 
-# deprecated in 3.8:
-#    flavor,version,variant = platform.linux_distribution()
-#    osreleasVersion = flavor.replace('Linux','').strip() + version
-
     if os.path.exists('/etc/redhat-release'):
         with open('/etc/redhat-release') as f:
           columns = f.read().strip().split()
-          osreleasVersion = columns[0]+columns[3]
-    else:
+          if columns[0] == 'Fedora':
+            osreleasVersion = columns[0]+columns[2]
+          else:
+            osreleasVersion = columns[0]+columns[3]    else:
       raise ValueError('Unsupported Linux Version')
 
     compilerVersion = os.popen('gcc --version').readlines()

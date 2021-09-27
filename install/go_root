@@ -28,7 +28,19 @@ else if(`echo $release | grep Linux | wc | awk '{print $1}'` == "1") then
 	set system = "Linux"
 endif
 
+if($1 == "install") then
 
+	rm -rf   $ROOTSYS
+	mkdir -p $ROOTSYS
+
+	cd $ROOTSYS/..
+	git clone --branch latest-stable https://github.com/root-project/root.git root_src
+	mkdir root_build root_install
+	cd root_build
+	cmake -DCMAKE_INSTALL_PREFIX=../$ROOT_VERSION ../root_src # check cmake configuration output for warnings or error
+	cmake --build . -- install -j8
+
+endif
 
 if($system == "Mac") then
 
