@@ -70,6 +70,17 @@ if($1 == "make") exit
 	cd $JLAB_SOFTWARE/gemc/$GEMC_VERSION
 	scons $opt OPT=1 >>  $blog
 
+	# adding python api
+	git clone http://github.com/gemc/sci-g
+
+	# copying plugins to GPLUGIN_PATH (here)
+	cp ../../glibrary/1.0/lib/gstrea* .
+
+	# copying dosimeter data to GPLUGIN_PATH (here)
+	cp -r ../../glibrary/1.0/gdynamicDigitization/dosimeterData .
+
+
+
 if($1 == "3.0") exit
 
 
