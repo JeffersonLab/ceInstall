@@ -39,7 +39,7 @@ if($1 == "install") then
 	cd root_build
 	cmake -DCMAKE_INSTALL_PREFIX=../$ROOT_VERSION ../root_src # check cmake configuration output for warnings or error
 	cmake --build . -- install -j8
-
+	exit #Otherwise, will go below 
 endif
 
 if($system == "Mac") then
