@@ -11,14 +11,13 @@ endif
 
 # Get date from:
 # git log -1
-set CE_DATE = "(Mon Sept 13 2021)"
+set CE_DATE = "(Fri Oct 15 2021)"
 
 
 setenv PATH $JLAB_ROOT/$JLAB_VERSION/ce:$PATH
 
 # Software packages
 set packages = (clhep geant4 gemc glibrary qt root scons xercesc)
-#set packages = (banks ccdb clhep evio geant4 gemc  mysql qt root scons xercesc)
 if ( -f ~/.jlab_software) then
 	set packages = `cat ~/.jlab_software`
 endif
