@@ -21,7 +21,6 @@ if($1 == "src"|| $1 == "cadmesh" || $1 == "make") goto $1
 # get source code
 src:
 
-
 	# start message
 	$getCoptions installLog $name $GLIBRARY_VERSION
 	rm -rf $JLAB_SOFTWARE/glibrary/$GLIBRARY_VERSION
