@@ -6,6 +6,24 @@
 #
 # Everywhere else root is installed with brew or yum
 
+set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions
+
+ # Options
+set name     = root
+set release  = `$getCoptions release`
+set repo     = `$getCoptions repo`/root
+set version  = $ROOT_VERSION
+set filename = "root_v"$ROOT_VERSION".source.tar.gz"
+set opt      = `$getCoptions copt`
+set blog     = `$getCoptions logFile root`
+set blogS    = `$getCoptions logFileS root`
+
+set ROOTSOURCE = "$JLAB_SOFTWARE/root/root-$ROOT_VERSION"
+set ROOTBUILD  = "$JLAB_SOFTWARE/root/root-$ROOT_VERSION-build"
+
+# Write options on screen
+$getCoptions log $name $version $filename $release $opt
+
 
 # write permissions for JLab 12gev group
 if($1 == "perm") then
@@ -19,70 +37,122 @@ if($1 == "perm") then
 endif
 
 
-set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions
-set release  = `$getCoptions release`
-set system = ""
-if(`echo $release | grep mac | wc | awk '{print $1}'` == "1") then
-	set system = "Mac"
-else if(`echo $release | grep Linux | wc | awk '{print $1}'` == "1") then
-	set system = "Linux"
+
+if($1 == "src"|| $1 == "make" || $1 == "system") then
+	goto $1
 endif
 
-if($1 == "install") then
 
-	rm -rf   $ROOTSYS
-	mkdir -p $ROOTSYS
+# Source Build
+src:
+	# start message
+	$getCoptions installLog $name $version
 
-	cd $ROOTSYS/..
-	git clone --branch latest-stable https://github.com/root-project/root.git root_src
-	mkdir root_build root_install
-	cd root_build
-	cmake -DCMAKE_INSTALL_PREFIX=../$ROOT_VERSION ../root_src # check cmake configuration output for warnings or error
-	cmake --build . -- install -j8
+	# creating build and source dirs
+	$getCoptions removeAndCreate $ROOTSYS
+	$getCoptions removeAndCreate $ROOTSOURCE
+	$getCoptions removeAndCreate $ROOTBUILD
 
-endif
+	# unpacking inside source
+	cd $JLAB_SOFTWARE/root
+	$getCoptions getAndUnpack $repo $filename
+if($1 == "src") exit
 
-if($system == "Mac") then
+make:
 
-	set rootVersion = `\ls -rt /usr/local/Cellar/root | tail -1`
-	set SROOT = /usr/local/Cellar/root/$rootVersion
+	# disabling stuff we don't need, enabling stuff we want
+	# get this list from the cmake log "Enabled support"
+	# notice the SPACE between the -D and the directive
+	# complete list on the root website "building root"
+	# Notice on Mojave: cannot disable explicitlink
+
+	set disablePackages1 = ( "alien" "asimage" "astiff" "bonjour" "castor" "chirp" "davix" )
+	set disablePackages2 = ( "fitsio" "gfal" "glite" "monalisa"  "odbc" "sapdb" "srp" "tmva" "tmva-cpu" "tmva-pymva" "pch" )
+
+	set disablePackages  = "$disablePackages1 $disablePackages2"
+
+	set enablePackages = ("roofit" "minuit2")
+	set toDisable = ""
+	set toEnable = ""
+	foreach p ($disablePackages)
+		set toDisable="$toDisable -D $p=OFF"
+	end
+	foreach p ($enablePackages)
+		set toEnable="$toEnable -D $p=ON"
+	end
+
+	cd $ROOTBUILD
+
+	# log start of compilation
+	$getCoptions logStart $blog $blogS
+
+	# start showing log on xterm
+	$getCoptions xLog root
+
+	# the  -Wno-dev  flag is to ignore the project developers cmake warnings for policy CMP0075
+	cmake -Wno-dev  -DCMAKE_CXX_STANDARD=11  -DCMAKE_INSTALL_PREFIX=$ROOTSYS $toDisable $toEnable $ROOTSOURCE >> $blog
+
+	make $opt    >> $blog
+	make install >> $blog
+
+	# log end of compilation, total time
+	$getCoptions logEnd  $blog
+	$getCoptions logTime $blog
+
+if($1 == "make") exit
+
+
+system:
+
+	if(`echo $release | grep mac | wc | awk '{print $1}'` == "1") then
+		set system = "Mac"
+	else if(`echo $release | grep Linux | wc | awk '{print $1}'` == "1") then
+		set system = "Linux"
+	endif
+
+	if($system == "Mac") then
+
+		set rootVersion = `\ls -rt /usr/local/Cellar/root | tail -1`
+		set SROOT = /usr/local/Cellar/root/$rootVersion
+		echo
+		echo System ROOT, version $rootVersion
+		echo Linking to $SROOT installation.
+		echo
+
+		rm -rf   $ROOTSYS
+		mkdir -p $ROOTSYS
+		ln -sfn $SROOT/lib     $ROOTSYS/lib
+		ln -sfn $SROOT/include $ROOTSYS/include
+		ln -sfn $SROOT/bin     $ROOTSYS/bin
+		ln -sfn $SROOT/etc     $ROOTSYS/etc
+		ln -sfn $SROOT/share   $ROOTSYS/share
+
+	# Using system QT for Linux.
+	else if($system == "Linux") then
+
+		rm -rf   $ROOTSYS
+		mkdir -p $ROOTSYS
+
+		# explicit path to qmake
+		set systemLibROOT     = /usr/lib64/root
+		set systemIncludeROOT = /usr/include/root
+		set systemBinROOT     = /usr/bin
+		set systemShareROOT   = /usr/share/root
+
+		echo
+		echo System ROOT, linking to system in /usr
+		echo
+
+		rm -rf   $ROOTSYS
+		mkdir -p $ROOTSYS
+		ln -sfn $systemLibROOT     $ROOTSYS/lib
+		ln -sfn $systemIncludeROOT $ROOTSYS/include
+		ln -sfn $systemBinROOT     $ROOTSYS/bin
+		ln -sfn $systemShareROOT   $ROOTSYS/share
+
+	endif
+
+	echo Done!
 	echo
-	echo System ROOT, version $rootVersion
-	echo Linking to $SROOT installation.
-	echo
 
-	rm -rf   $ROOTSYS
-	mkdir -p $ROOTSYS
-
-#	 linking the relevant stuff
-	ln -sfn $SROOT/lib     $ROOTSYS/lib
-	ln -sfn $SROOT/include $ROOTSYS/include
-	ln -sfn $SROOT/bin     $ROOTSYS/bin
-	ln -sfn $SROOT/etc     $ROOTSYS/etc
-	ln -sfn $SROOT/share   $ROOTSYS/share
-
-# Using system QT for Linux.
-else if($system == "Linux") then
-
-	rm -rf   $ROOTSYS
-	mkdir -p $ROOTSYS
-
-	# explicit path to qmake
-	set systemLibROOT     = /usr/lib64/root
-	set systemIncludeROOT = /usr/include/root
-	set systemBinROOT     = /usr/bin
-	set systemShareROOT   = /usr/share/root
-
-	echo
-	echo System ROOT, linking to system in /usr
-	echo
-
-	ln -sfn $systemLibROOT     $ROOTSYS/lib
-	ln -sfn $systemIncludeROOT $ROOTSYS/include
-	ln -sfn $systemBinROOT     $ROOTSYS/bin
-	ln -sfn $systemShareROOT   $ROOTSYS/share
-
-endif
-
-echo Done!
-echo
+if($1 == "system") exit
