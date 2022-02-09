@@ -31,17 +31,15 @@ case "$JLAB_VERSION" in
 	echo
 	echo "  Supported Versions: "
 	echo
-	echo "   - 2.3 (production)"
-	echo "   - 2.2 "
-	echo "   - 2.1 "
-	echo "   - 2.0 "
-	echo "   - devel "
+	echo "   - 2.6 "
+	echo "   - 2.5 "
+	echo "   - 2.4 "
 	echo; echo
    return 1
     ;;
 esac
 
-if [ "${JLAB_ROOT}" == "2.3" || "${JLAB_ROOT}" == "2.4" ]; then
+if [ "${JLAB_ROOT}" == "2.4" || "${JLAB_ROOT}" == "2.5" || "${JLAB_ROOT}" == "2.6" ]; then
 	export QT_VERSION=5.10.1
 fi
 

@@ -1,6 +1,6 @@
 #!/bin/csh -f
 
-# Additional settings at the top of get_coptions
+# getCoptions points to script
 set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions 
 
 # Options, Screen Log, Warnings
@@ -26,7 +26,7 @@ src:
 	# creating build and source dirs
 	$getCoptions removeAndCreate $JLAB_SOFTWARE/gemc/$GEMC_VERSION
 
-	# unpacking inside source
+	# unpacking 
 	cd $JLAB_SOFTWARE/gemc
 	$getCoptions getAndUnpackTo $repo $filename $GEMC_VERSION
 if($1 == "src") exit

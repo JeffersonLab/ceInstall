@@ -17,10 +17,10 @@ echo
 
 # Getting source file
 echo " > Installing scons build model - version "$version". Getting package from repository..."
-$getCoptions removeAndCreate $JLAB_ROOT/$JLAB_VERSION/scons_bm/
-cd  $JLAB_ROOT/$JLAB_VERSION/
+$getCoptions removeAndCreate $JLAB_ROOT/$JLAB_VERSION/scons_bm/$SCONS_BM_VERSION
 
-$getCoptions getAndUnpackTo $repo $filename scons_bm
+cd $SCONS_BM/..
+$getCoptions getAndUnpackTo $repo $filename $SCONS_BM_VERSION
 
 echo "Done."
 echo

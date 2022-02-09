@@ -1,10 +1,9 @@
 #!/bin/csh -f
 
-
-
+# getCoptions points to script
 set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions 
 
-# Options
+# Options, Screen Log, Warnings
 set name     = hipo
 set release  = `$getCoptions release`
 set repo     = `$getCoptions repo`/hipo
@@ -17,18 +16,18 @@ set blogS    = `$getCoptions logFileS hipo`
 # Write options on screen
 $getCoptions log $name $version $filename $release $opt
 
-
 if($1 == "src"|| $1 == "make") goto $1
 
 # Source Build
 src:
-
 	# start message
 	$getCoptions installLog $name $version
 
+	# creating build and source dirs
 	$getCoptions removeAndCreate $HIPO
-	cd $HIPO/..
 
+	# unpacking 
+	cd $HIPO/..
 	$getCoptions getAndUnpackTo $repo $filename $version
 if($1 == "src") exit
 

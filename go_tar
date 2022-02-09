@@ -54,24 +54,24 @@ if($pname == "ceInstall") then
 		rm -f ceInstall_$pver.*
 		tar cvf ceInstall_$pver.tar  -L $excludeFromTar ceInstall
 		gzip ceInstall_$pver.tar
-		scp ceInstall_$pver.tar.gz $remoted/ceInstall
-		rm -f ceInstall_$pver.*
+		mv ceInstall_$pver.tar.gz $locald/ceInstall
+		cd ceInstall
 	else
-		mcd $locald/ceInstall/tmp
 		wget -qc --show-progress https://github.com/JeffersonLab/ceInstall/archive/v$pver".tar.gz" -O ceInstall_$pver.tar.gz
-		scp ceInstall_$pver.tar.gz $remoted/ceInstall
-		cd ..
-		rm -rf tmp
 	endif
 
-	cd $locald/ceInstall
 
 	# html instructions: these are the ones in the local dir, not coming from the git release
 	rm -f sbsInstall/$pver"_install.html"
 	sed "s/vvversiontoreplaceee/$pver/g" sbsInstall/template_install.html > sbsInstall/$pver"_install.html"
-	# scp sbsInstall/* sbsInstall/.jlab_software $remoted/ceInstall/
+
+	scp -r sbsInstall/* ceInstall_$pver.tar.gz  'sbsInstall/template_install.html' $remoted/ceInstall
+	rm -f ceInstall_$pver.*
 
 	# main scripts: these are the ones in the local dir, not coming from the git release
+	echo
+	echo "if necessary copy softenv to /site by uncommenting line on go_tar"
+	echo
 	# scp softenv.* ftp.jlab.org:/site/12gev_phys
 
 	exit

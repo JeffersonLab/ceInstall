@@ -6,18 +6,18 @@ if($1 == "keepmine") then
 endif
 
 if( ! $?JLAB_VERSION) then
-	setenv JLAB_VERSION 2.5
+	setenv JLAB_VERSION 2.6
 endif
 
 # Get date from:
 # git log -1
-set CE_DATE = "(Fri Oct 15 2021)"
+set CE_DATE = "(Wed Feb 9 2022)"
 
 
 setenv PATH $JLAB_ROOT/$JLAB_VERSION/ce:$PATH
 
 # Software packages
-set packages = (clhep geant4 gemc glibrary qt root scons xercesc)
+set packages = (banks ccdb clhep evio geant4 gemc glibrary hipo mlibrary mysql qt root scons xercesc)
 if ( -f ~/.jlab_software) then
 	set packages = `cat ~/.jlab_software`
 endif
@@ -28,7 +28,6 @@ alias echo 'if($?prompt) echo \!*  '
 
 # Do not edit below this line
 #############################
-echo
 
 # Sourcing packages. This will set the LD_LIBRARY_PATH. 
 # Powerpcs and Darwins will be set right below
@@ -52,15 +51,17 @@ endif
 # JLAB_SOFTWARE is where all the architecture software will be
 setenv JLAB_SOFTWARE $JLAB_ROOT/$JLAB_VERSION/$OSRELEASE
 
-echo
-echo " > Common Environment Version: <"$JLAB_VERSION">  "$CE_DATE
+set red   = `tput setaf 1`
+set reset = `tput sgr0`
+set green = `tput setaf 2`
+echo " > Common Environment Version: <"$green$JLAB_VERSION$reset">  "$CE_DATE
 echo " > Running as "`whoami` on `hostname`
 echo " > OS Release:    "$OSRELEASE
-echo " > JLAB_ROOT set to:     "$JLAB_ROOT
+echo " > JLAB_ROOT set to:     "$green$JLAB_ROOT$reset
 
 source $JLAB_ROOT/$JLAB_VERSION/ce/versions.env
 if( -d $JLAB_SOFTWARE) then
-	echo " > JLAB_SOFTWARE set to: "$JLAB_SOFTWARE
+	echo " > JLAB_SOFTWARE set to: "$green$JLAB_SOFTWARE$reset
 else
 	mkdir -p $JLAB_SOFTWARE
 	echo " > '$JLAB_SOFTWARE' is not a directory. Creating it."

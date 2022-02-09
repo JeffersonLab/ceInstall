@@ -15,27 +15,24 @@
 
 <html>
 	
-	<h2> Software installation instructions (JLAB_VERSION devel) </h2>
+	<h2> Software installation instructions (JLAB_VERSION 2.5) </h2>
 	
 	These instructions are verified on:
 	<ul> <b>Linux:</b></ul>
 	<ul>
 		<li> CentOS 7</li>
+		<li> CentOS 8</li>
 	</ul>
 	
 	<ul> <b>Mac:</b></ul>
 	<ul>
-		<li> Sierra</li>
-		<li> High Sierra</li>
+		<li> Big Sur</li>
 	</ul>
 	<br/>
-	These are instructions to install JLAB_VERSION devel. You can find supported JLAB_VERSION releases instructions below:<br/>
+	These are instructions to install JLAB_VERSION 2.5. You can find supported JLAB_VERSION releases instructions below:<br/>
 	<ul>
-		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/devel_install.html"> Development Version</a><br/></li>
-		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.3_install.html"> Version 2.3</a><br/></li>
-		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.2_install.html"> Version 2.2</a><br/></li>
-		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.1_install.html"> Version 2.1</a><br/></li>
-		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.0_install.html"> Version 2.0</a><br/></li>
+		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.5_install.html"> Version 2.5</a><br/></li>
+		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.6_install.html"> Version 2.6</a><br/></li>
 	</ul>
 	
 	<hr>
@@ -47,10 +44,10 @@
 		<li> network connection to download the various packages during installation</li>
 		<li> wget</li>
 		<li> git</li>
-		<li> cmake >= 3.3 (for root geant4. check with <i>cmake --version</i>)</li>
+		<li> cmake >= 3.3 </li>
 		<li> scons version >= 3</li>
-		<li> mysql (including devel)</li>
-		<li> recommended: qt</li>
+		<li> mysql (including devel) and openssl</li>
+		<li> qt</li>
 	</ul>
 	
 	
@@ -61,7 +58,7 @@
 		</i>
 		Remember to update brew:
 		<pre>
-brew upgrade
+brew upgrade ; brew update
 		</pre>
 
 
@@ -133,12 +130,10 @@ brew install wget cmake mysql openssl qt<br/>
 	<ol>
 		<li>
 			(Optional): create a file in your home directory: <pre>.jlab_software</pre> that contains one line only,
-			with the packages you're interested in. The default (also works if no such file is present):
+			with the packages you're interested in. The default (also works if .jlab_software is not present) is:
 			<pre><code>
-banks ccdb clhep evio geant4 gemc jana mlibrary mysql qt root scons xercesc
+banks ccdb clhep evio geant4 gemc glibrary hipo mlibrary mysql qt root scons xercesc
 			</code></pre>
-			Click <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/.jlab_software"> here </a> for a version of .jlab_software
-			that only has clhep, geant4, qt and xercesc. <br/>
 			<h4>Only the packages inside <i>.jlab_software</i> will be considered when setting the environment.</h4><br/>
 
 		</li>
@@ -154,7 +149,7 @@ set JLAB_ROOT=/opt/jlab_software
 			Create the working directory:
 			
 			<pre><code>
-mkdir -p $JLAB_ROOT/devel
+mkdir -p $JLAB_ROOT/2.5
 			</code></pre>
 		</li>
 		
@@ -163,78 +158,75 @@ mkdir -p $JLAB_ROOT/devel
 		<li>Get the installation scripts:
 			<pre><code>
 cd $JLAB_ROOT
-wget -c  http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_devel.tar.gz
-tar -zxpf ceInstall_devel.tar.gz --strip-components 1 -C devel
+wget -c  http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_2.5.tar.gz
+tar -zxpf ceInstall_2.5.tar.gz --strip-components 1 -C 2.5
 			</code> </pre>
 			
-		</li>
-		
-		
-		<li>
 			Set the environment variables. You should put these lines in your login script:
 			
 			<pre><code>
 setenv JLAB_ROOT /opt/jlab_software
-source $JLAB_ROOT/devel/ce/jlab.csh
+source $JLAB_ROOT/2.5/ce/jlab.csh
 			</code></pre>
 			
 		</li>
 		
 		
 		<li>Start a new shell. Now you should see a log similar to this
-			<pre>
- > Common Environment Version: <devel>  (Wed Jan 22 2020)
- > Running as ungaro on enpungarombp.jlab.org
- > OS Release:    Darwin_macosx10.15-x86_64-clang11.0.0
- > JLAB_ROOT set to:     /opt/jlab_software
- > JLAB_SOFTWARE set to: /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0
+<pre>
+> Common Environment Version: <2.5>  (Wed Feb 9 2022)
+> Running as ungaro on enpungarombp.jlab.org
+> OS Release:    Darwin_macosx11.6.2-clang13.0.0
+> JLAB_ROOT set to:     /opt/jlab_software
+> JLAB_SOFTWARE set to: /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0
 
- !! Attention:  BANKS  installation check /opt/projects/banks/bin  not found
- !! Attention:  CCDB  installation check /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/ccdb/ccdb-1.06.02/lib  not found
- !! Attention:  CLHEP  installation check /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/clhep/2.4.1.3/lib  not found
- !! Attention:  EVIO  installation check /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/evio/5.1/bin  not found
- !! Attention:  GEANT4  installation check /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/geant4/4.10.06/bin  not found
- !! Attention:  GEMC  installation check /opt/projects/gemc/source/gemc  not found
- !! Attention:  JANA  installation check /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/jana/0.8.0/bin/jana  not found
- !! Attention:  MLIBRARY  installation check /opt/projects/mlibrary/lib  not found
- !! Attention:  MYSQL  installation check /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/mysql/lib  not found
- !! Attention:  QT    installation check /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/qt/system/clang_64/lib  not found
- !! Attention:  ROOT  installation check /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/root/6.18.04/bin/root-config  not found
- !! Attention:  SCONS  installation check /opt/jlab_software/devel/scons_bm/site_tools  not found
- !! Attention:  XERCESC  installation check /opt/jlab_software/devel/Darwin_macosx10.15-x86_64-clang11.0.0/xercesc/3.2.2/  not found
-			</pre>
-			
-		</li>
-		If you do, great! The enviroment seems correct and you're ready to run the installation scripts. Every script that you run below will replace the warning log with a successful one.<br/>
-		Notice: if you already have some existing environment variables that you want to keep,
-		use the option "keepmine":<br/>
+!! Attention:  CLHEP  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/clhep/2.4.4.2/lib  not found
+!! Attention:  XERCESC  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/xercesc/3.2.3/  not found
+!! Attention:  QT    installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/qt/system/clang_64/lib  not found
+!! Attention:  GEANT4  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/geant4/4.10.07.p03/bin  not found
+!! Attention:  SCONS  installation check /opt/jlab_software/2.5/scons_bm/1.10/site_tools  not found
+!! Attention:  MLIBRARY  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/mlibrary/1.5/lib  not found
+!! Attention:  GEMC  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/gemc/2.9/gemc  not found
+!! Attention:  CCDB  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/ccdb/ccdb-1.07.00/lib  not found
+!! Attention:  MYSQL  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/mysql/lib  not found
+!! Attention:  ROOT  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/root/6.24.06/bin/root-config  not found
+!! Attention:  HIPO  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/hipo/1.4/lib/libhipo4.a  not found
+!! Attention:  BANKS  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/banks/1.8/bin  not found
+!! Attention:  EVIO  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/evio/5.1/bin  not found</pre>
+</pre>
+		If you do, great! The enviroment seems correct and you're ready to run the installation scripts.
+		Every script that you run below will replace the corresponding warning log with a successful one.<br/><br/>
+		<b>Notice</b>: if you want to preserve some environment variables use the option "keepmine" :
 		<pre><code>
-source $JLAB_ROOT/devel/ce/jlab.csh keepmine
+source $JLAB_ROOT/2.5/ce/jlab.csh keepmine
 		</code></pre>
-		
-		
+		</li>
+
 		<li>
-			Choose the packages you wish to install by executing the corresponding script:
+			Execute the go script for the packages you wish to install:
 			<pre><code>
-cd $JLAB_ROOT/devel/install
+cd $JLAB_ROOT/2.5/install
 				
 ./go_clhep
 ./go_xercesc
-./go_qt
+./go_qt system
 (see notes below for non system-qt installation)
-./go_geant4
+./go_geant4 data
+./go_geant4 src
+./go_geant4 makeMT
+(use ./go_geant4 make for single threaded installation of geant4)
 ./go_sconsscript
 ./go_evio
 ./go_mysql
 ./go_ccdb
 ./go_mlibrary
+./go_hipo
+./go_glibrary
 ./go_gemc
 ./go_root
 ./go_banks
-./go_jana
 			</code></pre>
-			Note: 
-			All the packages listed above "go_gemc" are necessary to run gemc. <br/><br/>
+			<b>Note</b>: The order of the packages above reflect the packages dependencies  <br/><br/>
 		</li>
 
 
@@ -265,21 +257,18 @@ cd $JLAB_ROOT/devel/install
 			
 		</table>
 	</ol>
-	
-	<br/>
 	&#8224; (needs fast connection to download the cross section data)   <br/>
 	&#8225; you will see a lot of warnings you can ignore related to assimp.  <br/>
-	&#8226; The JLab environment is setup to use the system installation of Qt. If you want to install qt using their offline installer, set the environment variable QT_VERSION then use 'keepmine' on the jlab script:
+	&#8226; This links qt to the system installation. If you want to install qt using their offline installer, set the environment variable QT_VERSION then use 'keepmine' on the jlab script:
 	<pre><code>
 setenv QT_VERSION 5.10.1
 source $JLAB_ROOT/devel/ce/jlab.csh keepmine
 	</code></pre>
-  <br/><br/><br/>
+  <br/>
 
 	
 	Please email any comments/corrections/bug report/feature requests to <a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">Maurizio Ungaro</a>.
-	
-	
+
 	<br/><br/><br/>
 	<br/><br/><br/>
 	<br/><br/><br/>

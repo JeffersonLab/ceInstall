@@ -5,18 +5,15 @@
 setenv JLAB_ROOT /site/12gev_phys
 
 # Making sure we use one of the supported versions:
-if($1 != "2.4" && $1 != "2.3" && $1 != "2.2" && $1 != "2.1" && $1 != "2.0" && $1 != "devel") then
+if($1 != "2.6" && $1 != "2.5" && $1 != "2.4") then
 	echo
 	echo "  Usage:  'source $JLAB_ROOT/softenv.csh <version>'"
 	echo
 	echo "  Supported Versions: "
 	echo
-	echo "   - 2.4 (production)"
-	echo "   - 2.3 "
-	echo "   - 2.2 "
-	echo "   - 2.1 "
-	echo "   - 2.0 "
-	echo "   - devel "
+	echo "   - 2.6 "
+	echo "   - 2.5 "
+	echo "   - 2.4 "
 	echo; echo
 	exit
 endif
@@ -26,12 +23,12 @@ setenv JLAB_VERSION $1
 
 # using new compiler just for devel for now
 # also, using python3
-if ($JLAB_VERSION == "devel" || $JLAB_VERSION == "2.4" || $JLAB_VERSION == "2.5") then
+if ($JLAB_VERSION == "2.6" || $JLAB_VERSION == "2.5" || $JLAB_VERSION == "2.4") then
 	alias python python3
 	source /etc/profile.d/modules.csh
 	module use /apps/modulefiles
-	module load cmake/3.13.4
-	module load gcc/9.2.0
+	module load cmake
+	module load gcc/9.3.0
 
 	# needed otherwise cmake could pick up the system cc
 	setenv CC gcc
