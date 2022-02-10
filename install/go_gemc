@@ -49,7 +49,11 @@ make:
 	$getCoptions logEnd  $blog
 	$getCoptions logTime $blog
 
-if($1 == "make") exit
+# Done
+echo " > Done."
+echo
+
+exit
 
 
 3.0:
@@ -85,13 +89,12 @@ if($1 == "make") exit
 	scons $opt OPT=1 >>  $blog
 	cp ch.gplugin $GPLUGIN_PATH
 
-if($1 == "3.0") exit
-
-
-
 # Done
-echo " > Done."
+echo " > 3.0 Done."
 echo
+
+
+
 
 
 

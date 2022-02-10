@@ -39,11 +39,15 @@ make:
 	# start showing log on xterm
 	$getCoptions xLog hipo
 
+	mkdir -p $HIPO/lib
 	cd $HIPO
+	cd lz4
+	make $opt OPT=1
+	cp lib/liblz4.* ../lib
+	cd ../
 	cmake .
 	cd hipo4
 	make $opt OPT=1
-
 
 if($1 == "make") exit
 
