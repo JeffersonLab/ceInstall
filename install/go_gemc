@@ -28,7 +28,7 @@ src:
 
 	# unpacking 
 	cd $JLAB_SOFTWARE/gemc
-	$getCoptions getAndUnpackTo $repo $filename $GEMC_VERSION
+	$getCoptions getAndUnpackTo $repo $filename $version
 if($1 == "src") exit
 
 # make
@@ -59,7 +59,7 @@ if($1 == "make") exit
 	rm -rf $JLAB_SOFTWARE/gemc
 	mkdir -p $JLAB_SOFTWARE/gemc
 	cd $JLAB_SOFTWARE/gemc
-	git clone http://github.com/gemc/src.git $GEMC_VERSION
+	git clone http://github.com/gemc/src.git $version
 
 	# log start of compilation
 	$getCoptions logStart $blog $blogS

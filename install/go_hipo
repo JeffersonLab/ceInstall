@@ -9,7 +9,7 @@ set release  = `$getCoptions release`
 set repo     = `$getCoptions repo`/hipo
 set version  = $HIPO_VERSION
 set filename = hipo-$HIPO_VERSION".tar.gz"
-set opt      = `shlib $getCoptions copt`
+set opt      = `$getCoptions copt`
 set blog     = `$getCoptions logFile hipo`
 set blogS    = `$getCoptions logFileS hipo`
 

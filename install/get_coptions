@@ -97,6 +97,8 @@ logFile:
 		echo "$GLIBRARY/build_log"
 	else if($2 == "gemc")     then
 		echo "$GEMC/build_log"
+	else if($2 == "hipo")     then
+		echo "$HIPO/build_log"
 	else if($2 == "root")     then
 		echo "$ROOTSYS/build_log"
 	else if($2 == "banks")    then
@@ -127,6 +129,8 @@ xLog:
 			xterm -geometry 240x60+100+100 -e tail -f $GLIBRARY/build_log &
 		else if($2 == "gemc")     then
 			xterm -geometry 240x60+100+100 -e tail -f $GEMC/build_log &
+		else if($2 == "hipo")     then
+			xterm -geometry 240x60+100+100 -e tail -f $HIPO/build_log &
 		else if($2 == "root")     then
 			xterm -geometry 240x60+100+100 -e tail -f $ROOTSYS/build_log &
 		else if($2 == "banks")    then
@@ -156,6 +160,8 @@ logFileS:
 		echo \$GLIBRARY/"build_log"
 	else if($2 == "gemc")     then
 		echo \$GEMC/"build_log"
+	else if($2 == "hipo")     then
+		echo \$HIPO/"build_log"
 	else if($2 == "root")     then
 		echo \$ROOTSYS/"build_log"
 	else if($2 == "banks")    then
