@@ -4,8 +4,21 @@
 
 setenv JLAB_ROOT /site/12gev_phys
 
-# Making sure we use one of the supported versions:
-if($1 != "2.6" && $1 != "2.5" && $1 != "2.4") then
+setenv JLAB_VERSION $1
+
+# using new compiler just for devel for now
+# also, using python3
+if ($JLAB_VERSION == "2.6" || $JLAB_VERSION == "2.5" || $JLAB_VERSION == "2.4") then
+	alias python python3
+	source /etc/profile.d/modules.csh
+	module use /apps/modulefiles
+	module load cmake
+	module load gcc/9.2.0
+
+	# needed otherwise cmake could pick up the system cc
+	setenv CC gcc
+	setenv CXX g++
+else
 	echo
 	echo "  Usage:  'source $JLAB_ROOT/softenv.csh <version>'"
 	echo
@@ -18,33 +31,14 @@ if($1 != "2.6" && $1 != "2.5" && $1 != "2.4") then
 	exit
 endif
 
-# version is ok, can continue
-setenv JLAB_VERSION $1
-
-# using new compiler just for devel for now
-# also, using python3
-if ($JLAB_VERSION == "2.6" || $JLAB_VERSION == "2.5" || $JLAB_VERSION == "2.4") then
-	alias python python3
-	source /etc/profile.d/modules.csh
-	module use /apps/modulefiles
-	module load cmake
-	module load gcc/9.3.0
-
-	# needed otherwise cmake could pick up the system cc
-	setenv CC gcc
-	setenv CXX g++
-endif
-
 set OVERWRITE="yes"  # will overwrite user settings
 
-# version 2.3 at JLAB has the QT_VERSION set to 5.10.1
-# notice: on the new ifarm QTDIR is set. So we can't use keepmine
-# unless we unsetenv it
-# notice: this is effectively rendering the overwrite feature useless for QT
+# version 2.4 at JLAB uses the system QT_VERSION 5.10.1
+# notice: the lines below are effectively rendering the overwrite feature useless for QT
 # but it's ok: no one ever used it since the start of this project many years ago
 # So now we have an non elegant solution that conceptually is also wrong.
 # The use of "module" for the next iteration of these script is more and more appealing.
-if( $1 == "2.4" || $1 == "2.3" || $1 == "devel") then
+if( $1 == "2.4") then
 	unsetenv QTDIR
 	setenv QT_VERSION 5.10.1
 	set OVERWRITE=keepmine

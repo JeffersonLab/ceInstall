@@ -99,7 +99,10 @@ make:
 	$getCoptions logEnd  $blog
 	$getCoptions logTime $blog
 
-if($1 == "make") exit
+	echo Done!
+	echo
+
+exit
 
 
 system:
@@ -154,5 +157,3 @@ system:
 
 	echo Done!
 	echo
-
-if($1 == "system") exit

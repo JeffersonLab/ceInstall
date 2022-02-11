@@ -20,9 +20,20 @@ fi
 
 ## Make sure we use one of the supported versions
 case "$JLAB_VERSION" in
-  2.[01234] )  ## Match good versions here
-    ;;
-  devel )    ## Match good versions here
+  2.[456] )  ## Match good versions here
+
+	export QT_VERSION=5.10.1
+	# also, using python3
+	alias python=python3
+	# using new compiler
+	source /etc/profile.d/modules.sh
+	module use /apps/modulefiles
+	module load cmake
+	module load gcc/9.2.0
+
+	# needed otherwise cmake could pick up the system cc
+	export CC=gcc
+	export CXX=g++
     ;;
 
   *)
@@ -38,10 +49,6 @@ case "$JLAB_VERSION" in
    return 1
     ;;
 esac
-
-if [ "${JLAB_ROOT}" == "2.4" || "${JLAB_ROOT}" == "2.5" || "${JLAB_ROOT}" == "2.6" ]; then
-	export QT_VERSION=5.10.1
-fi
 
 config_sh="${JLAB_ROOT}/${JLAB_VERSION}/ce/jlab.sh"
 
