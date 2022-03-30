@@ -15,7 +15,7 @@
 
 <html>
 	
-	<h2> Software installation instructions (JLAB_VERSION vvversiontoreplaceee) </h2>
+	<h2> Software installation instructions (JLAB_VERSION 2.6) </h2>
 	
 	These instructions are verified on:
 	<ul> <b>Linux:</b></ul>
@@ -28,7 +28,7 @@
 	<ul>
 		<li> Big Sur, Monterey</li>
 	</ul>
-	These are instructions to install JLAB_VERSION vvversiontoreplaceee. You can find supported JLAB_VERSION releases instructions below:<br/>
+	These are instructions to install JLAB_VERSION 2.6. You can find supported JLAB_VERSION releases instructions below:<br/>
 	<ul>
 		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.5_install.html"> Version 2.5</a><br/></li>
 		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.6_install.html"> Version 2.6</a><br/></li>
@@ -116,7 +116,7 @@ set JLAB_ROOT=/opt/jlab_software
 			Create the working directory:
 			
 			<pre><code>
-mkdir -p $JLAB_ROOT/vvversiontoreplaceee
+mkdir -p $JLAB_ROOT/2.6
 			</code></pre>
 		</li>
 		
@@ -125,15 +125,15 @@ mkdir -p $JLAB_ROOT/vvversiontoreplaceee
 		<li>Get the installation scripts:
 			<pre><code>
 cd $JLAB_ROOT
-wget -c  http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_vvversiontoreplaceee.tar.gz
-tar -zxpf ceInstall_vvversiontoreplaceee.tar.gz --strip-components 1 -C vvversiontoreplaceee
+wget -c  http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_2.6.tar.gz
+tar -zxpf ceInstall_2.6.tar.gz --strip-components 1 -C 2.6
 			</code> </pre>
 			
 			Set the environment variables. You should put these lines in your login script:
 			
 			<pre><code>
 setenv JLAB_ROOT /opt/jlab_software
-source $JLAB_ROOT/vvversiontoreplaceee/ce/jlab.csh
+source $JLAB_ROOT/2.6/ce/jlab.csh
 			</code></pre>
 			
 		</li>
@@ -167,14 +167,14 @@ source $JLAB_ROOT/vvversiontoreplaceee/ce/jlab.csh
 			Every script that you run below will replace the corresponding warning log with a successful one.<br/><br/>
 			<b>Notice</b>: if you want to preserve some environment variables use the option "keepmine" :
 			<pre><code>
-source $JLAB_ROOT/vvversiontoreplaceee/ce/jlab.csh keepmine
+source $JLAB_ROOT/2.6/ce/jlab.csh keepmine
 			</code></pre>
 		</li>
 
 		<li>
 			Execute the go script for the packages you wish to install:
 			<pre><code>
-cd $JLAB_ROOT/vvversiontoreplaceee/install
+cd $JLAB_ROOT/2.6/install
 
 ./go_clhep
 ./go_xercesc

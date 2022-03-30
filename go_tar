@@ -222,14 +222,13 @@ g4data:
 	mkdir -p tmp
 	mv G4* tmp
 
-
 	cd /Users/ungaro/Downloads/tmp
 
 	# checking number of files
 	set nFiles = `\ls | wc | awk '{print $1}'`
 	if($nFiles != "12") then
 		echo
-		echo Error: we should have 11 files but we have $nFiles
+		echo Error: we should have 12 files but we have $nFiles
 		echo
 		exit
 	endif
@@ -239,8 +238,7 @@ g4data:
 		gzip $f
 	end
 
-
-	set G4DATAVERSION = 4.10.07.p02
+	set G4DATAVERSION = 4.11.00.p01
 
 	cd /Users/ungaro/Downloads
 	mv tmp $G4DATAVERSION
