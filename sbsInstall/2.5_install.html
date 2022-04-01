@@ -2,7 +2,7 @@
 	.row { vertical-align: top; height:auto !important; }
 	.list {display:none; }
 	pre {color: #050;}
-	code {color: #008;}
+	code {color: #222;}
 	th { color: red; text-align: center;}
 	td { color: #929;  text-align: center;}
 	table {     padding: 15px; border-spacing: 5px;}
@@ -11,7 +11,7 @@
 	.hide:target {display: none; }
 	.hide:target ~ .list {display:inline; }
 	@media print { .hide, .show { display: none; } }
-	</style>
+</style>
 
 <html>
 	
@@ -26,9 +26,8 @@
 	
 	<ul> <b>Mac:</b></ul>
 	<ul>
-		<li> Big Sur</li>
+		<li> Big Sur, Monterey</li>
 	</ul>
-	<br/>
 	These are instructions to install JLAB_VERSION 2.5. You can find supported JLAB_VERSION releases instructions below:<br/>
 	<ul>
 		<li> <a href="https://www.jlab.org/12gev_phys/packages/sources/ceInstall/2.5_install.html"> Version 2.5</a><br/></li>
@@ -49,75 +48,43 @@
 		<li> mysql (including devel) and openssl</li>
 		<li> qt version 5</li>
 	</ul>
-	
-	
+
+	<i> NOTICE: if you try these and see packages are missing or not needed anymore, please
+		<a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">let me know</a>.<br/><br/>
+	</i>
+
+
 	<ul>
 		<h3> &#x2318; MAC OS specific requirements</h3>
-		<i> NOTICE: if you try these and see packages are missing or not needed anymore, please
-			<a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">let me know</a>.<br/><br/>
-		</i>
-		Remember to update brew:
-		<pre>
-brew upgrade ; brew update
-		</pre>
-
-
 		You can install the dependencies with <a href="http://brew.sh"> homebrew</a>:<br/><br/>
 		
-		<div class="row">
-			<a href="#hide1" class="hide" id="hide1">List of packages:</a><br/><br/>
-			<pre>
-brew install wget cmake mysql openssl qt@5<br/>
-			</pre>
+		<pre>
+brew upgrade ; brew update
+brew install wget cmake mysql openssl qt@5 scons
+		</pre>
 		<br/>
-		
-		
 	</ul>
 	
 	<ul>
 		<h3> &#128039; Ubuntu (Debian-line) specific requirements</h3>
-		<i> NOTICE: if you try these and see packages are missing or not needed anymore, please
-			 <a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">let me know</a>.<br/><br/>
-		</i>
 		You can install the dependencies with apt-get:<br/><br/>
-		
-		
-		<div class="row">
-			<a href="#hide2" class="hide" id="hide2">List of packages</a>
-			<a href="#show2" class="show" id="show2">Collapse List</a>
-			<div class="list">
-				<ul>
-					<li>sudo apt-get install g++ mysql-client libmysqlclient-dev libexpat1-dev tcsh cmake git scons</li>
-					<li>sudo apt-get install libx11-dev libxext-dev libglu1-mesa-dev libxt-dev libxmu-dev libxrender-dev libxft-dev libafterimage-dev </li>
-				</ul>
-			</div>
-		</div>
+		<pre>
+sudo apt-get install g++ mysql-client libmysqlclient-dev libexpat1-dev tcsh cmake git scons</li>
+sudo apt-get install libx11-dev libxext-dev libglu1-mesa-dev libxt-dev libxmu-dev libxrender-dev libxft-dev libafterimage-dev
+		</pre>
 		<br/>
-		
 	</ul>
 	
 	<ul>
 		<h3>&#128039; Fedora (red-hat line) specific requirements</h3>
-		<i> NOTICE: if you try these and see packages are missing or not needed anymore, please
-			<a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">let me know</a>.<br/><br/>
-		</i>
-		You can install the dependencies with dnf (or yum):<br/><br/>
+		You can install the dependencies with dnf or yum (the mysql package name may vary depends on the OS, you can dnf yum search mysql to find out the available version):<br/><br/>
 		
-		
-		<div class="row">
-			<a href="#hide3" class="hide" id="hide3">List of packages</a>
-			<a href="#show3" class="show" id="show3">Collapse List</a>
-			<div class="list">
-				<ul>
-					<li>dnf install gcc-c++ expat-devel zlib-devel</li>
-					<li>dnf install libx11-devel mesa-libGLU-devel libXmu-devel </li>
-					<li>dnf install mariadb-devel <br/>(the mysql package name may vary depends on the OS, you can dnf yum search mysql to find out the available version)</li><br/>
-					Recommended: the system version of qt. The following line should be enough to install all the dependencies.
-					<li>dnf install qt5-qttools-devel  </li>
-					
-				</ul>
-			</div>
-		</div>
+		<pre>
+dnf install gcc-c++ expat-devel zlib-devel
+dnf install libx11-devel mesa-libGLU-devel libXmu-devel
+dnf install mariadb-devel
+dnf install qt5-qttools-devel
+		</pre>
 		<br/>
 		
 	</ul>
@@ -173,48 +140,47 @@ source $JLAB_ROOT/2.5/ce/jlab.csh
 		
 		
 		<li>Start a new shell. Now you should see a log similar to this
-<pre>
-> Common Environment Version: <2.5>  (Wed Feb 9 2022)
+			<pre>
+> Common Environment Version: <2.6>  (Wed March 30 2022)
 > Running as ungaro on enpungarombp.jlab.org
-> OS Release:    Darwin_macosx11.6.2-clang13.0.0
+> OS Release:    Darwin_macosx12.3-clang13.1.6
 > JLAB_ROOT set to:     /opt/jlab_software
-> JLAB_SOFTWARE set to: /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0
+> JLAB_SOFTWARE set to: /opt/jlab_software/2.6/Darwin_macosx12.3-clang13.1.6
 
-!! Attention:  CLHEP  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/clhep/2.4.4.2/lib  not found
-!! Attention:  XERCESC  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/xercesc/3.2.3/  not found
-!! Attention:  QT    installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/qt/system/clang_64/lib  not found
-!! Attention:  GEANT4  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/geant4/4.10.07.p03/bin  not found
-!! Attention:  SCONS  installation check /opt/jlab_software/2.5/scons_bm/1.10/site_tools  not found
-!! Attention:  MLIBRARY  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/mlibrary/1.5/lib  not found
-!! Attention:  GEMC  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/gemc/2.9/gemc  not found
-!! Attention:  CCDB  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/ccdb/ccdb-1.07.00/lib  not found
-!! Attention:  MYSQL  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/mysql/lib  not found
-!! Attention:  ROOT  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/root/6.24.06/bin/root-config  not found
-!! Attention:  HIPO  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/hipo/1.4/lib/libhipo4.a  not found
-!! Attention:  BANKS  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/banks/1.8/bin  not found
-!! Attention:  EVIO  installation check /opt/jlab_software/2.5/Darwin_macosx11.6.2-clang13.0.0/evio/5.1/bin  not found</pre>
-</pre>
-		If you do, great! The enviroment seems correct and you're ready to run the installation scripts.
-		Every script that you run below will replace the corresponding warning log with a successful one.<br/><br/>
-		<b>Notice</b>: if you want to preserve some environment variables use the option "keepmine" :
-		<pre><code>
+!! Attention:  BANKS  installation check /opt/jlab_software/2.6/Darwin_macosx12.3-clang13.1.6/banks/1.8/bin  not found
+!! Attention:  CCDB  installation check /opt/jlab_software/2.6/Darwin_macosx12.3-clang13.1.6/ccdb/ccdb-1.07.00/lib  not found
+!! Attention:  CLHEP  installation check /opt/jlab_software/2.6/Darwin_macosx12.3-clang13.1.6/clhep/2.4.5.1/lib  not found
+!! Attention:  EVIO  installation check /opt/jlab_software/2.6/Darwin_macosx12.3-clang13.1.6/evio/5.1/bin  not found
+!! Attention:  GEANT4  installation check /opt/jlab_software/2.6/Darwin_macosx12.3-clang13.1.6/geant4/4.11.01/bin  not found
+!! Attention:  GEMC  installation check /opt/jlab_software/2.6/Darwin_macosx12.3-clang13.1.6/gemc/2.9  not found
+!! Attention:  GLIBRARY  installation check /opt/jlab_software/2.6/Darwin_macosx12.3-clang13.1.6/glibrary/1.0  not found
+!! Attention:  HIPO  installation check /opt/jlab_software/2.6/Darwin_macosx12.3-clang13.1.6/hipo/1.4/lib/libhipo4.a  not found
+!! Attention:  MLIBRARY  installation check /opt/jlab_software/2.6/Darwin_macosx12.3-clang13.1.6/mlibrary/1.5/lib  not found
+!! Attention:  MYSQL  installation check /opt/jlab_software/2.6/Darwin_macosx12.3-clang13.1.6/mysql/lib  not found
+!! Attention:  QT    installation check /opt/jlab_software/2.6/Darwin_macosx12.3-clang13.1.6/qt/system/clang_64/lib  not found
+!! Attention:  ROOT  installation check /opt/jlab_software/2.6/Darwin_macosx12.3-clang13.1.6/root/6.24.06/bin/root-config  not found
+!! Attention:  SCONS  installation check /opt/jlab_software/2.6/scons_bm/1.10/site_tools  not found
+!! Attention:  XERCESC  installation check /opt/jlab_software/2.6/Darwin_macosx12.3-clang13.1.6/xercesc/3.2.3/  not found
+
+			</pre>
+			If you do, great! The enviroment seems correct and you're ready to run the installation scripts.
+			Every script that you run below will replace the corresponding warning log with a successful one.<br/><br/>
+			<b>Notice</b>: if you want to preserve some environment variables use the option "keepmine" :
+			<pre><code>
 source $JLAB_ROOT/2.5/ce/jlab.csh keepmine
-		</code></pre>
+			</code></pre>
 		</li>
 
 		<li>
 			Execute the go script for the packages you wish to install:
 			<pre><code>
 cd $JLAB_ROOT/2.5/install
-				
+
 ./go_clhep
 ./go_xercesc
 ./go_qt system
 (use ./go_qt to compile qt from scratch)
-./go_geant4 data
-./go_geant4 src
-./go_geant4 makeMT
-(use ./go_geant4 make for single threaded installation of geant4)
+./go_geant4 
 ./go_sconsscript
 ./go_evio
 ./go_mysql
@@ -262,10 +228,10 @@ cd $JLAB_ROOT/2.5/install
 	&#8225; you will see a lot of warnings you can ignore related to assimp.  <br/>
 	&#8226; This links qt to the system installation. If you want to install qt using their offline installer, set the environment variable QT_VERSION then use 'keepmine' on the jlab script:
 	<pre><code>
-setenv QT_VERSION 5.10.1
-source $JLAB_ROOT/devel/ce/jlab.csh keepmine
+		setenv QT_VERSION 5.10.1
+		source $JLAB_ROOT/devel/ce/jlab.csh keepmine
 	</code></pre>
-  <br/>
+	<br/>
 
 	
 	Please email any comments/corrections/bug report/feature requests to <a href="mailto:ungaro@jlab.org?subject=About%20environment" target="_">Maurizio Ungaro</a>.
