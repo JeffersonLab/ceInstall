@@ -50,6 +50,15 @@ case "$JLAB_VERSION" in
     ;;
 esac
 
+case "$JLAB_VERSION" in
+  2.6 )  
+	module unload cmake
+	module load cmake/3.18.1
+    ;;
+esac
+
+
+
 config_sh="${JLAB_ROOT}/${JLAB_VERSION}/ce/jlab.sh"
 
 if [ -e  "$config_sh" ]; then

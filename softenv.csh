@@ -31,6 +31,11 @@ else
 	exit
 endif
 
+if ($JLAB_VERSION == "2.6") then
+	module unload cmake
+	module load cmake/3.18.1
+endif
+
 set OVERWRITE="yes"  # will overwrite user settings
 
 # version 2.4 at JLAB uses the system QT_VERSION 5.10.1
