@@ -6,8 +6,9 @@ setenv JLAB_ROOT /site/12gev_phys
 
 setenv JLAB_VERSION $1
 
-# using new compiler just for devel for now
-# also, using python3
+# using updated gcc and cmake from modules
+# current default cmake on the farm is 3.19
+# also, aliasing python to python3
 if ($JLAB_VERSION == "2.6" || $JLAB_VERSION == "2.5" || $JLAB_VERSION == "2.4") then
 	alias python python3
 	source /etc/profile.d/modules.csh
@@ -31,10 +32,6 @@ else
 	exit
 endif
 
-if ($JLAB_VERSION == "2.6") then
-	module unload cmake
-	module load cmake/3.18.1
-endif
 
 set OVERWRITE="yes"  # will overwrite user settings
 

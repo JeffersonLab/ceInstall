@@ -18,7 +18,9 @@ if [ "${2:-NA}" == "keepmine" ]; then
   OVERWRITE="$2"
 fi
 
-## Make sure we use one of the supported versions
+# using updated gcc and cmake from modules
+# current default cmake on the farm is 3.19
+# also, aliasing python to python3
 case "$JLAB_VERSION" in
   2.[456] )  ## Match good versions here
 
@@ -49,15 +51,6 @@ case "$JLAB_VERSION" in
    return 1
     ;;
 esac
-
-case "$JLAB_VERSION" in
-  2.6 )  
-	module unload cmake
-	module load cmake/3.18.1
-    ;;
-esac
-
-
 
 config_sh="${JLAB_ROOT}/${JLAB_VERSION}/ce/jlab.sh"
 
