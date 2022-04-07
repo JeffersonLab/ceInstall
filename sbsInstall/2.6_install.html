@@ -43,7 +43,7 @@
 		<li> network connection to download the various packages during installation</li>
 		<li> wget</li>
 		<li> git</li>
-		<li> cmake >= 3.3 </li>
+		<li> cmake >= 3.16 </li>
 		<li> scons version >= 3</li>
 		<li> mysql (including devel) and openssl</li>
 		<li> qt version 5</li>
@@ -109,17 +109,13 @@ banks ccdb clhep evio geant4 gemc glibrary hipo mlibrary mysql qt root scons xer
 			<pre><code>
 set JLAB_ROOT=/opt/jlab_software
 			</code></pre>
-			Create the working directory:
-			
-			<pre><code>
-mkdir -p $JLAB_ROOT/2.6
-			</code></pre>
 		</li>
 		
 		
 		
 		<li>Get the installation scripts:
 			<pre><code>
+mkdir -p $JLAB_ROOT/2.6
 cd $JLAB_ROOT
 wget -c  http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_2.6.tar.gz
 tar -zxpf ceInstall_2.6.tar.gz --strip-components 1 -C 2.6

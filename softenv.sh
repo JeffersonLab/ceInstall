@@ -18,7 +18,9 @@ if [ "${2:-NA}" == "keepmine" ]; then
   OVERWRITE="$2"
 fi
 
-## Make sure we use one of the supported versions
+# using updated gcc and cmake from modules
+# current default cmake on the farm is 3.19
+# also, aliasing python to python3
 case "$JLAB_VERSION" in
   2.[456] )  ## Match good versions here
 

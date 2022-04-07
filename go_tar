@@ -42,8 +42,9 @@ set exT9  = '--exclude=lib'
 set exT10 = '--exclude=bin'
 set exT11 = '--exclude=external'
 set exT12 = '--exclude=template\_install.html'
+set exT13 = '--disable-copyfile'
 
-set excludeFromTar = $exT1" "$exT2" "$exT3" "$exT4" "$exT5" "$exT6" "$exT7" "$exT8" "$exT9" "$exT10" "$exT11" "$exT12
+set excludeFromTar = $exT1" "$exT2" "$exT3" "$exT4" "$exT5" "$exT6" "$exT7" "$exT8" "$exT9" "$exT10" "$exT11" "$exT12" "$exT13
 
 # common environment
 if($pname == "ceInstall") then
@@ -70,9 +71,10 @@ if($pname == "ceInstall") then
 
 	# main scripts: these are the ones in the local dir, not coming from the git release
 	echo
-	echo "if necessary copy softenv to /site by uncommenting line on go_tar"
+	echo "if necessary copy softenv to ~/ then moving them to /site/12gev_phys/ (due to permissions problem on a scp to site directly):"
+	echo "scp softenv.* ftp.jlab.org:"
+	echo "mv ~/softenv.* /site/12gev_phys/"
 	echo
-	# scp softenv.* ftp.jlab.org:/site/12gev_phys
 
 	exit
 endif
