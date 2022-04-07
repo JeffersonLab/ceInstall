@@ -42,9 +42,8 @@ set exT9  = '--exclude=lib'
 set exT10 = '--exclude=bin'
 set exT11 = '--exclude=external'
 set exT12 = '--exclude=template\_install.html'
-set exT13 = '--disable-copyfile'
 
-set excludeFromTar = $exT1" "$exT2" "$exT3" "$exT4" "$exT5" "$exT6" "$exT7" "$exT8" "$exT9" "$exT10" "$exT11" "$exT12" "$exT13
+set excludeFromTar = $exT1" "$exT2" "$exT3" "$exT4" "$exT5" "$exT6" "$exT7" "$exT8" "$exT9" "$exT10" "$exT11" "$exT12
 
 # common environment
 if($pname == "ceInstall") then
@@ -52,8 +51,7 @@ if($pname == "ceInstall") then
 	# to use local disk version for a release
 	if($option == "local") then
 		cd $locald
-		rm -f ceInstall_$pver.*
-		tar cvf ceInstall_$pver.tar  -L $excludeFromTar ceInstall
+		gtar cf ceInstall_$pver.tar  $excludeFromTar ceInstall
 		gzip ceInstall_$pver.tar
 		mv ceInstall_$pver.tar.gz $locald/ceInstall
 		cd ceInstall
@@ -71,9 +69,9 @@ if($pname == "ceInstall") then
 
 	# main scripts: these are the ones in the local dir, not coming from the git release
 	echo
-	echo "if necessary copy softenv to ~/ then moving them to /site/12gev_phys/ (due to permissions problem on a scp to site directly):"
-	echo "scp softenv.* ftp.jlab.org:"
-	echo "mv ~/softenv.* /site/12gev_phys/"
+	echo " > if necessary copy softenv to ~/ then moving them to /site/12gev_phys/ (due to permissions problem on a scp to site directly):"
+	echo " > scp softenv.* ftp.jlab.org:"
+	echo " > mv ~/softenv.* /site/12gev_phys/"
 	echo
 
 	exit
@@ -86,7 +84,7 @@ if($pname == "bm") then
 	if($option == "local") then
 		cd $locald
 		rm -f scons_bm_$pver.tar.gz
-		tar cvf scons_bm_$pver.tar  -L $excludeFromTar scons_bm
+		gtar cvf scons_bm_$pver.tar  -L $excludeFromTar scons_bm
 		gzip scons_bm_$pver.tar
 		scp scons_bm_$pver.tar.gz $remoted/scons_bm
 		rm -f scons_bm_$pver.tar.gz
@@ -111,7 +109,7 @@ if($pname == "evio") then
 	scons -c ; rm -rf lib bin
 	cd ..
 	rm -rf evio-$pver.*
-	tar cvf  evio-$pver.tar --exclude="java" $excludeFromTar $pver/*
+	gtar cvf  evio-$pver.tar --exclude="java" $excludeFromTar $pver/*
 	gzip evio-$pver.tar
 	scp evio-$pver.tar.gz $remoted/evio
 	exit
@@ -128,7 +126,7 @@ if($pname == "gemc") then
 		cd $locald/gemc/releases/
 		rm -rf devel ; cp -r ../source devel
 		rm -f gemc-devel.tar.gz
-		tar cvf gemc-devel.tar -L $excludeFromTar devel
+		gtar cvf gemc-devel.tar -L $excludeFromTar devel
 		gzip gemc-devel.tar
 		scp gemc-devel.tar.gz $remoted/gemc
 		rm -f gemc-devel.tar.gz
@@ -140,7 +138,7 @@ if($pname == "gemc") then
 		cd source-$pver
 		cp -r $locald/gemc/api .
 		cd ..
-		tar cvf gemc-$pver.tar source-$pver
+		gtar cvf gemc-$pver.tar source-$pver
 		gzip gemc-$pver.tar
 		scp gemc-$pver.tar.gz $remoted/gemc
 		cd ..
@@ -156,7 +154,7 @@ if($pname == "banks") then
 		scons -c
 		cd $locald
 		rm -f banks_$pver.tar.gz
-		tar cvf banks_$pver.tar  -L $excludeFromTar banks
+		gtar cvf banks_$pver.tar  -L $excludeFromTar banks
 		gzip banks_$pver.tar
 		scp banks_$pver.tar.gz $remoted/banks
 		rm -f banks_$pver.tar.gz
@@ -181,7 +179,7 @@ if($pname == "mlibrary") then
 		rm -rf cadmeshBuild bin lib
 		cd $locald
 		rm -f mlibrary_$pver.*
-		tar cvf mlibrary_$pver.tar -L $excludeFromTar mlibrary
+		gtar cvf mlibrary_$pver.tar -L $excludeFromTar mlibrary
 		gzip mlibrary_$pver.tar
 		scp mlibrary_$pver.tar.gz $remoted/mlibrary
 		rm -f mlibrary_$pver.*
