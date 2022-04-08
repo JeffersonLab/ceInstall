@@ -68,7 +68,6 @@ make:
 
 	set disablePackages1 = ( "alien" "asimage" "astiff" "bonjour" "castor" "chirp" "davix" )
 	set disablePackages2 = ( "fitsio" "gfal" "glite" "monalisa"  "odbc" "sapdb" "srp" "tmva" "tmva-cpu" "tmva-pymva" "pch" )
-
 	set disablePackages  = "$disablePackages1 $disablePackages2"
 
 	set enablePackages = ("roofit" "minuit2")
@@ -90,7 +89,7 @@ make:
 	$getCoptions xLog root
 
 	# the  -Wno-dev  flag is to ignore the project developers cmake warnings for policy CMP0075
-	cmake -Wno-dev  -DCMAKE_CXX_STANDARD=11  -DCMAKE_INSTALL_PREFIX=$ROOTSYS $toDisable $toEnable $ROOTSOURCE >> $blog
+	cmake -Wno-dev -DCMAKE_CXX_STANDARD=11 -DCMAKE_INSTALL_PREFIX=$ROOTSYS $toDisable $toEnable $ROOTSOURCE >> $blog
 
 	make $opt    >> $blog
 	make install >> $blog
@@ -101,6 +100,7 @@ make:
 
 	echo Done!
 	echo
+if($1 == "make") exit
 
 exit
 
