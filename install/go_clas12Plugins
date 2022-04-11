@@ -6,9 +6,9 @@ set getCoptions = $JLAB_ROOT/$JLAB_VERSION/install/get_coptions
 # Options, Screen Log, Warnings
 set name     = gemc
 set release  = `$getCoptions release`
-set repo     = `$getCoptions repo`/gemc
-set version  = $GEMC_VERSION
-set filename =  gemc"-"$GEMC_VERSION".tar.gz"
+set repo     = `$getCoptions repo`/clas12g3
+set version  = $CLAS12G3_VERSION
+set filename =  clas12"-"$CLAS12G3_VERSION".tar.gz"
 set opt      = `$getCoptions copt`
 set blog     = `$getCoptions logFile gemc`
 set blogS    = `$getCoptions logFileS gemc`
@@ -16,7 +16,7 @@ set blogS    = `$getCoptions logFileS gemc`
 # Write options on screen
 $getCoptions log $name $version $filename $release $opt
 
-if($1 == "src"|| $1 == "make" || $1 == "3.0") goto $1
+if($1 == "src"|| $1 == "make") goto $1
 
 # Source Build
 src:
@@ -33,6 +33,12 @@ if($1 == "src") exit
 
 # make
 make:
+
+
+	# copying plugins to GPLUGIN_PATH
+	cd sci-g/examples/plugins/calorimeter/plugin/
+	scons $opt OPT=1 >>  $blog
+	cp ch.gplugin $GPLUGIN_PATH
 
 
 	# log start of compilation
@@ -54,38 +60,6 @@ echo " > Done."
 echo
 
 exit
-
-
-3.0:
-
-	# start message
-	$getCoptions installLog $name $GEMC_VERSION
-	rm -rf $JLAB_SOFTWARE/gemc
-	mkdir -p $JLAB_SOFTWARE/gemc
-	cd $JLAB_SOFTWARE/gemc
-	git clone http://github.com/gemc/src.git $version
-
-	# log start of compilation
-	$getCoptions logStart $blog $blogS
-
-	# start showing log on xterm
-	$getCoptions xLog gemc
-
-	cd $JLAB_SOFTWARE/gemc/$GEMC_VERSION
-	scons $opt OPT=1 >>  $blog
-
-	# copying plugins to GPLUGIN_PATH (here)
-	cp ../../glibrary/$GLIBRARY_VERSION/lib/gstrea* .
-
-	# copying dosimeter data to GPLUGIN_PATH (here)
-	cp -r ../../glibrary/$GLIBRARY_VERSION/gdynamicDigitization/dosimeterData .
-
-
-
-# Done
-echo " > 3.0 Done."
-echo
-
 
 
 
