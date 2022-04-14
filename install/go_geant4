@@ -87,7 +87,7 @@ src:
 if($1 == "src") exit
 
 
-# make MT ON by default
+# make MT ON by default, no need to specify here
 # build options on chapter 2 s 3
 # http://geant4.web.cern.ch/geant4/UserDocumentation/UsersGuides/InstallationGuide/html/ch02s03.html
 make:

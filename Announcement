@@ -19,13 +19,7 @@ geant4: 4.10.06, both in single and multithreaded mode
 root 6.18.04
 ccdb: 1.06 to 1.07
 
-
-
-
 The big change is geant4, just released in December with a physics fix which is crucial for JLab experiments using A=2 or A=3 targets.
-I'll compile it in both single and MT modes. Users can choose which one by setting the GEANT4_VERSION env variable.
-
-
 
 
 JLab Physics Software Libraries Release Announcement
