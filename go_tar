@@ -132,7 +132,7 @@ if($pname == "gemc") then
 		rm -f gemc-devel.tar.gz
 	else
 		mcd $locald/gemc/tmp
-		wget -qc --show-progress https://github.com/gemc/source/archive/v$pver.tar.gz -O gemc_$pver.tar.gz
+		wget -c --show-progress https://github.com/gemc/source/archive/v$pver.tar.gz -O gemc_$pver.tar.gz
 		tar -zxpvf gemc_$pver.tar.gz
 		rm gemc_$pver.tar.gz
 		cd source-$pver
@@ -160,7 +160,7 @@ if($pname == "banks") then
 		rm -f banks_$pver.tar.gz
 	else
 		mcd $locald/banks/tmp
-		wget -qc --show-progress https://github.com/maureeungaro/banks/archive/v$pver".tar.gz" -O banks_$pver.tar.gz
+		wget -c --show-progress https://github.com/maureeungaro/banks/archive/v$pver".tar.gz" -O banks_$pver.tar.gz
 		scp banks_$pver.tar.gz $remoted/banks
 		cd ..
 		rm -rf tmp
@@ -185,7 +185,7 @@ if($pname == "mlibrary") then
 		rm -f mlibrary_$pver.*
 	else
 		mcd $locald/mlibrary/tmp
-		wget -qc --show-progress https://github.com/gemc/mlibrary/archive/v$pver".tar.gz" -O mlibrary_$pver.tar.gz
+		wget -c --show-progress https://github.com/gemc/mlibrary/archive/v$pver".tar.gz" -O mlibrary_$pver.tar.gz
 		scp mlibrary_$pver.tar.gz $remoted/mlibrary
 		cd ..
 		rm -rf tmp
@@ -197,12 +197,11 @@ endif
 # glibrary
 if($pname == "glibrary") then
 	mcd $locald/gemc/glibrary/tmp
-	wget -qc --show-progress https://github.com/gemc/glibrary/archive/$pver".tar.gz" -O glibrary_$pver.tar.gz
+	wget -c --show-progress https://github.com/gemc/glibrary/archive/$pver".tar.gz" -O glibrary_$pver.tar.gz
 	scp glibrary_$pver.tar.gz $remoted/glibrary
 	cd ..
 	rm -rf tmp
 	exit
-
 endif
 echo
 echo
