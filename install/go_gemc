@@ -85,7 +85,7 @@ exit
 
 	mkdir -p $JLAB_SOFTWARE/sci-g
 	cd $JLAB_SOFTWARE/sci-g
-	git clone http://github.com/gemc/src.git $SCIG_VERSION
+	git clone http://github.com/gemc/sci-g.git $SCIG_VERSION
 	cd $JLAB_SOFTWARE/sci-g/$SCIG_VERSION
 	rm -rf .git
 
