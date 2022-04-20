@@ -8,6 +8,7 @@ set name     = gemc
 set release  = `$getCoptions release`
 set repo     = `$getCoptions repo`/gemc
 set version  = $GEMC_VERSION
+set version  = $GEMC_VERSION
 set filename =  gemc"-"$GEMC_VERSION".tar.gz"
 set opt      = `$getCoptions copt`
 set blog     = `$getCoptions logFile gemc`
@@ -72,6 +73,7 @@ exit
 	$getCoptions xLog gemc
 
 	cd $JLAB_SOFTWARE/gemc/$GEMC_VERSION
+	rm -rf .git
 	scons $opt OPT=1 >>  $blog
 
 	# copying plugins to GPLUGIN_PATH (here)
@@ -80,6 +82,12 @@ exit
 	# copying dosimeter data to GPLUGIN_PATH (here)
 	cp -r ../../glibrary/$GLIBRARY_VERSION/gdynamicDigitization/dosimeterData .
 
+
+	mkdir -p $JLAB_SOFTWARE/sci-g
+	cd $JLAB_SOFTWARE/sci-g
+	git clone http://github.com/gemc/src.git $SCIG_VERSION
+	cd $JLAB_SOFTWARE/sci-g/$SCIG_VERSION
+	rm -rf .git
 
 
 # Done
