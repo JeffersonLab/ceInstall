@@ -83,10 +83,10 @@ exit
 	cp -r ../../glibrary/$GLIBRARY_VERSION/gdynamicDigitization/dosimeterData .
 
 
-	mkdir -p $JLAB_SOFTWARE/sci-g
-	cd $JLAB_SOFTWARE/sci-g
+	mkdir -p $JLAB_ROOT/$JLAB_VERSION/noarch/sci-g
+	cd $JLAB_ROOT/$JLAB_VERSION/noarch/sci-g
 	git clone http://github.com/gemc/sci-g.git $SCIG_VERSION
-	cd $JLAB_SOFTWARE/sci-g/$SCIG_VERSION
+	cd $SCIG_VERSION
 	rm -rf .git
 
 
