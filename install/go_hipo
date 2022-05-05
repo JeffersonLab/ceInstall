@@ -42,12 +42,12 @@ make:
 	mkdir -p $HIPO/lib
 	cd $HIPO
 	cd lz4
-	make $opt OPT=1
+	make $opt
 	cp lib/liblz4.* ../lib
 	cd ../
 	cmake .
 	cd hipo4
-	make $opt OPT=1
+	make $opt 
 
 if($1 == "make") exit
 
