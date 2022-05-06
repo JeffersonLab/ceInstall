@@ -23,6 +23,8 @@ env -i tcsh ${TCSH_ARG} -c "
     setenv OSTYPE ${OSTYPE}
     setenv TERM ${TERM} ;
     setenv PATH ${PATH} ;
+    setenv GLIBRARY ${GLIBRARY} ;
+    setenv GEMC ${GEMC} ;
     setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH} ;
     setenv DYLD_LIBRARY_PATH ${DYLD_LIBRARY_PATH} ;
     source ${JLAB_ROOT}/${JLAB_VERSION}/ce/jlab.csh $1 ;
