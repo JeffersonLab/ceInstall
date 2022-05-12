@@ -196,12 +196,24 @@ endif
 
 # glibrary
 if($pname == "glibrary") then
-	mcd $locald/gemc/glibrary/tmp
-	wget -c --show-progress https://github.com/gemc/glibrary/archive/$pver".tar.gz" -O glibrary_$pver.tar.gz
-	scp glibrary_$pver.tar.gz $remoted/glibrary
-	cd ..
-	rm -rf tmp
-	exit
+	if($option == "local") then
+		cd $GLIBRARY
+		scons -c
+		rm -rf cadmesh/external cadmeshBuild include tmp
+		cd $locald/gemc
+		rm -f glibrary_$pver.tar.gz
+		gtar cvf glibrary_$pver.tar $excludeFromTar glibrary
+		gzip glibrary_$pver.tar
+		scp glibrary_$pver.tar.gz $remoted/glibrary
+		rm -f glibrary_$pver.tar.gz
+	else
+		mcd $locald/gemc/glibrary/tmp
+		wget -c --show-progress https://github.com/gemc/glibrary/archive/$pver".tar.gz" -O glibrary_$pver.tar.gz
+		scp glibrary_$pver.tar.gz $remoted/glibrary
+		cd ..
+		rm -rf tmp
+		exit
+	endif
 endif
 echo
 echo
