@@ -25,6 +25,7 @@ env -i tcsh ${TCSH_ARG} -c "
     setenv PATH ${PATH} ;
     setenv GLIBRARY ${GLIBRARY} ;
     setenv GEMC ${GEMC} ;
+    setenv SCONS_BM_VERSION ${SCONS_BM_VERSION} ;
     setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH} ;
     setenv DYLD_LIBRARY_PATH ${DYLD_LIBRARY_PATH} ;
     source ${JLAB_ROOT}/${JLAB_VERSION}/ce/jlab.csh $1 ;
