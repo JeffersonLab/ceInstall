@@ -6,7 +6,7 @@ if($1 == "keepmine") then
 endif
 
 if( ! $?JLAB_VERSION) then
-	setenv JLAB_VERSION 2.6
+	setenv JLAB_VERSION 2.5
 endif
 
 # Get date from:

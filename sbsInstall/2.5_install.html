@@ -105,11 +105,13 @@ banks ccdb clhep evio geant4 gemc glibrary hipo mlibrary mysql qt root scons xer
 
 
 		<li>
-			Choose a place to install the software. This place will be called JLAB_ROOT.  <br/><br/>
-			A standard (but not necessary) choice for <b>JLAB_ROOT</b> is <b> /opt/jlab_software</b>:<br/>
+			Choose a place to install the software. This place will be called JLAB_ROOT. Create the dir and change ownership: <br/><br/>
+			A standard (but not necessary) choice for <b>JLAB_ROOT</b> is <b> /opt/jlab_software</b>:
 			
 			<pre><code>
 set JLAB_ROOT=/opt/jlab_software
+mkdir -p $JLAB_ROOT/2.5
+chown -R `whoami` $JLAB_ROOT
 			</code></pre>
 		</li>
 		
@@ -117,7 +119,6 @@ set JLAB_ROOT=/opt/jlab_software
 		
 		<li>Get the installation scripts:
 			<pre><code>
-mkdir -p $JLAB_ROOT/2.5
 cd $JLAB_ROOT
 wget -c  http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_2.5.tar.gz
 tar -zxpf ceInstall_2.5.tar.gz --strip-components 1 -C 2.5
