@@ -35,9 +35,16 @@ endif
 if($1 == "system") then
 
 	if($system == "Mac") then
+	
+		set brewInstallDir = "na"
+		if ( -d /usr/local/Cellar ) then
+			set brewInstallDir = /usr/local/Cellar
+		else if ( -d  /opt/homebrew ) then
+			set brewInstallDir =  /opt/homebrew
+		endif
 
-		set minorQtVersion = `\ls -rt /usr/local/Cellar/qt@5 | tail -1`
-		set SQTDIR = /usr/local/Cellar/qt@5/$minorQtVersion
+		set minorQtVersion = `\ls -rt $brewInstallDir/qt@5 | tail -1`
+		set SQTDIR = $brewInstallDir/qt@5/$minorQtVersion
 		echo
 		echo System QT, version $minorQtVersion 
 		echo Linking to $SQTDIR installation.

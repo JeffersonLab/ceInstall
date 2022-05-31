@@ -115,7 +115,14 @@ system:
 
 	if($system == "Mac") then
 
-		set rootVersion = `\ls -rt /usr/local/Cellar/root | tail -1`
+		set brewInstallDir = "na"
+		if ( -d /usr/local/Cellar ) then
+			set brewInstallDir = /usr/local/Cellar
+		else if ( -d  /opt/homebrew ) then
+			set brewInstallDir =  /opt/homebrew
+		endif
+
+		set rootVersion = `\ls -rt $brewInstallDir/root | tail -1`
 		set SROOT = /usr/local/Cellar/root/$rootVersion
 		echo
 		echo System ROOT, version $rootVersion
