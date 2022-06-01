@@ -87,7 +87,7 @@ src:
 if($1 == "src") exit
 
 
-# make MT ON by default, no need to specify here
+# -DGEANT4_BUILD_MULTITHREADED=ON still needed in 10.7
 # build options on chapter 2 s 3
 # http://geant4.web.cern.ch/geant4/UserDocumentation/UsersGuides/InstallationGuide/html/ch02s03.html
 make:
@@ -112,7 +112,7 @@ make:
 	endif
 
 	# geant4 options
-	set g4Options1 = "-DGEANT4_USE_GDML=ON -DXERCESC_ROOT_DIR=$XERCESCROOT -DGEANT4_USE_QT=ON -DQT_QMAKE_EXECUTABLE=$QTDIR/bin/qmake -DCMAKE_INSTALL_DATAROOTDIR=$G4INSTALL/data"
+	set g4Options1 = "-DGEANT4_BUILD_MULTITHREADED=ON -DGEANT4_USE_GDML=ON -DXERCESC_ROOT_DIR=$XERCESCROOT -DGEANT4_USE_QT=ON -DQT_QMAKE_EXECUTABLE=$QTDIR/bin/qmake -DCMAKE_INSTALL_DATAROOTDIR=$G4INSTALL/data"
 	set g4Options2 = "-DCLHEP_ROOT_DIR=$CLHEP_BASE_DIR -DGEANT4_INSTALL_DATA=$DATA"
 	set g4Options  = "$g4Options1 $g4Options2"
 
