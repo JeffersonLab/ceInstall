@@ -23,8 +23,15 @@ env -i tcsh ${TCSH_ARG} -c "
     setenv OSTYPE ${OSTYPE}
     setenv TERM ${TERM} ;
     setenv PATH ${PATH} ;
-    setenv GLIBRARY ${GLIBRARY} ;
+    if ( ${GLIBRARY} != "" ) then
+       setenv GLIBRARY ${GLIBRARY} ;
+    endif
+    if ( ${GEMC} != "" ) then
     setenv GEMC ${GEMC} ;
+    endif
+    if ( ${SCONS_BM_VERSION} != "" ) then
+       setenv SCONS_BM_VERSION ${SCONS_BM_VERSION} ;
+    endif
     setenv DEFAULT_SCONS_BM_VERSION ${DEFAULT_SCONS_BM_VERSION} ;
     setenv DEFAULT_GLIBRARY_VERSION ${DEFAULT_GLIBRARY_VERSION} ;
     setenv DEFAULT_GEMC_VERSION ${DEFAULT_GEMC_VERSION} ;
