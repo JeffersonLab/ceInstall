@@ -64,7 +64,8 @@ exit
 	rm -rf $JLAB_SOFTWARE/gemc
 	mkdir -p $JLAB_SOFTWARE/gemc
 	cd $JLAB_SOFTWARE/gemc
-	git clone http://github.com/gemc/src.git $version
+	#git clone http://github.com/gemc/src.git $version
+	git clone https://github.com/maureeungaro/src.git $version
 
 	# log start of compilation
 	$getCoptions logStart $blog $blogS
@@ -85,7 +86,8 @@ exit
 
 	mkdir -p $JLAB_ROOT/$JLAB_VERSION/noarch/sci-g
 	cd $JLAB_ROOT/$JLAB_VERSION/noarch/sci-g
-	git clone http://github.com/gemc/sci-g.git $SCIG_VERSION
+	# git clone http://github.com/gemc/sci-g.git $SCIG_VERSION
+	git https://github.com/maureeungaro/sci-g.git $SCIG_VERSION
 	cd $SCIG_VERSION
 	rm -rf .git
 

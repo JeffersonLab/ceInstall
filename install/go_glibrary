@@ -26,7 +26,8 @@ src:
 	rm -rf $JLAB_SOFTWARE/glibrary/$GLIBRARY_VERSION
 	mkdir $JLAB_SOFTWARE/glibrary
 	cd $JLAB_SOFTWARE/glibrary
-	git clone https://github.com/gemc/glibrary $GLIBRARY_VERSION
+	#git clone https://github.com/gemc/glibrary $GLIBRARY_VERSION
+	git clone https://github.com/maureeungaro/glibrary.git $GLIBRARY_VERSION
 
 if($1 == "src") exit
 
