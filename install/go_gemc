@@ -88,8 +88,6 @@ exit
 	cd $JLAB_ROOT/$JLAB_VERSION/noarch/sci-g
 	# git clone http://github.com/gemc/sci-g.git $SCIG_VERSION
 	git clone https://github.com/maureeungaro/sci-g.git $SCIG_VERSION
-	cd $SCIG_VERSION
-	rm -rf .git
 
 
 # Done
