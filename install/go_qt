@@ -39,6 +39,8 @@ if($1 == "system") then
 		set brewInstallDir = "na"
 		if ( -d /usr/local/Cellar ) then
 			set brewInstallDir = /usr/local/Cellar
+		else if ( -d  /opt/homebrew/opt ) then
+			set brewInstallDir =  /opt/homebrew/opt
 		else if ( -d  /opt/homebrew ) then
 			set brewInstallDir =  /opt/homebrew
 		endif
