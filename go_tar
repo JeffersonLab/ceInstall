@@ -249,7 +249,7 @@ g4data:
 		gzip $f
 	end
 
-	set G4DATAVERSION = 4.11.00.p01
+	set G4DATAVERSION = 11.0.2
 
 	cd /Users/ungaro/Downloads
 	mv tmp $G4DATAVERSION
