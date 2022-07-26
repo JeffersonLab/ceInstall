@@ -47,6 +47,7 @@
 		<li> scons version >= 3</li>
 		<li> mysql (including devel) and openssl</li>
 		<li> qt version 5</li>
+		<li> OpenGL</li>
 	</ul>
 
 	<i> NOTICE: if you try these and see packages are missing or not needed anymore, please
@@ -60,7 +61,8 @@
 		
 		<pre>
 brew upgrade ; brew update
-brew install wget cmake mysql openssl qt@5 scons
+brew install wget cmake mysql qt@5 scons freeglut
+<!--I had openssl in there-->
 		</pre>
 		<br/>
 	</ul>
@@ -103,11 +105,13 @@ banks ccdb clhep evio geant4 gemc glibrary hipo mlibrary mysql qt root scons xer
 
 
 		<li>
-			Choose a place to install the software. This place will be called JLAB_ROOT.  <br/><br/>
-			A standard (but not necessary) choice for <b>JLAB_ROOT</b> is <b> /opt/jlab_software</b>:<br/>
+			Choose a place to install the software. This place will be called JLAB_ROOT. Create the dir and change ownership: <br/><br/>
+			A standard (but not necessary) choice for <b>JLAB_ROOT</b> is <b> /opt/jlab_software</b>:
 			
 			<pre><code>
 set JLAB_ROOT=/opt/jlab_software
+mkdir -p $JLAB_ROOT/2.6
+chown -R `whoami` $JLAB_ROOT
 			</code></pre>
 		</li>
 		
@@ -115,7 +119,6 @@ set JLAB_ROOT=/opt/jlab_software
 		
 		<li>Get the installation scripts:
 			<pre><code>
-mkdir -p $JLAB_ROOT/2.6
 cd $JLAB_ROOT
 wget -c  http://www.jlab.org/12gev_phys/packages/sources/ceInstall/ceInstall_2.6.tar.gz
 tar -zxpf ceInstall_2.6.tar.gz --strip-components 1 -C 2.6
