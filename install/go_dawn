@@ -1,0 +1,20 @@
+#!/bin/csh -f
+
+
+# version is hardcoded here... it doesn't change that much
+set rootDir  = dawn_3_91a
+set dawnFile = $rootDir".tgz"
+set dawnDir = dawn
+
+rm -rf $JLAB_SOFTWARE/$dawnDir
+mkdir -p $JLAB_SOFTWARE/$dawnDir
+cd $JLAB_SOFTWARE
+curl -s http://geant4.kek.jp/~tanaka/src/$dawnFile -O -L
+mkdir $dawnDir
+tar -zxpvf $dawnFile -C $dawnDir
+cd $dawnDir
+mv $rootDir/* .
+rm -rf $rootDir
+make -j2
+
+
