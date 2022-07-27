@@ -15,6 +15,12 @@ tar -zxpvf $dawnFile -C $dawnDir
 cd $dawnDir
 mv $rootDir/* .
 rm -rf $rootDir
-make -j2
+make -j12
 
+# now a trick to use dawn -d
+cd $JLAB_SOFTWARE/$dawnDir
+#mv dawn dawnd
+rm dawn ; touch dawn
+echo "/opt/jlab_software/2.6/Darwin_macosx12.5-clang13.1.6/dawn/dawnd -d "'$1' >> dawn
+chmod a+x dawn
 
