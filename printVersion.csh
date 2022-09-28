@@ -10,6 +10,7 @@ echo clhep:      $DEFAULT_CLHEP_VERSION
 echo evio:       $DEFAULT_EVIO_VERSION
 echo geant4:     $DEFAULT_GEANT4_VERSION
 echo geant4Data: $DEFAULT_G4DATA_VERSION
+echo hipo:       $DEFAULT_HIPO_VERSION
 echo gemc:       $DEFAULT_GEMC_VERSION
 echo mlibrary:   $DEFAULT_MLIBRARY_VERSION
 echo qt:         $DEFAULT_QT_VERSION

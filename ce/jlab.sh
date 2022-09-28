@@ -13,7 +13,7 @@
 #   - rework of script by Maurik Holtop
 
 # set JLAB_VERSION to the wanted tag if it's not set yet
-: ${JLAB_VERSION=2.5}
+: ${JLAB_VERSION=2.6}
 
 TMPF=`mktemp`
 env -i tcsh ${TCSH_ARG} -c "
@@ -32,9 +32,13 @@ env -i tcsh ${TCSH_ARG} -c "
     if ( ${SCONS_BM_VERSION} != "" ) then
        setenv SCONS_BM_VERSION ${SCONS_BM_VERSION} ;
     endif
+    if ( ${HIPO_VERSION} != "" ) then
+       setenv HIPO_VERSION ${HIPO_VERSION} ;
+    endif
     setenv DEFAULT_SCONS_BM_VERSION ${DEFAULT_SCONS_BM_VERSION} ;
     setenv DEFAULT_GLIBRARY_VERSION ${DEFAULT_GLIBRARY_VERSION} ;
     setenv DEFAULT_GEMC_VERSION ${DEFAULT_GEMC_VERSION} ;
+    setenv DEFAULT_HIPO_VERSION ${DEFAULT_HIPO_VERSION} ;
     setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH} ;
     setenv DYLD_LIBRARY_PATH ${DYLD_LIBRARY_PATH} ;
     source ${JLAB_ROOT}/${JLAB_VERSION}/ce/jlab.csh $1 ;
