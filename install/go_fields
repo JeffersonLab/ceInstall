@@ -44,10 +44,14 @@ if($1 == "txt") exit
 
 # txt
 c12b:
+	# hardcoded tab
+	set cmagTag = "1.1"
 
 	cd $JLAB_SOFTWARE
-	git clone https://github.com/JeffersonLab/clas12-cmag cmag
-	cd cmag/src
+	mkdir cmag/$cmagTag
+	cd cmag
+	git clone https://github.com/JeffersonLab/clas12-cmag $cmagTag
+	cd $cmagTag/src
 	make -j4
 
 if($1 == "c12b") exit
