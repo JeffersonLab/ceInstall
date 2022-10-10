@@ -107,13 +107,14 @@ exit
 
 system:
 
-	if(`echo $release | grep mac | wc | awk '{print $1}'` == "1") then
-		set system = "Mac"
-	else if(`echo $release | grep Linux | wc | awk '{print $1}'` == "1") then
-		set system = "Linux"
+	# assuming anything other than mac is linux - may need to revise this later
+	if(`echo $release | grep macos | wc | awk '{print $1}'` == "1") then
+		set thisSystem = "Mac"
+	else
+		set thisSystem = "Linux"
 	endif
 
-	if($system == "Mac") then
+	if($thisSystem == "Mac") then
 
 		set brewInstallDir = "na"
 		if ( -d /usr/local/Cellar ) then
@@ -138,7 +139,7 @@ system:
 		ln -sfn $SROOT/share   $ROOTSYS/share
 
 	# Using system QT for Linux.
-	else if($system == "Linux") then
+	else if($thisSystem == "Linux") then
 
 		rm -rf   $ROOTSYS
 		mkdir -p $ROOTSYS
