@@ -23,10 +23,10 @@ set repo     = `$getCoptions repo`/qt
 
 set system = ""
 set filename = ""
-if(`echo $release | grep mac | wc | awk '{print $1}'` == "1") then
+if(`echo $release | grep macos | wc | awk '{print $1}'` == "1") then
 	set filename = "qt-opensource-mac-x64-"$QT_VERSION".dmg"
 	set system = "Mac"
-else if(`echo $release | grep Linux | wc | awk '{print $1}'` == "1") then
+else
 	set filename = "qt-opensource-linux-x64-"$QT_VERSION".run"
 	set system = "Linux"
 endif
