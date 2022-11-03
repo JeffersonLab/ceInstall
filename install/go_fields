@@ -48,7 +48,7 @@ c12b:
 	set cmagTag = "1.1"
 
 	cd $JLAB_SOFTWARE
-	mkdir cmag/$cmagTag
+	mkdir -p cmag/$cmagTag
 	cd cmag
 	git clone https://github.com/JeffersonLab/clas12-cmag $cmagTag
 	cd $cmagTag/src
