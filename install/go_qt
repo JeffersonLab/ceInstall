@@ -84,7 +84,7 @@ if($1 == "system") then
 			set SQTDIR = $LQTDIR/qt5       # binaries, mkspecs and plugins
 
 			# linking the relevant stuff
-			ln -sfn $LQTDIR         $QTDIR/lib
+			# ln -sfn $LQTDIR         $QTDIR/lib
 			cd $QTDIR/lib
 			ln -s $LQTDIR/libQt* .
 
