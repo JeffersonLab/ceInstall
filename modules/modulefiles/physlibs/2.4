@@ -1,0 +1,39 @@
+#%Module
+
+conflict physlibs
+set physmodules  $env(physhome)/modulefiles
+
+set clhep_version     2.4.1.3
+set evio_version      5.1
+set hipo_version      1.8
+set geant4_version    4.10.06.p02
+set g4data_version    10.6.2
+set gemc_version      2.9
+set mlibrary_version  1.4
+set qt_version        system
+set root_version      6.20.04
+set scons_bm_version  1.10
+set xercesc_version   3.2.3
+
+set moduledir [file dirname $ModulesCurrentModulefile]
+
+proc ModulesHelp { } {
+   puts stderr "This module loads the following modules"
+}
+
+module-whatis "
+   This module add the following enviroment: \n
+   clhep/${clhep_version}
+   evio/${evio_version}
+   hipo/${hipo_version}
+   geant4/${geant4_version}
+   g4data/${g4data_version}
+   gemc/${gemc_version}
+   mlibrary/${mlibrary_version}
+   qt/${qt_version}
+   root/${root_version}
+   scons_bm/${scons_bm_version}
+   xercesc/${xercesc_version}
+   "
+
+#prepend-path LD_LIBRARY_PATH "$env(PHYSHOME)/lib64"
