@@ -1,0 +1,33 @@
+#%Module
+
+prereq physlibs
+
+conflict qt
+set version system
+
+proc ModulesHelp { } {
+    puts stderr "This module sets up environment for qt"
+}
+
+# set QTSYSTEM based on uname
+if { [uname sysname] == "Linux" } {
+    set QTSYSTEM gcc_64
+} elseif { [uname sysname] == "Darwin" } {
+    set QTSYSTEM clang_64
+} else {
+    puts stderr "Unknown system type"
+    exit 1
+}
+
+module-whatis "Loads qt/${version}"
+
+set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSION)
+
+set dir $base_dir/qt/${version}/${QTSYSTEM}
+
+prepend-path LD_LIBRARY_PATH $dir/lib
+prepend-path PKG_CONFIG_PATH $dir/lib/pkgconfig
+prepend-path PATH $dir/bin
+
+setenv QT_VERSION $version
+setenv QTDIR $dir

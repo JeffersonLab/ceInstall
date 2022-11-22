@@ -1,0 +1,22 @@
+#%Module
+
+prereq --tag 2.4, 2.5, 2.6 physlibs
+
+conflict xercesc
+set version 3.2.3
+
+proc ModulesHelp { } {
+    puts stderr "This module sets up environment for xercesc"
+}
+
+module-whatis "Loads xercesc/${version}"
+
+set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSION)
+
+set dir $base_dir/xercesc/${version}
+
+prepend-path LD_LIBRARY_PATH $dir/lib
+
+setenv XERCESC_VERSION $version
+setenv XERCESCROOT $dir
+

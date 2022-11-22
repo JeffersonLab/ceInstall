@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 # load module for the current OS
 case $(uname -s) in
     Linux)
@@ -8,7 +7,7 @@ case $(uname -s) in
         ;;
     Darwin)
         brewDir=$(brew --prefix)
-        . $brewDir/opt/modules/init/sh
+        . "$brewDir"/opt/modules/init/sh
         ;;
     *)
         echo "Unsupported OS: $(uname -s)"
@@ -17,6 +16,9 @@ case $(uname -s) in
 esac
 
 # extract path to this file
-export physhome=$(dirname "$(readlink -f $0)")
+export modules_home=$(dirname $(readlink -f "$0"))
+export OSRELEASE=$( $modules_home/osrelease.py )
 
-module use "$physhome"/modulefiles
+module use ${modules_home}/modulefiles
+
+

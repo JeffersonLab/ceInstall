@@ -1,0 +1,21 @@
+#%Module
+
+prereq --tag 2.6 physlibs
+
+conflict clhep
+set version 2.4.5.1
+
+proc ModulesHelp { } {
+    puts stderr "This module sets up environment for clhep"
+}
+
+module-whatis "Loads clhep/${version}"
+
+set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSION)
+
+set dir $base_dir/clhep/${version}
+
+prepend-path LD_LIBRARY_PATH $dir/lib
+
+setenv CLHEP_VERSION  $version
+setenv CLHEP_BASE_DIR $dir
