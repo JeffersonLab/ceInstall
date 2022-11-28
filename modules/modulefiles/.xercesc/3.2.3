@@ -20,12 +20,14 @@ set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSIO
 set dir $base_dir/xercesc/${version}
 
 # set LD_LIBRARY_PATH depending on Darwin/Linux
-if { [string match "*macosx*" $env(OSRELEASE)] } {
-        prepend-path LD_LIBRARY_PATH $dir/lib
+if { [uname sysname] == "Linux" } {
+   prepend-path LD_LIBRARY_PATH $dir/lib64
+} elseif { [uname sysname] == "Darwin" } {
+    prepend-path LD_LIBRARY_PATH $dir/lib
 } else {
-        prepend-path LD_LIBRARY_PATH $dir/lib64
+    puts stderr "Unknown system type"
+    exit 1
 }
-
 
 setenv XERCESC_VERSION $version
 setenv XERCESCROOT $dir
