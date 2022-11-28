@@ -1,22 +1,11 @@
 #%Module
 
-conflict physlibs
-
 setenv PHYS_VERSION 2.4
-
-if { ! [info exist ::env(PHYS_HOME)]  }  {
-  setenv PHYS_HOME $env(HOME)
-}
-
-if { ! [info exist ::env(PHYS_SUB_DIR)]  }  {
-  setenv PHYS_SUB_DIR sim
-}
 
 set clhep_version     2.4.1.3
 set xercesc_version   3.2.3
 set qt_version        system
 set geant4_version    4.10.06.p02
-set g4data_version    10.6.2
 set scons_bm_version  1.10
 set ccdb_version      1.07.00
 set evio_version      5.1
@@ -24,33 +13,11 @@ set hipo_version      1.8
 set mlibrary_version  1.4
 set gemc_version      2.9
 set root_version      6.20.04
+set banks_version     1.7
 
-#set modules_dir [file dirname $ModulesCurrentModulefile]
 
-proc ModulesHelp { } {
-   puts stderr "This module loads the following modules: clhep, xercesc, qt, geant4, scons_bm, ccdb, \
-evio, hipo, mlibrary, gemc, root.\n\nThe modules could also be loaded individually."
-}
 
-module-whatis \
-"\n
 
-        Loads the modules below: \n
-           clhep/${clhep_version}
-           xercesc/${xercesc_version}
-           qt/${qt_version}
-           geant4/${geant4_version}
-           scons_bm/${scons_bm_version}
-           ccdb/${ccdb_version}
-           evio/${evio_version}
-           hipo/${hipo_version}
-           mlibrary/${mlibrary_version}
-           gemc/${gemc_version}
-           root/${root_version}
-"
-
-module load clhep/${clhep_version}
-module load ccdb/${ccdb_version}
-module load xercesc/${xercesc_version}
-module load qt/${qt_version}
+set moduledir [file dirname $ModulesCurrentModulefile]
+source $moduledir/.common
 

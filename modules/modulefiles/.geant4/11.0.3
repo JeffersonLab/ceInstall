@@ -3,10 +3,15 @@
 prereq --tag 2.4 physlibs
 
 conflict geant4
-set version 4.10.06.p02
+set version 11.0.3
+set data_version Geant4-11.0.3
 
 proc ModulesHelp { } {
-    puts stderr "This module sets up environment for geant4"
+    global version
+    puts stderr "
+    Loads geant4 environment variables
+    Version: $version
+"
 }
 
 module-whatis "Loads geant4/${version}"
@@ -30,7 +35,7 @@ prepend-path LD_LIBRARY_PATH $dir/$G4LIB
 setenv G4INSTALL $dir
 
 # data
-setenv G4DATA_DIR $env(G4INSTALL)/data/Geant4-$geantdata/data
+setenv G4DATA_DIR $env(G4INSTALL)/data/$data_version/data
 set G4DATA_DIR $env(G4DATA_DIR)
 
 setenv G4LEDATA          $G4DATA_DIR/G4EMLOW7.9.1
