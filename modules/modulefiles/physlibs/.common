@@ -87,3 +87,36 @@ module load .ccdb/${ccdb_version}
 module load .xercesc/${xercesc_version}
 module load .qt/${qt_version}
 module load .geant4/${geant4_version}
+
+
+
+proc ModulesTest { } {
+    global PHYS_VERSION
+
+    set retcode 1  ; # default: 1 meaning PASS
+
+    puts stderr "Running ModulesTest for PHYS_VERSION $PHYS_VERSION..."
+
+    # loop over all the modules that are loaded
+
+   set grouplist ( XERCESCROOTA CLHEP_BASE_DIR )
+
+    foreach mod $grouplist  {
+        puts stderr "Testing module $mod..."
+        if { [file isdirectory [getenv $mod]] } {
+            puts stderr "Success: $mod is a directory"
+         } else {
+            puts stderr "ERROR: $mod Is not a directory"
+            set retcode 0
+        }
+    }
+
+
+    puts stderr "\nRunning ModulesTest for directory existence...done"
+
+
+
+
+
+    return $retcode
+}
