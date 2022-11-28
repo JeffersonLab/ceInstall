@@ -2,6 +2,8 @@
 
 yellow=`tput setaf 3`
 blue=`tput setaf 4`
+green=`tput setaf 2`
+magenta=`tput setaf 5`
 reset=`tput sgr0`
 
 # check if the environment PHYS_VERSION is set
@@ -73,12 +75,12 @@ unpack_source_in_directory() {
   dir_remove_and_create "$dir"
   cd "$dir" || exit
 
-  echo "$blue > Fetching source from $url onto $filename$reset"
+  echo "$magenta > Fetching source from $url onto $filename$reset"
   rm -f "$filename"
   mwget "$url"
 
   echo
-  echo "$blue > Unpacking source in $dir$reset"
+  echo "$magenta > Unpacking source in $dir$reset"
 
   tar -zxpf "$filename" --strip-components="$tar_strip"
 }
@@ -96,23 +98,23 @@ cmake_build_and_install() {
   cd "$build_dir" || exit
 
   echo
-  echo "$blue > Configuring cmake with: $cmake_options$reset"
+  echo "$magenta > Configuring cmake with: $cmake_options$reset"
   echo
   cmake "$cmake_options" -DCMAKE_INSTALL_PREFIX="$install_dir" "$source_dir"
 
-  echo "$blue > Building$reset"
+  echo "$magenta > Building$reset"
   make -j "$n_cpu"
 
-  echo "$blue > Installing$reset"
+  echo "$magenta > Installing$reset"
   make install
 
   # cleanup
-  echo "$blue > Cleaning up...$reset"
+  echo "$magenta > Cleaning up...$reset"
   rm -rf "$source_dir" "$build_dir" $(basename "$filename")
   local cmd_end="$SECONDS"
   elapsed=$((cmd_end-cmd_start))
 
-  echo "$blue > Compilation and installation completed in $elapsed seconds.$reset"
+  echo "$magenta > Compilation and installation completed in $elapsed seconds.$reset"
   echo
 
 }
