@@ -19,7 +19,19 @@ set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSIO
 
 set dir $base_dir/xercesc/${version}
 
-prepend-path LD_LIBRARY_PATH $dir/lib
+# set LD_LIBRARY_PATH depending on OS
+case $(uname -s) in
+    Linux)
+        prepend-path LD_LIBRARY_PATH $dir/lib64
+        ;;
+    Darwin)
+        prepend-path LD_LIBRARY_PATH $dir/lib
+        ;;
+    *)
+        echo "Unsupported OS: $(uname -s)"
+        exit 1
+        ;;
+esac
 
 setenv XERCESC_VERSION $version
 setenv XERCESCROOT $dir

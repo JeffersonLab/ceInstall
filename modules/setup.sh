@@ -16,9 +16,13 @@ case $(uname -s) in
 esac
 
 # extract path to this file
-export modules_home=$(dirname $(readlink -f "$0"))
-export OSRELEASE=$( $modules_home/osrelease.py )
+export modules_home=$(dirname "$(readlink -f "$0")")
+export OSRELEASE=$( "$modules_home"/osrelease.py )
 
-module use ${modules_home}/modulefiles
+module use "${modules_home}"/modulefiles
 
+echo "  Modules loaded for $OSRELEASE. Use 'module avail' to see available modules."
+echo
 
+# adds pinstall to path
+export PATH="$PATH":"${modules_home}/../pinstall"
