@@ -48,7 +48,7 @@ log_general() {
   filename=$3
   base_dir=$4
   echo
-  echo " > Package:                 $this_package $version"
+  echo " > Package:                 $this_package version $version"
   echo " > Origin:                  $repo/$filename"
   echo " > Destination:             $base_dir"
   echo " > Release:                 $OSRELEASE"
@@ -79,18 +79,43 @@ unpack_source_in_directory() {
   rm -f "$filename"
   mwget "$url"
 
+  echo "$magenta > Unpacking $filename in $dir$reset"
   echo
-  echo "$magenta > Unpacking source in $dir$reset"
 
   tar -zxpf "$filename" --strip-components="$tar_strip"
+  rm -f "$filename"
 }
 
+unpack_data_in_directory() {
+  url=$repo/$1
+  dir=$2
+
+  filename=$(basename "$url")
+
+  mkdir -p "$dir"
+  cd "$dir" || exit
+
+  echo "$magenta > Fetching source from $url onto $filename$reset"
+  rm -f "$filename"
+  mwget "$url"
+
+  echo "$magenta > Unpacking $filename in $dir$reset"
+  echo
+
+  tar -zxpf "$filename"
+  rm -f "$filename"
+}
 
 cmake_build_and_install() {
   source_dir=$1
   build_dir=$2
-  cmake_options=$3
-  install_dir=$4
+  install_dir=$3
+  cmake_options=$4
+
+  echo " > source_dir:    $source_dir"
+  echo " > build_dir:     $build_dir"
+  echo " > install_dir:   $install_dir"
+  echo " > cmake_options: $cmake_options"
 
   local cmd_start="$SECONDS"
 
@@ -98,9 +123,10 @@ cmake_build_and_install() {
   cd "$build_dir" || exit
 
   echo
-  echo "$magenta > Configuring cmake with: $cmake_options$reset"
+  echo "$magenta > Configuring cmake with: $=cmake_options$reset"
   echo
-  cmake "$cmake_options" -DCMAKE_INSTALL_PREFIX="$install_dir" "$source_dir"
+
+  cmake  "$source_dir" -DCMAKE_INSTALL_PREFIX="$install_dir" $=cmake_options || exit
 
   echo "$magenta > Building$reset"
   make -j "$n_cpu"

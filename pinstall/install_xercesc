@@ -15,5 +15,5 @@ log_general clhep "$CLHEP_VERSION" "$filename" "$base_dir"
 
 unpack_source_in_directory "$filename" "$source_dir" "$tar_strip"
 
-cmake_build_and_install "$source_dir" "$build_dir" "$cmake_options" "$base_dir"
+cmake_build_and_install "$source_dir" "$build_dir" "$base_dir" "$cmake_options"
 

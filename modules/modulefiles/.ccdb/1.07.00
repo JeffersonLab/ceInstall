@@ -2,5 +2,7 @@
 
 prereq --tag 2.4, 2.5, 2.6 physlibs
 
-conflict ccdb
 set version 1.07.00
+
+set moduledir [file dirname $ModulesCurrentModulefile]
+source $moduledir/.common
