@@ -2,52 +2,25 @@
 
 prereq --tag 2.4 physlibs
 
-conflict geant4
 set version 4.10.06.p02
 set data_version Geant4-10.6.2
 
-proc ModulesHelp { } {
-    global version
-    puts stderr "
-    Loads geant4 environment variables
-    Version: $version
-"
-}
+setenv g4ndl_version               4.6
+setenv g4emlow_version             7.9.1
+setenv g4photonevaporation_version 5.5
+setenv g4radioactivedecay_version  5.4
+setenv g4saidata_version           2.0
+setenv g4particlexs_version        2.1
+setenv g4abla_version              3.1
+setenv g4incl_version              1.0
+setenv g4pii_version               1.3
+setenv g4ensdfstate_version        2.2
+setenv g4real_surface_version      2.1.1
 
-module-whatis "Loads geant4/${version}"
+set moduledir [file dirname $ModulesCurrentModulefile]
+source $moduledir/.common
 
-set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSION)
 
-set dir $base_dir/geant4/${version}
 
-# set G4LIB based on uname
-if { [uname sysname] == "Linux" } {
-    set G4LIB lib64
-} elseif { [uname sysname] == "Darwin" } {
-    set G4LIB lib
-} else {
-    puts stderr "Unknown system type"
-    exit 1
-}
-
-prepend-path LD_LIBRARY_PATH $dir/$G4LIB
-
-setenv G4INSTALL $dir
-
-# data
-setenv G4DATA_DIR $env(G4INSTALL)/data/$data_version/data
-set G4DATA_DIR $env(G4DATA_DIR)
-
-setenv G4ABLADATA        $G4DATA_DIR/G4ABLA3.1
-setenv G4ENSDFSTATEDATA  $G4DATA_DIR/G4ENSDFSTATE2.2
-setenv G4INCLDATA        $G4DATA_DIR/G4INCL1.0
-setenv G4LEDATA          $G4DATA_DIR/G4EMLOW7.9.1
-setenv G4LEVELGAMMADATA  $G4DATA_DIR/PhotonEvaporation5.5
-setenv G4NEUTRONHPDATA   $G4DATA_DIR/G4NDL4.6
-setenv G4PARTICLEXSDATA  $G4DATA_DIR/G4PARTICLEXS2.1
-setenv G4PIIDATA         $G4DATA_DIR/G4PII1.3
-setenv G4RADIOACTIVEDATA $G4DATA_DIR/RadioactiveDecay5.4
-setenv G4REALSURFACEDATA $G4DATA_DIR/RealSurface2.1.1
-setenv G4SAIDXSDATA      $G4DATA_DIR/G4SAIDDATA2.0
 
 

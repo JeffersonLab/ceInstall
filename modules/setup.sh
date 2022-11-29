@@ -21,7 +21,7 @@ export OSRELEASE=$( "$modules_home"/osrelease.py )
 
 module use "${modules_home}"/modulefiles
 
-echo "  Modules loaded for $OSRELEASE. Use 'module avail' to see available modules."
+echo "Modules loaded for $OSRELEASE. Use 'module avail' to see available modules."
 echo
 
 # adds pinstall to path

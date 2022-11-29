@@ -1,0 +1,48 @@
+#%Module
+
+conflict geant4
+set data_version Geant4-11.0.3
+
+proc ModulesHelp { } {
+    global version
+    puts stderr "
+    Loads geant4 environment variables
+    Version: $version
+"
+}
+
+module-whatis "Loads geant4/${version}"
+
+set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSION)
+
+set dir $base_dir/geant4/${version}
+
+# set LD_LIBRARY_PATH depending on Darwin/Linux
+if { [uname sysname] == "Linux" } {
+   prepend-path LD_LIBRARY_PATH $dir/lib64
+} elseif { [uname sysname] == "Darwin" } {
+    prepend-path LD_LIBRARY_PATH $dir/lib
+} else {
+    puts stderr "Unknown system type"
+    exit 1
+}
+
+setenv G4INSTALL $dir
+
+# data
+setenv G4DATA_DIR $env(G4INSTALL)/data/$data_version/data
+
+setenv G4NEUTRONHPDATA   $env(G4DATA_DIR)/G4NDL$env(g4ndl_version)
+setenv G4LEDATA          $env(G4DATA_DIR)/G4EMLOW$env(g4emlow_version)
+setenv G4LEVELGAMMADATA  $env(G4DATA_DIR)/PhotonEvaporation$env(g4photonevaporation_version)
+setenv G4RADIOACTIVEDATA $env(G4DATA_DIR)/RadioactiveDecay$env(g4radioactivedecay_version)
+setenv G4SAIDXSDATA      $env(G4DATA_DIR)/G4SAIDDATA$env(g4saidata_version)
+setenv G4PARTICLEXSDATA  $env(G4DATA_DIR)/G4PARTICLEXS$env(g4particlexs_version)
+setenv G4ABLADATA        $env(G4DATA_DIR)/G4ABLA$env(g4abla_version)
+setenv G4INCLDATA        $env(G4DATA_DIR)/G4INCL$env(g4incl_version)
+setenv G4PIIDATA         $env(G4DATA_DIR)/G4PII$env(g4pii_version)
+setenv G4ENSDFSTATEDATA  $env(G4DATA_DIR)/G4ENSDFSTATE$env(g4ensdfstate_version)
+setenv G4REALSURFACEDATA $env(G4DATA_DIR)/RealSurface$env(g4real_surface_version)
+
+
+

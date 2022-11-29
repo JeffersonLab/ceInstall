@@ -1,0 +1,28 @@
+#%Module######################
+
+conflict clhep
+
+proc ModulesHelp { } {
+    global version
+    puts stderr "
+    Loads ccdb environment variables
+    Version: $version
+"
+}
+
+
+module-whatis "Loads ccdb/${version}"
+
+set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSION)
+
+set dir $base_dir/ccdb/ccdb-${version}
+
+prepend-path LD_LIBRARY_PATH $dir/lib
+prepend-path PATH $dir/bin
+prepend-path PYTHONPATH $dir/python
+
+setenv CCDB_VERSION $version
+setenv CCDB_HOME $dir
+setenv CCDB_USER $env(USER)
+setenv CCDB_CONNECTION mysql://clas12reader@clasdb-farm.jlab.org/clas12
+
