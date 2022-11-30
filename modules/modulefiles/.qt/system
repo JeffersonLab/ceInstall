@@ -2,7 +2,7 @@
 
 prereq physlibs
 
-conflict qt
+conflict .qt
 set version system
 
 proc ModulesHelp { } {

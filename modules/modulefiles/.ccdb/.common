@@ -1,6 +1,6 @@
 #%Module######################
 
-conflict ccdb
+conflict .ccdb
 
 proc ModulesHelp { } {
     global version
