@@ -26,7 +26,7 @@ fi
 
 module use "${modules_home}"/modulefiles
 
-echo "Modules loaded for PHYS_HOME: $PHYS_HOME. Use 'module avail' to see available modules."
+echo "Modules loaded for PHYS_HOME=$PHYS_HOME. Use 'module avail' to see available modules.\n"
 
 # adds pinstall to path
 export PATH="$PATH":"${modules_home}/../pinstall"
