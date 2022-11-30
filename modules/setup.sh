@@ -16,7 +16,7 @@ case $(uname -s) in
 esac
 
 # extract path to this file
-export modules_home=$(dirname "$(readlink -f "$0")")
+export modules_home=$(dirname "$(realpath "${BASH_SOURCE:-$0}")")
 export OSRELEASE=$( "$modules_home"/osrelease.py )
 
 # if PHYS_HOME environment variable is not set, set it to the current directory
