@@ -21,7 +21,7 @@ export OSRELEASE=$( "$modules_home"/osrelease.py )
 
 # if PHYS_HOME environment variable is not set, set it to the current directory
 if [ -z "$PHYS_HOME" ]; then
-    export PHYS_HOME=$(realpath $modules_home/..)
+    export PHYS_HOME=$(realpath $modules_home/../..)
 fi
 
 module use "${modules_home}"/modulefiles
