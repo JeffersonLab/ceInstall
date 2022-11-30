@@ -6,10 +6,11 @@ To set up the modules:
 
 where `<path>` is the location of the ceInstall repository.
 
-The following environment variables can be used to control the directory structure 
-of the installation.
+Two optional environment variables controls the directory structure 
+of the installation:
 
-- PHYS_HOME: the base location of the libraries. Default is `$HOME`.
+- PHYS_HOME: the base location of the libraries. 
+Default is the directory containing `ceInstall`.
 - PHYS_SUB_DIR: sub dir name of the repository. Default is `sim`.
 
 ### Installation Tree
