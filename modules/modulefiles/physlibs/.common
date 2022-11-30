@@ -4,10 +4,6 @@ conflict physlibs
 
 set PHYS_VERSION $env(PHYS_VERSION)
 
-if { ! [info exist ::env(PHYS_HOME)]  }  {
-  setenv PHYS_HOME $env(modules_home)
-}
-
 if { ! [info exist ::env(PHYS_SUB_DIR)]  }  {
   setenv PHYS_SUB_DIR sim
 }

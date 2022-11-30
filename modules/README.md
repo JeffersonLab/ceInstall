@@ -4,13 +4,13 @@ To set up the modules:
 
 `source  <path>/modules/setup.sh`
 
-where `<path>` is the location of the ceInstall repository.
+where `<path>` is the path to ceInstall.
 
 Two optional environment variables controls the directory structure 
 of the installation:
 
 - PHYS_HOME: the base location of the libraries. 
-Default is the directory containing `ceInstall`.
+Default is `<path>`.
 - PHYS_SUB_DIR: sub dir name of the repository. Default is `sim`.
 
 ### Installation Tree
