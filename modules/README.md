@@ -13,25 +13,32 @@ of the installation:
 Default is `<path>`.
 - PHYS_SUB_DIR: sub dir name of the repository. Default is `sim`.
 
-### Installation Tree
+## Installation Tree
+
+Software based on compiled code (C++, fortran, etc) is organized under the `OSRELEASE` directory.
+Software architecture independent (python, JAVA, etc) is organized under `noarch` directory.
 
 ```
 - PHYS_HOME
      ⋮
      ∟ OSRELEASE
+     ⋮  ⋮
+     ⋮  ∟ PHYS_SUB_DIR
+     ⋮     ⋮
+     ⋮     ⊢ 2.4
+     ⋮     ⋮     ⊢ library
+     ⋮     ⋮     ⋮    ⊢  lib_version
+     ⋮     ⋮     ⊢ [..]        
+     ⋮     ⋮         
+     ⋮     ⊢ 2.5
+     ⋮     ⋮     ⊢ library
+     ⋮     ⋮     ⋮    ⊢ lib_version
+     ⋮     ⋮     ⊢ [..]        
+     ∟ noarch
         ⋮
-        ∟ PHYS_SUB_DIR
-           ⋮
-           ⊢ 2.4
-           ⋮     ⊢ library
-           ⋮     ⋮    ⊢  lib_version
-           ⋮     ⊢ [..]        
-           ⋮         
-           ⊢ 2.5
-           ⋮     ⊢ library
-           ⋮     ⋮    ⊢ lib_version
-           ⋮     ⊢ [..]        
-              
+        ⋮     ⊢ noarch library
+        ⋮     ⋮    ⊢  lib_version
+            
 ```
 
 # Physlibs
@@ -102,4 +109,4 @@ module  whatis physlibs
 
 Since the libraries depends on each other (for example geant4 on clhep and xercesc),
 only the super modules are shown in `module avail`. This will ensure that the correct
-version of the libraries are loaded.
+version of the libraries are loaded. 

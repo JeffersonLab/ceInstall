@@ -1,0 +1,27 @@
+#%Module
+
+conflict .scons_bm
+
+proc ModulesHelp { } {
+    global version
+    puts stderr "
+    Loads scons_bm environment variables
+    Version: $version
+"
+}
+
+module-whatis "Loads scons/${version}"
+
+# Environment
+
+set base_dir $env(PHYS_HOME)/noarch
+
+set dir $base_dir/scons_bm/${version}
+
+
+setenv SCONS_BM_VERSION $version
+
+setenv SCONS_BM $dir
+#setenv SCONSFLAGS  "--site-dir=$SCONS_BM"
+
+prepend-path PYTHONPATH $dir

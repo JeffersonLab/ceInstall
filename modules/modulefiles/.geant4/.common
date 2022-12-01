@@ -12,6 +12,8 @@ proc ModulesHelp { } {
 
 module-whatis "Loads geant4/${version}"
 
+# Environment
+
 set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSION)
 
 set dir $base_dir/geant4/${version}

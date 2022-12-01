@@ -136,11 +136,31 @@ cmake_build_and_install() {
 
   # cleanup
   echo "$magenta > Cleaning up...$reset"
-  rm -rf "$source_dir" "$build_dir" $(basename "$filename")
+  rm -rf "$source_dir" "$build_dir"
   local cmd_end="$SECONDS"
   elapsed=$((cmd_end-cmd_start))
 
   echo "$magenta > Compilation and installation completed in $elapsed seconds.$reset"
   echo
+}
 
+scons_build_and_install() {
+  install_dir=$1
+
+  echo " > install_dir:   $install_dir"
+
+  local cmd_start="$SECONDS"
+  cd "$install_dir" || exit
+
+  echo "$magenta > Building$reset"
+  \scons -j "$n_cpu" OPT=1
+
+  # cleanup
+  echo "$magenta > Cleaning up...$reset"
+  #find ./ -name "*.o" -delete
+  local cmd_end="$SECONDS"
+  elapsed=$((cmd_end-cmd_start))
+
+  echo "$magenta > Compilation and installation completed in $elapsed seconds.$reset"
+  echo
 }

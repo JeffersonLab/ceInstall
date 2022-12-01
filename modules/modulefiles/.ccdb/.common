@@ -10,12 +10,13 @@ proc ModulesHelp { } {
 "
 }
 
-
 module-whatis "Loads ccdb/${version}"
+
+# Environment
 
 set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSION)
 
-set dir $base_dir/ccdb/ccdb-${version}
+set dir $base_dir/ccdb/${version}
 
 prepend-path LD_LIBRARY_PATH $dir/lib
 prepend-path PATH $dir/bin

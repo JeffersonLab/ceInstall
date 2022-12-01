@@ -2,33 +2,7 @@
 
 prereq --tag 2.4, 2.5, 2.6 physlibs
 
-conflict .xercesc
 set version 3.2.3
 
-proc ModulesHelp { } {
-    global version
-    puts stderr "
-    Loads xercesc environment variables
-    Version: $version
-"
-}
-
-module-whatis "Loads xercesc/${version}"
-
-set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSION)
-
-set dir $base_dir/xercesc/${version}
-
-# set LD_LIBRARY_PATH depending on Darwin/Linux
-if { [uname sysname] == "Linux" } {
-   prepend-path LD_LIBRARY_PATH $dir/lib64
-} elseif { [uname sysname] == "Darwin" } {
-    prepend-path LD_LIBRARY_PATH $dir/lib
-} else {
-    puts stderr "Unknown system type"
-    exit 1
-}
-
-setenv XERCESC_VERSION $version
-setenv XERCESCROOT $dir
-
+set moduledir [file dirname $ModulesCurrentModulefile]
+source $moduledir/.common

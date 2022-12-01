@@ -1,0 +1,8 @@
+#%Module
+
+prereq --tag 2.5, 2.6 physlibs
+
+set version 1.11
+
+set moduledir [file dirname $ModulesCurrentModulefile]
+source $moduledir/.common

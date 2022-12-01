@@ -1,4 +1,4 @@
-#%Module######################
+#%Module
 
 conflict .clhep
 
@@ -12,6 +12,8 @@ proc ModulesHelp { } {
 
 module-whatis "Loads clhep/${version}"
 
+# Environment
+
 set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSION)
 
 set dir $base_dir/clhep/${version}
@@ -21,17 +23,24 @@ prepend-path LD_LIBRARY_PATH $dir/lib
 setenv CLHEP_VERSION  $version
 setenv CLHEP_BASE_DIR $dir
 
+
 proc ModulesTest { } {
 
-    set retcode 1  ; # default: 1 meaning PASS
+    set retcode 0  ; # default: 1 meaning PASS
 
     puts stderr "Testing module CLHEP_BASE_DIR..."
+
     if { [file isdirectory [getenv CLHEP_BASE_DIR] ] } {
         puts stderr "Success: CLHEP_BASE_DIR is a directory"
     } else {
         puts stderr "ERROR: CLHEP_BASE_DIR Is not a directory"
         set retcode 0
     }
+    return 0
 
-    return $retcode
+   # return $retcode
+}
+
+set-function conda {
+    puts stderr "ERROR: CLHEP_BASE_DIR Is not a directory"
 }

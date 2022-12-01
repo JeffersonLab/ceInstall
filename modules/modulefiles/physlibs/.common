@@ -70,20 +70,32 @@ module-whatis \
 
 
 module load .clhep/${clhep_version}
-module load .ccdb/${ccdb_version}
 module load .xercesc/${xercesc_version}
 module load .qt/${qt_version}
 module load .geant4/${geant4_version}
+module load .scons_bm/${scons_bm_version}
+module load .ccdb/${ccdb_version}
 
 proc ModulesTest { } {
-    global PHYS_VERSION
-    global clhep_version
 
-    set retcode 1  ; # default: 1 meaning PASS
+    global PHYS_VERSION
+
+    set retcode 1
+
+    set dirs_to_test { CLHEP_BASE_DIR XERCESCROOT QTDIR G4INSTALL SCONS_BM CCDB_HOME }
 
     puts stderr "Running ModulesTest for PHYS_VERSION $PHYS_VERSION..."
 
-    set retcode [ module test .clhep/${clhep_version} ]
+    puts stderr ""
+    foreach dir $dirs_to_test {
+        if { [file isdirectory [ getenv $dir ] ] } {
+            puts stderr " ✅ $dir "
+        } else {
+            puts stderr " ❌ $dir  ︎"
+            set retcode 0
+        }
+    }
+    puts stderr ""
 
     return $retcode
 }
