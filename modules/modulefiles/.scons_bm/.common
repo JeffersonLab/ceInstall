@@ -22,6 +22,6 @@ set dir $base_dir/scons_bm/${version}
 setenv SCONS_BM_VERSION $version
 
 setenv SCONS_BM $dir
-#setenv SCONSFLAGS  "--site-dir=$SCONS_BM"
+setenv SCONSFLAGS  "--site-dir=$dir"
 
 prepend-path PYTHONPATH $dir

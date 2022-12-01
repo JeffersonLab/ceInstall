@@ -12,6 +12,6 @@ log_general scons_bm "$SCONS_BM_VERSION" "$filename" "$base_dir"
 
 unpack_source_in_directory "$filename" "$base_dir" "$tar_strip"
 
-  echo "$magenta > scons_bm installation completed.$reset"
-  echo
+echo "$magenta > scons_bm installation completed.$reset"
+ echo
 

@@ -19,63 +19,17 @@ if { ! [info exist ::env(PHYS_SUB_DIR)]  }  {
 #}
 
 
-proc ModulesHelp { } {
-    global PHYS_VERSION
-    global clhep_version
-    global xercesc_version
-    global qt_version
-    global geant4_version
-    global g4data_version
-    global scons_bm_version
-    global ccdb_version
-    global evio_version
-    global hipo_version
-    global mlibrary_version
-    global gemc_version
-    global root_version
-    global banks_version
-    global glibrary_version
-    global scig_version
-    global clas12_systems_version
-
-   puts stderr "
-   physlibs $PHYS_VERSION loads the following modules:\n
-   - clhep          $clhep_version
-   - xercesc        $xercesc_version
-   - qt             $qt_version
-   - geant4         $geant4_version
-   - scons_bm       $scons_bm_version
-   - ccdb           $ccdb_version
-   - evio           $evio_version
-   - hipo           $hipo_version
-   - mlibrary       $mlibrary_version
-   - gemc           $gemc_version
-   - root           $root_version
-   - banks          $banks_version
-   - glibrary       $glibrary_version
-   - scig           $scig_version
-   - clas12_systems $clas12_systems_version
-
-"
-}
-
-
-module-whatis \
-"\n
-          clhep/${clhep_version}       \t xercesc/${xercesc_version} \t\t qt/${qt_version}      \t geant4/${geant4_version}
-          scons_bm/${scons_bm_version} \t ccdb/${ccdb_version}       \t evio/${evio_version}    \t\t hipo/${hipo_version}
-          mlibrary/${mlibrary_version} \t\t gemc/${gemc_version}     \t\t root/${root_version}  \t\t banks/${banks_version}
-          glibrary/${glibrary_version} \t\t scig/${scig_version}     \t\t clas12_systems/${clas12_systems_version}
-"
-
-
 module load .clhep/${clhep_version}
 module load .xercesc/${xercesc_version}
 module load .qt/${qt_version}
 module load .geant4/${geant4_version}
 module load .scons_bm/${scons_bm_version}
 module load .ccdb/${ccdb_version}
+module load .evio/${evio_version}
+module load .mlibrary/${mlibrary_version}
 
+# couldn't figure out how to run the individual modules tests within this function
+# so running all tests here
 proc ModulesTest { } {
 
     global PHYS_VERSION
@@ -99,3 +53,4 @@ proc ModulesTest { } {
 
     return $retcode
 }
+

@@ -7,12 +7,11 @@ tar_strip=1                               # in the tarball, the source is inside
 
 
 base_dir=$CCDB_HOME
-cmake_options="-Wno-dev"
-
 
 log_general ccdb "$CCDB_VERSION" "$filename" "$base_dir"
 
 unpack_source_in_directory "$filename" "$base_dir" "$tar_strip"
 
+unset SCONSFLAGS
 scons_build_and_install "$base_dir"
 
