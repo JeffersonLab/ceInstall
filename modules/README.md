@@ -41,6 +41,11 @@ Software architecture independent (python, JAVA, etc) is organized under `noarch
             
 ```
 
+# Requirements:
+
+- cmake > 3.2
+- qt5 (not qt6)
+
 # Physlibs
 
 The super module `physlibs` collects the libraries in versioned subsets. 

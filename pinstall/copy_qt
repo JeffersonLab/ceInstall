@@ -38,25 +38,24 @@ case $(uname -s) in
             echo  " > QT Installation: Fedora/Redhat/CentOS"
             SQTDIR=/usr/lib64            # libraries like libQt5Xml.so
             QTDIR_INCS=/usr/include/qt5  # includes
-            SQTDIR_ALL=SQTDIR/qt5       # binaries, mkspecs and plugins
+            SQTDIR_ALL=$SQTDIR/qt5       # binaries, mkspecs and plugins
 
         # ubuntu line
         elif [ -f /etc/os-release ]; then
             echo  " > QT Installation: Ubuntu "
             SQTDIR=/usr/lib/x86_64-linux-gnu
             QTDIR_INCS=/usr/include/qt5  # includes
-            SQTDIR_ALL=SQTDIR/qt5       # binaries, mkspecs and plugins
+            SQTDIR_ALL=$SQTDIR/qt5       # binaries, mkspecs and plugins
         else
             echo  " > Linux line not supported yet "
         fi
 
         dir_remove_and_create "$QTDIR/lib"
-        cp    "$SQTDIR"/libQt*    "$QTDIR/lib"
-        cp -r "$QTDIR_INCS "        "$QTDIR"
-        cp -r "$SQTDIR_ALL/bin "    "$QTDIR"
+        cp    "$SQTDIR"/libQt*"     "$QTDIR/lib"
+        cp -r "$QTDIR_INCS"         "$QTDIR"
+        cp -r "$SQTDIR_ALL/bin"     "$QTDIR"
         cp -r "$SQTDIR_ALL/mkspecs" "$QTDIR"
         cp -r "$SQTDIR_ALL/plugins" "$QTDIR"
-
         ;;
 
     *)

@@ -36,16 +36,25 @@ proc ModulesTest { } {
 
     set retcode 1
 
-    set dirs_to_test { CLHEP_BASE_DIR XERCESCROOT QTDIR G4INSTALL SCONS_BM CCDB_HOME }
+    set dirs_to_test { CLHEP_BASE_DIR XERCESCROOT QTDIR G4DATA_DIR G4LIB SCONS_BM CCDB_HOME EVIO MLIBRARY }
 
-    puts stderr "Running ModulesTest for PHYS_VERSION $PHYS_VERSION..."
+    puts stderr " Running ModulesTest for PHYS_VERSION <$PHYS_VERSION>"
 
     puts stderr ""
     foreach dir $dirs_to_test {
-        if { [file isdirectory [ getenv $dir ] ] } {
-            puts stderr " ✅ $dir "
+        set installation_dir  [ getenv $dir ]
+        if { [file isdirectory $installation_dir ] } {
+            if { $dir == "CLHEP_BASE_DIR" } {
+                puts stderr " Y $dir \t $installation_dir"
+            } else {
+                puts stderr " Y $dir \t\t $installation_dir"
+            }
         } else {
-            puts stderr " ❌ $dir  ︎"
+            if { $dir == "CLHEP_BASE_DIR" } {
+                puts stderr " N $dir \t $installation_dir"
+            } else {
+                puts stderr " N $dir \t\t $installation_dir"
+            }
             set retcode 0
         }
     }

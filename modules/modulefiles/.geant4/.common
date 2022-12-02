@@ -31,6 +31,7 @@ if { [uname sysname] == "Linux" } {
 prepend-path PATH $dir/bin
 
 setenv G4INSTALL $dir
+setenv G4LIB $dir/lib
 setenv G4_VERSION $version
 setenv G4DATA_DIR $dir/data/$data_version/data
 
