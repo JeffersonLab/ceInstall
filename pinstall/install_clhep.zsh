@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-source "$(dirname "$(readlink -f "$0")")"/functions
+source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
 filename="clhep/clhep-$CLHEP_VERSION.tgz" # includes subdirectory name
 tar_strip=2                               # in the tarball, the source is inside VERSION/CLHEP

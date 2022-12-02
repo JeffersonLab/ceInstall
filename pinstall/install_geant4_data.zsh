@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-source "$(dirname "$(readlink -f "$0")")"/functions
+source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
 DATAFILES=(
 		G4NDL.$g4ndl_version.tar.gz

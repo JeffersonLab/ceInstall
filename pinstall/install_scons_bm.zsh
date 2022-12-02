@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-source "$(dirname "$(readlink -f "$0")")"/functions
+source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
 filename="scons_bm/scons_bm_$SCONS_BM_VERSION.tar.gz" # includes subdirectory name
 tar_strip=1                                           # in the tarball, the source is inside scons_bm

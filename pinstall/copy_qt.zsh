@@ -1,6 +1,9 @@
 #!/bin/zsh
 
-source "$(dirname "$(readlink -f "$0")")"/functions
+magenta=`tput setaf 5`
+reset=`tput sgr0`
+
+source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
 # Assumes that qt5 is install with:
 # Darwin: brew install qt5
@@ -30,19 +33,20 @@ case $(uname -s) in
 		    cp -r "$SQTDIR/mkspecs" "$QTDIR"
 		    cp -r "$SQTDIR/plugins" "$QTDIR"
 
+        echo "$magenta > QT Libraries / Includes copy completed.$reset"
         ;;
 
     Linux)
         # fedora line
         if [ -f /etc/fedora-release ] || [ -f /etc/redhat-release ]; then
-            echo  " > QT Installation: Fedora/Redhat/CentOS"
+            echo  " > QT Line: Fedora/Redhat/CentOS"
             SQTDIR=/usr/lib64            # libraries like libQt5Xml.so
             QTDIR_INCS=/usr/include/qt5  # includes
             SQTDIR_ALL=$SQTDIR/qt5       # binaries, mkspecs and plugins
 
         # ubuntu line
         elif [ -f /etc/os-release ]; then
-            echo  " > QT Installation: Ubuntu "
+            echo  " > QT Line: Ubuntu "
             SQTDIR=/usr/lib/x86_64-linux-gnu
             QTDIR_INCS=/usr/include/qt5  # includes
             SQTDIR_ALL=$SQTDIR/qt5       # binaries, mkspecs and plugins
@@ -56,10 +60,12 @@ case $(uname -s) in
         cp -r "$SQTDIR_ALL/bin"     "$QTDIR"
         cp -r "$SQTDIR_ALL/mkspecs" "$QTDIR"
         cp -r "$SQTDIR_ALL/plugins" "$QTDIR"
+
+        echo "$magenta > QT Libraries / Includes copy completed.$reset"
         ;;
 
     *)
-        echo "Unsupported OS: $(uname -s)"
+        echo "$magenta > Unsupported OS: $(uname -s) $reset"
         exit 1
         ;;
 esac
