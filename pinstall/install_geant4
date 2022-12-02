@@ -32,26 +32,13 @@ else
 fi
 
 
-# for linux, add entries to cmake_options
-if [[ $OSTYPE == linux* ]]; then
-    opt1="-I$QTDIR/include \
-    -I$QTDIR/include/QtOpenGL
-    -I$QTDIR/include/QtWidgets \
-    -I$QTDIR/include/QtGui \
-    -I$QTDIR/include/QtCore \
-    -I$QTDIR/include/QtPrintSupport"
-
-    opt2=' -W -Wall -pedantic -Wno-non-virtual-dtor -Wno-long-long -Wwrite-strings -Wpointer-arith -Woverloaded-virtual -pipe'
-    cmake_options="$cmake_options $opt1 $opt2"
-fi
-
 case $(uname -s) in
     Linux)
 		x11_option="-DGEANT4_USE_OPENGL_X11=ON"
 
 	  opt1=" -I$QTDIR/include -I$QTDIR/include/QtOpenGL -I$QTDIR/include/QtWidgets"
 		opt2=" -I$QTDIR/include/QtGui -I$QTDIR/include/QtCore -I$QTDIR/include/QtPrintSupport"
-		opt3=" -W -Wall -pedantic -Wno-non-virtual-dtor -Wno-long-long -Wwrite-strings -Wpointer-arith -Woverloaded-virtual -pipe"
+		opt3=" -Wall -pedantic -Wno-non-virtual-dtor -Wno-long-long -Wwrite-strings -Wpointer-arith -Woverloaded-virtual -pipe"
 
 		# need to check if QtPrintSupport is needed
 		set conf_options = "$x11_option $opt1 $opt2 $opt3"
