@@ -55,7 +55,7 @@ case $(uname -s) in
 
 		# need to check if QtPrintSupport is needed
 		set conf_options = "$x11_option $opt1 $opt2 $opt3"
-    cmake_options="$cmake_options conf_options"
+    cmake_options="$cmake_options $conf_options"
         ;;
     Darwin)
         ;;
