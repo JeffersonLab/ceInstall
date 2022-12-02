@@ -43,6 +43,7 @@ Software architecture independent (python, JAVA, etc) is organized under `noarch
 
 # Requirements:
 
+- gcc/clang > 8 (for c++17) 
 - cmake > 3.2
 - qt5 (not qt6)
 
