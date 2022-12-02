@@ -51,7 +51,7 @@ case $(uname -s) in
         fi
 
         dir_remove_and_create "$QTDIR/lib"
-        cp    "$SQTDIR/libQt*"      "$QTDIR/lib"
+        cp    "$SQTDIR"/libQt*      "$QTDIR/lib"
         cp -r "$QTDIR_INCS"         "$QTDIR"
         cp -r "$SQTDIR_ALL/bin"     "$QTDIR"
         cp -r "$SQTDIR_ALL/mkspecs" "$QTDIR"
