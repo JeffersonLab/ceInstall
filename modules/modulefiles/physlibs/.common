@@ -38,6 +38,7 @@ proc ModulesTest { } {
     set retcode 1
 
     set dirs_to_test { CLHEP_BASE_DIR XERCESCROOT QTDIR G4DATA_DIR G4LIB SCONS_BM CCDB_HOME EVIO MLIBRARY }
+    set missing {}
 
 #    puts stderr " Running ModulesTest for PHYS_VERSION <$PHYS_VERSION>"
     puts stderr " Running physlibs ModulesTest"
@@ -57,9 +58,12 @@ proc ModulesTest { } {
             } else {
                 puts stderr " N $dir \t\t $installation_dir"
             }
+            set missing [ linsert $missing end $dir ]
             set retcode 0
         }
     }
+    puts stderr ""
+    puts stderr " Modules Missing: $missing"
     puts stderr ""
 
     return $retcode

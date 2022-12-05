@@ -62,53 +62,34 @@ module load physlibs/2.6
 To see the libraries version:
 
 ```
-module  whatis physlibs
+module  show physlibs/2.6
 ```
 
-### - Physlibs 2.6
+TODO: make this output from a python script
 
-- clhep:     2.4.1.3
-- xercesc:   3.2.3
-- qt:        system
-- geant4:    4.10.06.p02
-- g4data:    10.6.2
-- scons_bm:  1.10
-- ccdb:      1.07.00
-- evio:      5.1
-- hipo:      1.8
-- mlibrary:  1.4
-- gemc:      2.9
-- root:      6.20.04
+### External Libraries
 
-### - Physlibs 2.5
+| PHYS_VERSION | clhep   | xercesc | qt     | geant4      | root    | 
+|--------------|---------|---------|--------|-------------|---------|
+| **2.4**      | 2.4.1.3 | 3.2.3   | system | 4.10.06.p02 | 6.20.04 |
+| **2.5**      | 2.4.4.2 | 3.2.3   | system | 4.10.07.p04 | 6.24.06 |
+| **2.6**      | 2.4.1.3 | 3.2.3   | system | 11.0.3      | 6.26.06 |
 
-- clhep:     2.4.1.3
-- xercesc:   3.2.3
-- qt:        system
-- geant4:    4.10.06.p02
-- g4data:    10.6.2
-- scons_bm:  1.10
-- ccdb:      1.07.00
-- evio:      5.1
-- hipo:      1.8
-- mlibrary:  1.4
-- gemc:      2.9
-- root:      6.20.04
+### JLAB Libraries
 
-### - Physlibs 2.4
+| PHYS_VERSION | scons_bm | ccdb    | evio   | hipo | mlibrary | cmag | glibrary |
+|--------------|----------|---------|--------|------|----------|------|----------|
+| **2.4**      | 1.10     | 1.07.00 | 5.2    | 1.8  | 1.4      | 1.1  | 1.0      |
+| **2.5**      | 1.10     | 1.07.00 | 5.2    | 1.8  | 1.5      | 1.1  | 1.0      |
+| **2.6**      | 1.11     | 1.07.00 | 5.2    | 1.8  | 1.6      | 1.1  | 1.0      |
 
-- clhep:     2.4.1.3
-- xercesc:   3.2.3
-- qt:        system
-- geant4:    4.10.06.p02
-- g4data:    10.6.2
-- scons_bm:  1.10
-- ccdb:      1.07.00
-- evio:      5.1
-- hipo:      1.8
-- mlibrary:  1.4
-- gemc:      2.9
-- root:      6.20.04
+### JLAB Software
+
+| PHYS_VERSION  | clas12Tags | clas12 systems | gemc2 | gemc3 | 
+|---------------|------------|----------------|-------|-------|
+| **2.4**       | 4.4.2, 5.1 | 1.0            | 2.8   | 1.0   |
+| **2.5**       | 5.2        | 1.0            | 2.9   | 1.0   |
+| **2.6**       | na         | 1.0            | 2.10  | 1.0   |
 
 
 ## Dependencies

@@ -1,0 +1,82 @@
+#!/bin/zsh
+
+source "$(dirname "$(readlink -f "$0")")"/functions.zsh
+
+# echo source command for cue machines
+case "$(hostname -s)" in
+	CasettaMini|mauriAir|MauriMBP|mauri-imac|enpungarombp)
+	    export PHYS_HOME=/opt/jlab_software
+		. /opt/projects/ceInstall/modules/setup.sh
+		;;
+	*)
+	    . /group/clas12/packages/modules/5.2.0/init/zsh
+	    module load cmake/3.23.2
+	    module load gcc/9.3.0
+		. /site/12gev_phys/ceInstall/modules/setup.sh
+		;;
+esac
+
+# get the physlibs version from module avail command
+
+physlibs_version=$( ls $(dirname "$(readlink -f "$0")")"/../modules/modulefiles/physlibs/" )
+
+
+echo " > Availaible phys_versions: $=physlibs_version"
+echo
+
+for pv in  $=physlibs_version ; do
+	echo " > Checking missing modules in physlibs version $pv"
+	module unload physlibs -s
+	module load	 physlibs/$pv -s
+	missing_modules=$( module test physlibs | grep "Modules Missing" | sed 's/Modules Missing://g' )
+
+	echo " > Missing modules: $missing_modules"
+	echo
+
+	# if CLHEP_BASE_DIR is found in $missing_modules, then install it
+	if [[ $missing_modules == *"CLHEP_BASE_DIR"* ]]; then
+		echo " > Installing CLHEP"
+		install_clhep
+	fi
+	if [[ $missing_modules == *"XERCESCROOT"* ]]; then
+		echo " > Installing XercesC"
+		install_xercesc
+	fi
+	if [[ $missing_modules == *"QTDIR"* ]]; then
+		echo " > Installing Qt"
+		copy_qt
+	fi
+	if [[ $missing_modules == *"G4DATA_DIR"* ]]; then
+		echo " > Installing Geant4 data"
+		install_geant4_data
+	fi
+	if [[ $missing_modules == *"G4LIB"* ]]; then
+		echo " > Installing Geant4"
+		install_geant4
+	fi
+	if [[ $missing_modules == *"SCONS_BM"* ]]; then
+		echo " > Installing scons build model"
+		install_scons_bm
+	fi
+	if [[ $missing_modules == *"CCDB_HOME"* ]]; then
+		echo " > Installing ccdb"
+		install_ccdb
+	fi
+	if [[ $missing_modules == *"EVIO"* ]]; then
+		echo " > Installing evio"
+		install_evio
+	fi
+	if [[ $missing_modules == *"MLIBRARY"* ]]; then
+		echo " > Installing mlibrary"
+		install_mlibrary
+	fi
+
+#	install_hipo
+#	install_cmag
+#	install_cla12Tags
+
+
+	module test physlibs/$pv
+
+done
+echo
