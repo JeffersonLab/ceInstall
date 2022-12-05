@@ -30,15 +30,17 @@ module load .mlibrary/${mlibrary_version}
 
 # couldn't figure out how to run the individual modules tests within this function
 # so running all tests here
+# also, [ getenv PHYS_VERSION ] doesn't work here
 proc ModulesTest { } {
 
-    global PHYS_VERSION
+    #set PHYS_VERSION [ getenv PHYS_VERSION ]
 
     set retcode 1
 
     set dirs_to_test { CLHEP_BASE_DIR XERCESCROOT QTDIR G4DATA_DIR G4LIB SCONS_BM CCDB_HOME EVIO MLIBRARY }
 
-    puts stderr " Running ModulesTest for PHYS_VERSION <$PHYS_VERSION>"
+#    puts stderr " Running ModulesTest for PHYS_VERSION <$PHYS_VERSION>"
+    puts stderr " Running physlibs ModulesTest"
 
     puts stderr ""
     foreach dir $dirs_to_test {
