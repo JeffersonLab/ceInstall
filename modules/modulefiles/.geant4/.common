@@ -17,21 +17,18 @@ module-whatis "Loads geant4/${version}"
 set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSION)
 
 set dir $base_dir/geant4/${version}
+set lib_location lib
 
 # set LD_LIBRARY_PATH depending on Darwin/Linux
 if { [uname sysname] == "Linux" } {
-   prepend-path LD_LIBRARY_PATH $dir/lib64
-} elseif { [uname sysname] == "Darwin" } {
-    prepend-path LD_LIBRARY_PATH $dir/lib
-} else {
-    puts stderr "Unknown system type"
-    exit 1
+    set lib_location lib64
 }
 
 prepend-path PATH $dir/bin
+prepend-path LD_LIBRARY_PATH $dir/$lib_location
 
 setenv G4INSTALL $dir
-setenv G4LIB $dir/lib
+setenv G4LIB $dir/$lib_location
 setenv G4_VERSION $version
 setenv G4DATA_DIR $dir/data/$data_version/data
 
