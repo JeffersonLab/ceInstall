@@ -1,20 +1,6 @@
-#!/bin/zsh
+#!/bin/zsh -i
 
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
-
-# echo source command for cue machines
-case "$(hostname -s)" in
-	CasettaMini|mauriAir|MauriMBP|mauri-imac|enpungarombp)
-	    export PHYS_HOME=/opt/jlab_software
-		. /opt/projects/ceInstall/modules/setup.sh
-		;;
-	*)
-	    . /group/clas12/packages/modules/5.2.0/init/zsh
-	    module load cmake/3.23.2
-	    module load gcc/9.3.0
-		. /site/12gev_phys/ceInstall/modules/setup.sh
-		;;
-esac
 
 # get the physlibs version from module avail command
 

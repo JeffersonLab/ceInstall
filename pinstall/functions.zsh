@@ -7,21 +7,21 @@ magenta=`tput setaf 5`
 reset=`tput sgr0`
 
 # check if the environment PHYS_VERSION is set
-if [ -z "$PHYS_VERSION" ]; then
-	echo
-	echo " The physlibs environment is not set. Use:"
-	echo
-	echo "$yellow module load physlibs/<VERSION> $reset"
-	echo
-	echo " to load it. Use:"
-	echo
-	echo "$yellow module aval $reset"
-	echo
-	echo " to show the available versions."
-	echo
-
-	exit 1
-fi
+#if [ -z "$PHYS_VERSION" ]; then
+#	echo
+#	echo " The physlibs environment is not set. Use:"
+#	echo
+#	echo "$yellow module load physlibs/<VERSION> $reset"
+#	echo
+#	echo " to load it. Use:"
+#	echo
+#	echo "$yellow module aval $reset"
+#	echo
+#	echo " to show the available versions."
+#	echo
+#
+#	exit 1
+#fi
 
 # set alias to wget depending on the OS
 case $(uname -s) in
