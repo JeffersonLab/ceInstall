@@ -23,40 +23,41 @@ for pv in  $=physlibs_version ; do
 	echo " > Missing modules: $missing_modules"
 	echo
 
-	# if CLHEP_BASE_DIR is found in $missing_modules, then install it
-	if [[ $missing_modules == *"CLHEP_BASE_DIR"* ]]; then
+
+	# checking if $missing modules contain the individual strings
+	if (( $missing_modules[(I)CLHEP_BASE_DIR] != 0 )); then
 		echo " > Installing CLHEP"
 		install_clhep
 	fi
-	if [[ $missing_modules == *"XERCESCROOT"* ]]; then
+	if (( $missing_modules[(I)XERCESCROOT] != 0 )); then
 		echo " > Installing XercesC"
 		install_xercesc
 	fi
-	if [[ $missing_modules == *"QTDIR"* ]]; then
+	if (( $missing_modules[(I)QTDIR] != 0 )); then
 		echo " > Installing Qt"
 		copy_qt
 	fi
-	if [[ $missing_modules == *"G4DATA_DIR"* ]]; then
+	if (( $missing_modules[(I)G4DATA_DIR] != 0 )); then
 		echo " > Installing Geant4 data"
 		install_geant4_data
 	fi
-	if [[ $missing_modules == *"G4LIB"* ]]; then
+	if (( $missing_modules[(I)G4LIB] != 0 )); then
 		echo " > Installing Geant4"
 		install_geant4
 	fi
-	if [[ $missing_modules == *"SCONS_BM"* ]]; then
+	if (( $missing_modules[(I)SCONS_BM] != 0 )); then
 		echo " > Installing scons build model"
 		install_scons_bm
 	fi
-	if [[ $missing_modules == *"CCDB_HOME"* ]]; then
+	if (( $missing_modules[(I)CCDB_HOME] != 0 )); then
 		echo " > Installing ccdb"
 		install_ccdb
 	fi
-	if [[ $missing_modules == *"EVIO"* ]]; then
+	if (( $missing_modules[(I)EVIO] != 0 )); then
 		echo " > Installing evio"
 		install_evio
 	fi
-	if [[ $missing_modules == *"MLIBRARY"* ]]; then
+	if (( $missing_modules[(I)MLIBRARY] != 0 )); then
 		echo " > Installing mlibrary"
 		install_mlibrary
 	fi
