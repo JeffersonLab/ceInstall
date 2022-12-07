@@ -1,6 +1,6 @@
 #%Module
 
-prereq --tag 2.4, 2.5 physlibs
+prereq .clhep/2.4.4.2 .xercesc/3.2.3 .qt/system
 
 set version 4.10.07.p04
 set data_version Geant4-10.7.4
