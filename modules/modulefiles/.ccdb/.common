@@ -25,7 +25,7 @@ prepend-path PYTHONPATH $dir/python
 setenv CCDB_VERSION $version
 setenv CCDB_HOME $dir
 
-if {  $env(USER) != ""} {
+if {  [info exists ::env(USER)] } {
     setenv CCDB_USER $env(USER)
 }
 
