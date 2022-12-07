@@ -24,6 +24,10 @@ prepend-path PYTHONPATH $dir/python
 
 setenv CCDB_VERSION $version
 setenv CCDB_HOME $dir
-setenv CCDB_USER $env(USER)
+
+if {  $env(USER) != ""} {
+    setenv CCDB_USER $env(USER)
+}
+
 setenv CCDB_CONNECTION mysql://clas12reader@clasdb-farm.jlab.org/clas12
 
