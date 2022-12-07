@@ -30,18 +30,27 @@ module load .mlibrary/${mlibrary_version}
 
 # couldn't figure out how to run the individual modules tests within this function
 # so running all tests here
-# also, [ getenv PHYS_VERSION ] doesn't work here
+# couldn't figure out how to load physlibs in the test function
 proc ModulesTest { } {
 
-    #set PHYS_VERSION [ getenv PHYS_VERSION ]
-
+    global PHYS_VERSION
     set retcode 1
+
+    set command [module-info command]
+    set is_loaded [module-info loaded physlibs]
+
+    # exit if is_loaded is empty
+    if { $is_loaded == "" } {
+        puts stderr "physlibs is not loaded. Use module load physlibs to load it."
+        puts stderr ""
+        return 0
+    }
+
 
     set dirs_to_test { CLHEP_BASE_DIR XERCESCROOT QTDIR G4DATA_DIR G4LIB SCONS_BM CCDB_HOME EVIO MLIBRARY }
     set missing {}
 
-#    puts stderr " Running ModulesTest for PHYS_VERSION <$PHYS_VERSION>"
-    puts stderr " Running physlibs ModulesTest"
+    puts stderr " Running $command for $is_loaded "
 
     puts stderr ""
     foreach dir $dirs_to_test {
@@ -63,8 +72,10 @@ proc ModulesTest { } {
         }
     }
     puts stderr ""
-    puts stderr " Modules Missing: $missing"
-    puts stderr ""
+    if { $missing != "" } {
+        puts stderr " Modules Missing: $missing"
+        puts stderr ""
+    }
 
     return $retcode
 }
