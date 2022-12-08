@@ -2,16 +2,6 @@
 
 conflict .geant4
 
-proc ModulesHelp { } {
-    global version
-    puts stderr "
-    Loads geant4 environment variables
-    Version: $version
-"
-}
-
-module-whatis "Loads geant4/${version}"
-
 # Environment
 
 set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSION)
@@ -47,4 +37,36 @@ setenv G4ENSDFSTATEDATA  $env(G4DATA_DIR)/G4ENSDFSTATE$env(g4ensdfstate_version)
 setenv G4REALSURFACEDATA $env(G4DATA_DIR)/RealSurface$env(g4real_surface_version)
 
 
+
+proc ModulesTest { } {
+
+    set var1 G4LIB
+    set var2 G4DATA_DIR
+    set retcode 1
+
+    # exit if is_loaded is empty
+    if { [module-info loaded physlibs] == "" } {
+        puts stderr "physlibs is not loaded. Use module load physlibs to load it."
+        puts stderr ""
+        return 0
+    }
+
+    puts stderr ""
+    set installation_dir  [ getenv $var1 ]
+    if { [file isdirectory $installation_dir ] } {
+        puts stderr " Y $var1 \t\t $installation_dir"
+    } else {
+        puts stderr " N $var1 \t\t $installation_dir"
+        set retcode 0
+    }
+    set installation_dir  [ getenv $var2 ]
+    if { [file isdirectory $installation_dir ] } {
+        puts stderr " Y $var2 \t\t $installation_dir"
+    } else {
+        puts stderr " N $var2 \t\t $installation_dir"
+        set retcode 0
+    }
+
+    return $retcode
+}
 

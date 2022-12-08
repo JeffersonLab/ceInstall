@@ -2,15 +2,28 @@
 
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
-filename="evio/evio-$EVIO_VERSION.tar.gz" # includes subdirectory name
+filename="hipo/hipo-$HIPO_VERSION.tar.gz" # includes subdirectory name
 tar_strip=1                               # in the tarball, the source is inside version
 
 
-base_dir=$EVIO
+base_dir=$HIPO
 
-log_general evio "$EVIO_VERSION" "$filename" "$base_dir"
+log_general hipo "$HIPO_VERSION" "$filename" "$base_dir"
 
 unpack_source_in_directory "$filename" "$base_dir" "$tar_strip"
 
-scons_build_and_install "$base_dir"
+
+opt="-Wno-dev"
+
+cd $HIPO
+cd lz4
+#make -j "$n_cpu"
+#cp lib/liblz4.* ../lib
+cd ../
+cmake .
+cd hipo4
+make -j "$n_cpu"
+
+
+
 

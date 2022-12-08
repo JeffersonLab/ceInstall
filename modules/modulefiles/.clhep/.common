@@ -2,16 +2,6 @@
 
 conflict .clhep
 
-proc ModulesHelp { } {
-    global version
-    puts stderr "
-    Loads clhep environment variables
-    Version: $version
-"
-}
-
-module-whatis "Loads clhep/${version}"
-
 # Environment
 
 set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSION)

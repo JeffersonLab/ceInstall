@@ -1,4 +1,4 @@
-#%Module######################
+#%Module
 
 conflict physlibs
 
@@ -27,6 +27,17 @@ module load .scons_bm/${scons_bm_version}
 module load .ccdb/${ccdb_version}
 module load .evio/${evio_version}
 module load .mlibrary/${mlibrary_version}
+module load .hipo/${hipo_version}
+
+set command [module-info command]
+
+# executing individual module test does not work here or in the ModulesTest function
+if { $command == "test"} {
+
+	puts stderr ""
+
+}
+
 
 # couldn't figure out how to run the individual modules tests within this function
 # so running all tests here
@@ -46,8 +57,7 @@ proc ModulesTest { } {
         return 0
     }
 
-
-    set dirs_to_test { CLHEP_BASE_DIR XERCESCROOT QTDIR G4DATA_DIR G4LIB SCONS_BM CCDB_HOME EVIO MLIBRARY }
+    set dirs_to_test { CLHEP_BASE_DIR XERCESCROOT QTDIR G4DATA_DIR G4LIB SCONS_BM CCDB_HOME EVIO MLIBRARY HIPO }
     set missing {}
 
     puts stderr " Running $command for $is_loaded "

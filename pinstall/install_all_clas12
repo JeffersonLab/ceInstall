@@ -1,6 +1,16 @@
 #!/bin/zsh -i
 
 
+function testResult() {
+	library=$1
+	version=$2
+
+	mtest=$(module test $library/$version | grep result | awk '{print $3}')
+
+	echo $mtest
+}
+
+
 # parse argument. If no argument given, set version to all available
 if [[ $# -eq 0 ]]; then
 	physlibs_version=$( ls $(dirname "$(readlink -f "$0")")"/../modules/modulefiles/physlibs/" )
@@ -9,64 +19,26 @@ else
 fi
 
 
-source "$(dirname "$(readlink -f "$0")")"/functions.zsh
-
 echo " > Availaible phys_versions: $=physlibs_version"
 echo
 
 for pv in  $=physlibs_version ; do
+
 	echo " > Checking missing modules in physlibs version $pv"
 	module unload physlibs -s
 	module load	 physlibs/$pv -s
-	missing_modules=$( module test physlibs | grep "Modules Missing" | sed 's/Modules Missing://g' )
 
-	echo " > Missing modules: $missing_modules"
+	[[ $(testResult .clhep    $CLHEP_VERSION)    == "PASS" ]] && echo " > clhep is installed"    || install_clhep
+	[[ $(testResult .xercesc  $XERCESC_VERSION)  == "PASS" ]] && echo " > xercesc is installed"  || install_xercesc
+	[[ $(testResult .qt       $QT_VERSION)       == "PASS" ]] && echo " > qt is installed"       || copy_qt
+	[[ $(testResult .geant4   $G4_VERSION)       == "PASS" ]] && echo " > geant4 is installed"   || install_geant4_data
+	[[ $(testResult .geant4   $G4_VERSION)       == "PASS" ]] && echo " > geant4 is installed"   || install_geant4
+	[[ $(testResult .scons_bm $SCONS_BM_VERSION) == "PASS" ]] && echo " > scons_bm is installed" || install_scons_bm
+	[[ $(testResult .ccdb     $CCDB_VERSION)     == "PASS" ]] && echo " > ccdb is installed"     || install_ccdb
+	[[ $(testResult .evio     $EVIO_VERSION)     == "PASS" ]] && echo " > evio is installed"     || install_evio
+	[[ $(testResult .mlibrary $MLIBRARY_VERSION) == "PASS" ]] && echo " > mlibrary is installed" || install_mlibrary
+
 	echo
-
-
-	# checking if $missing modules contain the individual strings
-	if (( $missing_modules[(I)CLHEP_BASE_DIR] != 0 )); then
-		echo " > Installing CLHEP"
-		install_clhep
-	fi
-	if (( $missing_modules[(I)XERCESCROOT] != 0 )); then
-		echo " > Installing XercesC"
-		install_xercesc
-	fi
-	if (( $missing_modules[(I)QTDIR] != 0 )); then
-		echo " > Installing Qt"
-		copy_qt
-	fi
-	if (( $missing_modules[(I)G4DATA_DIR] != 0 )); then
-		echo " > Installing Geant4 data"
-		install_geant4_data
-	fi
-	if (( $missing_modules[(I)G4LIB] != 0 )); then
-		echo " > Installing Geant4"
-		install_geant4
-	fi
-	if (( $missing_modules[(I)SCONS_BM] != 0 )); then
-		echo " > Installing scons build model"
-		install_scons_bm
-	fi
-	if (( $missing_modules[(I)CCDB_HOME] != 0 )); then
-		echo " > Installing ccdb"
-		install_ccdb
-	fi
-	if (( $missing_modules[(I)EVIO] != 0 )); then
-		echo " > Installing evio"
-		install_evio
-	fi
-	if (( $missing_modules[(I)MLIBRARY] != 0 )); then
-		echo " > Installing mlibrary"
-		install_mlibrary
-	fi
-
-#	install_hipo
-#	install_cmag
-#	install_cla12Tags
-
-
 	module test physlibs/$pv
 
 done
