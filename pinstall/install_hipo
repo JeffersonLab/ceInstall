@@ -13,8 +13,6 @@ log_general hipo "$HIPO_VERSION" "$filename" "$base_dir"
 unpack_source_in_directory "$filename" "$base_dir" "$tar_strip"
 
 
-opt="-Wno-dev"
-
 # the tar file must contain the lz4 submodule. Done with:
 # git clone --recurse-submodules https://github.com:gavalian/hipo.git
 # tar cvf hipo-1.8.tar hipo ;  gzip hipo-1.8.tar

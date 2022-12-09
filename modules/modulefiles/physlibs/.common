@@ -28,6 +28,7 @@ module load .ccdb/${ccdb_version}
 module load .evio/${evio_version}
 module load .mlibrary/${mlibrary_version}
 module load .hipo/${hipo_version}
+module load .cmag/${cmag_version}
 
 set command [module-info command]
 
@@ -57,7 +58,7 @@ proc ModulesTest { } {
 		return 0
 	}
 	
-	set dirs_to_test { CLHEP_BASE_DIR XERCESCROOT QTDIR G4DATA_DIR G4LIB SCONS_BM CCDB_HOME EVIO MLIBRARY HIPO }
+	set dirs_to_test { CLHEP_BASE_DIR XERCESCROOT QTDIR G4DATA_DIR G4LIB SCONS_BM CCDB_HOME EVIO MLIBRARY HIPO C12BFIELDS}
 	set missing {}
 	
 	puts stderr " Running $command for $is_loaded "

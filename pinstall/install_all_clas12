@@ -37,6 +37,7 @@ for pv in  $=physlibs_version ; do
 	[[ $(testResult .evio     $EVIO_VERSION)     == "PASS" ]] && echo " > evio is installed"     || install_evio
 	[[ $(testResult .mlibrary $MLIBRARY_VERSION) == "PASS" ]] && echo " > mlibrary is installed" || install_mlibrary
 	[[ $(testResult .hipo     $HIPO_VERSION)     == "PASS" ]] && echo " > hipo is installed"     || install_hipo
+	[[ $(testResult .cmag     $CMAG_VERSION)     == "PASS" ]] && echo " > cmag is installed"     || install_cmag
 
 	echo
 	module test physlibs/$pv
