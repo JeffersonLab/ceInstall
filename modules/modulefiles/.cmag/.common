@@ -1,25 +1,20 @@
 #%Module
 
-conflict .mlibrary
+conflict .cmag
 
 # Environment
 
 set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSION)
 
-set dir $base_dir/mlibrary/${version}
+set dir $base_dir/cmag/${version}
 
-prepend-path LD_LIBRARY_PATH $dir/lib
-if { [uname sysname] == "Darwin" } {
-	prepend-path DYLD_LIBRARY_PATH $dir/lib
-}
-
-setenv MLIBRARY_VERSION  $version
-setenv MLIBRARY $dir
+setenv CMAG_VERSION $version
+setenv C12BFIELDS $dir
 
 proc ModulesTest { } {
 	
-	set var MLIBRARY
-	set installation_dir  [ getenv MLIBRARY ]/lib
+	set var CMAG
+	set installation_dir  [ getenv C12BFIELDS ]/lib
 	set retcode 1
 	
 	# exit if is_loaded is empty

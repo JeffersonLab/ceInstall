@@ -12,7 +12,8 @@ set dir $base_dir/xercesc/${version}
 if { [uname sysname] == "Linux" } {
 	prepend-path LD_LIBRARY_PATH $dir/lib64
 } elseif { [uname sysname] == "Darwin" } {
-	prepend-path LD_LIBRARY_PATH $dir/lib
+	prepend-path LD_LIBRARY_PATH   $dir/lib
+	prepend-path DYLD_LIBRARY_PATH $dir/lib
 } else {
 	puts stderr "Unknown system type"
 	exit 1
