@@ -5,7 +5,7 @@ conflict physlibs
 set PHYS_VERSION $env(PHYS_VERSION)
 
 if { ! [info exist ::env(PHYS_SUB_DIR)]  }  {
-  setenv PHYS_SUB_DIR sim
+	setenv PHYS_SUB_DIR sim
 }
 
 # example of adding software to a specific release
@@ -33,9 +33,9 @@ set command [module-info command]
 
 # executing individual module test does not work here or in the ModulesTest function
 if { $command == "test"} {
-
+	
 	puts stderr ""
-
+	
 }
 
 
@@ -43,50 +43,50 @@ if { $command == "test"} {
 # so running all tests here
 # couldn't figure out how to load physlibs in the test function
 proc ModulesTest { } {
-
-    global PHYS_VERSION
-    set retcode 1
-
-    set command [module-info command]
-    set is_loaded [module-info loaded physlibs]
-
-    # exit if is_loaded is empty
-    if { $is_loaded == "" } {
-        puts stderr "physlibs is not loaded. Use module load physlibs to load it."
-        puts stderr ""
-        return 0
-    }
-
-    set dirs_to_test { CLHEP_BASE_DIR XERCESCROOT QTDIR G4DATA_DIR G4LIB SCONS_BM CCDB_HOME EVIO MLIBRARY HIPO }
-    set missing {}
-
-    puts stderr " Running $command for $is_loaded "
-
-    puts stderr ""
-    foreach dir $dirs_to_test {
-        set installation_dir  [ getenv $dir ]
-        if { [file isdirectory $installation_dir ] } {
-            if { $dir == "CLHEP_BASE_DIR" } {
-                puts stderr " Y $dir \t $installation_dir"
-            } else {
-                puts stderr " Y $dir \t\t $installation_dir"
-            }
-        } else {
-            if { $dir == "CLHEP_BASE_DIR" } {
-                puts stderr " N $dir \t $installation_dir"
-            } else {
-                puts stderr " N $dir \t\t $installation_dir"
-            }
-            set missing [ linsert $missing end $dir ]
-            set retcode 0
-        }
-    }
-    puts stderr ""
-    if { $missing != "" } {
-        puts stderr " Modules Missing: $missing"
-        puts stderr ""
-    }
-
-    return $retcode
+	
+	global PHYS_VERSION
+	set retcode 1
+	
+	set command [module-info command]
+	set is_loaded [module-info loaded physlibs]
+	
+	# exit if is_loaded is empty
+	if { $is_loaded == "" } {
+		puts stderr "physlibs is not loaded. Use module load physlibs to load it."
+		puts stderr ""
+		return 0
+	}
+	
+	set dirs_to_test { CLHEP_BASE_DIR XERCESCROOT QTDIR G4DATA_DIR G4LIB SCONS_BM CCDB_HOME EVIO MLIBRARY HIPO }
+	set missing {}
+	
+	puts stderr " Running $command for $is_loaded "
+	
+	puts stderr ""
+	foreach dir $dirs_to_test {
+		set installation_dir  [ getenv $dir ]
+		if { [file isdirectory $installation_dir ] } {
+			if { $dir == "CLHEP_BASE_DIR" } {
+				puts stderr " Y $dir \t $installation_dir"
+			} else {
+				puts stderr " Y $dir \t\t $installation_dir"
+			}
+		} else {
+			if { $dir == "CLHEP_BASE_DIR" } {
+				puts stderr " N $dir \t $installation_dir"
+			} else {
+				puts stderr " N $dir \t\t $installation_dir"
+			}
+			set missing [ linsert $missing end $dir ]
+			set retcode 0
+		}
+	}
+	puts stderr ""
+	if { $missing != "" } {
+		puts stderr " Modules Missing: $missing"
+		puts stderr ""
+	}
+	
+	return $retcode
 }
 

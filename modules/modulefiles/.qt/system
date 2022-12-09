@@ -9,12 +9,12 @@ set version system
 
 # set QTSYSTEM based on uname
 if { [uname sysname] == "Linux" } {
-    set QTSYSTEM gcc_64
+	set QTSYSTEM gcc_64
 } elseif { [uname sysname] == "Darwin" } {
-    set QTSYSTEM clang_64
+	set QTSYSTEM clang_64
 } else {
-    puts stderr "Unknown system type"
-    exit 1
+	puts stderr "Unknown system type"
+	exit 1
 }
 
 set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSION)
@@ -29,26 +29,26 @@ setenv QT_VERSION $version
 setenv QTDIR $dir
 
 proc ModulesTest { } {
-
-    set var QTDIR
-    set retcode 1
-
-    # exit if is_loaded is empty
-    if { [module-info loaded physlibs] == "" } {
-        puts stderr "physlibs is not loaded. Use module load physlibs to load it."
-        puts stderr ""
-        return 0
-    }
-
-    puts stderr ""
-    set installation_dir  [ getenv $var ]
-    if { [file isdirectory $installation_dir ] } {
-        puts stderr " Y $var \t\t $installation_dir"
-    } else {
-        puts stderr " N $var \t\t $installation_dir"
-        set retcode 0
-    }
-
-    return $retcode
+	
+	set var QT
+	set installation_dir  [ getenv QTDIR ]/lib
+	set retcode 1
+	
+	# exit if is_loaded is empty
+	if { [module-info loaded physlibs] == "" } {
+		puts stderr "physlibs is not loaded. Use module load physlibs to load it."
+		puts stderr ""
+		return 0
+	}
+	
+	puts stderr ""
+	if { [file isdirectory $installation_dir ] } {
+		puts stderr " Y $var $installation_dir"
+	} else {
+		puts stderr " N $var $installation_dir"
+		set retcode 0
+	}
+	
+	return $retcode
 }
 

@@ -11,7 +11,7 @@ set lib_location lib
 
 # set LD_LIBRARY_PATH depending on Darwin/Linux
 if { [uname sysname] == "Linux" } {
-    set lib_location lib64
+	set lib_location lib64
 }
 
 prepend-path PATH $dir/bin
@@ -39,34 +39,40 @@ setenv G4REALSURFACEDATA $env(G4DATA_DIR)/RealSurface$env(g4real_surface_version
 
 
 proc ModulesTest { } {
-
-    set var1 G4LIB
-    set var2 G4DATA_DIR
-    set retcode 1
-
-    # exit if is_loaded is empty
-    if { [module-info loaded physlibs] == "" } {
-        puts stderr "physlibs is not loaded. Use module load physlibs to load it."
-        puts stderr ""
-        return 0
-    }
-
-    puts stderr ""
-    set installation_dir  [ getenv $var1 ]
-    if { [file isdirectory $installation_dir ] } {
-        puts stderr " Y $var1 \t\t $installation_dir"
-    } else {
-        puts stderr " N $var1 \t\t $installation_dir"
-        set retcode 0
-    }
-    set installation_dir  [ getenv $var2 ]
-    if { [file isdirectory $installation_dir ] } {
-        puts stderr " Y $var2 \t\t $installation_dir"
-    } else {
-        puts stderr " N $var2 \t\t $installation_dir"
-        set retcode 0
-    }
-
-    return $retcode
+	
+	set var1 G4LIB
+	set var2 G4DATA_DIR
+	set var1 Geant4
+	set var2 Geant4_Data
+	set installation_dir1  [ getenv G4LIB ]
+	set installation_dir2  [ getenv G4DATA_DIR ]
+	if { [uname sysname] == "Linux" } {
+		set installation_dir  [ getenv XERCESCROOT ]/lib64
+	}
+	set retcode 1
+	
+	
+	# exit if is_loaded is empty
+	if { [module-info loaded physlibs] == "" } {
+		puts stderr "physlibs is not loaded. Use module load physlibs to load it."
+		puts stderr ""
+		return 0
+	}
+	
+	puts stderr ""
+	if { [file isdirectory $installation_dir1 ] } {
+		puts stderr " Y $var1 $installation_dir1"
+	} else {
+		puts stderr " N $var1 $installation_dir1"
+		set retcode 0
+	}
+	if { [file isdirectory $installation_dir2 ] } {
+		puts stderr " Y $var2 $installation_dir2"
+	} else {
+		puts stderr " N $var2 $installation_dir2"
+		set retcode 0
+	}
+	
+	return $retcode
 }
 

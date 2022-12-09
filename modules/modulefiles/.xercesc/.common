@@ -10,38 +10,41 @@ set dir $base_dir/xercesc/${version}
 
 # set LD_LIBRARY_PATH depending on Darwin/Linux
 if { [uname sysname] == "Linux" } {
-   prepend-path LD_LIBRARY_PATH $dir/lib64
+	prepend-path LD_LIBRARY_PATH $dir/lib64
 } elseif { [uname sysname] == "Darwin" } {
-    prepend-path LD_LIBRARY_PATH $dir/lib
+	prepend-path LD_LIBRARY_PATH $dir/lib
 } else {
-    puts stderr "Unknown system type"
-    exit 1
+	puts stderr "Unknown system type"
+	exit 1
 }
 
 setenv XERCESC_VERSION $version
 setenv XERCESCROOT $dir
 
 proc ModulesTest { } {
-
-    set var XERCESCROOT
-    set retcode 1
-
-    # exit if is_loaded is empty
-    if { [module-info loaded physlibs] == "" } {
-        puts stderr "physlibs is not loaded. Use module load physlibs to load it."
-        puts stderr ""
-        return 0
-    }
-
-    puts stderr ""
-    set installation_dir  [ getenv $var ]
-    if { [file isdirectory $installation_dir ] } {
-        puts stderr " Y $var \t\t $installation_dir"
-    } else {
-        puts stderr " N $var \t\t $installation_dir"
-        set retcode 0
-    }
-
-    return $retcode
+	
+	set var XERCESC
+	set installation_dir  [ getenv XERCESCROOT ]/lib
+	if { [uname sysname] == "Linux" } {
+		set installation_dir  [ getenv XERCESCROOT ]/lib64
+	}
+	set retcode 1
+	
+	# exit if is_loaded is empty
+	if { [module-info loaded physlibs] == "" } {
+		puts stderr "physlibs is not loaded. Use module load physlibs to load it."
+		puts stderr ""
+		return 0
+	}
+	
+	puts stderr ""
+	if { [file isdirectory $installation_dir ] } {
+		puts stderr " Y $var $installation_dir"
+	} else {
+		puts stderr " N $var $installation_dir"
+		set retcode 0
+	}
+	
+	return $retcode
 }
 

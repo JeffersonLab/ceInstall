@@ -1,6 +1,5 @@
 #!/bin/zsh -i
 
-
 function testResult() {
 	library=$1
 	version=$2
@@ -25,8 +24,8 @@ echo
 for pv in  $=physlibs_version ; do
 
 	echo " > Checking missing modules in physlibs version $pv"
-	module unload physlibs -s
-	module load	 physlibs/$pv -s
+	module unload physlibs     -s
+	module load	  physlibs/$pv -s
 
 	[[ $(testResult .clhep    $CLHEP_VERSION)    == "PASS" ]] && echo " > clhep is installed"    || install_clhep
 	[[ $(testResult .xercesc  $XERCESC_VERSION)  == "PASS" ]] && echo " > xercesc is installed"  || install_xercesc
@@ -37,6 +36,7 @@ for pv in  $=physlibs_version ; do
 	[[ $(testResult .ccdb     $CCDB_VERSION)     == "PASS" ]] && echo " > ccdb is installed"     || install_ccdb
 	[[ $(testResult .evio     $EVIO_VERSION)     == "PASS" ]] && echo " > evio is installed"     || install_evio
 	[[ $(testResult .mlibrary $MLIBRARY_VERSION) == "PASS" ]] && echo " > mlibrary is installed" || install_mlibrary
+	[[ $(testResult .hipo     $HIPO_VERSION)     == "PASS" ]] && echo " > hipo is installed"     || install_hipo
 
 	echo
 	module test physlibs/$pv

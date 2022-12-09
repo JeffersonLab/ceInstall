@@ -12,26 +12,26 @@ setenv HIPO_VERSION $version
 setenv HIPO $dir
 
 proc ModulesTest { } {
-
-    set var HIPO
-    set retcode 1
-
-    # exit if is_loaded is empty
-    if { [module-info loaded physlibs] == "" } {
-        puts stderr "physlibs is not loaded. Use module load physlibs to load it."
-        puts stderr ""
-        return 0
-    }
-
-    puts stderr ""
-    set installation_dir  [ getenv $var ]
-    if { [file isdirectory $installation_dir ] } {
-        puts stderr " Y $var \t\t $installation_dir"
-    } else {
-        puts stderr " N $var \t\t $installation_dir"
-        set retcode 0
-    }
-
-    return $retcode
+	
+	set var HIPO
+	set installation_dir  [ getenv HIPO ]/lib
+	set retcode 1
+	
+	# exit if is_loaded is empty
+	if { [module-info loaded physlibs] == "" } {
+		puts stderr "physlibs is not loaded. Use module load physlibs to load it."
+		puts stderr ""
+		return 0
+	}
+	
+	puts stderr ""
+	if { [file isdirectory $installation_dir ] } {
+		puts stderr " Y $var \t\t $installation_dir"
+	} else {
+		puts stderr " N $var \t\t $installation_dir"
+		set retcode 0
+	}
+	
+	return $retcode
 }
 
