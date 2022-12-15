@@ -1,0 +1,55 @@
+#%Module
+
+conflict .root
+
+# Environment
+
+set version system
+
+set moduledir [file dirname $ModulesCurrentModulefile]
+set scriptpath $moduledir
+
+switch -- [module-info shelltype] {
+    sh {
+        source-sh bash $scriptpath/root_env.sh
+    }
+    zsh {
+        source-sh bash $scriptpath/root_env.sh
+    }
+    csh {
+        source-sh tcsh $scriptpath/root_env.csh
+    }
+}
+
+prepend-path PATH $env(ROOT_BIN)
+prepend-path LD_LIBRARY_PATH $env(ROOT_LIB)
+if { [uname sysname] == "Darwin" } {
+	prepend-path DYLD_LIBRARY_PATH $env(ROOT_LIB)
+}
+prepend-path PYTHONPATH $env(ROOT_BIN)
+
+
+proc ModulesTest { } {
+	
+	set var ROOT
+	set installation_dir  [ getenv ROOT_LIB ]
+	set retcode 1
+	
+	# exit if is_loaded is empty
+	if { [module-info loaded physlibs] == "" } {
+		puts stderr "physlibs is not loaded. Use module load physlibs to load it."
+		puts stderr ""
+		return 0
+	}
+	
+	puts stderr ""
+	if { [file isdirectory $installation_dir ] } {
+		puts stderr " Y $var $installation_dir"
+	} else {
+		puts stderr " N $var $installation_dir"
+		set retcode 0
+	}
+	
+	return $retcode
+}
+

@@ -22,7 +22,7 @@ set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSIO
 set dir $base_dir/qt/${version}/${QTSYSTEM}
 
 prepend-path LD_LIBRARY_PATH $dir/lib
-if { [uname sysname] == "Linux" } {
+if { [uname sysname] == "Darwin" } {
 	prepend-path DYLD_LIBRARY_PATH $dir/lib
 }
 
