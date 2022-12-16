@@ -23,38 +23,16 @@ if { [uname sysname] == "Darwin" } {
 setenv G4INSTALL $dir
 setenv G4LIB $dir/$lib_location
 setenv G4_VERSION $version
-setenv G4DATA_DIR $dir/data/$data_version/data
-
-# data
-
-setenv G4NEUTRONHPDATA   $env(G4DATA_DIR)/G4NDL$env(g4ndl_version)
-setenv G4LEDATA          $env(G4DATA_DIR)/G4EMLOW$env(g4emlow_version)
-setenv G4LEVELGAMMADATA  $env(G4DATA_DIR)/PhotonEvaporation$env(g4photonevaporation_version)
-setenv G4RADIOACTIVEDATA $env(G4DATA_DIR)/RadioactiveDecay$env(g4radioactivedecay_version)
-setenv G4SAIDXSDATA      $env(G4DATA_DIR)/G4SAIDDATA$env(g4saidata_version)
-setenv G4PARTICLEXSDATA  $env(G4DATA_DIR)/G4PARTICLEXS$env(g4particlexs_version)
-setenv G4ABLADATA        $env(G4DATA_DIR)/G4ABLA$env(g4abla_version)
-setenv G4INCLDATA        $env(G4DATA_DIR)/G4INCL$env(g4incl_version)
-setenv G4PIIDATA         $env(G4DATA_DIR)/G4PII$env(g4pii_version)
-setenv G4ENSDFSTATEDATA  $env(G4DATA_DIR)/G4ENSDFSTATE$env(g4ensdfstate_version)
-setenv G4REALSURFACEDATA $env(G4DATA_DIR)/RealSurface$env(g4real_surface_version)
-
 
 
 proc ModulesTest { } {
-	
-	set var1 G4LIB
-	set var2 G4DATA_DIR
-	set var1 Geant4
-	set var2 Geant4_Data
-	set installation_dir1  [ getenv G4LIB ]
-	set installation_dir2  [ getenv G4DATA_DIR ]
-	if { [uname sysname] == "Linux" } {
-		set installation_dir  [ getenv XERCESCROOT ]/lib64
-	}
+
+	set var Geant4
+
+	set installation_dir  [ getenv G4LIB ]
 	set retcode 1
-	
-	
+
+
 	# exit if is_loaded is empty
 	if { [module-info loaded physlibs] == "" } {
 		puts stderr "physlibs is not loaded. Use module load physlibs to load it."
@@ -63,19 +41,13 @@ proc ModulesTest { } {
 	}
 	
 	puts stderr ""
-	if { [file isdirectory $installation_dir1 ] } {
-		puts stderr " Y $var1 $installation_dir1"
+	if { [file isdirectory $installation_dir ] } {
+		puts stderr " Y $var $installation_dir"
 	} else {
-		puts stderr " N $var1 $installation_dir1"
+		puts stderr " N $var $installation_dir"
 		set retcode 0
 	}
-	if { [file isdirectory $installation_dir2 ] } {
-		puts stderr " Y $var2 $installation_dir2"
-	} else {
-		puts stderr " N $var2 $installation_dir2"
-		set retcode 0
-	}
-	
+
 	return $retcode
 }
 
