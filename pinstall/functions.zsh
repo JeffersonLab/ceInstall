@@ -140,7 +140,10 @@ cmake_build_and_install() {
 	
 	echo "$magenta > Installing$reset"
 	make install
-	
+
+	echo " Content of $install_dir:"
+	ls -l "$install_dir"
+
 	# cleanup
 	echo "$magenta > Cleaning up...$reset"
 	rm -rf "$source_dir" "$build_dir"
