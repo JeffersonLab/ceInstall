@@ -58,5 +58,12 @@ log_general geant4 "$G4_VERSION" "$filename" "$base_dir"
 
 unpack_source_in_directory "$filename" "$source_dir" "$tar_strip"
 
-cmake_build_and_install "$source_dir" "$build_dir" "$base_dir" "$cmake_options"
+# change fsqrt definition if geant4 version < 10.7
+if [[ $G4_VERSION == "4.10.06.p02" ]]; then
+    echo "Geant4 version is $G4_VERSION, applying fsqrt patch to $source_dir/source/persistency/ascii/src/G4tgrEvaluator.cc"
+    sed -i '' s/fsqrt/fltsqrt/ "$source_dir/source/persistency/ascii/src/G4tgrEvaluator.cc"
+fi
+
+
+cmake_build_and_install "$source_dir" "$build_dir" "$base_dir" "$cmake_options" "do_not_delete_source"
 

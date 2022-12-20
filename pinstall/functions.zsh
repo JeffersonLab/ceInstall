@@ -118,6 +118,7 @@ cmake_build_and_install() {
 	build_dir=$2
 	install_dir=$3
 	cmake_options=$4
+	do_not_delete_source=$5
 	
 	echo " > source_dir:    $source_dir"
 	echo " > build_dir:     $build_dir"
@@ -146,7 +147,15 @@ cmake_build_and_install() {
 
 	# cleanup
 	echo "$magenta > Cleaning up...$reset"
-	rm -rf "$source_dir" "$build_dir"
+	rm -rf "$build_dir"
+
+	# if delete_source is set, do not delete the source directory
+  if [ -z "$do_not_delete_source" ]; then
+    echo "$magenta > Deleting source directory...$reset"
+    rm -rf "$source_dir"
+  fi
+
+
 	local cmd_end="$SECONDS"
 	elapsed=$((cmd_end-cmd_start))
 	
