@@ -1,6 +1,6 @@
 #%Module
 
-prereq .clhep/2.4.1.3 .xercesc/3.2.3 .qt/system
+prereq .clhep/2.4.1.3 .xercesc/3.2.3 .qt/system .g4data/4.10.06.p02
 
 set version 4.10.06.p02
 

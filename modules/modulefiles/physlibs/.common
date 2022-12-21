@@ -8,17 +8,6 @@ if { ! [info exist ::env(PHYS_SUB_DIR)]  }  {
 	setenv PHYS_SUB_DIR sim
 }
 
-# example of adding software to a specific release
-# In the ModulesHelp below one canrm just add
-#    global newlib_version_log
-#    $newlib_version_log
-# if { [info exist ::newlib_version ]  }  {
-#    set newlib_version_log "- newlib_version: $newlib_version"
-#   } else {
-#    set newlib_version_log ""
-#}
-
-
 module load .clhep/${clhep_version}
 module load .xercesc/${xercesc_version}
 module load .qt/${qt_version}
@@ -31,6 +20,9 @@ module load .evio/${evio_version}
 module load .mlibrary/${mlibrary_version}
 module load .hipo/${hipo_version}
 module load .cmag/${cmag_version}
+module load clas12Tags/${clas12tags_d_version}
+
+setenv CLAS12TAGS $clas12tags_versions
 
 set command [module-info command]
 
@@ -48,6 +40,7 @@ if { $command == "test"} {
 proc ModulesTest { } {
 	
 	global PHYS_VERSION
+	global clas12tags_versions
 	set retcode 1
 	
 	set command [module-info command]
@@ -60,7 +53,7 @@ proc ModulesTest { } {
 		return 0
 	}
 	
-	set dirs_to_test { CLHEP_BASE_DIR XERCESCROOT QTDIR G4LEDATA G4LIB SCONS_BM CCDB_HOME EVIO MLIBRARY HIPO C12BFIELDS}
+	set dirs_to_test { CLHEP_BASE_DIR XERCESCROOT QTDIR G4LEDATA G4LIB SCONS_BM CCDB_HOME EVIO MLIBRARY HIPO C12BFIELDS }
 	set missing {}
 	
 	puts stderr " Running $command for $is_loaded "
@@ -84,6 +77,19 @@ proc ModulesTest { } {
 			set retcode 0
 		}
 	}
+
+	foreach c12tag $clas12tags_versions {
+	    set c12tag_dir [ getenv C12TAG_BASE ]
+	    set installation_dir  $c12tag_dir/$c12tag/source
+		if { [file isdirectory $installation_dir ] } {
+	    	puts stderr " Y clas12Tag $c12tag \t $installation_dir"
+        } else {
+        	puts stderr " N clas12Tag $c12tag \t $installation_dir"
+        }
+		set missing [ linsert $missing end $c12tag ]
+		set retcode 0
+    }
+
 	puts stderr ""
 	if { $missing != "" } {
 		puts stderr " Modules Missing: $missing"

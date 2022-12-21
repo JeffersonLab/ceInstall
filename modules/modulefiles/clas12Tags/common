@@ -1,36 +1,29 @@
 #%Module
 
-conflict .clas12Tags
+conflict clas12Tags
 
 # Environment
 
 set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSION)
 set noarch_dir $env(PHYS_HOME)/noarch
-
 set dir $base_dir/clas12Tags/${version}
-
-
 
 setenv C12TAG_VERSION  $version
 setenv GEMC $dir/source
 setenv FIELD_DIR $noarch_dir/data
 setenv GEMC_DATA_DIR $dir
+setenv C12TAG_BASE $base_dir/clas12Tags
 
 prepend-path PATH $dir/source
+
+
 
 proc ModulesTest { } {
 	
 	set var GEMC
-	set installation_dir  [ getenv GEMC ]/lib
+	set installation_dir  [ getenv GEMC ]
 	set retcode 1
-	
-	# exit if is_loaded is empty
-	if { [module-info loaded physlibs] == "" } {
-		puts stderr "physlibs is not loaded. Use module load physlibs to load it."
-		puts stderr ""
-		return 0
-	}
-	
+
 	puts stderr ""
 	if { [file isdirectory $installation_dir ] } {
 		puts stderr " Y $var $installation_dir"

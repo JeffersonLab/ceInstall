@@ -7,6 +7,7 @@ conflict .g4data
 set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSION)
 
 set dir $base_dir/geant4/${version}
+
 setenv G4DATA_DIR $dir/data/$data_version/data
 
 # data
