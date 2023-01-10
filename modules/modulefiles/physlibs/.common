@@ -85,9 +85,9 @@ proc ModulesTest { } {
 	    	puts stderr " Y clas12Tag $c12tag \t $installation_dir"
         } else {
         	puts stderr " N clas12Tag $c12tag \t $installation_dir"
+		    set missing [ linsert $missing end $c12tag ]
+		    set retcode 0
         }
-		set missing [ linsert $missing end $c12tag ]
-		set retcode 0
     }
 
 	puts stderr ""
