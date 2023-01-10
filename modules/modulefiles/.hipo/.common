@@ -1,6 +1,6 @@
 #%Module
 
-conflict .hipo
+#conflict .hipo
 
 # Environment
 

@@ -1,6 +1,6 @@
 #%Module
 
-conflict .xercesc
+#conflict .xercesc
 
 # Environment
 

@@ -1,6 +1,6 @@
 #%Module
 
-conflict .scons_bm
+#conflict .scons_bm
 
 # Environment
 

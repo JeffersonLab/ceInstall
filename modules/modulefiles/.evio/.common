@@ -1,6 +1,6 @@
 #%Module
 
-conflict .evio
+#conflict .evio
 
 # Environment
 

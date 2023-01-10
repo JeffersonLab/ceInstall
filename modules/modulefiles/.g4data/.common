@@ -1,6 +1,6 @@
 #%Module
 
-conflict .g4data
+#conflict .g4data
 
 # Environment
 

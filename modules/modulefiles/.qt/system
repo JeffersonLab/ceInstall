@@ -1,6 +1,6 @@
 #%Module
 
-conflict .qt
+#conflict .qt
 
 # Environment
 

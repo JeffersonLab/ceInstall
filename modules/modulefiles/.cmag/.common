@@ -1,6 +1,6 @@
 #%Module
 
-conflict .cmag
+#conflict .cmag
 
 # Environment
 

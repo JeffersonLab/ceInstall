@@ -10,7 +10,7 @@ function testResult() {
 }
 
 
-# parse argument. If no argument given, set version to all available
+# parse argument. If no argument given, set version to all available physlibs modules
 if [[ $# -eq 0 ]]; then
 	physlibs_version=$( ls $(dirname "$(readlink -f "$0")")"/../modules/modulefiles/physlibs/" )
 else
@@ -18,7 +18,7 @@ else
 fi
 
 
-echo " > Availaible phys_versions: $=physlibs_version"
+echo " > Installing phys_version(s): $=physlibs_version"
 echo
 
 for pv in  $=physlibs_version ; do

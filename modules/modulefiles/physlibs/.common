@@ -1,6 +1,6 @@
 #%Module
 
-conflict physlibs
+#conflict physlibs
 
 set PHYS_VERSION $env(PHYS_VERSION)
 

@@ -1,6 +1,6 @@
 #%Module
 
-conflict .mlibrary
+#conflict .mlibrary
 
 # Environment
 
