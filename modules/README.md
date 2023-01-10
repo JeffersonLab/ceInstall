@@ -2,11 +2,27 @@
 
 ### Requirements:
 
-- `module` command
+- `environment modules`
 - `gcc/clang` > 8 (for c++17) 
-- `cmake` > 3.2
-- `qt5` (not qt6)
+- `cmake` > 3.16
+- `qt5`
+- `scons`
 
+Find below the commands to install these requirements. Please email any corrections to
+[Maurizio](mailto:ungaro@jlab.org?subject=CeInstall Requirements Corrections).
+
+
+#### Mac installation of requirements:
+
+```brew install wget cmake mysql qt@5 scons freeglut modules```
+
+#### Linux Fedora line installation of requirements:
+
+```yum install  environment-modules gcc-c++ expat-devel zlib-devel libx11-devel mesa-libGLU-devel libXmu-devel mariadb-devel qt5-qttools-devel scons```
+
+#### Linux Ubuntu line installation of requirements:
+
+```apt-get install environment-modules g++ mysql-client libmysqlclient-dev libexpat1-dev cmake scons libx11-dev libxext-dev libglu1-mesa-dev libxt-dev libxmu-dev libxrender-dev libxft-dev libafterimage-dev```
 
 ### Environment Installation
 
@@ -28,9 +44,12 @@ control the top level directory structure of the installation:
 Default is `<path>`.
 - PHYS_SUB_DIR: sub dir name of the repository. Default is `sim`.
 
+After the source command, `module avail` will show the available modules. In particular physlibs
+and clas12Tags come in several versions.
+
 ### Geant4 Software Installation
 
-Run ```install_clas12Tags``` to install the libraries needed by geant4:
+Run ```install_geant4_base <physlibs_version>``` to install the libraries needed by geant4:
 
 - clhep
 - xerces-c
@@ -38,13 +57,20 @@ Run ```install_clas12Tags``` to install the libraries needed by geant4:
 - geant4 data files
 - geant4
 
+` <physlibs_version>` can be:
+
+- 2.4: for geant4 10.6.02
+- 2.5: for geant4 10.7.03
+- 2.6: for geant4 11.0.3
 
 ### Clas12Tags Installation
 
-Run ```install_all_clas12 <version>``` to install, in addition to the above libraries, 
-the software needed to run clas12 simulations. <version> can be:
+Run ```install_all_clas12 <physlibs_version>``` to install, in addition to the above libraries, 
+the software needed to run clas12 simulations. 
 
-- 2.4 (installs clas12Tags 4.4.2 and 5.1)
+` <physlibs_version>` can be:
+
+- 2.4: installs clas12Tags 4.4.2 and 5.1
 
 The software installed is:
 
