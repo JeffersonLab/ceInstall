@@ -137,7 +137,7 @@ cmake_build_and_install() {
 	cmake  "$source_dir" -DCMAKE_INSTALL_PREFIX="$install_dir" $=cmake_options || exit
 	
 	echo "$magenta > Building$reset"
-	make -j "$n_cpu" > build_log || exit
+	make -j "$n_cpu" 2>build_err.txt 1>build_log.txt || exit
 	
 	echo "$magenta > Installing$reset"
 	make install
@@ -172,7 +172,7 @@ scons_build_and_install() {
 	cd "$install_dir" || exit
 	
 	echo "$magenta > Building$reset"
-	\scons -j "$n_cpu" OPT=1 > build_log || exit
+	\scons -j "$n_cpu" OPT=1 2>build_err.txt 1>build_log.txt || exit
 	
 	# cleanup
 	echo "$magenta > Cleaning up...$reset"
