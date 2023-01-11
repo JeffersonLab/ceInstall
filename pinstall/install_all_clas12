@@ -39,12 +39,12 @@ for pv in  $=physlibs_version ; do
 #	[[ $(testResult .hipo      $HIPO_VERSION)     == "PASS" ]] && echo " > hipo is installed"     || install_hipo
 #	[[ $(testResult .cmag      $CMAG_VERSION)     == "PASS" ]] && echo " > cmag is installed"     || install_cmag
 
-	for c12tag in $=CLAS12TAGS; do
-	 	echo " > Testing $c12tag"
-	 	# notice module switch does not work
-	 	# module switch "clas12Tags/$c12tag" -s
-		[[ $(testResult clas12Tags $c12tag) == "PASS" ]] && echo " > clas12Tags  $c12tag is installed" || install_clas12Tags $c12tag
-	done
+#	for c12tag in $=CLAS12TAGS; do
+#	 	echo " > Testing $c12tag"
+#	 	# notice module switch does not work
+#	 	# module switch "clas12Tags/$c12tag" -s
+#		[[ $(testResult clas12Tags $c12tag) == "PASS" ]] && echo " > clas12Tags  $c12tag is installed" || install_clas12Tags $c12tag
+#	done
 
 	echo
 	module test physlibs/$pv
