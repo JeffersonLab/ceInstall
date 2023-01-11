@@ -183,3 +183,12 @@ scons_build_and_install() {
 	echo "$magenta > Compilation and installation completed in $elapsed seconds.$reset"
 	echo
 }
+
+function moduleTestResult() {
+	library=$1
+	version=$2
+
+	# we're only interested in the exit status
+	module test "$library/$version" &> /dev/null
+	echo $?
+}

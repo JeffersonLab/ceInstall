@@ -1,12 +1,6 @@
 #!/bin/zsh -i
 
-function testResult() {
-	library=$1
-	version=$2
-
-	module test $library/$version
-	echo $?
-}
+. "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
 
 # parse argument. If no argument given, set version to all available physlibs modules
@@ -26,10 +20,10 @@ for pv in  $=physlibs_version ; do
 	module unload physlibs     -s
 	module load	  physlibs/$pv -s
 
-	[[ $(testResult .clhep     $CLHEP_VERSION)    == "0" ]] && echo " > clhep is installed"    || install_clhep
-	[[ $(testResult .xercesc   $XERCESC_VERSION)  == "0" ]] && echo " > xercesc is installed"  || install_xercesc
-	[[ $(testResult .qt        $QT_VERSION)       == "0" ]] && echo " > qt is installed"       || copy_qt
-	[[ $(testResult .g4data    $G4_VERSION)       == "0" ]] && echo " > g4data is installed"   || install_geant4_data
+	[ "$(moduleTestResult .clhep     $CLHEP_VERSION )"    -eq 0 ] && echo " > clhep is installed"    || install_clhep
+	[ "$(moduleTestResult .xercesc   $XERCESC_VERSION )"  -eq 0 ] && echo " > xercesc is installed"  || install_xercesc
+    [ "$(moduleTestResult .qt        $QT_VERSION)"        -eq 0 ] && echo " > qt is installed"       || copy_qt
+	[ "$(moduleTestResult .g4data    $G4_VERSION)"        -eq 0 ] && echo " > g4data is installed"   || install_geant4_data
 
 done
 echo
