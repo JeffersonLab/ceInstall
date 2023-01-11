@@ -28,16 +28,16 @@ for pv in  $=physlibs_version ; do
 	module load	  physlibs/$pv -s
 
 	[[ $(testResult .clhep     $CLHEP_VERSION)    == "PASS" ]] && echo " > clhep is installed"    || install_clhep
-	[[ $(testResult .xercesc   $XERCESC_VERSION)  == "PASS" ]] && echo " > xercesc is installed"  || install_xercesc
-	[[ $(testResult .qt        $QT_VERSION)       == "PASS" ]] && echo " > qt is installed"       || copy_qt
-	[[ $(testResult .g4data    $G4_VERSION)       == "PASS" ]] && echo " > g4data is installed"   || install_geant4_data
-	[[ $(testResult .geant4    $G4_VERSION)       == "PASS" ]] && echo " > geant4 is installed"   || install_geant4
-	[[ $(testResult .scons_bm  $SCONS_BM_VERSION) == "PASS" ]] && echo " > scons_bm is installed" || install_scons_bm
-	[[ $(testResult .ccdb      $CCDB_VERSION)     == "PASS" ]] && echo " > ccdb is installed"     || install_ccdb
-	[[ $(testResult .evio      $EVIO_VERSION)     == "PASS" ]] && echo " > evio is installed"     || install_evio
-	[[ $(testResult .mlibrary  $MLIBRARY_VERSION) == "PASS" ]] && echo " > mlibrary is installed" || install_mlibrary
-	[[ $(testResult .hipo      $HIPO_VERSION)     == "PASS" ]] && echo " > hipo is installed"     || install_hipo
-	[[ $(testResult .cmag      $CMAG_VERSION)     == "PASS" ]] && echo " > cmag is installed"     || install_cmag
+#	[[ $(testResult .xercesc   $XERCESC_VERSION)  == "PASS" ]] && echo " > xercesc is installed"  || install_xercesc
+#	[[ $(testResult .qt        $QT_VERSION)       == "PASS" ]] && echo " > qt is installed"       || copy_qt
+#	[[ $(testResult .g4data    $G4_VERSION)       == "PASS" ]] && echo " > g4data is installed"   || install_geant4_data
+#	[[ $(testResult .geant4    $G4_VERSION)       == "PASS" ]] && echo " > geant4 is installed"   || install_geant4
+#	[[ $(testResult .scons_bm  $SCONS_BM_VERSION) == "PASS" ]] && echo " > scons_bm is installed" || install_scons_bm
+#	[[ $(testResult .ccdb      $CCDB_VERSION)     == "PASS" ]] && echo " > ccdb is installed"     || install_ccdb
+#	[[ $(testResult .evio      $EVIO_VERSION)     == "PASS" ]] && echo " > evio is installed"     || install_evio
+#	[[ $(testResult .mlibrary  $MLIBRARY_VERSION) == "PASS" ]] && echo " > mlibrary is installed" || install_mlibrary
+#	[[ $(testResult .hipo      $HIPO_VERSION)     == "PASS" ]] && echo " > hipo is installed"     || install_hipo
+#	[[ $(testResult .cmag      $CMAG_VERSION)     == "PASS" ]] && echo " > cmag is installed"     || install_cmag
 
 	for c12tag in $=CLAS12TAGS; do
 	 	echo " > Testing $c12tag"

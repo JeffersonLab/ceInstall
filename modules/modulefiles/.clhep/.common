@@ -16,6 +16,9 @@ if { [uname sysname] == "Darwin" } {
 setenv CLHEP_VERSION  $version
 setenv CLHEP_BASE_DIR $dir
 
+		puts stderr "physlibs is not loaded. Use module load physlibs to load it."
+
+
 proc ModulesTest { } {
 	
 	set var CLHEP
