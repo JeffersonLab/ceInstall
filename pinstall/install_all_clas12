@@ -6,7 +6,7 @@ function testResult() {
 
 	mtest=$(module test $library/$version | grep result | awk '{print $3}')
 
-	echo "testResult: $mtest"
+	echo $mtest
 }
 
 
@@ -27,7 +27,7 @@ for pv in  $=physlibs_version ; do
 	module unload physlibs     -s
 	module load	  physlibs/$pv -s
 
-	[[ $(testResult .clhep     $CLHEP_VERSION)    == "testResult: PASS" ]] && echo " > clhep is installed"    || install_clhep
+	[[ $(testResult .clhep     $CLHEP_VERSION)    == "PASS" ]] && echo " > clhep is installed"    || install_clhep
 #	[[ $(testResult .xercesc   $XERCESC_VERSION)  == "PASS" ]] && echo " > xercesc is installed"  || install_xercesc
 #	[[ $(testResult .qt        $QT_VERSION)       == "PASS" ]] && echo " > qt is installed"       || copy_qt
 #	[[ $(testResult .g4data    $G4_VERSION)       == "PASS" ]] && echo " > g4data is installed"   || install_geant4_data
