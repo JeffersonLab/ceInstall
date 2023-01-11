@@ -27,7 +27,7 @@ for pv in  $=physlibs_version ; do
 	module unload physlibs     -s
 	module load	  physlibs/$pv -s
 	a=$(testResult .clhep     $CLHEP_VERSION)
-	echo $a
+	echo Hello $a
 	[[ $(testResult .clhep     $CLHEP_VERSION)    == "PASS" ]] && echo " > clhep is installed"    || install_clhep
 #	[[ $(testResult .xercesc   $XERCESC_VERSION)  == "PASS" ]] && echo " > xercesc is installed"  || install_xercesc
 #	[[ $(testResult .qt        $QT_VERSION)       == "PASS" ]] && echo " > qt is installed"       || copy_qt
