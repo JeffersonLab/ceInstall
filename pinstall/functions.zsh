@@ -134,7 +134,7 @@ cmake_build_and_install() {
 	echo "$magenta > Configuring cmake with: $=cmake_options$reset"
 	echo
 	
-	cmake  "$source_dir" -DCMAKE_INSTALL_PREFIX="$install_dir" $=cmake_options || exit
+	cmake  "$source_dir" -DCMAKE_INSTALL_PREFIX="$install_dir" $=cmake_options  2>cmake_err.txt 1>cmake_log.txt || exit
 	
 	echo "$magenta > Building$reset"
 	make -j "$n_cpu" 2>build_err.txt 1>build_log.txt || exit
