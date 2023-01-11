@@ -140,7 +140,7 @@ cmake_build_and_install() {
 	make -j "$n_cpu" 2>build_err.txt 1>build_log.txt || exit
 	
 	echo "$magenta > Installing$reset"
-	make install
+	make install  2>install_err.txt 1>install_log.txt || exit
 
 	echo " Content of $install_dir:"
 	ls -l "$install_dir"
