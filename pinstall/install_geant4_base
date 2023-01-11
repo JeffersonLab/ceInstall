@@ -33,12 +33,5 @@ for pv in  $=physlibs_version ; do
 	[[ $(testResult .g4data    $G4_VERSION)       == "PASS" ]] && echo " > g4data is installed"   || install_geant4_data
 	[[ $(testResult .geant4    $G4_VERSION)       == "PASS" ]] && echo " > geant4 is installed"   || install_geant4
 
-	echo
-	module test .clhep/$CLHEP_VERSION
-	module test .xercesc/$XERCESC_VERSION
-	module test .qt/$QT_VERSION
-	module test .g4data/$G4_VERSION
-	module test .geant4/$G4_VERSION
-
 done
 echo
