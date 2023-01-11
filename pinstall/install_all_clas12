@@ -5,6 +5,7 @@ function testResult() {
 	version=$2
 
 	module test $library/$version
+	echo $?
 }
 
 
@@ -25,12 +26,14 @@ for pv in  $=physlibs_version ; do
 	module unload physlibs     -s
 	module load	  physlibs/$pv -s
 
+
 	a=$(testResult .clhep     $CLHEP_VERSION)
-	echo Hello $a
+	echo Hello a $a
 
 
 	b=$(testResult .clhep     3.4.1.5)
-	echo Hello $a
+	echo Hello b $b
+
 
 
 #	[[ $(testResult .clhep     $CLHEP_VERSION)    == "PASS" ]] && echo " > clhep is installed"    || install_clhep
