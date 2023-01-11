@@ -26,20 +26,10 @@ for pv in  $=physlibs_version ; do
 	module unload physlibs     -s
 	module load	  physlibs/$pv -s
 
-
-	a=$(testResult .clhep     $CLHEP_VERSION)
-	echo Hello a $a
-
-
-	b=$(testResult .clhep     3.4.1.5)
-	echo Hello b $b
-
-
 	[[ $(testResult .clhep     $CLHEP_VERSION)    == "0" ]] && echo " > clhep is installed"    || install_clhep
-#	[[ $(testResult .xercesc   $XERCESC_VERSION)  == "PASS" ]] && echo " > xercesc is installed"  || install_xercesc
-#	[[ $(testResult .qt        $QT_VERSION)       == "PASS" ]] && echo " > qt is installed"       || copy_qt
-#	[[ $(testResult .g4data    $G4_VERSION)       == "PASS" ]] && echo " > g4data is installed"   || install_geant4_data
-#	[[ $(testResult .geant4    $G4_VERSION)       == "PASS" ]] && echo " > geant4 is installed"   || install_geant4
+	[[ $(testResult .xercesc   $XERCESC_VERSION)  == "0" ]] && echo " > xercesc is installed"  || install_xercesc
+	[[ $(testResult .qt        $QT_VERSION)       == "0" ]] && echo " > qt is installed"       || copy_qt
+	[[ $(testResult .g4data    $G4_VERSION)       == "0" ]] && echo " > g4data is installed"   || install_geant4_data
 
 done
 echo
