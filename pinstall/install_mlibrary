@@ -14,7 +14,7 @@ log_general mlibrary "$MLIBRARY_VERSION" "$filename" "$base_dir"
 unpack_source_in_directory "$filename" "$base_dir" "$tar_strip"
 
 cd $MLIBRARY
-./compileCmesh
+./compileCmesh 2>"cmesh_build_err.txt" 1>"cmesh_build_log.txt" || exit
 
 scons_build_and_install "$base_dir"
 

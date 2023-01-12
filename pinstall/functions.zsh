@@ -173,7 +173,7 @@ scons_build_and_install() {
 	cd "$install_dir" || exit
 	
 	echo "$magenta > Building$reset"
-	\scons -j "$n_cpu" OPT=1 2>build_err.txt 1>build_log.txt || exit
+	\scons -j "$n_cpu" OPT=1 2>"$install_dir/build_err.txt" 1>"$install_dir/build_log.txt" || exit
 	
 	# cleanup
 	echo "$magenta > Cleaning up...$reset"
