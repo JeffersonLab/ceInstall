@@ -1,5 +1,7 @@
 # Installation
 
+Make sure the requirements for the libraries / environment installation 
+listed at the bottom of this page are met.
 
 ### Environment Installation
 
@@ -21,24 +23,24 @@ control the top level directory structure of the installation:
 Default is `<ipath>`.
 - PHYS_SUB_DIR: sub dir name of the repository. Default is `sim`.
 
-After the source command, `module avail` will show the available modules. In particular physlibs
-and clas12Tags come in several versions.
+After the source command, `module avail` will show the available modules. 
+The installation scripts below are included in your $PATH.
 
 ### Geant4 Software Installation
 
 Run `install_geant4_base` with the option `<physlibs_version>` to install the libraries needed by geant4:
 
-- clhep
-- xerces-c
-- qt
-- geant4 data files
-- geant4
+- `clhep`
+- `xerces-c`
+- `qt`
+- `geant4 data` files
+- `geant4`
 
 ` <physlibs_version>` can be:
 
-- 2.4: for geant4 10.6.02
-- 2.5: for geant4 10.7.03
-- 2.6: for geant4 11.0.3
+- `2.4`: for `geant4` `10.6.02`
+- `2.5`: for `geant4` `10.7.03`
+- `2.6`: for `geant4` `11.0.3`
 
 The script will first test for the existence of the libraries and 
 will not install them if they are already present.
@@ -50,16 +52,16 @@ the software needed to run clas12 simulations.
 
 ` <physlibs_version>` can be:
 
-- 2.4: installs clas12Tags 4.4.2 and 5.1
+- `2.4`: `clas12Tags` `4.4.2` and `5.1`
 
 The software installed is:
 
-- evio
-- hipo
-- ccdb
-- scons
-- cmag
-- mlibrary
+- `evio`
+- `hipo`
+- `ccdb`
+- `scons`
+- `cmag`
+- `mlibrary`
 
 The script will first test for the existence of the libraries and 
 will not install them if they are already present.
@@ -85,7 +87,6 @@ Use the following scripts to install the individual packages:
 - `install_cmag`: CLAS12 magnetic field library
 - `install_mlibrary`: gemc linraries
 - `install_clas12Tags`: clas12 tags of gemc simulation software and geometry
-
 
 
 # Usage
@@ -123,7 +124,7 @@ module switch clas12Tags/4.4.2
 
 The list of clas12Tags installed are:
 
-- physlibs/2.4: clas12Tags/5.1 (default), clas12Tags/4.4.2
+- `physlibs/2.4`: `clas12Tags/5.1` (default), `clas12Tags/4.4.2`
 
 
 ## Installation Tree
