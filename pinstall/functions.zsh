@@ -126,7 +126,8 @@ cmake_build_and_install() {
 	echo " > cmake_options: $cmake_options"
 	
 	local cmd_start="$SECONDS"
-	
+
+  # install_dir is the base directory containing $build_dir
 	dir_remove_and_create "$build_dir"
 	cd "$build_dir" || exit
 	
@@ -134,13 +135,13 @@ cmake_build_and_install() {
 	echo "$magenta > Configuring cmake with: $=cmake_options$reset"
 	echo
 	
-	cmake  "$source_dir" -DCMAKE_INSTALL_PREFIX="$install_dir" $=cmake_options  2>cmake_err.txt 1>cmake_log.txt || exit
+	cmake  "$source_dir" -DCMAKE_INSTALL_PREFIX="$install_dir" $=cmake_options  2>"$install_dir/cmake_err.txt" 1>"$install_dir/cmake_log.txt" || exit
 	
 	echo "$magenta > Building$reset"
-	make -j "$n_cpu" 2>build_err.txt 1>build_log.txt || exit
+	make -j "$n_cpu" 2>$install_dir/build_err.txt 1>"$install_dir/build_log.txt" || exit
 	
 	echo "$magenta > Installing$reset"
-	make install  2>install_err.txt 1>install_log.txt || exit
+	make install  2>$install_dir/install_err.txt 1>"$install_dir/install_log.txt" || exit
 
 	echo " Content of $install_dir:"
 	ls -l "$install_dir"

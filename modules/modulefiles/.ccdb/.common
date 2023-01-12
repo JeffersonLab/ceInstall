@@ -23,7 +23,7 @@ if {  [info exists ::env(USER)] } {
 	setenv CCDB_USER $env(USER)
 }
 
-setenv CCDB_CONNECTION mysql://clas12reader@clasdb-farm.jlab.org/clas12
+setenv CCDB_CONNECTION mysql://clas12reader@clasdb.jlab.org/clas12
 
 proc ModulesTest { } {
 	

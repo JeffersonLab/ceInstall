@@ -34,6 +34,9 @@ case $(uname -s) in
 		    cp -r "$SQTDIR/plugins" "$QTDIR"
 
         echo "$magenta > QT Libraries / Includes copy completed.$reset"
+        echo " Content of $QTDIR:"
+  	    ls -l "$QTDIR"
+
         ;;
 
     Linux)
@@ -62,7 +65,9 @@ case $(uname -s) in
         cp -r "$SQTDIR_ALL/plugins" "$QTDIR"
 
         echo "$magenta > QT Libraries / Includes copy completed.$reset"
-        ;;
+        echo " Content of $QTDIR:"
+  	    ls -l "$QTDIR"
+       ;;
 
     *)
         echo "$magenta > Unsupported OS: $(uname -s) $reset"
