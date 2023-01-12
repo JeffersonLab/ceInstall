@@ -21,10 +21,11 @@ control the top level directory structure of the installation:
 
 - PHYS_HOME: the base location of the libraries. 
 Default is `<ipath>`.
-- PHYS_SUB_DIR: sub dir name of the repository. Default is `sim`.
+- PHYS_SUB_DIR: sub dir name under $PHYS_HOME (see Installation Tree below). 
+Default is `sim`.
 
-After the source command, `module avail` will show the available modules. 
-The installation scripts below are included in your $PATH.
+After the source command, `module avail` will show the available modules and 
+the libraries installation scripts below will be in your $PATH.
 
 ### Geant4 Software Installation
 
