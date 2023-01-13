@@ -80,11 +80,11 @@ proc ModulesTest { } {
 
 	foreach c12tag $clas12tags_versions {
 	    set c12tag_dir [ getenv C12TAG_BASE ]
-	    set installation_dir  $c12tag_dir/$c12tag/source
-		if { [file isdirectory $installation_dir ] } {
-	    	puts stderr " Y clas12Tag $c12tag \t $installation_dir"
+	    set installation_exe  $c12tag_dir/$c12tag/source/gemc
+		if { [file isfile $installation_exe ] } {
+	    	puts stderr " Y clas12Tag $c12tag \t $installation_exe"
         } else {
-        	puts stderr " N clas12Tag $c12tag \t $installation_dir"
+        	puts stderr " N clas12Tag $c12tag \t $installation_exe"
 		    set missing [ linsert $missing end $c12tag ]
 		    set retcode 0
         }

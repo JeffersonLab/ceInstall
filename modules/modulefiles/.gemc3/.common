@@ -1,0 +1,36 @@
+#%Module
+
+#conflict .gemc3
+
+
+set base_dir $env(PHYS_HOME)/$env(OSRELEASE)/$env(PHYS_SUB_DIR)/$env(PHYS_VERSION)
+
+set dir $base_dir/gemc/${version}
+
+setenv GEMC3_VERSION  $version
+setenv GEMC3          $dir
+
+proc ModulesTest { } {
+
+	set var GEMC3
+	set installation_exe  [ getenv GEMC3 ]/src/gemc
+	set retcode 1
+
+	# exit if is_loaded is empty
+	if { [module-info loaded physlibs] == "" } {
+		puts stderr "physlibs is not loaded. Use module load physlibs to load it."
+		puts stderr ""
+		return 0
+	}
+
+	puts stderr ""
+	if { [file isfile $installation_exe ] } {
+		puts stderr " Y $var $installation_exe"
+	} else {
+		puts stderr " N $var $installation_exe"
+		set retcode 0
+	}
+
+	return $retcode
+}
+

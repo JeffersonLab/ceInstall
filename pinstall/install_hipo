@@ -14,16 +14,15 @@ unpack_source_in_directory "$filename" "$base_dir" "$tar_strip"
 
 
 # the tar file must contain the lz4 submodule. Done with:
-# git clone --recurse-submodules https://github.com:gavalian/hipo.git
+# git clone --recurse-submodules https://github.com/gavalian/hipo.git
 # tar cvf hipo-1.8.tar hipo ;  gzip hipo-1.8.tar
 
 cd $HIPO
+mkdir -p lib
 cd lz4
-make -j "$n_cpu"
+make -j "$n_cpu" 2>"lz4_build_err.txt" 1>"lz4_build_log.txt" || exit
 cp lib/liblz4.* ../lib
-cd ../
-cmake .
-cd hipo4
+cd ../hipo4
 make -j "$n_cpu"
 
 

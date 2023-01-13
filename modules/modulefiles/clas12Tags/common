@@ -21,14 +21,14 @@ prepend-path PATH $dir/source
 proc ModulesTest { } {
 	
 	set var GEMC
-	set installation_dir  [ getenv GEMC ]
+	set installation_exe  [ getenv GEMC ]/gemc
 	set retcode 1
 
 	puts stderr ""
-	if { [file isdirectory $installation_dir ] } {
-		puts stderr " Y $var $installation_dir"
+	if { [file isfile $$installation_exe ] } {
+		puts stderr " Y $var $installation_exe"
 	} else {
-		puts stderr " N $var $installation_dir"
+		puts stderr " N $var $installation_exe"
 		set retcode 0
 	}
 	
