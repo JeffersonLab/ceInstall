@@ -7,6 +7,13 @@ source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 filename="clas12Tags/clas12Tags-$C12TAG_VERSION.tar.gz" # includes subdirectory name
 tar_strip=1                                             # in the tarball, the source is inside version
 
+# tar packaged with:
+# cd /opt/projects/gemc/clas12Tags
+# cd 4.4.2/source ; scons -c ; cd ../../5.1/source ; scons -c ; cd ../../
+# rm clas12Tags-*
+# gtar cvf clas12Tags-4.4.2.tar --exclude=.git  4.4.2  ;  gzip  clas12Tags-4.4.2.tar
+# gtar cvf clas12Tags-5.1.tar   --exclude=.git  5.1    ;  gzip  clas12Tags-5.1.tar
+
 
 base_dir=$C12TAG_BASE/$C12TAG_VERSION
 
