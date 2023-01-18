@@ -180,6 +180,14 @@ Find below the commands to install these requirements. Please email any correcti
 
 ```brew install wget cmake mysql qt@5 scons freeglut modules```
 
+To enable modules, the following line should be added to your `.bashrc` or `.zshrc`:
+
+`. $brewDir/opt/modules/init/zsh` or `. $brewDir/opt/modules/init/bash`
+
+where 
+
+`brewDir=$(brew --prefix)`
+
 #### Linux Fedora line installation of requirements:
 
 ```yum install  environment-modules gcc-c++ expat-devel zlib-devel libx11-devel mesa-libGLU-devel libXmu-devel mariadb-devel qt5-qttools-devel scons```
