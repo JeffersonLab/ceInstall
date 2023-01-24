@@ -1,0 +1,53 @@
+#%Module
+
+#conflict gemc
+
+module load .clhep/${clhep_version}
+module load .xercesc/${xercesc_version}
+module load .qt/${qt_version}
+module load .root/${root_version}
+module load .g4data/${geant4_version}
+module load .geant4/${geant4_version}
+module load .scons_bm/${scons_bm_version}
+module load .ccdb/${ccdb_version}
+module load .evio/${evio_version}
+module load .mlibrary/${mlibrary_version}
+module load .hipo/${hipo_version}
+module load .cmag/${cmag_version}
+module load clas12Tags/${clas12tags_d_version}
+
+setenv CLAS12TAGS $clas12tags_versions
+
+# Environment
+
+set base_dir $env(SIM_HOME)/$env(OSRELEASE)/$env(SIM_SUB_DIR)/$env(SIM_VERSION)
+set noarch_dir $env(SIM_HOME)/noarch
+set dir $base_dir/clas12Tags/${version}
+
+setenv C12TAG_VERSION  $version
+setenv GEMC $dir/source
+setenv FIELD_DIR $noarch_dir/data
+setenv GEMC_DATA_DIR $dir
+setenv C12TAG_BASE $base_dir/clas12Tags
+
+prepend-path PATH $dir/source
+
+
+
+proc ModulesTest { } {
+	
+	set var GEMC
+	set installation_exe  [ getenv GEMC ]/gemc
+	set retcode 1
+
+	puts stderr ""
+	if { [file isfile $$installation_exe ] } {
+		puts stderr " Y $var $installation_exe"
+	} else {
+		puts stderr " N $var $installation_exe"
+		set retcode 0
+	}
+	
+	return $retcode
+}
+

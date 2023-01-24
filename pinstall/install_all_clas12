@@ -5,16 +5,16 @@
 
 # parse argument. If no argument given, set version to all available physlibs modules
 if [[ $# -eq 0 ]]; then
-	physlibs_version=$( ls $(dirname "$(readlink -f "$0")")"/../modules/modulefiles/physlibs/" )
+	sim_version=$( ls $(dirname "$(readlink -f "$0")")"/../modules/modulefiles/physlibs/" )
 else
-	physlibs_version=$1
+	sim_version=$1
 fi
 
 
-echo " > phys_version(s): $=physlibs_version"
+echo " > sim_version(s): $=sim_version"
 echo
 
-for pv in  $=physlibs_version ; do
+for pv in  $=sim_version ; do
 
 	echo " > Checking missing modules in physlibs version $pv"
 	module unload physlibs     -s

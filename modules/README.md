@@ -19,9 +19,9 @@ To set up the modules (this could go in your `.zshrc`,  `.bashrc` or `.cshrc`):
 Two optional environment variables (make sure to set them before the source command) 
 control the top level directory structure of the installation:
 
-- PHYS_HOME: the base location of the libraries. 
+- SIM_HOME: the base location of the libraries. 
 Default is `<ipath>`.
-- PHYS_SUB_DIR: sub dir name under $PHYS_HOME (see Installation Tree below). 
+- SIM_SUB_DIR_SUB_DIR: sub dir name under $SIM_HOME (see Installation Tree below). 
 Default is `sim`.
 
 After the source command, `module avail` will show the available modules and 
@@ -29,7 +29,7 @@ the libraries installation scripts below will be in your $PATH.
 
 ### Geant4 Software Installation
 
-Run `install_geant4_base` with the option `<physlibs_version>` to install the libraries needed by geant4:
+Run `install_geant4_base` with the option `<sim_version>` to install the libraries needed by geant4:
 
 - `clhep`
 - `xerces-c`
@@ -37,7 +37,7 @@ Run `install_geant4_base` with the option `<physlibs_version>` to install the li
 - `geant4 data` files
 - `geant4`
 
-` <physlibs_version>` can be:
+` <sim_version>` can be:
 
 - `2.4`: for `geant4` `10.6.02`
 - `2.5`: for `geant4` `10.7.03`
@@ -48,10 +48,10 @@ will not install them if they are already present.
 
 ### Clas12Tags Installation
 
-Run `install_all_clas12` with the option `<physlibs_version>` to install, in addition to the above libraries, 
+Run `install_all_clas12` with the option `<sim_version>` to install, in addition to the above libraries, 
 the software needed to run clas12 simulations. 
 
-` <physlibs_version>` can be:
+` <sim_version>` can be:
 
 - `2.4`: `clas12Tags` `4.4.2` and `5.1`
 
@@ -135,11 +135,11 @@ Software based on compiled code (C++, fortran, etc) is organized under the `OSRE
 Software architecture independent (python, JAVA, etc) is organized under `noarch` directory.
 
 ```
-- PHYS_HOME
+- SIM_HOME
      ⋮
      ∟ OSRELEASE
      ⋮  ⋮
-     ⋮  ∟ PHYS_SUB_DIR
+     ⋮  ∟ SIM_SUB_DIR
      ⋮     ⋮
      ⋮     ⊢ 2.4
      ⋮     ⋮     ⊢ library

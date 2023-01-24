@@ -4,7 +4,7 @@
 
 # Environment
 
-set base_dir $env(PHYS_HOME)/noarch
+set base_dir $env(SIM_HOME)/noarch
 
 set dir $base_dir/scons_bm/${version}
 

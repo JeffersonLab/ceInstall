@@ -2,10 +2,10 @@
 
 #conflict physlibs
 
-set PHYS_VERSION $env(PHYS_VERSION)
+set SIM_VERSION $env(SIM_VERSION)
 
-if { ! [info exist ::env(PHYS_SUB_DIR)]  }  {
-	setenv PHYS_SUB_DIR sim
+if { ! [info exist ::env(SIM_SUB_DIR)]  }  {
+	setenv SIM_SUB_DIR sim
 }
 
 module load .clhep/${clhep_version}
@@ -39,7 +39,7 @@ if { $command == "test"} {
 # couldn't figure out how to load physlibs in the test function
 proc ModulesTest { } {
 	
-	global PHYS_VERSION
+	global SIM_VERSION
 	global clas12tags_versions
 	set retcode 1
 	

@@ -5,7 +5,7 @@ source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 filename="geant4/geant4-v$G4_VERSION.tar.gz" # includes subdirectory name
 
 # tarball name is different in old geant4 version
-if [[ $PHYS_VERSION == 2.4* || $PHYS_VERSION == 2.5* ]]; then
+if [[ SIM_VERSION == 2.4* || SIM_VERSION == 2.5* ]]; then
     filename="geant4/geant$G4_VERSION.tar.gz"
     tar_strip=1
 fi

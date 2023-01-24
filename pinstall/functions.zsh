@@ -6,8 +6,13 @@ green=`tput setaf 2`
 magenta=`tput setaf 5`
 reset=`tput sgr0`
 
-# check if the environment PHYS_VERSION is set
-#if [ -z "$PHYS_VERSION" ]; then
+# needed otherwise cmake could pick up the system cc
+export CC=gcc
+export CXX=g++
+
+
+# check if the environment SIM_VERSION is set
+#if [ -z "SIM_VERSION" ]; then
 #	echo
 #	echo " The physlibs environment is not set. Use:"
 #	echo
