@@ -36,6 +36,15 @@ elif thisPlatform == 'Linux':
                 osreleasVersion = columns[0].lower() + columns[2].split('.')[0]
             else:
                 osreleasVersion = columns[0].lower() + columns[3].split('.')[0]
+    # ubuntu line
+    elif os.path.exists('/etc/os-release'):
+        with open('/etc/os-release') as f:
+            columns = f.read().strip().split()
+            idList = [s for s in columns if "ID=" in s]
+            verList = [s for s in columns if "VERSION=" in s]
+            ids = idList[0].split("=")
+            vers = verList[0].split('="')
+            osreleasVersion = str(ids[1]) + str(int(float(vers[1])))
     else:
         raise ValueError('Unsupported Linux Version: no /etc/redhat-release')
 
