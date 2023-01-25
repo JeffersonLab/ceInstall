@@ -36,7 +36,6 @@ module load	  gemc/$gemc_version -s
 
 
 echo
-module test sim/$pv
+module test gemc/$gemc_version
 
-done
 echo
