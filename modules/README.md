@@ -16,20 +16,11 @@ To set up the modules (this could go in your `.zshrc`,  `.bashrc` or `.cshrc`):
 
 `source  <ipath>/modules/setup.sh` or `source  <ipath>/modules/setup.csh`
 
-Two optional environment variables (make sure to set them before the source command) 
-control the top level directory structure of the installation:
+Advanced installation options are shown at the bottom of this page.
 
-- SIM_HOME: the base location of the libraries. 
-Default is `<ipath>`.
-- SIM_SUB_DIR_SUB_DIR: sub dir name under $SIM_HOME (see Installation Tree below). 
-Default is `sim`.
+### Geant4 Simulation Software Installation
 
-After the source command, `module avail` will show the available modules and 
-the libraries installation scripts below will be in your $PATH.
-
-### Geant4 Software Installation
-
-Run `install_geant4_base` with the option `<sim_version>` to install the libraries needed by geant4:
+Run `install_sim` with the option `<sim_version>` to install the libraries needed by geant4:
 
 - `clhep`
 - `xerces-c`
@@ -46,14 +37,15 @@ Run `install_geant4_base` with the option `<sim_version>` to install the librari
 The script will first test for the existence of the libraries and 
 will not install them if they are already present.
 
-### Clas12Tags Installation
+### gemc Installation
 
-Run `install_all_clas12` with the option `<sim_version>` to install, in addition to the above libraries, 
-the software needed to run clas12 simulations. 
+Run `install_gemc` with the option `<gemc_version>` to install 
+the software needed to run clas12 simulations with gemc.
 
-` <sim_version>` can be:
+` <gemc_version>` is the clas12Tag containing gemc and the clas12 geometry database.
 
-- `2.4`: `clas12Tags` `4.4.2` and `5.1`
+- `4.4.2`: for `geant4 10.6` 
+- `5.1`: for `geant4 10.6` 
 
 The software installed is:
 
@@ -63,6 +55,8 @@ The software installed is:
 - `scons`
 - `cmag`
 - `mlibrary`
+- `gemc`
+- `clas12Tags` geometry and gcards
 
 The script will first test for the existence of the libraries and 
 will not install them if they are already present.
@@ -71,7 +65,7 @@ will not install them if they are already present.
 
 Use the following scripts to install the individual packages:
 
-#### For geant4:
+#### For geant4 simulations
 
 - `install_clhep`       
 - `install_xercesc`
@@ -79,7 +73,7 @@ Use the following scripts to install the individual packages:
 - `install_geant4_data`
 - `install_geant4`
 
-#### For clas12:
+#### For gemc:
 
 - `install_scons_bm`: scons build system
 - `install_ccdb`: calibration database
@@ -90,49 +84,53 @@ Use the following scripts to install the individual packages:
 - `install_clas12Tags`: clas12 tags of gemc simulation software and geometry
 
 
-# Usage
+# sim module
 
-The uber module `physlibs` controls the subset of libraries to load. 
-`module avail` will show the available versions of `physlibs` and `module load`
+The uber module `sim` controls the subset of geant4 libraries to load. 
+`module avail` will show the available versions of `sim` and `module load sim/version`
 will load the corresponding version. 
 
-For example:
+Usage examples:
 
 ```
-module load physlibs/2.4
+module load sim/2.4
 ```
 
 To see the libraries version:
 
 ```
-module show physlibs/2.4
+module show sim/2.4
 ```
 
 To test the installation:
 
 ```
-module test physlibs/2.4
+module test sim/2.4
 ```
 
-## clas12Tags uber module
+## gemc module
 
-Each physlibs version come with one or more clas12Tags. The command `module switch` can 
-be used to switch from one to another. For example
+The uber module `gemc` controls the subset of geant4 / clas12 libraries to load. 
+`module avail` will show the available versions of `gemc` and `module load gemc/version`
+will load the corresponding version. 
+
+Usage examples:
 
 ```
-module switch clas12Tags/4.4.2
+module load gemc/4.4.2
 ```
 
-The list of clas12Tags installed are:
-
-- `physlibs/2.4`: `clas12Tags/5.1` (default), `clas12Tags/4.4.2`
+```
+module switch gemc/5.1
+```
 
 
 ## Installation Tree
 
 
-Software based on compiled code (C++, fortran, etc) is organized under the `OSRELEASE` directory.
-Software architecture independent (python, JAVA, etc) is organized under `noarch` directory.
+Software based on compiled code (C++, fortran, etc) is organized in the `OSRELEASE` directory 
+(macosx13-clang14, fedora34-gcc12, etc).
+Software architecture independent (python, JAVA, etc) is organized in then `noarch` directory.
 
 ```
 - SIM_HOME
@@ -159,12 +157,21 @@ Software architecture independent (python, JAVA, etc) is organized under `noarch
 
 
 
-## Dependencies
+## Advanced installation options
 
-Only the uber modules are shown in `module avail`. This ensures that the correct
-version of the libraries are loaded along with their dependencies. 
+Two optional environment variables (make sure to set them before the source command) 
+control the top level directory structure of the installation:
 
-### Requirements:
+- SIM_HOME: the base location of the libraries. 
+Default is `<ipath>`.
+- SIM_SUB_DIR_SUB_DIR: sub dir name under $SIM_HOME (see Installation Tree below). 
+Default is `sim`.
+
+After the source command, `module avail` will show the available modules and 
+the libraries installation scripts below will be in your $PATH.
+
+
+## Requirements:
 
 - `environment modules`
 - `gcc/clang` > 8 (for c++17) 

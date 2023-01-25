@@ -4,6 +4,11 @@
 
 # Environment
 
+if { ! [info exist ::env(SIM_VERSION)]  }  {
+	puts stderr " ERROR: SIM_VERSION not set. Load module sim or gemc first"
+	exit 1
+}
+
 set base_dir $env(SIM_HOME)/noarch
 
 set dir $base_dir/scons_bm/${version}
@@ -16,20 +21,22 @@ setenv SCONSFLAGS  "--site-dir=$dir"
 
 prepend-path PYTHONPATH $dir
 
+
+
+
+
+
+
+
+
+
 proc ModulesTest { } {
 	
 	set var SCONS_BM
 	set installation_dir  [ getenv SCONS_BM ]
 	set retcode 1
-	
-	# exit if is_loaded is empty
-	if { [module-info loaded physlibs] == "" } {
-		puts stderr "physlibs is not loaded. Use module load physlibs to load it."
-		puts stderr ""
-		return 0
-	}
-	
-	puts stderr ""
+
+    puts stderr ""
 	if { [file isdirectory $installation_dir ] } {
 		puts stderr " Y $var $installation_dir"
 	} else {

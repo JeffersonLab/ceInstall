@@ -9,6 +9,11 @@ if [ -z "$SIM_HOME" ]; then
     export SIM_HOME=$(realpath "$modules_home"/../..)
 fi
 
+# if SIM_SUB_DIR environment variable is not set, set it to 'sim'
+if [ -z "$SIM_SUB_DIR" ]; then
+    export SIM_SUB_DIR=sim
+fi
+
 module use "${modules_home}"/modulefiles
 
 echo "Modules loaded for SIM_HOME=$SIM_HOME. Use 'module avail' to see available modules."

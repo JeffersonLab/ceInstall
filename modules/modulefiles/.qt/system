@@ -4,6 +4,11 @@
 
 # Environment
 
+if { ! [info exist ::env(SIM_VERSION)]  }  {
+	puts stderr " ERROR: SIM_VERSION not set. Load module sim or gemc first"
+	exit 1
+}
+
 set version system
 
 
@@ -37,14 +42,7 @@ proc ModulesTest { } {
 	set var QT
 	set installation_dir  [ getenv QTDIR ]/lib
 	set retcode 1
-	
-	# exit if is_loaded is empty
-	if { [module-info loaded physlibs] == "" } {
-		puts stderr "physlibs is not loaded. Use module load physlibs to load it."
-		puts stderr ""
-		return 0
-	}
-	
+
 	puts stderr ""
 	if { [file isdirectory $installation_dir ] } {
 		puts stderr " Y $var $installation_dir"

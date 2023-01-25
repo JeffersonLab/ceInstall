@@ -1,18 +1,43 @@
-#!/bin/zsh
+#!/bin/zsh -i
 
-source "$(dirname "$(readlink -f "$0")")"/functions
+# -i: interactive mode. Needed to load modules
 
-filename="ccdb/ccdb-$CCDB_VERSION.tar.gz" # includes subdirectory name
-tar_strip=1                               # in the tarball, the source is inside ccdb-version
+. "$(dirname "$(readlink -f "$0")")"/functions.zsh
+
+# parse argument. If no argument given, set version to all available sim modules
+if [[ $# -eq 1 ]]; then
+	gemc_version=$1
+else
+	# error
+	echo " > ERROR: No gemc version given. Exiting."
+	exit 1
+fi
 
 
-base_dir=$CCDB_HOME
-cmake_options="-Wno-dev"
+echo " > gemc_version: $gemc_version"
+echo
 
 
-log_general ccdb "$CCDB_VERSION" "$filename" "$base_dir"
+echo " > Checking missing modules in sim version $pv"
+module unload gemc     -s
+module load	  gemc/$gemc_version -s
 
-unpack_source_in_directory "$filename" "$base_dir" "$tar_strip"
+[ "$(moduleTestResult .clhep     $CLHEP_VERSION )"    -eq 0 ] && echo " > clhep is installed"    || install_clhep
+[ "$(moduleTestResult .xercesc   $XERCESC_VERSION )"  -eq 0 ] && echo " > xercesc is installed"  || install_xercesc
+[ "$(moduleTestResult .qt        $QT_VERSION)"        -eq 0 ] && echo " > qt is installed"       || copy_qt
+[ "$(moduleTestResult .g4data    $G4_VERSION)"        -eq 0 ] && echo " > g4data is installed"   || install_geant4_data
+[ "$(moduleTestResult .geant4    $G4_VERSION)"        -eq 0 ] && echo " > geant4 is installed"   || install_geant4
+[ "$(moduleTestResult .scons_bm  $SCONS_BM_VERSION)"  -eq 0 ] && echo " > scons_bm is installed" || install_scons_bm
+[ "$(moduleTestResult .ccdb      $CCDB_VERSION)"      -eq 0 ] && echo " > ccdb is installed"     || install_ccdb
+[ "$(moduleTestResult .evio      $EVIO_VERSION)"      -eq 0 ] && echo " > evio is installed"     || install_evio
+[ "$(moduleTestResult .hipo      $HIPO_VERSION)"      -eq 0 ] && echo " > hipo is installed"     || install_hipo
+[ "$(moduleTestResult .cmag      $CMAG_VERSION)"      -eq 0 ] && echo " > cmag is installed"     || install_cmag
+[ "$(moduleTestResult .mlibrary  $MLIBRARY_VERSION)"  -eq 0 ] && echo " > mlibrary is installed" || install_mlibrary
+[ "$(moduleTestResult gemc       $GEMC_VERSION)"      -eq 0 ] && echo " > gemc is installed"     || install_clas12Tag
 
-scons_build_and_install "$base_dir"
 
+echo
+module test sim/$pv
+
+done
+echo

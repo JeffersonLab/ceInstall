@@ -14,9 +14,9 @@ export CXX=g++
 # check if the environment SIM_VERSION is set
 #if [ -z "SIM_VERSION" ]; then
 #	echo
-#	echo " The physlibs environment is not set. Use:"
+#	echo " The sim environment is not set. Use:"
 #	echo
-#	echo "$yellow module load physlibs/<VERSION> $reset"
+#	echo "$yellow module load sim/<VERSION> $reset"
 #	echo
 #	echo " to load it. Use:"
 #	echo
