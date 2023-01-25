@@ -37,7 +37,7 @@ Run `install_sim` with the option `<sim_version>` to install the libraries neede
 The script will first test for the existence of the libraries and 
 will not install them if they are already present.
 
-### gemc Installation
+### Gemc Installation
 
 Run `install_gemc` with the option `<gemc_version>` to install 
 the software needed to run clas12 simulations with gemc.
@@ -47,7 +47,8 @@ the software needed to run clas12 simulations with gemc.
 - `4.4.2`: for `geant4 10.6` 
 - `5.1`: for `geant4 10.6` 
 
-The software installed is:
+`install_gemc` will install, if not present already, the libraries needed for Geant4 simulations. 
+In addition, in order to run clas12 simulations using gemc, the following software is installed:
 
 - `evio`
 - `hipo`

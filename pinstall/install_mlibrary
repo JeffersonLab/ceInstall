@@ -13,6 +13,8 @@ log_general mlibrary "$MLIBRARY_VERSION" "$filename" "$base_dir"
 
 unpack_source_in_directory "$filename" "$base_dir" "$tar_strip"
 
+# notice that if the system is updated, the OPENGL library may point to a different location
+# for example /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/OpenGL.framework instead of 13.0
 cd $MLIBRARY
 ./compileCmesh 2>"cmesh_build_err.txt" 1>"cmesh_build_log.txt" || exit
 
