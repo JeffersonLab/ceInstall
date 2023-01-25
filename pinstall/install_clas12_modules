@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+# script to echo cp commands for the modules files in the current directory
+# from the ceInstall location
+
+# parse argument
+if [[ $# -eq 2 ]]; then
+	modules_files_dir=$1
+	destination_dir=$2
+else
+	# error
+	echo " > ERROR: No arguments given. Please specify the location of the module files and the destination. Exiting."
+	exit 1
+fi
+
+
+for m in .clhep .xercesc .qt .g4data .geant4 .scons_bm .ccdb .evio .hipo .cmag .mlibrary gemc; do
+	echo "cp -r $modules_files_dir/$m $destination_dir"
+done

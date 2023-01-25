@@ -4,7 +4,6 @@
 
 . "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
-# parse argument. If no argument given, set version to all available sim modules
 if [[ $# -eq 1 ]]; then
 	gemc_version=$1
 else
