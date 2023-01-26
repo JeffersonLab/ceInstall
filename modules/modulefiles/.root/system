@@ -24,7 +24,7 @@ switch -- [module-info shelltype] {
 prepend-path PATH $env(ROOT_BIN)
 prepend-path LD_LIBRARY_PATH $env(ROOT_LIB)
 if { [uname sysname] == "Darwin" } {
-	prepend-path DYLD_LIBRARY_PATH $env(ROOT_LIB)
+	setenv DYLD_LIBRARY_PATH $env(LD_LIBRARY_PATH)
 }
 prepend-path PYTHONPATH $env(ROOT_BIN)
 

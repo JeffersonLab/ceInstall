@@ -28,7 +28,7 @@ set dir $base_dir/qt/${version}/${QTSYSTEM}
 
 prepend-path LD_LIBRARY_PATH $dir/lib
 if { [uname sysname] == "Darwin" } {
-	prepend-path DYLD_LIBRARY_PATH $dir/lib
+	setenv DYLD_LIBRARY_PATH $env(LD_LIBRARY_PATH)
 }
 
 prepend-path PKG_CONFIG_PATH $dir/lib/pkgconfig

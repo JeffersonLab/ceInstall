@@ -62,30 +62,10 @@ In addition, in order to run clas12 simulations using gemc, the following softwa
 The script will first test for the existence of the libraries and 
 will not install them if they are already present.
 
-### Individual Packages  Installation
 
-Use the following scripts to install the individual packages:
+---
 
-#### For geant4 simulations
-
-- `install_clhep`       
-- `install_xercesc`
-- `copy_qt`
-- `install_geant4_data`
-- `install_geant4`
-
-#### For gemc:
-
-- `install_scons_bm`: scons build system
-- `install_ccdb`: calibration database
-- `install_evio`: event I/O data format        
-- `install_hipo`: high performance I/O data format
-- `install_cmag`: CLAS12 magnetic field library
-- `install_mlibrary`: gemc linraries
-- `install_clas12Tags`: clas12 tags of gemc simulation software and geometry
-
-
-# sim module
+# Usage: sim module
 
 The uber module `sim` controls the subset of geant4 libraries to load. 
 `module avail` will show the available versions of `sim` and `module load sim/version`
@@ -109,9 +89,10 @@ To test the installation:
 module test sim/2.4
 ```
 
-## gemc module
+## Usage: gemc module
 
-The uber module `gemc` controls the subset of geant4 / clas12 libraries to load. 
+The uber module `gemc` controls the subset of geant4 / clas12 libraries necessary 
+to run clas12 simulations. 
 `module avail` will show the available versions of `gemc` and `module load gemc/version`
 will load the corresponding version. 
 
@@ -121,10 +102,23 @@ Usage examples:
 module load gemc/4.4.2
 ```
 
+To see the libraries version:
+
+```
+module show sim/2.4
+```
+
+To switch gemc version:
+
 ```
 module switch gemc/5.1
 ```
 
+To test the installation:
+
+```
+module test gemc/5.1
+```
 
 ## Installation Tree
 
@@ -156,7 +150,31 @@ Software architecture independent (python, JAVA, etc) is organized in then `noar
             
 ```
 
+---
 
+### Individual Packages  Installation
+
+Use the following scripts to install the individual packages:
+
+#### For geant4 simulations
+
+- `install_clhep`       
+- `install_xercesc`
+- `copy_qt`
+- `install_geant4_data`
+- `install_geant4`
+
+#### For gemc:
+
+- `install_scons_bm`: scons build system
+- `install_ccdb`: calibration database
+- `install_evio`: event I/O data format        
+- `install_hipo`: high performance I/O data format
+- `install_cmag`: CLAS12 magnetic field library
+- `install_mlibrary`: gemc linraries
+- `install_clas12Tags`: clas12 tags of gemc simulation software and geometry
+
+---
 
 ## Advanced installation options
 
@@ -171,6 +189,7 @@ Default is `sim`.
 After the source command, `module avail` will show the available modules and 
 the libraries installation scripts below will be in your $PATH.
 
+---
 
 ## Requirements:
 
@@ -203,3 +222,12 @@ where
 #### Linux Ubuntu line installation of requirements:
 
 ```apt-get install environment-modules g++ mysql-client libmysqlclient-dev libexpat1-dev cmake scons libx11-dev libxext-dev libglu1-mesa-dev libxt-dev libxmu-dev libxrender-dev libxft-dev libafterimage-dev```
+
+
+---
+
+### Developer Notes
+
+On Mac, the LD_LIBRARY_PATH is copied to DYLD_LIBRARY_PATH instead of being
+pre-pend on each module. This is to avoid the reset of the DYLD_LIBRARY_PATH
+when loading a single module. 

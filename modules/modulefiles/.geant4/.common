@@ -22,7 +22,7 @@ if { [uname sysname] == "Linux" } {
 prepend-path PATH $dir/bin
 prepend-path LD_LIBRARY_PATH $dir/$lib_location
 if { [uname sysname] == "Darwin" } {
-	prepend-path DYLD_LIBRARY_PATH $dir/$lib_location
+	setenv DYLD_LIBRARY_PATH $env(LD_LIBRARY_PATH)
 }
 
 setenv G4INSTALL $dir
