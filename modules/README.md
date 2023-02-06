@@ -1,6 +1,6 @@
 # Installation
 
-Make sure the requirements for the libraries / environment installation 
+Make sure the [__requirements__](#requirements) for the libraries / environment installation 
 listed at the bottom of this page are met.
 
 ### Environment Installation
@@ -18,7 +18,15 @@ To set up the modules (this could go in your `.zshrc`,  `.bashrc` or `.cshrc`):
 
 Advanced installation options are shown at the bottom of this page.
 
-### Geant4 Simulation Software Installation
+### Libraries installation
+
+Standalone geant4 libraries can be installed using the `install_sim` script, 
+see [instructions](#geant4-simulation-software-installation) below.
+
+The clas12 simulation software (gemc) can be installed using the `install_gemc` script,
+see [instructions](#gemc-installation) below. This will also install the standalone geant4 libraries.
+
+#### Geant4 Simulation Software Installation
 
 Run `install_sim` with the option `<sim_version>` to install the libraries needed by geant4:
 
@@ -37,7 +45,7 @@ Run `install_sim` with the option `<sim_version>` to install the libraries neede
 The script will first test for the existence of the libraries and 
 will not install them if they are already present.
 
-### Gemc Installation
+#### Gemc Installation
 
 Run `install_gemc` with the option `<gemc_version>` to install 
 the software needed to run clas12 simulations with gemc.
@@ -191,7 +199,7 @@ the libraries installation scripts below will be in your $PATH.
 
 ---
 
-## Requirements:
+## Requirements
 
 - `environment modules`
 - `gcc/clang` > 8 (for c++17) 
