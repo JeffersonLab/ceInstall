@@ -14,7 +14,7 @@ git clone https://github.com/jeffersonlab/ceInstall
 
 To set up the modules (this could go in your `.zshrc`,  `.bashrc` or `.cshrc`):
 
-`source  <ipath>/modules/setup.sh` or `source  <ipath>/modules/setup.csh`
+`source  <ipath>/ceInstall/modules/setup.sh` or `source  <ipath>/modules/setup.csh`
 
 Advanced installation options are shown at the bottom of this page.
 
@@ -217,7 +217,7 @@ where
 
 #### Linux Fedora line installation of requirements:
 
-```yum install  environment-modules gcc-c++ expat-devel zlib-devel libx11-devel mesa-libGLU-devel libXmu-devel mariadb-devel qt5-qttools-devel scons```
+```yum install  environment-modules gcc-c++ expat-devel zlib-devel libX11-devel mesa-libGLU-devel libXmu-devel mariadb-devel qt5-qttools-devel scons```
 
 #### Linux Ubuntu line installation of requirements:
 
