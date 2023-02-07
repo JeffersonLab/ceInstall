@@ -34,6 +34,8 @@ elif thisPlatform == 'Linux':
             if columns[0] == 'Fedora':
                 # Lowercase first character
                 osreleasVersion = columns[0].lower() + columns[2].split('.')[0]
+            elif columns[0] == 'Red' and columns[1] == 'Hat' and columns[2] == 'Enterprise':
+                osreleasVersion = 'RedHat' + columns[6].split('.')[0]
             else:
                 osreleasVersion = columns[0].lower() + columns[3].split('.')[0]
     # ubuntu line
