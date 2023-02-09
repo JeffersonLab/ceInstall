@@ -1,4 +1,4 @@
-#%Module
+#%Module4.8
 
 #conflict .gemc3
 
@@ -21,8 +21,6 @@ if { [uname sysname] == "Darwin" } {
 setenv GLIBRARY $dir
 
 
-setenv GEMC3_VERSION  $version
-setenv GEMC3          $dir
 
 
 
