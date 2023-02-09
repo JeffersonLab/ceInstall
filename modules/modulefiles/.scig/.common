@@ -14,22 +14,18 @@ set base_dir $env(SIM_HOME)/noarch
 set dir $base_dir/scig/${version}
 
 
+setenv SCIG_VERSION $version
 setenv SCIG $dir
+
 prepend-path PYTHONPATH $dir
 prepend-path PATH $dir
 
 
 
-
-
-
-
-
-
 proc ModulesTest { } {
 
-	set var GLIBRARY
-	set installation_dir  [ getenv GLIBRARY ]/lib
+	set var SCIG
+	set installation_dir  [ getenv SCIG ]
 	set retcode 1
 
 	puts stderr ""

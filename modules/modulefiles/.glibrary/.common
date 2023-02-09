@@ -18,12 +18,8 @@ if { [uname sysname] == "Darwin" } {
 	setenv DYLD_LIBRARY_PATH $env(LD_LIBRARY_PATH)
 }
 
+setenv GLIBRARY_VERSION $version
 setenv GLIBRARY $dir
-
-
-
-
-
 
 
 

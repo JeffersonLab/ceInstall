@@ -18,7 +18,7 @@ module load .scig/${scig_version}
 set base_dir $env(SIM_HOME)/$env(OSRELEASE)/$env(SIM_SUB_DIR)/$env(SIM_VERSION)
 set dir $base_dir/gemc/${version}
 
-setenv GEMC $dir/src
+setenv GEMC3 $dir/src
 setenv GEMC3_VERSION $version
 
 prepend-path PATH $dir/src
