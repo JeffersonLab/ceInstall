@@ -1,8 +1,12 @@
 #!/bin/csh
 
+# in csh there's no clean way to determine the path to the current script
+# using lsof of the current process id PID (which is $$)
+set this_script=`lsof +p $$ | grep -oE /.\*setup.csh`
+
 # extract path to this file
-set modules_home = `dirname $0`
-setenv OSRELEASE $(modules_home/osrelease.py)
+set modules_home = `echo $this_script | xargs dirname`
+setenv OSRELEASE `$modules_home/osrelease.py`
 
 # if SIM_HOME environment variable is not set, set it to the current directory
 if ( ! $?SIM_HOME ) then
