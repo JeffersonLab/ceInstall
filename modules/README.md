@@ -204,6 +204,7 @@ the libraries installation scripts below will be in your $PATH.
 - `environment modules`
 - `gcc/clang` > 8 (for c++17) 
 - `cmake` > 3.16
+- `pyton` > 3.6
 - `qt5`
 - `scons`
 

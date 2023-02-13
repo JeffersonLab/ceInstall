@@ -1,5 +1,14 @@
 #!/bin/zsh
 
+# tar packaged with:
+# cd ~/tmp
+# version=1.10
+# wget https://www.jlab.org/12gev_phys/packages/sources/scons_bm/scons_bm_$version.tar.gz
+# tar -zxvf scons_bm_$version.tar.gz
+# edit
+# rm tar scons_bm_$version.tar.gz ; tar scons_bm_$version.tar.gz $version
+
+
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
 filename="scons_bm/scons_bm_$SCONS_BM_VERSION.tar.gz" # includes subdirectory name
