@@ -16,15 +16,15 @@ To set up the modules (this could go in your `.zshrc`,  `.bashrc` or `.cshrc`):
 
 `source  <ipath>/ceInstall/modules/setup.sh` or `source  <ipath>/modules/setup.csh`
 
-Advanced installation options are shown at the bottom of this page.
+[Advanced installation Options](#advanced-installation-options) are shown at the bottom of this page.
 
 ### Libraries installation
 
 Standalone geant4 libraries can be installed using the `install_sim` script, 
-see [instructions](#geant4-simulation-software-installation) below.
+see [Geant4 Simulation Software Installation](#geant4-simulation-software-installation) below.
 
 The clas12 simulation software (gemc) can be installed using the `install_gemc` script,
-see [instructions](#gemc-installation) below. This will also install the standalone geant4 libraries.
+see [Gemc Installation](#gemc-installation) below. This will also install the standalone geant4 libraries.
 
 #### Geant4 Simulation Software Installation
 
@@ -73,7 +73,7 @@ will not install them if they are already present.
 
 ---
 
-# Usage: sim module
+## Usage: sim module
 
 The uber module `sim` controls the subset of geant4 libraries to load. 
 `module avail` will show the available versions of `sim` and `module load sim/version`
@@ -128,7 +128,7 @@ To test the installation:
 module test gemc/5.1
 ```
 
-## Installation Tree
+# Installation Tree
 
 
 Software based on compiled code (C++, fortran, etc) is organized in the `OSRELEASE` directory 
@@ -160,7 +160,7 @@ Software architecture independent (python, JAVA, etc) is organized in then `noar
 
 ---
 
-### Individual Packages  Installation
+## Individual Packages  Installation
 
 Use the following scripts to install the individual packages:
 
@@ -207,6 +207,7 @@ the libraries installation scripts below will be in your $PATH.
 - `pyton` > 3.6
 - `qt5`
 - `scons`
+- `modules` > 4.5 
 
 Find below the commands to install these requirements. Please email any corrections to
 [Maurizio](mailto:ungaro@jlab.org?subject=CeInstall Requirements Corrections).
@@ -245,8 +246,4 @@ where
 
 ---
 
-### Developer Notes
-
-On Mac, the LD_LIBRARY_PATH is copied to DYLD_LIBRARY_PATH instead of being
-pre-pend on each module. This is to avoid the reset of the DYLD_LIBRARY_PATH
-when loading a single module. 
+For any questions, feedbacks or comments, please contact [Maurizio Ungaro](mailto: ungaro@jlab.org)
