@@ -52,8 +52,8 @@ the software needed to run clas12 simulations with gemc.
 
 ` <gemc_version>` is the clas12Tag containing gemc and the clas12 geometry database.
 
-- `4.4.2`: for `geant4 10.6` 
-- `5.1`: for `geant4 10.6` 
+- `4.4.2`: uses `geant4 10.6` 
+- `5.1`: uses `geant4 10.6` 
 
 `install_gemc` will install, if not present already, the libraries needed for Geant4 simulations. 
 In addition, in order to run clas12 simulations using gemc, the following software is installed:
@@ -67,13 +67,13 @@ In addition, in order to run clas12 simulations using gemc, the following softwa
 - `gemc`
 - `clas12Tags` geometry and gcards
 
-The script will first test for the existence of the libraries and 
-will not install them if they are already present.
 
 
 ---
 
-## Usage: sim module
+# Usage
+
+## sim module
 
 The uber module `sim` controls the subset of geant4 libraries to load. 
 `module avail` will show the available versions of `sim` and `module load sim/version`
@@ -81,23 +81,13 @@ will load the corresponding version.
 
 Usage examples:
 
-```
-module load sim/2.4
-```
+`module load sim/2.4`: loads sim module version 2.4
 
-To see the libraries version:
+`module show sim/2.6`: shows what is loaded by sim/2.6
 
-```
-module show sim/2.4
-```
+`module test sim/2.5`: shows which libraries are installed (requires load of sim/2.5)
 
-To test the installation:
-
-```
-module test sim/2.4
-```
-
-## Usage: gemc module
+## gemc module
 
 The uber module `gemc` controls the subset of geant4 / clas12 libraries necessary 
 to run clas12 simulations. 
@@ -106,30 +96,15 @@ will load the corresponding version.
 
 Usage examples:
 
-```
-module load gemc/4.4.2
-```
+`module load gemc/4.4.2`: loads gemc module version 4.4.2
 
-To see the libraries version:
+`module show gemc/5.1`: shows what is loaded by gemc/5.1
 
-```
-module show sim/2.4
-```
+`module switch gemc/5.1`: unload gemc / loads gemc module version 5.1
 
-To switch gemc version:
-
-```
-module switch gemc/5.1
-```
-
-To test the installation:
-
-```
-module test gemc/5.1
-```
+`module test gemc/5.1`: shows which libraries are installed (requires load of gemc/5.1)
 
 # Installation Tree
-
 
 Software based on compiled code (C++, fortran, etc) is organized in the `OSRELEASE` directory 
 (macosx13-clang14, fedora34-gcc12, etc).
