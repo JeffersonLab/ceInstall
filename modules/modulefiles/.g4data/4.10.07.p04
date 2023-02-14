@@ -1,4 +1,4 @@
-#%Module4.8
+#%Module4.5
 
 prereq .clhep/2.4.4.2 .xercesc/3.2.3 .qt/system
 
