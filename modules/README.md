@@ -16,7 +16,7 @@ To set up the modules (this could go in your `.zshrc`,  `.bashrc` or `.cshrc`):
 
 `source  <ipath>/ceInstall/modules/setup.sh` or `source  <ipath>/modules/setup.csh`
 
-[Advanced installation Options](#advanced-installation-options) are shown at the bottom of this page.
+[Advanced environment options](#advanced-environment-options) are shown at the bottom of this page.
 
 ### Libraries installation
 
@@ -184,7 +184,7 @@ Use the following scripts to install the individual packages:
 
 ---
 
-## Advanced installation options
+## Advanced environment options
 
 Two optional environment variables (make sure to set them before the source command) 
 control the top level directory structure of the installation:
@@ -246,4 +246,4 @@ where
 
 ---
 
-For any questions, feedbacks or comments, please contact [Maurizio Ungaro](mailto: ungaro@jlab.org)
+For any questions, feedbacks or comments, please contact [Maurizio Ungaro](mailto:ungaro@jlab.org)
