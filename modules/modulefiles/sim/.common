@@ -23,7 +23,7 @@ proc ModulesTest { } {
 	
 	# exit if is_loaded is empty
 	if { $is_loaded == "" } {
-		puts stderr "sim is not loaded. Use module load sim to load it."
+		puts stderr "module 'sim' is not loaded. Use 'module load sim/<version>' to load it."
 		puts stderr ""
 		return 0
 	}

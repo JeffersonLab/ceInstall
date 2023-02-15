@@ -1,2 +1,4 @@
 - Make ceInstall release
 - remove old stuff from ceInstall
+- add message to CUE machines - warn how to use new system
+-

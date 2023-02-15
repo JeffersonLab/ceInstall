@@ -19,7 +19,7 @@ echo
 
 echo " > Checking missing modules in sim version $pv"
 module unload gemc     -s
-module unload gemc3     -s
+module unload gemc3    -s
 module load	  gemc3/$gemc_version -s
 
 [ "$(moduleTestResult .clhep     $CLHEP_VERSION )"    -eq 0 ] && echo " > clhep is installed"    || install_clhep
@@ -29,8 +29,8 @@ module load	  gemc3/$gemc_version -s
 [ "$(moduleTestResult .geant4    $G4_VERSION)"        -eq 0 ] && echo " > geant4 is installed"   || install_geant4
 [ "$(moduleTestResult .scons_bm  $SCONS_BM_VERSION)"  -eq 0 ] && echo " > scons_bm is installed" || install_scons_bm
 [ "$(moduleTestResult .glibrary  $GLIBRARY_VERSION)"  -eq 0 ] && echo " > glibrary is installed" || install_glibrary
+[ "$(moduleTestResult gemc3      $GEMC3_VERSION)"     -eq 0 ] && echo " > gemc3 is installed"    || install_g3
 [ "$(moduleTestResult .scig      $SCIG_VERSION)"      -eq 0 ] && echo " > scig is installed"     || install_scig
-[ "$(moduleTestResult gemc3      $GEMC3_VERSION)"     -eq 0 ] && echo " > gemc is installed"     || install_g3
 
 
 echo

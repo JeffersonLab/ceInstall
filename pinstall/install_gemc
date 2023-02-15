@@ -32,7 +32,16 @@ module load	  gemc/$gemc_version -s
 [ "$(moduleTestResult .hipo      $HIPO_VERSION)"      -eq 0 ] && echo " > hipo is installed"     || install_hipo
 [ "$(moduleTestResult .cmag      $CMAG_VERSION)"      -eq 0 ] && echo " > cmag is installed"     || install_cmag
 [ "$(moduleTestResult .mlibrary  $MLIBRARY_VERSION)"  -eq 0 ] && echo " > mlibrary is installed" || install_mlibrary
-[ "$(moduleTestResult gemc       $GEMC_VERSION)"      -eq 0 ] && echo " > gemc is installed"     || install_clas12Tag
+
+# if major version of GEMC_VERSION is 2, install_gemc2, install_clas12Tag
+if [[ $gemc_version == 2* ]]; then
+	[ "$(moduleTestResult .gemc2     $gemc_version)" -eq 0 ] && echo " > gemc2 is installed"    || install_g2
+else
+	[ "$(moduleTestResult .clas12Tag $gemc_version)" -eq 0 ] && echo " > clas12Tag is installed" || install_clas12Tag
+fi
+
+
+
 
 
 echo

@@ -15,7 +15,7 @@ set dir $base_dir/scig/${version}
 
 
 setenv SCIG_VERSION $version
-setenv SCIG $dir
+setenv SCIG         $dir
 
 prepend-path PYTHONPATH $dir
 prepend-path PATH $dir

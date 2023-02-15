@@ -1,6 +1,6 @@
 #%Module4.5
 
-#conflict gemc
+conflict gemc
 
 module load .clhep/${clhep_version}
 module load .xercesc/${xercesc_version}
@@ -14,24 +14,31 @@ module load .mlibrary/${mlibrary_version}
 module load .hipo/${hipo_version}
 module load .cmag/${cmag_version}
 
-setenv CLAS12TAG $version
 
 # Environment
 
 set base_dir $env(SIM_HOME)/$env(OSRELEASE)/$env(SIM_SUB_DIR)/$env(SIM_VERSION)
 set noarch_dir $env(SIM_HOME)/noarch
-set dir $base_dir/clas12Tags/${version}
-
-setenv C12TAG_VERSION  $version
 setenv FIELD_DIR $noarch_dir/data
-setenv GEMC_DATA_DIR $dir
-setenv C12TAG_BASE $base_dir/clas12Tags
-
-setenv GEMC $dir/source
-setenv GEMC_VERSION $version
 
 
-prepend-path PATH $dir/source
+# if major $version is 2, then it is gemc2
+if { [ lindex [ split $version . ] 0 ] == 2 } {
+    setenv GEMC_VERSION      $version
+    set dir $base_dir/gemc2/${version}
+    setenv GEMC_BASE_DIR     $base_dir/gemc2
+    setenv GEMC              $base_dir/gemc2/${version}
+    prepend-path PATH        $dir
+} else {
+    setenv CLAS12TAG_VERSION $version
+    set dir $base_dir/clas12Tags/${version}
+    setenv CLAS12TAG_BASE_DIR $base_dir/clas12Tags
+    setenv GEMC               $base_dir/clas12Tags/${version}
+    setenv GEMC_DATA_DIR      $dir
+    prepend-path PATH $dir/source
+}
+
+
 
 proc ModulesTest { } {
 	
@@ -43,7 +50,7 @@ proc ModulesTest { } {
 
 	# exit if is_loaded is empty
 	if { $is_loaded == "" } {
-		puts stderr "sim is not loaded. Use module load sim to load it."
+		puts stderr "module 'gemc' is not loaded. Use 'module load gemc/<version>'' to load it."
 		puts stderr ""
 		return 0
 	}

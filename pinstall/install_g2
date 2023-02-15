@@ -1,0 +1,20 @@
+#!/bin/zsh
+
+source "$(dirname "$(readlink -f "$0")")"/functions.zsh
+
+filename="gemc/gemc-$GEMC_VERSION.tar.gz" # includes subdirectory name
+tar_strip=1                                  # in the tarball, the source is inside version
+
+# tar packages downloaded on the farm with:
+# cd /group/12gev_phys/www/packages/sources/clas12Tags
+# wget https://github.com/gemc/source/archive/refs/tags/v2.9.tar.gz -O gemc-2.9.tar.gz
+# wget https://github.com/gemc/source/archive/refs/tags/v2.10.tar.gz -O gemc-2.10.tar.gz
+
+base_dir=$GEMC_BASE_DIR/$GEMC_VERSION
+
+log_general gemc2 "$GEMC_VERSION" "$filename" "$base_dir"
+
+unpack_source_in_directory "$filename" "$base_dir" "$tar_strip"
+
+scons_build_and_install "$base_dir"
+

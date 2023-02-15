@@ -1,19 +1,19 @@
 #!/bin/zsh
 
-
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
-filename="gemc3/gemc3-$GEMC3_VERSION.tar.gz" # includes subdirectory name
+filename="gemc/gemc3-$GEMC3_VERSION.tar.gz" # includes subdirectory name
 tar_strip=1                                  # in the tarball, the source is inside version
 
+# tar packages downloaded on the farm with:
+# cd /group/12gev_phys/www/packages/sources/gemc
+# wget https://github.com/gemc/src/archive/refs/tags/3.0.tar.gz -O gemc3-3.0.tar.gz
 
+base_dir=$GEMC3_BASE_DIR/$GEMC3_VERSION
 
-
-base_dir=$GEMC3
-
-log_general clas12Tags "$C12TAG_VERSION" "$filename" "$base_dir"
+log_general gemc3 "$GEMC3_VERSION" "$filename" "$base_dir"
 
 unpack_source_in_directory "$filename" "$base_dir" "$tar_strip"
 
-scons_build_and_install "$base_dir/source"
+scons_build_and_install "$base_dir"
 

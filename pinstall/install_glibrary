@@ -5,6 +5,10 @@ source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 filename="glibrary/glibrary-$GLIBRARY_VERSION.tar.gz" # includes subdirectory name
 tar_strip=1                                           # in the tarball, the source is inside mlibrary-version
 
+# tar packages downloaded on the farm with:
+# cd /group/12gev_phys/www/packages/sources/clas12Tags
+# wget https://github.com/gemc/glibrary/archive/refs/tags/1.2.tar.gz -O glibrary-1.2.tar.gz
+
 
 base_dir=$GLIBRARY
 
@@ -15,7 +19,6 @@ unpack_source_in_directory "$filename" "$base_dir" "$tar_strip"
 
 # notice that if the system is updated, the OPENGL library may point to a different location
 # for example /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/OpenGL.framework instead of 13.0
-cd $GLIBRARY
 
 scons_build_and_install "$base_dir"
 

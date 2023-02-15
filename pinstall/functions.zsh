@@ -178,7 +178,7 @@ scons_build_and_install() {
 	cd "$install_dir" || exit
 	
 	echo "$magenta > Building$reset"
-	rm .sconsign.dblite # for some reason this still linger
+	rm -f .sconsign.dblite # for some reason this still linger
 	\scons -j "$n_cpu" OPT=1 2>"$install_dir/build_err.txt" 1>"$install_dir/build_log.txt" || exit
 	
 	# cleanup

@@ -3,10 +3,13 @@
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
 filename="scig/scig-$SCIG_VERSION.tar.gz" # includes subdirectory name
-tar_strip=1                                           # in the tarball, the source is inside scons_bm
+tar_strip=1                               # in the tarball, the source is inside scons_bm
+
+# tar packages downloaded on the farm with:
+# cd /group/12gev_phys/www/packages/sources/scig
+# wget https://github.com/gemc/sci-g/archive/refs/tags/1.0.tar.gz -O scig-1.0.tar.gz
 
 base_dir="$SCIG"
-
 
 log_general scig "$SCIG_VERSION" "$filename" "$base_dir"
 

@@ -18,10 +18,11 @@ module load .scig/${scig_version}
 set base_dir $env(SIM_HOME)/$env(OSRELEASE)/$env(SIM_SUB_DIR)/$env(SIM_VERSION)
 set dir $base_dir/gemc/${version}
 
-setenv GEMC3 $dir/src
-setenv GEMC3_VERSION $version
+setenv GEMC3_BASE_DIR $base_dir/gemc
+setenv GEMC3_VERSION  $version
 
-prepend-path PATH $dir/src
+setenv GEMC3      $dir
+prepend-path PATH $dir
 
 proc ModulesTest { } {
 	
@@ -29,11 +30,11 @@ proc ModulesTest { } {
 	set retcode 1
 
 	set command [module-info command]
-	set is_loaded [module-info loaded gemc]
+	set is_loaded [module-info loaded gemc3]
 
 	# exit if is_loaded is empty
 	if { $is_loaded == "" } {
-		puts stderr "sim is not loaded. Use module load sim to load it."
+		puts stderr "gemc3 is not loaded. Use 'module load gemc3/<version> to load it."
 		puts stderr ""
 		return 0
 	}
@@ -63,7 +64,7 @@ proc ModulesTest { } {
 		}
 	}
 
-	set installation_dir  [ getenv GEMC ]
+	set installation_dir  [ getenv GEMC3 ]
     set installation_exe  $installation_dir/gemc
     if { [file isfile $installation_exe ] } {
 	    puts stderr " Y gemc \t\t $installation_exe"

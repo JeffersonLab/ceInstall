@@ -16,15 +16,23 @@ To set up the modules (this could go in your `.zshrc`,  `.bashrc` or `.cshrc`):
 
 `source  <ipath>/ceInstall/modules/setup.sh` or `source  <ipath>/modules/setup.csh`
 
-[Advanced environment options](#advanced-environment-options) are shown at the bottom of this page.
+
 
 ### Libraries installation
+
+The libraries will install by default in the same path to ceInstall (see also 
+[Advanced environment options](#advanced-environment-options) ). 
 
 Standalone geant4 libraries can be installed using the `install_sim` script, 
 see [Geant4 Simulation Software Installation](#geant4-simulation-software-installation) below.
 
 The clas12 simulation software (gemc) can be installed using the `install_gemc` script,
 see [Gemc Installation](#gemc-installation) below. This will also install the standalone geant4 libraries.
+
+The gemc3 simulation software (gemc3) can be installed using the `install_gemc3` script,
+see [Gemc3 Installation](#gemc3-installation) below. This will also install the standalone geant4 libraries.
+
+___
 
 #### Geant4 Simulation Software Installation
 
@@ -45,6 +53,8 @@ Run `install_sim` with the option `<sim_version>` to install the libraries neede
 The script will first test for the existence of the libraries and 
 will not install them if they are already present.
 
+___
+
 #### Gemc Installation
 
 Run `install_gemc` with the option `<gemc_version>` to install 
@@ -64,9 +74,28 @@ In addition, in order to run clas12 simulations using gemc, the following softwa
 - `scons`
 - `cmag`
 - `mlibrary`
-- `gemc`
-- `clas12Tags` geometry and gcards
+- `clas12Tags` code, geometry and gcards
 
+
+___
+
+#### Gemc3 Installation
+
+Run `install_gemc3` with the option `<gemc_version>` to install 
+the software needed to run clas12 simulations with gemc.
+
+` <gemc_version>` is the clas12Tag containing gemc and the clas12 geometry database.
+
+- `3.0`: uses `geant4 11.0.3`` 
+
+`install_gemc3` will install, if not present already, the libraries needed for Geant4 simulations. 
+In addition the following software is installed:
+
+
+- `scons`
+- `glibrary`
+- `gemc3` 
+- `scig`: python interface to gemc3
 
 
 ---
@@ -154,8 +183,16 @@ Use the following scripts to install the individual packages:
 - `install_evio`: event I/O data format        
 - `install_hipo`: high performance I/O data format
 - `install_cmag`: CLAS12 magnetic field library
-- `install_mlibrary`: gemc linraries
+- `install_mlibrary`: gemcw libraries
 - `install_clas12Tags`: clas12 tags of gemc simulation software and geometry
+- `install_g2`: gemc v2 simulation code
+
+#### For gemc3:
+
+- `install_scons_bm`: scons build system
+- `install_glibrary`: gemc3 libraries
+- `install_g3`: gemc3 simulation software
+- `install_scig`: python interface to gemc3
 
 ---
 
