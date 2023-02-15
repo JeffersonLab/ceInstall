@@ -43,12 +43,12 @@ elif thisPlatform == 'Linux':
         with open('/etc/os-release') as f:
             columns = f.read().strip().split()
             idList = [s for s in columns if "ID=" in s]
-            verList = [s for s in columns if "VERSION=" in s]
+            verList = [s for s in columns if "VERSION_ID=" in s]
             ids = idList[0].split("=")
-            vers = verList[0].split('="')
-            osreleasVersion = str(ids[1]) + str(int(float(vers[1])))
+            vers = verList[0].split('="')[1].split('.')[0]
+            osreleasVersion = 'ubuntu' + vers
     else:
-        raise ValueError('Unsupported Linux Version: no /etc/redhat-release')
+        raise ValueError('Unsupported Linux Version: no /etc/redhat-release or /etc/os-release')
 
     # Getting gcc version
     # This assumes a return from gcc --version first line like this one:

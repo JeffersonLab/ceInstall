@@ -241,14 +241,27 @@ where
 
 ```yum install  environment-modules gcc-c++ expat-devel zlib-devel libX11-devel mesa-libGLU-devel libXmu-devel mariadb-devel qt5-qttools-devel scons```
 
+To enable modules, the following line should be added to your `.bashrc` or `.zshrc`:
+
+`. /usr/share/Modules/init/zsh` or `. /usr/share/Modules/init/bash`
+
 #### Linux Ubuntu line installation of requirements[^2]:
 
 ```apt-get install environment-modules g++ mysql-client libmysqlclient-dev libexpat1-dev cmake scons libx11-dev libxext-dev libglu1-mesa-dev libxt-dev libxmu-dev libxrender-dev libxft-dev libafterimage-dev```
+
+To enable modules, the following line should be added to your `.bashrc` or `.zshrc`:
+
+`. /usr/share/Modules/init/zsh` or `. /usr/share/Modules/init/bash`
 
 #### Linux CentOS line installation of requirements[^2]:
 
 ```yum install  environment-modules gcc-c++ expat-devel zlib-devel libX11-devel mesa-libGLU-devel libXmu-devel mariadb-devel qt5-qttools-devel python3-scons```
 
+To enable modules, the following line should be added to your `.bashrc` or `.zshrc`:
+
+`. /usr/share/Modules/init/zsh` or `. /usr/share/Modules/init/bash`
+
+___
 
 [^1]: tested on
  fedora 36
