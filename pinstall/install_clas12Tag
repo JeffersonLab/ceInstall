@@ -11,7 +11,7 @@ tar_strip=1                                             # in the tarball, the so
 # cd /opt/projects/gemc/clas12Tags
 # find ./ -name .sconsign.dblite -delete
 # cd 4.4.2/source ; scons -c ; cd ../../5.1/source ; scons -c ; cd ../../
-# rm clas12Tags-*
+# rm -f clas12Tags-*
 # gtar cvf clas12Tags-4.4.2.tar --exclude=.git  4.4.2  ;  gzip  clas12Tags-4.4.2.tar
 # gtar cvf clas12Tags-5.1.tar   --exclude=.git  5.1    ;  gzip  clas12Tags-5.1.tar
 # scp clas12Tags-* ftp.jlab.org:/group/12gev_phys/www/packages/sources/clas12Tags
