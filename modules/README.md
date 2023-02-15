@@ -220,12 +220,14 @@ the libraries installation scripts below will be in your $PATH.
 - `qt5`
 - `scons`
 - `modules` > 4.5 
+- `zsh`
+- `wget`
 
 Find below the commands to install these requirements. Please email any corrections to
 [Maurizio](mailto:ungaro@jlab.org?subject=CeInstall Requirements Corrections).
 
 
-#### Mac installation of requirements:
+#### Mac installation of requirements (brew):
 
 ```brew install wget cmake mysql qt@5 scons freeglut modules```
 
@@ -239,27 +241,27 @@ where
 
 #### Linux Fedora line installation of requirements[^1]:
 
-```yum install  environment-modules gcc-c++ expat-devel zlib-devel libX11-devel mesa-libGLU-devel libXmu-devel mariadb-devel qt5-qttools-devel scons```
+```yum install zsh wget environment-modules gcc-c++ expat-devel zlib-devel libX11-devel mesa-libGLU-devel libXmu-devel mariadb-devel qt5-qttools-devel scons```
 
 To enable modules, the following line should be added to your `.bashrc` or `.zshrc`:
 
-`. /usr/share/Modules/init/zsh` or `. /usr/share/Modules/init/bash`
+`. /usr/share/modules/init/zsh` or `. /usr/share/modules/init/bash`
 
 #### Linux Ubuntu line installation of requirements[^2]:
 
-```apt-get install environment-modules g++ mysql-client libmysqlclient-dev libexpat1-dev cmake scons libx11-dev libxext-dev libglu1-mesa-dev libxt-dev libxmu-dev libxrender-dev libxft-dev libafterimage-dev```
+```apt-get install zsh wget environment-modules g++ mysql-client libmysqlclient-dev libexpat1-dev cmake scons libx11-dev libxext-dev libglu1-mesa-dev libxt-dev libxmu-dev libxrender-dev libxft-dev libafterimage-dev```
 
 To enable modules, the following line should be added to your `.bashrc` or `.zshrc`:
 
-`. /usr/share/Modules/init/zsh` or `. /usr/share/Modules/init/bash`
+`. /usr/share/modules/init/zsh` or `. /usr/share/modules/init/bash`
 
 #### Linux CentOS line installation of requirements[^2]:
 
-```yum install  environment-modules gcc-c++ expat-devel zlib-devel libX11-devel mesa-libGLU-devel libXmu-devel mariadb-devel qt5-qttools-devel python3-scons```
+```yum install zsh wget environment-modules gcc-c++ expat-devel zlib-devel libX11-devel mesa-libGLU-devel libXmu-devel mariadb-devel qt5-qttools-devel python3-scons```
 
 To enable modules, the following line should be added to your `.bashrc` or `.zshrc`:
 
-`. /usr/share/Modules/init/zsh` or `. /usr/share/Modules/init/bash`
+`. /usr/share/modules/init/zsh` or `. /usr/share/modules/init/bash`
 
 ___
 
