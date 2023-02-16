@@ -7,7 +7,7 @@ tar_strip=1                                           # in the tarball, the sour
 
 # tar packages downloaded on the farm with:
 # cd /group/12gev_phys/www/packages/sources/mlibrary
-# wget https://github.com/gemc/mlibrary/archive/refs/tags/v1.7.tar.gz -O mlibrary-1.7.tar.gz
+# wget https://github.com/gemc/mlibrary/archive/refs/tags/v1.7.tar.gz -O mlibrary_1.7.tar.gz
 
 
 base_dir=$MLIBRARY
