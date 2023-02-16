@@ -11,7 +11,7 @@ set geant4_version         4.10.07.p04
 set scons_bm_version       1.11
 set ccdb_version           1.07.00
 set evio_version           5.1
-set mlibrary_version       1.4
+set mlibrary_version       1.7
 set hipo_version           1.8
 set cmag_version           1.1
 set banks_version          1.7
