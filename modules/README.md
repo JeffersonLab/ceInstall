@@ -1,9 +1,7 @@
-# Installation
+#  Installation
 
 Make sure the [__requirements__](#requirements) for the libraries / environment installation 
 listed at the bottom of this page are met.
-
-### Environment Installation
 
 After choosing an installation location (from here on referred to as ```<ipath>```):
 
@@ -16,42 +14,38 @@ To set up the modules (this could go in your `.zshrc`,  `.bashrc` or `.cshrc`):
 
 `source  <ipath>/ceInstall/modules/setup.sh` or `source  <ipath>/modules/setup.csh`
 
+___
+
+# QuickStart
 
 
-### Libraries installation
+`module load gemc/4.4.2`: loads gemc  version 4.4.2
+
+`module load gemc3/3.0`: loads gemc3 version 3.0
+
+`module load sim/2.6`: loads standalone geant4 libraries, version 2.6 (geant4 11.0.3)
+
+`module test <module>/<version>`: shows what is loaded by a module
+
+`module show <module>/<version>`: test libraries installation (requires load first)
+
+___
+
+
+# Libraries installation
+
+
+
+After sourcing the setup script, the installation scripts below will be in your PATH and can be invoked
+from anywhere.
 
 The libraries will install by default in the same path to ceInstall (see also 
 [Advanced environment options](#advanced-environment-options) ). 
 
-Standalone geant4 libraries can be installed using the `install_sim` script, 
-see [Geant4 Simulation Software Installation](#geant4-simulation-software-installation) below.
 
-The clas12 simulation software (gemc) can be installed using the `install_gemc` script,
-see [Gemc Installation](#gemc-installation) below. This will also install the standalone geant4 libraries.
-
-The gemc3 simulation software (gemc3) can be installed using the `install_gemc3` script,
-see [Gemc3 Installation](#gemc3-installation) below. This will also install the standalone geant4 libraries.
-
-___
-
-#### Geant4 Simulation Software Installation
-
-Run `install_sim` with the option `<sim_version>` to install the libraries needed by geant4:
-
-- `clhep`
-- `xerces-c`
-- `qt`
-- `geant4 data` files
-- `geant4`
-
-` <sim_version>` can be:
-
-- `2.4`: for `geant4` `10.6.02`
-- `2.5`: for `geant4` `10.7.03`
-- `2.6`: for `geant4` `11.0.3`
-
-The script will first test for the existence of the libraries and 
-will not install them if they are already present.
+- The clas12 simulation software (gemc) can be installed using `install_gemc` script.This will also install the standalone geant4 libraries.
+- The gemc3 simulation software (gemc3) can be installed using `install_gemc3` script. This will also install the standalone geant4 libraries.
+- Standalone geant4 libraries can be installed using `install_sim` script.
 
 ___
 
@@ -97,41 +91,29 @@ In addition the following software is installed:
 - `gemc3` 
 - `scig`: python interface to gemc3
 
+___ 
+
+#### Standalone Geant4 Simulation Software Installation
+
+Run `install_sim` with the option `<sim_version>` to install the libraries needed by geant4:
+
+- `clhep`
+- `xerces-c`
+- `qt`
+- `geant4 data` files
+- `geant4`
+
+` <sim_version>` can be:
+
+- `2.4`: for `geant4` `10.6.02`
+- `2.5`: for `geant4` `10.7.03`
+- `2.6`: for `geant4` `11.0.3`
+
+The script will first test for the existence of the libraries and 
+will not install them if they are already present.
 
 ---
 
-# Usage
-
-## sim module
-
-The uber module `sim` controls the subset of geant4 libraries to load. 
-`module avail` will show the available versions of `sim` and `module load sim/version`
-will load the corresponding version. 
-
-Usage examples:
-
-`module load sim/2.4`: loads sim module version 2.4
-
-`module show sim/2.6`: shows what is loaded by sim/2.6
-
-`module test sim/2.5`: shows which libraries are installed (requires load of sim/2.5)
-
-## gemc module
-
-The uber module `gemc` controls the subset of geant4 / clas12 libraries necessary 
-to run clas12 simulations. 
-`module avail` will show the available versions of `gemc` and `module load gemc/version`
-will load the corresponding version. 
-
-Usage examples:
-
-`module load gemc/4.4.2`: loads gemc module version 4.4.2
-
-`module show gemc/5.1`: shows what is loaded by gemc/5.1
-
-`module switch gemc/5.1`: unload gemc / loads gemc module version 5.1
-
-`module test gemc/5.1`: shows which libraries are installed (requires load of gemc/5.1)
 
 # Installation Tree
 
