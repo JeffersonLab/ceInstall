@@ -18,8 +18,11 @@ ___
 
 # QuickStart
 
+`module avail`: shows available modules
 
-`module load gemc/4.4.2`: loads gemc  version 4.4.2
+`module load gemc/4.4.2`: loads gemc (clas12Tags) version 4.4.2
+
+`module load gemc/2.10`: loads gemc version 2.10
 
 `module load gemc3/3.0`: loads gemc3 version 3.0
 
@@ -56,8 +59,10 @@ the software needed to run clas12 simulations with gemc.
 
 ` <gemc_version>` is the clas12Tag containing gemc and the clas12 geometry database.
 
-- `4.4.2`: uses `geant4 10.6` 
-- `5.1`: uses `geant4 10.6` 
+- `4.4.2`: uses `geant4 10.6` and clas12Tags `4.4.2` 
+- `5.1`: uses `geant4 10.6` and clas12Tags `5.1`
+- `2.9`: uses `geant4 10.7`
+- `2.10`: uses `geant4 10.7`
 
 `install_gemc` will install, if not present already, the libraries needed for Geant4 simulations. 
 In addition, in order to run clas12 simulations using gemc, the following software is installed:
@@ -80,7 +85,7 @@ the software needed to run clas12 simulations with gemc.
 
 ` <gemc_version>` is the clas12Tag containing gemc and the clas12 geometry database.
 
-- `3.0`: uses `geant4 11.0.3`` 
+- `1.0`: uses `geant4 11.0.3`` 
 
 `install_gemc3` will install, if not present already, the libraries needed for Geant4 simulations. 
 In addition the following software is installed:
@@ -195,12 +200,12 @@ the libraries installation scripts below will be in your $PATH.
 
 ## Requirements
 
-- `environment modules`
+- `environment modules` > 4.5
 - `gcc/clang` > 8 (for c++17) 
 - `cmake` > 3.16
 - `pyton` > 3.6
 - `qt5`
-- `scons`
+- `scons` > 4.2
 - `modules` > 4.5 
 - `zsh`
 - `wget`
