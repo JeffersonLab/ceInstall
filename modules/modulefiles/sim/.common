@@ -1,6 +1,6 @@
 #%Module4.5
 
-#conflict sim
+conflict sim
 
 set SIM_VERSION $env(SIM_VERSION)
 

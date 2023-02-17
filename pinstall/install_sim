@@ -19,8 +19,13 @@ echo
 
 echo " > Checking missing modules in sim version $sim_version"
 module unload sim/$sim_version -s
-module load	  sim/$sim_version -s
+module load	  sim/$sim_version
 
+# if the above command fails, exit
+if [[ $? -ne 0 ]]; then
+	echo " > ERROR: gemc3/$gemc3_version is not available. Exiting."
+	exit 1
+fi
 [ "$(moduleTestResult .clhep     $CLHEP_VERSION )"    -eq 0 ] && echo " > clhep is installed"    || install_clhep
 [ "$(moduleTestResult .xercesc   $XERCESC_VERSION )"  -eq 0 ] && echo " > xercesc is installed"  || install_xercesc
 [ "$(moduleTestResult .qt        $QT_VERSION)"        -eq 0 ] && echo " > qt is installed"       || copy_qt

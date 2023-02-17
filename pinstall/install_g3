@@ -7,7 +7,7 @@ tar_strip=1                                  # in the tarball, the source is ins
 
 # tar packages downloaded on the farm with:
 # cd /group/12gev_phys/www/packages/sources/gemc
-# wget https://github.com/gemc/src/archive/refs/tags/3.0.tar.gz -O gemc3-3.0.tar.gz
+# wget https://github.com/gemc/src/archive/refs/tags/1.0.tar.gz -O gemc3-1.0.tar.gz
 
 base_dir=$GEMC3_BASE_DIR/$GEMC3_VERSION
 

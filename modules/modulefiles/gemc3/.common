@@ -1,6 +1,6 @@
 #%Module4.5
 
-#conflict gemc
+conflict gemc3
 
 module load .clhep/${clhep_version}
 module load .xercesc/${xercesc_version}
@@ -16,12 +16,12 @@ module load .scig/${scig_version}
 # Environment
 
 set base_dir $env(SIM_HOME)/$env(OSRELEASE)/$env(SIM_SUB_DIR)/$env(SIM_VERSION)
-set dir $base_dir/gemc/${version}
+set dir $base_dir/gemc3/${version}
 
-setenv GEMC3_BASE_DIR $base_dir/gemc
+setenv GEMC3_BASE_DIR $base_dir/gemc3
 setenv GEMC3_VERSION  $version
 
-setenv GEMC3      $dir
+setenv GEMC       $dir
 prepend-path PATH $dir
 
 proc ModulesTest { } {
@@ -64,7 +64,7 @@ proc ModulesTest { } {
 		}
 	}
 
-	set installation_dir  [ getenv GEMC3 ]
+	set installation_dir  [ getenv GEMC ]
     set installation_exe  $installation_dir/gemc
     if { [file isfile $installation_exe ] } {
 	    puts stderr " Y gemc \t\t $installation_exe"

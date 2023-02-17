@@ -1,4 +1,22 @@
-- Make ceInstall release
-- remove old stuff from ceInstall
-- add message to CUE machines - warn how to use new system
--
+- add systematic way to test on these platforms:
+
+- fedora36
+- macos13 (x86_64)
+- macos14 (arm64)
+- ubuntu22
+
+
+These packages:
+
+- sim
+    - 2.4
+    - 2.5
+    - 2.6
+
+- gemc
+    - 4.4.2
+    - 5.1
+
+ - gemc3
+    - 1.0
+

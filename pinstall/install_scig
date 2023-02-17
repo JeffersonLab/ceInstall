@@ -8,6 +8,7 @@ tar_strip=1                               # in the tarball, the source is inside
 # tar packages downloaded on the farm with:
 # cd /group/12gev_phys/www/packages/sources/scig
 # wget https://github.com/gemc/sci-g/archive/refs/tags/1.0.tar.gz -O scig-1.0.tar.gz
+# wget https://github.com/gemc/sci-g/archive/refs/tags/1.1.tar.gz -O scig-1.1.tar.gz
 
 base_dir="$SCIG"
 

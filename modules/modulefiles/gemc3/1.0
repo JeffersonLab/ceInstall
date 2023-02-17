@@ -1,16 +1,16 @@
 #%Module4.5
 
 setenv SIM_VERSION 2.6
-set version 3.0
+set version 1.0
 
 set clhep_version          2.4.5.1
 set xercesc_version        3.2.3
 set qt_version             system
 set root_version           system
 set geant4_version         11.0.3
-set scons_bm_version       1.11
+set scons_bm_version       1.12
 set glibrary_version       1.2
-set scig_version           1.0
+set scig_version           1.1
 
 
 set moduledir [file dirname $ModulesCurrentModulefile]
