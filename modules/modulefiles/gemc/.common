@@ -22,7 +22,7 @@ set noarch_dir $env(SIM_HOME)/noarch
 setenv FIELD_DIR $noarch_dir/data
 
 
-# if major $version is 2, then it is gemc2
+# if major $version is 2, then it is gemc2, otherwise it's clas12Tags
 if { [ lindex [ split $version . ] 0 ] == 2 } {
     setenv GEMC_VERSION      $version
     set dir $base_dir/gemc2/${version}
@@ -33,7 +33,7 @@ if { [ lindex [ split $version . ] 0 ] == 2 } {
     setenv CLAS12TAG_VERSION $version
     set dir $base_dir/clas12Tags/${version}
     setenv CLAS12TAG_BASE_DIR $base_dir/clas12Tags
-    setenv GEMC               $base_dir/clas12Tags/${version}
+    setenv GEMC               $base_dir/clas12Tags/${version}/source
     setenv GEMC_DATA_DIR      $dir
     prepend-path PATH $dir/source
 }
