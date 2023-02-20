@@ -57,7 +57,7 @@ ___
 Run `install_gemc` with the option `<gemc_version>` to install 
 the software needed to run clas12 simulations with gemc.
 
-` <gemc_version>` is the clas12Tag containing gemc and the clas12 geometry database.
+` <gemc_version>` is the gemc or clas12Tag version. 
 
 - `4.4.2`: uses `geant4 10.6` and clas12Tags `4.4.2` 
 - `5.1`: uses `geant4 10.6` and clas12Tags `5.1`

@@ -6,7 +6,7 @@ filename="glibrary/glibrary-$GLIBRARY_VERSION.tar.gz" # includes subdirectory na
 tar_strip=1                                           # in the tarball, the source is inside mlibrary-version
 
 # tar packages downloaded on the farm with:
-# cd /group/12gev_phys/www/packages/sources/clas12Tags
+# cd /group/12gev_phys/www/packages/sources/glibrary
 # wget https://github.com/gemc/glibrary/archive/refs/tags/1.2.tar.gz -O glibrary-1.2.tar.gz
 
 
