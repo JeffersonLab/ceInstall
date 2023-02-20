@@ -1,8 +1,8 @@
 #!/bin/zsh
 
-# if the environment variables G4INSTALL and G4VERSION are not set, exit
-if [[ -z "$G4INSTALL" || -z "$G4VERSION" ]]; then
-	echo "$red > G4INSTALL and G4VERSION environment variables are not set. Exiting.$reset"
+# if the environment variables G4INSTALL and G4_VERSION are not set, exit
+if [[ -z "$G4INSTALL" || -z "$G4_VERSION" ]]; then
+	echo "$red > G4INSTALL and $G4_VERSION environment variables are not set. Exiting.$reset"
 	exit 1
 fi
 
