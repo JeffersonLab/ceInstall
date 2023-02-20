@@ -1,5 +1,11 @@
 #!/bin/zsh
 
+# if the environment variables HIPO and HIPO_VERSION are not set, exit
+if [[ -z "$HIPO" || -z "$HIPO_VERSION" ]]; then
+	echo "$red > HIPO and HIPO_VERSION environment variables are not set. Exiting.$reset"
+	exit 1
+fi
+
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
 filename="hipo/hipo-$HIPO_VERSION.tar.gz" # includes subdirectory name

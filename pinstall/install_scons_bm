@@ -1,5 +1,10 @@
 #!/bin/zsh
 
+# if the environment variables SCONS_BM and SCONS_BM_VERSION are not set, exit
+if [[ -z "$SCONS_BM" || -z "$SCONS_BM_VERSION" ]]; then
+	echo "$red > SCONS_BM and SCONS_BM_VERSION environment variables are not set. Exiting.$reset"
+	exit 1
+fi
 
 # tar packages downloaded on the farm with:
 # cd /group/12gev_phys/www/packages/sources/scons_bm

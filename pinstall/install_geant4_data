@@ -1,5 +1,11 @@
 #!/bin/zsh
 
+# if the environment variables G4DATA_DIR and G4_VERSION are not set, exit
+if [[ -z "$G4DATA_DIR" || -z "$G4_VERSION" ]]; then
+	echo "$red > G4DATA_DIR and G4_VERSION environment variables are not set. Exiting.$reset"
+	exit 1
+fi
+
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
 DATAFILES=(
