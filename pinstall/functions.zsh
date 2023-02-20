@@ -2,6 +2,7 @@
 
 yellow=`tput setaf 3`
 blue=`tput setaf 4`
+red=`tput setaf 1`
 green=`tput setaf 2`
 magenta=`tput setaf 5`
 reset=`tput sgr0`
@@ -153,7 +154,7 @@ cmake_build_and_install() {
 	if [[ -d "$install_dir/lib" ]]; then
 	    echo " Content of $install_dir/lib:"
 	    ls -l "$install_dir/lib"
-	endif
+	fi
 
 	# cleanup
 	echo "$magenta > Cleaning up...$reset"
@@ -174,6 +175,7 @@ cmake_build_and_install() {
 }
 
 scons_build_and_install() {
+
 	install_dir=$1
 	
 	echo " > install_dir:   $install_dir"
@@ -197,7 +199,7 @@ scons_build_and_install() {
 	if [[ -d "lib" ]]; then
 	    echo " Content of lib:"
 	    ls -l lib/
-	endif
+	fi
 
 	echo "$magenta > Compilation and installation completed in $elapsed seconds.$reset"
 	echo
