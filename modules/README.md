@@ -201,12 +201,12 @@ the libraries installation scripts below will be in your $PATH.
 ## Requirements
 
 - `environment modules` > 4.5
-- `gcc/clang` > 8 (for c++17) 
-- `cmake` > 3.16
-- `pyton` > 3.6
+- `gcc/clang` >= 8 (for c++17) 
+- `cmake` >= 3.16
+- `pyton` >= 3.6
 - `qt5`
-- `scons` > 4.2
-- `modules` > 4.5 
+- `scons` >= 4.2
+- `modules` >= 4.5 
 - `zsh`
 - `wget`
 
