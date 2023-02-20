@@ -150,6 +150,10 @@ cmake_build_and_install() {
 
 	echo " Content of $install_dir:"
 	ls -l "$install_dir"
+	if [[ -d "$install_dir/lib" ]]; then
+	    echo " Content of $install_dir/lib:"
+	    ls -l "$install_dir/lib"
+	endif
 
 	# cleanup
 	echo "$magenta > Cleaning up...$reset"
@@ -186,7 +190,15 @@ scons_build_and_install() {
 	#find ./ -name "*.o" -delete
 	local cmd_end="$SECONDS"
 	elapsed=$((cmd_end-cmd_start))
-	
+
+	echo " Content of this dir:"
+    ls -l
+
+	if [[ -d "lib" ]]; then
+	    echo " Content of lib:"
+	    ls -l lib/
+	endif
+
 	echo "$magenta > Compilation and installation completed in $elapsed seconds.$reset"
 	echo
 }
