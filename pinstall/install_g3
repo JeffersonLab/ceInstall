@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 # if the environment variables GEMC3_BASE_DIR and GEMC3_VERSION are not set, exit
-if [[ -z "$GEMC_BASE_DIR" || -z "$GEMC_VERSION" ]]; then
-	echo "$red > GEMC_BASE_DIR and GEMC_VERSION environment variables are not set. Exiting.$reset"
+if [[ -z "$GEMC3_BASE_DIR" || -z "$GEMC3_VERSION" ]]; then
+	echo "$red > GEMC3_BASE_DIR and GEMC3_VERSION environment variables are not set. Exiting.$reset"
 	exit 1
 fi
 
