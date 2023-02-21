@@ -6,7 +6,11 @@ set this_script=`lsof +p $$ |& grep -oE /.\*setup.csh`
 
 # extract path to this file
 set modules_home = `echo $this_script | xargs dirname`
-setenv OSRELEASE `$modules_home/osrelease.py`
+
+# if OSRELEASE environment variable is not set, use osrelease.py
+if ( ! $?OSRELEASE ) then
+    setenv OSRELEASE `$modules_home/osrelease.py`
+endif
 
 # if SIM_HOME environment variable is not set, set it to the current directory
 if ( ! $?SIM_HOME ) then
@@ -24,4 +28,4 @@ echo "Modules loaded for SIM_HOME=$SIM_HOME. Use 'module avail' to see available
 echo
 
 # adds pinstall to path
-setenv PATH "$PATH":"${modules_home}/../pinstall"
+setenv PATH "$PATH":"${modules_home}/../install"
