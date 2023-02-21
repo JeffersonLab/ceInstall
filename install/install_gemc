@@ -48,10 +48,6 @@ else
 	[ "$(moduleTestResult .clas12Tag $gemc_version)" -eq 0 ] && echo " > clas12Tag is installed" || install_clas12Tag
 fi
 
-
-
-
-
 echo
 module test gemc/$gemc_version
 
