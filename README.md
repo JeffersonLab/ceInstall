@@ -39,16 +39,17 @@ ___
 
 
 
-After sourcing the setup script, the installation scripts below will be in your PATH and can be invoked
-from anywhere.
+The installation scripts (in your PATH so they can be run
+from anywhere) will test each package for the existence of its libraries 
+and will not install it already present.
 
-The libraries will install by default in the same path to ceInstall (see also 
-[Advanced environment options](#advanced-environment-options) ). 
+The libraries will install in `<ipath>` (see also 
+[Installation tree](#installation-tree) [Advanced environment options](#advanced-environment-options) ). 
 
 
-- The clas12 simulation software (gemc) can be installed using `install_gemc` script.This will also install the standalone geant4 libraries.
-- The gemc3 simulation software (gemc3) can be installed using `install_gemc3` script. This will also install the standalone geant4 libraries.
-- Standalone geant4 libraries can be installed using `install_sim` script.
+- The __clas12 simulation software (gemc)__ can be installed using `install_gemc` script.This will also install the standalone geant4 libraries.
+- The __gemc3 simulation software (gemc3)__ can be installed using `install_gemc3` script. This will also install the standalone geant4 libraries.
+- __Standalone geant4 libraries__ can be installed using `install_sim` script.
 
 ___
 
@@ -249,6 +250,30 @@ To enable modules, the following line should be added to your `.bashrc` or `.zsh
 To enable modules, the following line should be added to your `.bashrc` or `.zshrc`:
 
 `. /usr/share/modules/init/zsh` or `. /usr/share/modules/init/bash`
+
+___
+
+
+## Installation Troubleshooting
+
+`module test` can be used to check if the libraries are installed. For example:
+
+- `module test sim/2.4`
+- `module test gemc/5.1`
+- `module test gemc3/1.0`
+
+In the resulting log, `Y` means the library is installed, an `N` means it is not installed.
+
+The log errors of each package is saved in cmake_err.txt / build_err.txt  inside 
+its installation path. For example, the build error logs for each package are:
+
+- CLHEP: `$CLHEP_BASE_DIR/build_err.txt`
+- XERCESC: `$XERCESCROOT/build_err.txt`
+- GEANT4: `$G4INSTALL/build_err.txt`
+- GEMC: `$GEMC/build_err.txt`
+
+
+
 
 ___
 

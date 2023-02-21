@@ -18,7 +18,9 @@ echo
 
 
 echo " > Checking missing modules in sim version $sim_version"
-module unload sim/$sim_version -s
+module unload sim
+module unload gemc
+module unload gemc3
 module load	  sim/$sim_version
 
 # if the above command fails, exit
