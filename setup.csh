@@ -28,4 +28,4 @@ echo "Modules loaded for SIM_HOME=$SIM_HOME. Use 'module avail' to see available
 echo
 
 # adds pinstall to path
-setenv PATH "$PATH":"${modules_home}/../install"
+setenv PATH "$PATH":"${modules_home}/install"

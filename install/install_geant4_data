@@ -6,6 +6,11 @@ if [[ -z "$G4DATA_DIR" || -z "$G4_VERSION" ]]; then
 	exit 1
 fi
 
+# tar packages downloaded on the farm with - look on tags > download icon
+# cd /group/12gev_phys/www/packages/sources/geant4_data/version
+# wget the links on the g4 page - and update the version numbers on .g4data
+
+
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
 DATAFILES=(

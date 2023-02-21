@@ -28,4 +28,4 @@ echo "Modules loaded for SIM_HOME=$SIM_HOME. Use 'module avail' to see available
 echo
 
 # adds pinstall to path
-export PATH="$PATH":"${modules_home}/../install"
+export PATH="$PATH":"${modules_home}/install"
