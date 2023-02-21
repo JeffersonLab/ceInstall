@@ -40,11 +40,9 @@ ___
 
 
 The installation scripts (in your PATH so they can be run
-from anywhere) will test each package for the existence of its libraries 
-and will not install it already present.
-
-The libraries will install in `<ipath>` (see also 
-[Installation tree](#installation-tree) [Advanced environment options](#advanced-environment-options) ). 
+from anywhere) will test each package for its existence
+and will install it if not found.  See also [installation tree](#installation-tree) 
+and [advanced environment options](#advanced-environment-options).
 
 
 - The __clas12 simulation software (gemc)__ can be installed using `install_gemc` script.This will also install the standalone geant4 libraries.
