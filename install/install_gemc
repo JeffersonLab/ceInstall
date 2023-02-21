@@ -25,9 +25,10 @@ module load	  gemc/$gemc_version
 
 # if the above command fails, exit
 if [[ $? -ne 0 ]]; then
-	echo " > ERROR: gemc3/$gemc3_version is not available. Exiting."
+	echo " > ERROR: module load gemc/$gemc_version failed. Exiting."
 	exit 1
 fi
+echo
 
 [ "$(moduleTestResult .clhep     $CLHEP_VERSION )"    -eq 0 ] && echo " > clhep is installed"    || install_clhep
 [ "$(moduleTestResult .xercesc   $XERCESC_VERSION )"  -eq 0 ] && echo " > xercesc is installed"  || install_xercesc
