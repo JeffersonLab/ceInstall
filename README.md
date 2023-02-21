@@ -12,7 +12,7 @@ git clone https://github.com/jeffersonlab/ceInstall
 
 To set up the modules (this could go in your `.zshrc`,  `.bashrc` or `.cshrc`):
 
-`source  <ipath>/ceInstall/setup.sh` or `source  <ipath>/modules/setup.csh`
+`source  <ipath>/ceInstall/setup.sh` or `source  <ipath>/ceInstall/setup.csh`
 
 ___
 
