@@ -1,6 +1,6 @@
 #!/bin/zsh
 
- if the environment variables GEMC is not set, exit
+# if the environment variables GEMC is not set, exit
 if [[ -z "$GEMC"  ]]; then
 	echo "$red > $GEMC is not set. Exiting.$reset"
 	exit 1
