@@ -44,9 +44,9 @@ echo
 
 # if major version of GEMC_VERSION is 2, install_gemc2, install_clas12Tag
 if [[ $gemc_version == 2* ]]; then
-	[ "$(moduleTestResult .gemc $gemc_version)" -eq 0 ] && echo " > gemc2 is installed"     || install_g2
+	[ "$(moduleTestResult gemc $gemc_version)" -eq 0 ] && echo " > gemc2 is installed"     || install_g2
 else
-	[ "$(moduleTestResult .gemc $gemc_version)" -eq 0 ] && echo " > clas12Tag is installed" || install_clas12Tag
+	[ "$(moduleTestResult gemc $gemc_version)" -eq 0 ] && echo " > clas12Tag is installed" || install_clas12Tag
 fi
 
 echo
