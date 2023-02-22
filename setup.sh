@@ -24,7 +24,7 @@ fi
 
 module use "${modules_home}"/modulefiles
 
-echo "Modules loaded for SIM_HOME=$SIM_HOME. Use 'module avail' to see available modules."
+echo "Modules available for SIM_HOME=$SIM_HOME. Use 'module avail' to see available modules."
 echo
 
 # adds pinstall to path
