@@ -25,7 +25,7 @@ fi
 
 # if SIM_HOME environment variable is not set, set it to the current directory
 if [ -z "$SIM_HOME" ]; then
-    export SIM_HOME=$(realpath "$modules_home"/../..)
+    export SIM_HOME=$(realpath "$modules_home"/../)
 fi
 
 # if SIM_SUB_DIR environment variable is not set, set it to 'sim'

@@ -25,7 +25,7 @@ endif
 
 # if SIM_HOME environment variable is not set, set it to the current directory
 if ( ! $?SIM_HOME ) then
-    setenv SIM_HOME $modules_home
+    setenv SIM_HOME "$modules_home/.."
 endif
 
 # if SIM_SUB_DIR environment variable is not set, set it to 'sim'
