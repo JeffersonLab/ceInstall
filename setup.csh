@@ -1,5 +1,16 @@
 #!/bin/csh
 
+# at jlab the centos7 machines have an old version of modules
+set hostname=`hostname`
+# if hostname contains .jlab.org echo yes
+if ( `echo $hostname | grep -c .jlab.org` > 0 ) then
+    if ( `cat /etc/redhat-release | grep -c 7` > 0 ) then
+        echo "CentOS 7 detected at JLab. Loading site modules"
+            source /site/12gev_phys/modules/init/tcsh
+    endif
+endif
+
+
 # in csh there's no clean way to determine the path to the current script
 # using lsof of the current process id PID (which is $$)
 set this_script=`lsof +p $$ |& grep -oE /.\*setup.csh`

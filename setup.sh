@@ -1,11 +1,22 @@
 #!/bin/sh
 
+# at jlab the centos7 machines have an old version of modules
+hostname=$(hostname)
+if hostname | grep -q .jlab.org; then
+    # if on centos7, echo yes
+    if [ -f /etc/centos-release ] && grep -q 'CentOS Linux release 7' /etc/centos-release; then
+        echo "CentOS 7 detected at JLab. Loading site modules"
+        # if we are in bash, source the site modules
+        if [ -n "$BASH_VERSION" ]; then
+            source /site/12gev_phys/modules/init/bash
+         elif [ -n "$ZSH_VERSION" ]; then
+            source /site/12gev_phys/modules/init/zsh
+        fi
+    fi
+fi
+
 # extract path to this file
 export modules_home=$(dirname "$(realpath "${BASH_SOURCE:-$0}")")
-
-
-
-
 
 # if OSRELEASE environment variable is not set, use osrelease.py
 if [ -z "$OSRELEASE" ]; then
