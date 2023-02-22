@@ -15,6 +15,6 @@ if [ -f /etc/centos-release ] && grep -q 'CentOS Linux release 7' /etc/centos-re
     fi
 fi
 
-source /site/12gev_phys/setup.csh
+source /site/12gev_phys/ceInstall/setup.sh
 
 

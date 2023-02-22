@@ -15,4 +15,4 @@ endif
 
 
 
-source /site/12gev_phys/setup.csh
+source /site/12gev_phys/ceInstall/setup.csh
