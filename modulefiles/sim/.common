@@ -4,6 +4,7 @@ conflict sim
 
 set SIM_VERSION $env(SIM_VERSION)
 
+module load .osrelease
 module load .clhep/${clhep_version}
 module load .xercesc/${xercesc_version}
 module load .qt/${qt_version}

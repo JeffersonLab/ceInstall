@@ -14,7 +14,7 @@ tar_strip=1                                             # in the tarball, the so
 # tar packages downloaded on the farm with:
 # cd /group/12gev_phys/www/packages/sources/clas12Tags
 # wget https://github.com/gemc/clas12_tags/archive/refs/tags/4.4.2.tar.gz -O clas12Tags-4.4.2.tar.gz
-# wget https://github.com/gemc/clas12_tags/archive/refs/tags/5.1.tar.gz -O clas12Tags-5.1.tar.gz
+# wget https://github.com/gemc/clas12_tags/archive/refs/tags/5.1.tar.gz   -O clas12Tags-5.1.tar.gz
 
 base_dir=$CLAS12TAG_BASE_DIR/$CLAS12TAG_VERSION
 

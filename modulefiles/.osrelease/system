@@ -1,0 +1,5 @@
+#%Module4.5
+
+setenv OSRELEASE [ exec $env(modules_home)/osrelease.py ]
+
+
