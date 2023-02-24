@@ -5,7 +5,7 @@
 set this_script=`lsof +p $$ |& grep -oE /.\*setup.csh`
 
 # extract path to this file
-setenv modules_home = `echo $this_script | xargs dirname`
+set modules_home = `echo $this_script | xargs dirname`
 
 # if SIM_HOME environment variable is not set, set it to the current directory
 if ( ! $?SIM_HOME ) then
@@ -23,6 +23,6 @@ echo "Modules available for SIM_HOME=$SIM_HOME. Use 'module avail' to see availa
 echo
 
 # adds install to path if requested
-if ( "$1" == "install" ) then
-    setenv PATH "$PATH":"${modules_home}/install"
-endif
+# if ( "$1" == "install" ) then
+#     setenv PATH "$PATH":"${modules_home}/install"
+# endif
