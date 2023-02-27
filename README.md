@@ -209,8 +209,14 @@ the libraries installation scripts below will be in your $PATH.
 - `zsh`
 - `wget`
 
+### Optional:
+
+- `root`: for gemc3 root plugin and gemc2 evio2root converter
+
 Find below the commands to install these requirements. Please email any corrections to
 [Maurizio](mailto:ungaro@jlab.org?subject=CeInstall Requirements Corrections).
+
+___
 
 
 #### Mac installation of requirements (brew):

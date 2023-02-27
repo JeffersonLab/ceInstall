@@ -1,11 +1,12 @@
 #!/bin/sh
 
-# This script is used to satisfy the common environment requirements at Jefferson Lab
-module use /apps/modulefiles
-module load cmake/3.23.2
-module load gcc/9.2.0
+# This script is used to as pre-setup the environment at Jefferson Lab (JLab)
 
-# at jlab the centos7 machines have an old version of modules
+# Use JLab modules
+module use /apps/modulefiles
+
+# at JLab the centos7 machines have an old version of modules
+# se we need to use a newer version
 if [ -f /etc/centos-release ] && grep -q 'CentOS Linux release 7' /etc/centos-release; then
     echo "CentOS 7 detected at JLab. Loading site modules"
     if [ -n "$BASH_VERSION" ]; then
