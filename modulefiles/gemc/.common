@@ -15,6 +15,9 @@ module load .mlibrary/${mlibrary_version}
 module load .hipo/${hipo_version}
 module load .cmag/${cmag_version}
 
+if { $banks_version != "na" } {
+    module load .banks/${banks_version}
+}
 
 # Environment
 

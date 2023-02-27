@@ -14,7 +14,7 @@ set evio_version           5.1
 set mlibrary_version       1.7
 set hipo_version           1.8
 set cmag_version           1.1
-set banks_version          1.7
+set banks_version          1.9
 
 set moduledir [file dirname $ModulesCurrentModulefile]
 source $moduledir/.common
