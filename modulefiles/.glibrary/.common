@@ -20,7 +20,7 @@ if { [uname sysname] == "Darwin" } {
 
 setenv GLIBRARY_VERSION $version
 setenv GLIBRARY $dir
-prepend-path GPLUGIN_PATH $dir/plugin
+prepend-path GPLUGIN_PATH $dir/plugins
 
 
 
