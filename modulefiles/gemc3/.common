@@ -12,6 +12,17 @@ module load .scons_bm/${scons_bm_version}
 module load .glibrary/${glibrary_version}
 module load .scig/${scig_version}
 
+set command [module-info command]
+
+#puts stderr $command
+
+
+if { $command == "test" } {
+    puts stderr $command
+    module test .clhep/${clhep_version}
+    module test .scig/${scig_version}
+    puts stderr $command
+}
 
 
 # Environment

@@ -22,7 +22,7 @@ base_dir="$SCONS_BM"
 
 log_general scons_bm "$SCONS_BM_VERSION" "$filename" "$base_dir"
 
-unpack_source_in_directory "$filename" "$base_dir" "$tar_strip"
+unpack_source_in_directory_from_jlab_repo "$filename" "$base_dir" "$tar_strip"
 
 echo "$magenta > scons_bm installation completed.$reset"
 echo

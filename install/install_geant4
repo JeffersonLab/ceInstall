@@ -62,7 +62,7 @@ esac
 
 log_general geant4 "$G4_VERSION" "$filename" "$base_dir"
 
-unpack_source_in_directory "$filename" "$source_dir" "$tar_strip"
+unpack_source_in_directory_from_jlab_repo "$filename" "$source_dir" "$tar_strip"
 
 # change fsqrt definition if geant4 version < 10.7
 if [[ $G4_VERSION == "4.10.06.p02" ]]; then

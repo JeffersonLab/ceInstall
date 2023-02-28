@@ -6,22 +6,20 @@ if [[ -z "$SCIG" || -z "$SCIG_VERSION" ]]; then
 	exit 1
 fi
 
+what="scig"
+what_version="$SCIG_VERSION"
+base_dir="$SCIG"
+grepo="https://github.com/gemc/sci-g/archive/refs/tags/$what_version.tar.gz"
+tar_strip=1  # tarball number of subdirs to strip
+
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
-filename="scig/scig-$SCIG_VERSION.tar.gz" # includes subdirectory name
-tar_strip=1                               # in the tarball, the source is inside scons_bm
+log_general "$what" "$what_version" "$grepo" "$base_dir"
 
-# tar packages downloaded on the farm with:
-# cd /group/12gev_phys/www/packages/sources/scig
-# wget https://github.com/gemc/sci-g/archive/refs/tags/1.0.tar.gz -O scig-1.0.tar.gz
-# wget https://github.com/gemc/sci-g/archive/refs/tags/1.1.tar.gz -O scig-1.1.tar.gz
+unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
 
-base_dir="$SCIG"
 
-log_general scig "$SCIG_VERSION" "$filename" "$base_dir"
 
-unpack_source_in_directory "$filename" "$base_dir" "$tar_strip"
-
-echo "$magenta > scig installation completed.$reset"
+echo "$magenta > $what installation completed.$reset"
 echo
 

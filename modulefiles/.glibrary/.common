@@ -26,15 +26,16 @@ prepend-path GPLUGIN_PATH $dir/plugins
 
 proc ModulesTest { } {
 
-	set var GLIBRARY
-	set installation_dir  [ getenv GLIBRARY ]/lib
-	set retcode 1
+    set var GLIBRARY
+	set installation_dir  [ getenv GLIBRARY ]
+    set installation_plugins  $installation_dir/plugins
+ 	set retcode 1
 
 	puts stderr ""
-	if { [file isdirectory $installation_dir ] } {
-		puts stderr " Y $var $installation_dir"
+	if { [ file isdirectory  $installation_plugins ] } {
+		puts stderr " Y $var $installation_plugins"
 	} else {
-		puts stderr " N $var $installation_dir"
+		puts stderr " N $var $installation_plugins"
 		set retcode 0
 	}
 

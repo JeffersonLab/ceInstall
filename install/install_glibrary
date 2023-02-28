@@ -6,25 +6,24 @@ if [[ -z "$GLIBRARY" || -z "$GLIBRARY_VERSION" ]]; then
 	exit 1
 fi
 
+what="glibrary"
+what_version="$GLIBRARY_VERSION"
+base_dir="$GLIBRARY"
+grepo="https://github.com/gemc/glibrary/archive/refs/tags/$what_version.tar.gz"
+tar_strip=1  # tarball number of subdirs to strip
+
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
-filename="glibrary/glibrary-$GLIBRARY_VERSION.tar.gz" # includes subdirectory name
-tar_strip=1                                           # in the tarball, the source is inside mlibrary-version
+log_general "$what" "$what_version" "$grepo" "$base_dir"
 
-# tar packages downloaded on the farm with:
-# cd /group/12gev_phys/www/packages/sources/glibrary
-# wget https://github.com/gemc/glibrary/archive/refs/tags/1.2.tar.gz -O glibrary-1.2.tar.gz
-
-
-base_dir=$GLIBRARY
-
-
-log_general glibrary "$GLIBRARY_VERSION" "$filename" "$base_dir"
-
-unpack_source_in_directory "$filename" "$base_dir" "$tar_strip"
-
-# notice that if the system is updated, the OPENGL library may point to a different location
-# for example /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/OpenGL.framework instead of 13.0
+unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
 
 scons_build_and_install "$base_dir"
+
+echo "$magenta > $what installation completed.$reset"
+echo
+
+# notice that if the system is updated, the OPENGL library may point to a different location
+# for example /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/OpenGL.framework
+# instead of 13.0
 

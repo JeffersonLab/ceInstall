@@ -42,6 +42,7 @@ echo
 
 
 echo
-module test gemc3/$gemc3_version
+# run this after the ModulesTest in gemc3 calls other modules tests - maybe with external script
+# module test gemc3/$gemc3_version
 
 echo

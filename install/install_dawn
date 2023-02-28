@@ -12,7 +12,7 @@ cmake_options="-Wno-dev"
 
 log_general ccdb "$CCDB_VERSION" "$filename" "$base_dir"
 
-unpack_source_in_directory "$filename" "$base_dir" "$tar_strip"
+unpack_source_in_directory_from_jlab_repo "$filename" "$base_dir" "$tar_strip"
 
 scons_build_and_install "$base_dir"
 
