@@ -16,6 +16,7 @@ set dir $base_dir/banks/${version}
 setenv BANKS_VERSION $version
 setenv BANKS $dir
 
+prepend-path PATH $dir/bin
 
 
 
