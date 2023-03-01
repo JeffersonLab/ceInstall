@@ -1,6 +1,6 @@
 #%Module4.5
 
-set version 1.2
+set version dev
 
 set moduledir [file dirname $ModulesCurrentModulefile]
 source $moduledir/.common
