@@ -1,5 +1,7 @@
 #%Module4.5
 
+prereq .ccdb/1.07.01 gemc3/1.0
+
 set version 1.0
 
 set moduledir [file dirname $ModulesCurrentModulefile]
