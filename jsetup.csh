@@ -1,5 +1,13 @@
 #!/bin/csh
 
+# check that gcc --version gives a version number different than 9
+set gcc_version = `gcc --version | grep -o -E '[0-9]+' | head -1`
+
+if ( $gcc_version == 9 ) then
+    echo "ERROR: gcc version must be 9. Use module load gcc/9.2.0 to load the correct version"
+    exit 1
+endif
+
 # This script is used to as pre-setup the environment at Jefferson Lab (JLab)
 
 setenv SIM_HOME /site/12gev_phys

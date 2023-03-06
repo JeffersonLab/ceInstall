@@ -10,9 +10,11 @@ cd $SIM_HOME
 git clone https://github.com/jeffersonlab/ceInstall
 ```
 
-To set up the modules:
+To set up the enviromnent, run the following command:
 
-`source  $SIM_HOME/ceInstall/setup.sh` or `source  $SIM_HOME/ceInstall/setup.csh`
+`source  $SIM_HOME/ceInstall/setup.sh install` or `source  $SIM_HOME/ceInstall/setup.csh install`
+
+The (optional) argument `install` adds the installation scripts in your PATH. 
 
 ___
 
@@ -38,8 +40,6 @@ ___
 
 # Libraries installation
 
-
-
 The installation scripts will test each package for its existence
 and will install it if not found.  See also [installation tree](#installation-tree) 
 and [advanced environment options](#advanced-environment-options).
@@ -53,7 +53,7 @@ ___
 
 #### Gemc Installation
 
-Run `$SIM_HOME/install_gemc` with the option `<gemc_version>` to install 
+Run `install_gemc` with the option `<gemc_version>` to install 
 the software needed to run clas12 simulations with gemc.
 
 ` <gemc_version>` is the gemc or clas12Tag version. 
@@ -79,7 +79,7 @@ ___
 
 #### Gemc3 Installation
 
-Run `$SIM_HOME/install_gemc3` with the option `<gemc_version>` to install 
+Run `install_gemc3` with the option `<gemc_version>` to install 
 the software needed to run clas12 simulations with gemc.
 
 ` <gemc_version>` is the clas12Tag containing gemc and the clas12 geometry database.
