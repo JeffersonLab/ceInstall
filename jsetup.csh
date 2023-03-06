@@ -4,7 +4,7 @@
 set gcc_version = `gcc --version | grep -o -E '[0-9]+' | head -1`
 
 if ( $gcc_version == 9 ) then
-    echo "ERROR: gcc version must be 9. Use module load gcc/9.2.0 to load the correct version"
+    echo "ERROR: gcc version must be 9. Use module load gcc/9.2.0 to load the correct version before sourcing this file"
     exit 1
 endif
 
