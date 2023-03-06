@@ -5,7 +5,7 @@ gcc_version=$(gcc --version | head -n 1 | cut -d ' ' -f 3)
 gcc_major=$(echo $gcc_version | cut -d '.' -f 1)
 if [ $gcc_major -ne 9 ]; then
     echo "ERROR: gcc version must be 9. Use module load gcc/9.2.0 to load the correct version"
-    exit 1
+    return 1
 fi
 
 # This script is used to as pre-setup the environment at Jefferson Lab (JLab)
