@@ -2,6 +2,8 @@
 
 # This script is used to as pre-setup the environment at Jefferson Lab (JLab)
 
+export SIM_HOME=/site/12gev_phys
+
 # Use JLab modules
 module use /apps/modulefiles
 
@@ -16,6 +18,6 @@ if [ -f /etc/centos-release ] && grep -q 'CentOS Linux release 7' /etc/centos-re
     fi
 fi
 
-source /site/12gev_phys/ceInstall/setup.sh
+source $SIM_HOME/ceInstall/setup.sh
 
 

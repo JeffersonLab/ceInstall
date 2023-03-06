@@ -3,16 +3,16 @@
 Make sure the [__requirements__](#requirements) for the libraries / environment installation 
 listed at the bottom of this page are met.
 
-After choosing an installation location (from here on referred to as ```<ipath>```):
+The environment variable SIM_HOME must be set and point at an existing installation location (for example: `/opt/sim` )
 
 ```
-cd <ipath>
+cd $SIM_HOME
 git clone https://github.com/jeffersonlab/ceInstall
 ```
 
-To set up the modules (this could go in your `.zshrc`,  `.bashrc` or `.cshrc`):
+To set up the modules:
 
-`source  <ipath>/ceInstall/setup.sh` or `source  <ipath>/ceInstall/setup.csh`
+`source  $SIM_HOME/ceInstall/setup.sh` or `source  $SIM_HOME/ceInstall/setup.csh`
 
 ___
 
@@ -20,17 +20,18 @@ ___
 
 `module avail`: shows available modules
 
-`module load gemc/4.4.2`: loads gemc (clas12Tags) version 4.4.2
+`module load gemc/4.4.2`: loads gemc (clas12Tags) version 4.4.2, that uses geant4 10.6
 
-`module load gemc/2.10`: loads gemc version 2.10
+`module load gemc/2.10`: loads gemc version 2.10, that uses geant4 10.7
 
-`module load gemc3/3.0`: loads gemc3 version 3.0
+`module load gemc3/3.0`: loads gemc3 version 1.0, that uses geant4 11
 
 `module load sim/2.6`: loads standalone geant4 libraries, version 2.6 (geant4 11.0.3)
 
-`module test <module>/<version>`: shows what is loaded by a module
+`module show <module>/<version>`: shows what is loaded by a module
 
-`module show <module>/<version>`: test libraries installation (requires load first)
+`module test <module>/<version>`: test libraries installation (requires load first)
+
 
 ___
 
@@ -39,21 +40,20 @@ ___
 
 
 
-The installation scripts (in your PATH so they can be run
-from anywhere) will test each package for its existence
+The installation scripts will test each package for its existence
 and will install it if not found.  See also [installation tree](#installation-tree) 
 and [advanced environment options](#advanced-environment-options).
 
 
-- The __clas12 simulation software (gemc)__ can be installed using `install_gemc` script.This will also install the standalone geant4 libraries.
-- The __gemc3 simulation software (gemc3)__ can be installed using `install_gemc3` script. This will also install the standalone geant4 libraries.
-- __Standalone geant4 libraries__ can be installed using `install_sim` script.
+- The __clas12 simulation software (gemc)__ can be installed using `$SIM_HOME/install_gemc` script.This will also install the standalone geant4 libraries.
+- The __gemc3 simulation software (gemc3)__ can be installed using `$SIM_HOME/install_gemc3` script. This will also install the standalone geant4 libraries.
+- __Standalone geant4 libraries__ can be installed using `$SIM_HOME/install_sim` script.
 
 ___
 
 #### Gemc Installation
 
-Run `install_gemc` with the option `<gemc_version>` to install 
+Run `$SIM_HOME/install_gemc` with the option `<gemc_version>` to install 
 the software needed to run clas12 simulations with gemc.
 
 ` <gemc_version>` is the gemc or clas12Tag version. 
@@ -79,7 +79,7 @@ ___
 
 #### Gemc3 Installation
 
-Run `install_gemc3` with the option `<gemc_version>` to install 
+Run `$SIM_HOME/install_gemc3` with the option `<gemc_version>` to install 
 the software needed to run clas12 simulations with gemc.
 
 ` <gemc_version>` is the clas12Tag containing gemc and the clas12 geometry database.
@@ -99,7 +99,7 @@ ___
 
 #### Standalone Geant4 Simulation Software Installation
 
-Run `install_sim` with the option `<sim_version>` to install the libraries needed by geant4:
+Run `$SIM_HOME/install_sim` with the option `<sim_version>` to install the libraries needed by geant4:
 
 - `clhep`
 - `xerces-c`
@@ -184,16 +184,8 @@ Use the following scripts to install the individual packages:
 
 ## Advanced environment options
 
-Two optional environment variables (make sure to set them before the source command) 
-control the top level directory structure of the installation:
-
-- SIM_HOME: the base location of the libraries. 
-Default is `<ipath>`.
-- SIM_SUB_DIR_SUB_DIR: sub dir name under $SIM_HOME (see Installation Tree below). 
-Default is `sim`.
-
-After the source command, `module avail` will show the available modules and 
-the libraries installation scripts below will be in your $PATH.
+The optional environment variable SIM_SUB_DIR_SUB_DIR can be used to specify the sub dir name 
+under $SIM_HOME (see Installation Tree).  Its default is `sim`.
 
 ---
 
@@ -231,7 +223,7 @@ where
 
 `brewDir=$(brew --prefix)`
 
-#### Linux Fedora line installation of requirements[^1]:
+#### Linux Fedora one-liner installation of requirements[^1]:
 
 ```yum install zsh wget environment-modules gcc-c++ expat-devel zlib-devel libX11-devel mesa-libGLU-devel libXmu-devel mariadb-devel qt5-qttools-devel scons```
 
@@ -239,7 +231,7 @@ To enable modules, the following line should be added to your `.bashrc` or `.zsh
 
 `. /usr/share/modules/init/zsh` or `. /usr/share/modules/init/bash`
 
-#### Linux Ubuntu line installation of requirements[^2]:
+#### Linux Ubuntu one-liner installation of requirements[^2]:
 
 ```apt-get install zsh wget environment-modules g++ mysql-client libmysqlclient-dev libexpat1-dev cmake scons libx11-dev libxext-dev libglu1-mesa-dev libxt-dev libxmu-dev libxrender-dev libxft-dev libafterimage-dev```
 
@@ -247,7 +239,7 @@ To enable modules, the following line should be added to your `.bashrc` or `.zsh
 
 `. /usr/share/modules/init/zsh` or `. /usr/share/modules/init/bash`
 
-#### Linux CentOS line installation of requirements[^2]:
+#### Linux CentOS one-liner installation of requirements[^2]:
 
 ```yum install zsh wget environment-modules gcc-c++ expat-devel zlib-devel libX11-devel mesa-libGLU-devel libXmu-devel mariadb-devel qt5-qttools-devel python3-scons```
 
@@ -260,6 +252,7 @@ ___
 
 ## Installation Troubleshooting
 
+### Check which libraries are installed / not installed
 `module test` can be used to check if the libraries are installed. For example:
 
 - `module test sim/2.4`
@@ -267,6 +260,8 @@ ___
 - `module test gemc3/1.0`
 
 In the resulting log, `Y` means the library is installed, an `N` means it is not installed.
+
+### Check compilation log files
 
 The log errors of each package is saved in cmake_err.txt / build_err.txt  inside 
 its installation path. For example, the build error logs for each package are:

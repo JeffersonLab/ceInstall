@@ -1,5 +1,5 @@
 #%Module4.5
 
-setenv OSRELEASE [ exec $env(sim_modules_home)/osrelease.py ]
+setenv OSRELEASE [ exec $env(SIM_HOME)/ceInstall/osrelease.py ]
 
 

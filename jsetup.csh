@@ -2,6 +2,8 @@
 
 # This script is used to as pre-setup the environment at Jefferson Lab (JLab)
 
+setenv SIM_HOME /site/12gev_phys
+
 # Use JLab modules
 module use /apps/modulefiles
 
@@ -16,4 +18,4 @@ endif
 
 
 
-source /site/12gev_phys/ceInstall/setup.csh
+source $SIM_HOME/ceInstall/setup.sh
