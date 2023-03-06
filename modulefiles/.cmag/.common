@@ -15,7 +15,7 @@ set dir $base_dir/cmag/${version}
 
 setenv CMAG_VERSION $version
 setenv C12BFIELDS $dir
-
+setenv FIELD_DIR $env(SIM_HOME)/noarch/data
 
 
 

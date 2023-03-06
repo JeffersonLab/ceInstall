@@ -1,18 +1,18 @@
 #!/bin/zsh
 
-source "$(dirname "$(readlink -f "$0")")"/functions
 
-filename="ccdb/ccdb-$CCDB_VERSION.tar.gz" # includes subdirectory name
-tar_strip=1                               # in the tarball, the source is inside ccdb-version
+base_dir="$FIELD_DIR"
+brepo="https://clasweb.jlab.org/clas12offline/magfield/"
 
+maps=(Symm_solenoid_r601_phi1_z1201_13June2018 Symm_torus_r2501_phi16_z251_24Apr2018 Symm_solenoid_r601_phi1_z1201_12May2019 Full_torus_r251_phi181_z251_03March2020)
 
-base_dir=$CCDB_HOME
-cmake_options="-Wno-dev"
+for map in $maps; do
+	if [ ! -f "$base_dir/$map" ]; then
+		echo "$magenta > Downloading $map...$reset"
+		wget -q -P $base_dir $brepo/$map
+	fi
+done
 
-
-log_general ccdb "$CCDB_VERSION" "$filename" "$base_dir"
-
-unpack_source_in_directory_from_jlab_repo "$filename" "$base_dir" "$tar_strip"
-
-scons_build_and_install "$base_dir"
+echo "$magenta > Fields installation completed.$reset"
+echo
 

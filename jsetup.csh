@@ -1,5 +1,8 @@
 #!/bin/csh
 
+# Use JLab modules
+module use /apps/modulefiles
+
 # check that gcc --version gives a version number different than 9
 set gcc_version = `gcc --version | grep -o -E '[0-9]+' | head -1`
 
@@ -11,9 +14,6 @@ endif
 # This script is used to as pre-setup the environment at Jefferson Lab (JLab)
 
 setenv SIM_HOME /site/12gev_phys
-
-# Use JLab modules
-module use /apps/modulefiles
 
 # at JLab the centos7 machines have an old version of modules
 # se we need to use a newer version
