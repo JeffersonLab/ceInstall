@@ -8,7 +8,7 @@ fi
 
 what="clas12_tags"
 what_version="$CLAS12TAG_VERSION"
-base_dir="$CLAS12TAG_BASE_DIR/$CLAS12TAG_VERSION/source"
+base_dir="$CLAS12TAG_BASE_DIR/$CLAS12TAG_VERSION"
 grepo="https://github.com/gemc/clas12_tags/archive/refs/tags/$what_version.tar.gz"
 tar_strip=1  # tarball number of subdirs to strip
 
@@ -18,7 +18,7 @@ log_general "$what" "$what_version" "$grepo" "$base_dir"
 
 unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
 
-scons_build_and_install "$base_dir"
+scons_build_and_install "$base_dir/source"
 
 echo "$magenta > $what installation completed.$reset"
 echo
