@@ -20,10 +20,10 @@ setenv HIPO_LZ4_COMMIT $lz4commit
 
 
 
+prepend-path PYTHONPATH $dir/extensions/python
 
-
-
-
+prepend-path LD_LIBRARY_PATH $dir/lib
+prepend-path LD_LIBRARY_PATH $dir/slib
 
 
 

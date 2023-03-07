@@ -31,7 +31,8 @@ make -j "$n_cpu" 2>"lz4_build_err.txt" 1>"lz4_build_log.txt" || exit
 cp lib/liblz4.* ../lib
 
 cd ../hipo4
-make -j "$n_cpu" 2>"hipo_build_err.txt" 1>"hipo_build_log.txt" || exit
+make          -j "$n_cpu" 2>"hipo_build_err.txt"  1>"hipo_build_log.txt"  || exit
+make slibhipo -j "$n_cpu" 2>"shipo_build_err.txt" 1>"shipo_build_log.txt" || exit
 
 echo "$magenta > $what installation completed.$reset"
 echo
