@@ -29,11 +29,11 @@ git clone https://github.com/lz4/lz4
 cd lz4
 git checkout $HIPO_LZ4_COMMIT
 
-# notice: this is a manual installation until make works from the top level on MacOs Ventura
+# notice: this is a hacked manual installation until make works from the top level on MacOs Ventura
 
 make -j "$n_cpu" 2>"lz4_build_err.txt" 1>"lz4_build_log.txt" || exit
-cp lib/liblz4*.a ../lib
-cp lib/liblz4*.so ../slib
+cp lib/liblz4* ../lib
+cp lib/liblz4* ../slib
 
 cd ../hipo4
 make          -j "$n_cpu" 2> "hipo_build_err.txt" 1>"hipo_build_log.txt"  || exit
