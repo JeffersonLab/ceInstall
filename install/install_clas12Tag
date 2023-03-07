@@ -8,7 +8,7 @@ fi
 
 what="clas12_tags"
 what_version="$CLAS12TAG_VERSION"
-base_dir="$CLAS12TAG_BASE_DIR/$CLAS12TAG_VERSION"
+base_dir="$CLAS12TAG_BASE_DIR/$CLAS12TAG_VERSION/source"
 grepo="https://github.com/gemc/clas12_tags/archive/refs/tags/$what_version.tar.gz"
 tar_strip=1  # tarball number of subdirs to strip
 
