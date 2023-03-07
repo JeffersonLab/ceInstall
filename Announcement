@@ -16,7 +16,6 @@ python: 2 to 3
 scons 2 to 3
 clhep: 2.4.1.3
 geant4: 4.10.06, both in single and multithreaded mode
-root 6.18.04
 ccdb: 1.06 to 1.07
 
 The big change is geant4, just released in December with a physics fix which is crucial for JLab experiments using A=2 or A=3 targets.
@@ -36,7 +35,6 @@ Production tag 2.3 of the JLab Physics Software Libraries will be available on O
 - jana:         0.7.7p1 > 0.8.0
 - mlibrary:     1.2 > 1.3
 - qt:           5.9.1 to system defaults (currently 5.10.1 on most systems)
-- root:         6.12.06 > 6.14.04
 - scons build:  1.6 > 1.7
 - xercesc:      3.2.0 > 3.2.2
 
@@ -54,7 +52,7 @@ A docker image build on CentOS 7.5 using tag 2.3 is available, see data.jlab.org
 
 The complete set of supported libraries is:
 
-banks ccdb clhep evio geant4 gemc jana mlibrary mysql qt root scons xercesc
+banks ccdb clhep evio geant4 gemc jana mlibrary mysql qt scons xercesc
 
 
 Instructions for the JLab interactive nodes ifarm1401 or ifarm1402
