@@ -225,7 +225,7 @@ where
 
 #### Linux Fedora one-liner installation of requirements[^1]:
 
-```yum install zsh wget environment-modules gcc-c++ expat-devel zlib-devel libX11-devel mesa-libGLU-devel libXmu-devel mariadb-devel qt5-qttools-devel scons```
+```yum install     cmake3 make gcc-c++ gfortran expat-devel         wget git environment-modules mysql-devel      zlib-devel libX11-devel mesa-libGLU-devel libXmu-devel  qt5-qttools-devel scons```
 
 To enable modules, the following line should be added to your `.bashrc` or `.zshrc`:
 
@@ -233,7 +233,7 @@ To enable modules, the following line should be added to your `.bashrc` or `.zsh
 
 #### Linux Ubuntu one-liner installation of requirements[^2]:
 
-```apt-get install zsh wget environment-modules g++ mysql-client libmysqlclient-dev libexpat1-dev cmake scons libx11-dev libxext-dev libglu1-mesa-dev libxt-dev libxmu-dev libxrender-dev libxft-dev libafterimage-dev```
+```apt-get install cmake  make g++     gfortran expat libexpat1-dev wget git environment-modules                     mysql-client libmysqlclient-dev scons libx11-dev libxext-dev libglu1-mesa-dev libxt-dev libxmu-dev libxrender-dev libxft-dev libafterimage-dev```
 
 To enable modules, the following line should be added to your `.bashrc` or `.zshrc`:
 
@@ -241,7 +241,7 @@ To enable modules, the following line should be added to your `.bashrc` or `.zsh
 
 #### Linux CentOS one-liner installation of requirements[^2]:
 
-```yum install zsh wget environment-modules gcc-c++ expat-devel zlib-devel libX11-devel mesa-libGLU-devel libXmu-devel mariadb-devel qt5-qttools-devel python3-scons```
+```yum install     cmake3 make gcc-c++ gfortran expat-devel         wget git environment-modules mysql-devel         zlib-devel libX11-devel mesa-libGLU-devel libXmu-devel mariadb-devel qt5-qttools-devel python3-scons```
 
 To enable modules, the following line should be added to your `.bashrc` or `.zshrc`:
 
