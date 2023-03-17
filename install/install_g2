@@ -13,7 +13,7 @@ tar_strip=1                                  # in the tarball, the source is ins
 
 # tar packages downloaded on the farm with:
 # cd /group/12gev_phys/www/packages/sources/clas12Tags
-# wget https://github.com/gemc/source/archive/refs/tags/v2.9.tar.gz -O gemc-2.9.tar.gz
+# wget https://github.com/gemc/source/archive/refs/tags/v2.9.tar.gz  -O gemc-2.9.tar.gz
 # wget https://github.com/gemc/source/archive/refs/tags/v2.10.tar.gz -O gemc-2.10.tar.gz
 
 base_dir=$GEMC_BASE_DIR/$GEMC_VERSION
