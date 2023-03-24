@@ -229,7 +229,7 @@ where
 
 To enable modules, the following line should be added to your `.bashrc` or `.zshrc`:
 
-`. /usr/share/modules/init/zsh` or `. /usr/share/modules/init/bash`
+`. /usr/share/Modules/init/zsh` or `. /usr/share/Modules/init/bash`
 
 #### Linux Ubuntu one-liner installation of requirements[^2]:
 
@@ -237,7 +237,7 @@ To enable modules, the following line should be added to your `.bashrc` or `.zsh
 
 To enable modules, the following line should be added to your `.bashrc` or `.zshrc`:
 
-`. /usr/share/modules/init/zsh` or `. /usr/share/modules/init/bash`
+`. /usr/share/Modules/init/zsh` or `. /usr/share/Modules/init/bash`
 
 #### Linux CentOS one-liner installation of requirements[^2]:
 
@@ -245,7 +245,7 @@ To enable modules, the following line should be added to your `.bashrc` or `.zsh
 
 To enable modules, the following line should be added to your `.bashrc` or `.zshrc`:
 
-`. /usr/share/modules/init/zsh` or `. /usr/share/modules/init/bash`
+`. /usr/share/Modules/init/zsh` or `. /usr/share/Modules/init/bash`
 
 ___
 
