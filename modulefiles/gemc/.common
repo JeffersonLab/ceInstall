@@ -23,7 +23,7 @@ if { $banks_version != "0.9" } {
 
 set base_dir $env(SIM_HOME)/$env(OSRELEASE)/$env(SIM_SUB_DIR)/$env(SIM_VERSION)
 set noarch_dir $env(SIM_HOME)/noarch
-setenv FIELD_DIR $noarch_dir/data
+setenv FIELD_DIR $noarch_dir/data/magfield
 
 
 # if major $version is 2, then it is gemc2, otherwise it's clas12Tags
