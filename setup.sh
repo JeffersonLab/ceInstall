@@ -19,8 +19,6 @@ fi
 
 module use "${SIM_HOME}"/ceInstall/modulefiles
 
-echo; echo "Use 'module avail' to see available modules for SIM_HOME=$SIM_HOME. "
-
 # if the optional argument 'install' is given, add the $SIM_HOME/ceInstall/install to PATH
 if [ "$1" = "install" ]; then
     export PATH=$PATH:"${SIM_HOME}"/ceInstall/install
