@@ -205,15 +205,23 @@ cmake_build_and_install() {
 scons_build_and_install() {
 
 	install_dir=$1
-	
+
+	build_shared=''
+	# if a second argument is given to this function, set build_shared to it
+	if [ -n "$2" ]; then
+        build_shared=$2
+        echo " > build_shared:  $build_shared"
+    fi
+
 	echo " > install_dir:   $install_dir"
 	
 	local cmd_start="$SECONDS"
 	cd "$install_dir" || exit
-	
-	echo "$magenta > Building$reset"
+
+	scons_options=" -j $n_cpu OPT=1 $build_shared"
+	echo "$magenta > Building using scons options: > $scons_options < $reset"
 	rm -f .sconsign.dblite # for some reason this still linger
-	\scons -j "$n_cpu" OPT=1 2>"$install_dir/build_err.txt" 1>"$install_dir/build_log.txt" || exit
+	\scons "$scons_options" 2>"$install_dir/build_err.txt" 1>"$install_dir/build_log.txt" || exit
 	
 	# cleanup
 	echo "$magenta > Cleaning up...$reset"

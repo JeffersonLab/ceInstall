@@ -29,5 +29,5 @@ unpack_source_in_directory_from_jlab_repo "$filename" "$base_dir" "$tar_strip"
 cd $MLIBRARY
 ./compileCmesh 2>"cmesh_build_err.txt" 1>"cmesh_build_log.txt" || exit
 
-scons_build_and_install "$base_dir"
+scons_build_and_install "$base_dir" "LIBRARY=shared"
 
