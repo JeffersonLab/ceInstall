@@ -51,7 +51,7 @@ and [advanced environment options](#advanced-environment-options).
 
 ___
 
-#### Gemc Installation
+### Gemc Installation
 
 Run `install_gemc` with the option `<gemc_version>` to install 
 the software needed to run clas12 simulations with gemc.
@@ -77,7 +77,7 @@ In addition, in order to run clas12 simulations using gemc, the following softwa
 
 ___
 
-#### Gemc3 Installation
+### Gemc3 Installation
 
 Run `install_gemc3` with the option `<gemc_version>` to install 
 the software needed to run clas12 simulations with gemc.
@@ -97,7 +97,7 @@ In addition the following software is installed:
 
 ___ 
 
-#### Standalone Geant4 Simulation Software Installation
+### Standalone Geant4 Simulation Software Installation
 
 Run `$SIM_HOME/install_sim` with the option `<sim_version>` to install the libraries needed by geant4:
 
@@ -115,6 +115,19 @@ Run `$SIM_HOME/install_sim` with the option `<sim_version>` to install the libra
 
 The script will first test for the existence of the libraries and 
 will not install them if they are already present.
+
+#### Compiling geant4 examples
+
+The source code of the geant4 examples is in `$G4INSTALL/source/examples/`.
+To compile one of the examples, create a build directory and run cmake using 
+the  syntax below, where `$G4INSTALL/source/examples/basic/B3` is selected 
+as an example, in a machine with 4 cores (`-j4`)
+
+```
+mkdir build ; cd build
+cmake -DGeant4_DIR=$G4INSTALL/lib $G4INSTALL/source/examples/basic/B3
+make -j4
+```
 
 ---
 
