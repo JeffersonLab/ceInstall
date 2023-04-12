@@ -6,23 +6,17 @@ if [[ -z "$SCONS_BM" || -z "$SCONS_BM_VERSION" ]]; then
 	exit 1
 fi
 
-# tar packages downloaded on the farm with:
-# cd /group/12gev_phys/www/packages/sources/scons_bm
-# wget https://github.com/maureeungaro/scons_bm/archive/refs/tags/v1.11.tar.gz -O scons_bm-1.11.tar.gz
-# wget https://github.com/maureeungaro/scons_bm/archive/refs/tags/v1.12.tar.gz -O scons_bm-1.12.tar.gz
-
+what="scons_bm"
+what_version="$SCONS_BM_VERSION"
+base_dir="$SCONS_BM"
+grepo="https://github.com/maureeungaro/scons_bm/archive/refs/tags/$what_version.tar.gz"
+tar_strip=1  # tarball number of subdirs to strip
 
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
-filename="scons_bm/scons_bm-$SCONS_BM_VERSION.tar.gz" # includes subdirectory name
-tar_strip=1                                           # in the tarball, the source is inside scons_bm
-
-base_dir="$SCONS_BM"
-
-
 log_general scons_bm "$SCONS_BM_VERSION" "$filename" "$base_dir"
 
-unpack_source_in_directory_from_jlab_repo "$filename" "$base_dir" "$tar_strip"
+unpack_source_in_directory_from_url "$filename" "$base_dir" "$tar_strip"
 
 echo "$magenta > scons_bm installation completed.$reset"
 echo
