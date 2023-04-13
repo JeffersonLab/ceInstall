@@ -48,6 +48,11 @@ if [[ $gemc_version == 2* ]]; then
 	[ "$(moduleTestResult gemc $gemc_version)" -eq 0 ] && echo " > gemc2 is installed"     || install_g2
 else
 	[ "$(moduleTestResult gemc $gemc_version)" -eq 0 ] && echo " > clas12Tag is installed" || install_clas12Tag
+	# if the file $FIELD_DIR/Full_torus_r251_phi181_z251_25Jan2021.dat does not exist, run install_field
+	if [[ ! -f "$FIELD_DIR/Full_torus_r251_phi181_z251_25Jan2021.dat" ]]; then
+	  echo " > Field map does not exist. Installing field map."
+    install_fields
+  fi
 fi
 
 # if $BANKS_VERSION exists, test/install banks

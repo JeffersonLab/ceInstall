@@ -40,14 +40,14 @@ ___
 
 # Libraries installation
 
-The installation scripts will test each package for its existence
+The installation scripts will be in your path if you sourced setup with the option `install`. They will test each package for its existence
 and will install it if not found.  See also [installation tree](#installation-tree) 
 and [advanced environment options](#advanced-environment-options).
 
 
-- The __clas12 simulation software (gemc)__ can be installed using `$SIM_HOME/install_gemc` script.This will also install the standalone geant4 libraries.
-- The __gemc3 simulation software (gemc3)__ can be installed using `$SIM_HOME/install_gemc3` script. This will also install the standalone geant4 libraries.
-- __Standalone geant4 libraries__ can be installed using `$SIM_HOME/install_sim` script.
+- The __clas12 simulation software (gemc)__ can be installed using `install_gemc` script.This will also install the standalone geant4 libraries.
+- The __gemc3 simulation software (gemc3)__ can be installed using `install_gemc3` script. This will also install the standalone geant4 libraries.
+- __Standalone geant4 libraries__ can be installed using `install_sim` script.
 
 ___
 
@@ -99,7 +99,7 @@ ___
 
 ### Standalone Geant4 Simulation Software Installation
 
-Run `$SIM_HOME/install_sim` with the option `<sim_version>` to install the libraries needed by geant4:
+Run `install_sim` with the option `<sim_version>` to install the libraries needed by geant4:
 
 - `clhep`
 - `xerces-c`
@@ -183,8 +183,14 @@ Use the following scripts to install the individual packages:
 - `install_hipo`: high performance I/O data format
 - `install_cmag`: CLAS12 magnetic field library
 - `install_mlibrary`: gemcw libraries
+
+If you need to run clas12 simulations:
+
 - `install_clas12Tags`: clas12 tags of gemc simulation software and geometry
-- `install_g2`: gemc v2 simulation code
+
+Otherwise, if you need to run gemc w/o clas12:
+
+- `install_g2`: gemc v2 simulation code 
 
 #### For gemc3:
 
@@ -224,17 +230,29 @@ Find below the commands to install these requirements. Please email any correcti
 ___
 
 
-#### Mac installation of requirements (brew):
+### Mac installation of requirements (brew):
 
 ```brew install wget cmake mysql qt@5 scons freeglut modules```
 
-To enable modules, the following line should be added to your `.bashrc` or `.zshrc`:
 
-`. $brewDir/opt/modules/init/zsh` or `. $brewDir/opt/modules/init/bash`
+#### Bash, zsh
 
-where 
+To enable modules, the following lines should be added to your `.bashrc` or `.zshrc`:
 
-`brewDir=$(brew --prefix)`
+```
+brewDir=$(brew --prefix)
+source $brewDir/opt/modules/init/zsh` or `. $brewDir/opt/modules/init/bash
+```
+
+
+#### Tcsh, csh
+
+To enable modules, the following lines should be added to your `.bashrc` or `.zshrc`:
+
+```
+set brewDir=`brew --prefix`
+source $brewDir/opt/modules/init/tcsh
+```
 
 #### Linux Fedora one-liner installation of requirements[^1]:
 
