@@ -22,7 +22,7 @@ module use "${SIM_HOME}"/ceInstall/modulefiles
 # if the optional argument 'install' is given, add the $SIM_HOME/ceInstall/install to PATH
 if ( $#argv > 0 ) then
     if ( $1 == "install" ) then
-        setenv PATH ${SIM_HOME}"/ceInstall/install/bin":$PATH
+        setenv PATH ${SIM_HOME}"/ceInstall/install":$PATH
         echo "Added ${SIM_HOME}/ceInstall/install to PATH."
         echo
     endif
