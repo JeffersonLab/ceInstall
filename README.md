@@ -187,6 +187,7 @@ Use the following scripts to install the individual packages:
 If you need to run clas12 simulations:
 
 - `install_clas12Tags`: clas12 tags of gemc simulation software and geometry
+- `install_fields`: clas12 magnetic field maps
 
 Otherwise, if you need to run gemc w/o clas12:
 

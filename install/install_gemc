@@ -52,6 +52,8 @@ else
 	if [[ ! -f "$FIELD_DIR/Full_torus_r251_phi181_z251_25Jan2021.dat" ]]; then
 	  echo " > Field map does not exist. Installing field map."
     install_fields
+  else
+    echo " > Field maps are installed."
   fi
 fi
 
