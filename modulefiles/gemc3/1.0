@@ -8,8 +8,8 @@ set xercesc_version        3.2.3
 set qt_version             system
 set geant4_version         11.0.3
 set scons_bm_version       1.12
-set glibrary_version       1.3
-set scig_version           1.4
+set glibrary_version       1.4
+set scig_version           1.5
 
 
 set moduledir [file dirname $ModulesCurrentModulefile]
