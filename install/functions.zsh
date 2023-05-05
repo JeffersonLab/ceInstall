@@ -218,14 +218,15 @@ scons_build_and_install() {
 	local cmd_start="$SECONDS"
 	cd "$install_dir" || exit
 
-	scons_options=" -j $n_cpu OPT=1 $build_shared"
+	scons_options=" -j$n_cpu OPT=1 $build_shared"
 	echo "$magenta > Building using scons options: > $scons_options < $reset"
 	rm -f .sconsign.dblite # for some reason this still linger
-	\scons "$scons_options" 2>"$install_dir/build_err.txt" 1>"$install_dir/build_log.txt" || exit
-	
+#	\scons "$scons_options" 2>"$install_dir/build_err.txt" 1>"$install_dir/build_log.txt" || exit
+	\scons "$scons_options"
+
 	# cleanup
 	echo "$magenta > Cleaning up...$reset"
-	#find ./ -name "*.o" -delete
+	find ./ -name "*.o" -delete
 	local cmd_end="$SECONDS"
 	elapsed=$((cmd_end-cmd_start))
 
