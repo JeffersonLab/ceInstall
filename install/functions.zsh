@@ -58,7 +58,7 @@ unpack_source_in_directory_from_jlab_repo() {
 	
 	echo "$magenta > Fetching source from $url onto $filename$reset"
 	rm -f "$filename"
-	curl "$url" --output "$filename"
+	curl -sSL  "$url" --output "$filename"
 	
 	echo "$magenta > Unpacking $filename in $dir$reset"
 	echo
@@ -86,13 +86,15 @@ unpack_source_in_directory_from_url() {
 
 	echo "$magenta > Fetching source from $url onto $filename$reset"
 	rm -f "$filename"
-	curl "$url" --output "$filename"
+	curl -sSL "$url" --output "$filename"
+	echo "Downloaded file:"
+	ls -lrt
 
 	echo "$magenta > Unpacking $filename in $dir$reset"
 	echo
 
 	tar -zxpf "$filename" --strip-components="$tar_strip"
-	rm -f "$filename"
+	#rm -f "$filename"
 }
 
 unpack_data_in_directory() {
@@ -106,7 +108,7 @@ unpack_data_in_directory() {
 	
 	echo "$magenta > Fetching source from $url onto $filename$reset"
 	rm -f "$filename"
-	curl "$url" --output "$filename"
+	curl -sSL "$url" --output "$filename"
 	
 	echo "$magenta > Unpacking $filename in $dir$reset"
 	echo
