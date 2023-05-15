@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+# this legacy geant4 install script still uses source code and data on the jlab repo
+
 # if the environment variables G4DATA_DIR and G4_VERSION are not set, exit
 if [[ -z "$G4DATA_DIR" || -z "$G4_VERSION" ]]; then
 	echo "$red > G4DATA_DIR and G4_VERSION environment variables are not set. Exiting.$reset"

@@ -6,24 +6,22 @@ if [[ -z "$CLHEP_BASE_DIR" || -z "$CLHEP_VERSION" ]]; then
 	exit 1
 fi
 
-# tar packages downloaded on the farm with - look on tags > download icon
-# cd /group/12gev_phys/www/packages/sources/clhep
-# wget https://gitlab.cern.ch/CLHEP/CLHEP/-/archive/CLHEP_2_4_6_2/CLHEP-CLHEP_2_4_6_2.tar.gz -O clhep-2.4.6.2.tgz
+what="clhep"
+what_version="$CLHEP_VERSION"
+base_dir="$CLHEP_BASE_DIR"
+source_dir=$CLHEP_BASE_DIR/../source
+build_dir=$CLHEP_BASE_DIR/../build
+cmake_options="-Wno-dev"
+grepo="https://proj-clhep.web.cern.ch/proj-clhep/dist1/clhep-$what_version.tgz"
+tar_strip=2  # tarball number of subdirs to strip
 
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
-filename="clhep/clhep-$CLHEP_VERSION.tgz" # includes subdirectory name
-tar_strip=2                               # in the tarball, the source is inside VERSION/CLHEP
+log_general "$what" "$what_version" "$grepo" "$base_dir"
 
-source_dir=$CLHEP_BASE_DIR/../source
-build_dir=$CLHEP_BASE_DIR/../build
-base_dir=$CLHEP_BASE_DIR
-cmake_options="-Wno-dev"
-
-
-log_general clhep "$CLHEP_VERSION" "$filename" "$base_dir"
-
-unpack_source_in_directory_from_jlab_repo "$filename" "$source_dir" "$tar_strip"
+unpack_source_in_directory_from_url "$grepo" "$source_dir" "$tar_strip"
 
 cmake_build_and_install "$source_dir" "$build_dir" "$base_dir" "$cmake_options"
 
+echo "$magenta > $what installation completed.$reset"
+echo

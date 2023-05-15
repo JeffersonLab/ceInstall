@@ -11,38 +11,7 @@ reset=`  tput sgr0`
 export CC=gcc
 export CXX=g++
 
-
-# check if the environment SIM_VERSION is set
-#if [ -z "SIM_VERSION" ]; then
-#	echo
-#	echo " The sim environment is not set. Use:"
-#	echo
-#	echo "$yellow module load sim/<VERSION> $reset"
-#	echo
-#	echo " to load it. Use:"
-#	echo
-#	echo "$yellow module aval $reset"
-#	echo
-#	echo " to show the available versions."
-#	echo
-#
-#	exit 1
-#fi
-
-# set alias to wget depending on the OS
-case $(uname -s) in
-	Linux)
-		alias mwget="wget -c -nv --no-check-certificate"
-		;;
-	Darwin)
-		alias mwget="wget -qc --show-progress --no-check-certificate"
-		;;
-	*)
-		echo "Unsupported OS: $(uname -s)"
-		exit 1
-		;;
-esac
-
+# should be deeprecated soon
 repo="https://www.jlab.org/12gev_phys/packages/sources"
 
 n_cpu=$(getconf _NPROCESSORS_ONLN)
@@ -59,7 +28,6 @@ log_general() {
 	echo " > Destination:             $base_dir"
 	echo " > Release:                 $OSRELEASE"
 	echo " > Multithread Compilation: $n_cpu"
-	echo " > Fetch command:           $(which mwget)"
 	echo
 }
 
@@ -90,7 +58,7 @@ unpack_source_in_directory_from_jlab_repo() {
 	
 	echo "$magenta > Fetching source from $url onto $filename$reset"
 	rm -f "$filename"
-	mwget "$url"
+	curl "$url" --output "$filename"
 	
 	echo "$magenta > Unpacking $filename in $dir$reset"
 	echo
@@ -118,7 +86,7 @@ unpack_source_in_directory_from_url() {
 
 	echo "$magenta > Fetching source from $url onto $filename$reset"
 	rm -f "$filename"
-	mwget "$url"
+	curl "$url" --output "$filename"
 
 	echo "$magenta > Unpacking $filename in $dir$reset"
 	echo
@@ -138,7 +106,7 @@ unpack_data_in_directory() {
 	
 	echo "$magenta > Fetching source from $url onto $filename$reset"
 	rm -f "$filename"
-	mwget "$url"
+	curl "$url" --output "$filename"
 	
 	echo "$magenta > Unpacking $filename in $dir$reset"
 	echo

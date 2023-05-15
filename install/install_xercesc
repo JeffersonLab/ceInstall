@@ -6,20 +6,23 @@ if [[ -z "$XERCESCROOT" || -z "$XERCESC_VERSION" ]]; then
 	exit 1
 fi
 
-source "$(dirname "$(readlink -f "$0")")"/functions.zsh
-
-filename="xercesc/xerces-c-$XERCESC_VERSION.tar.gz" # includes subdirectory name
-tar_strip=1                                         # in the tarball, the source is inside xerces-c-VERSION
-
+what="xercesc"
+what_version="$XERCESC_VERSION"
+base_dir="$XERCESCROOT"
 source_dir=$XERCESCROOT/source
 build_dir=$XERCESCROOT/build
-base_dir=$XERCESCROOT
 cmake_options="-Wno-dev"
+grepo="https://dlcdn.apache.org//xerces/c/3/sources/xerces-c-$what_version.tar.gz"
+tar_strip=1  # tarball number of subdirs to strip
 
+source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
-log_general xercesc "$XERCESC_VERSION" "$filename" "$base_dir"
+log_general "$what" "$what_version" "$grepo" "$base_dir"
 
-unpack_source_in_directory_from_jlab_repo "$filename" "$source_dir" "$tar_strip"
+unpack_source_in_directory_from_url "$grepo" "$source_dir" "$tar_strip"
 
 cmake_build_and_install "$source_dir" "$build_dir" "$base_dir" "$cmake_options"
+
+echo "$magenta > $what installation completed.$reset"
+echo
 
