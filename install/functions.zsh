@@ -17,6 +17,11 @@ repo="https://www.jlab.org/12gev_phys/packages/sources"
 n_cpu=$(getconf _NPROCESSORS_ONLN)
 
 
+whine_and_quit() {
+  echo "$red $1 error $reset"
+  exit 1
+}
+
 log_general() {
 	this_package=$1
 	version=$2
@@ -54,7 +59,7 @@ unpack_source_in_directory_from_jlab_repo() {
 	echo
 	
 	dir_remove_and_create "$dir"
-	cd "$dir" || exit
+	cd "$dir" || whine_and_quit "cd $dir"
 	
 	echo "$magenta > Fetching source from $url onto $filename$reset"
 	rm -f "$filename"
@@ -82,7 +87,7 @@ unpack_source_in_directory_from_url() {
 	echo
 
 	dir_remove_and_create "$dir"
-	cd "$dir" || exit
+	cd "$dir" || whine_and_quit "cd $dir"
 
 	echo "$magenta > Fetching source from $url onto $filename$reset"
 	rm -f "$filename"
@@ -104,7 +109,7 @@ unpack_data_in_directory() {
 	filename=$(basename "$url")
 	
 	mkdir -p "$dir"
-	cd "$dir" || exit
+	cd "$dir" || whine_and_quit "cd $dir"
 	
 	echo "$magenta > Fetching source from $url onto $filename$reset"
 	rm -f "$filename"
@@ -133,19 +138,19 @@ cmake_build_and_install() {
 
   # install_dir is the base directory containing $build_dir
 	dir_remove_and_create "$build_dir"
-	cd "$build_dir" || exit
+	cd "$build_dir" || whine_and_quit "cd $build_dir"
 	
 	echo
 	echo "$magenta > Configuring cmake with: $=cmake_options$reset"
 	echo
 	
-	cmake  "$source_dir" -DCMAKE_INSTALL_PREFIX="$install_dir" $=cmake_options  2>"$install_dir/cmake_err.txt" 1>"$install_dir/cmake_log.txt" || exit
+	cmake  "$source_dir" -DCMAKE_INSTALL_PREFIX="$install_dir" $=cmake_options  2>"$install_dir/cmake_err.txt" 1>"$install_dir/cmake_log.txt" || whine_and_quit "cmake $source_dir -DCMAKE_INSTALL_PREFIX=$install_dir $=cmake_options"
 	
 	echo "$magenta > Building$reset"
-	make -j "$n_cpu" 2>$install_dir/build_err.txt 1>"$install_dir/build_log.txt" || exit
+	make -j "$n_cpu" 2>$install_dir/build_err.txt 1>"$install_dir/build_log.txt" || whine_and_quit "make -j $n_cpu"
 	
 	echo "$magenta > Installing$reset"
-	make install  2>$install_dir/install_err.txt 1>"$install_dir/install_log.txt" || exit
+	make install  2>$install_dir/install_err.txt 1>"$install_dir/install_log.txt" || whine_and_quit "make install"
 
 	echo " Content of $install_dir:"
 	ls -l "$install_dir"
@@ -186,12 +191,12 @@ scons_build_and_install() {
 	echo " > install_dir:   $install_dir"
 	
 	local cmd_start="$SECONDS"
-	cd "$install_dir" || exit
+	cd "$install_dir" || whine_and_quit "cd $install_dir"
 
 	scons_options=" -j$n_cpu OPT=1 $build_shared"
 	echo "$magenta > Building using scons options: > $scons_options < $reset"
 	rm -f .sconsign.dblite # for some reason this still linger
-#	\scons "$scons_options" 2>"$install_dir/build_err.txt" 1>"$install_dir/build_log.txt" || exit
+#	\scons "$scons_options" 2>"$install_dir/build_err.txt" 1>"$install_dir/build_log.txt" || whine_and_quit "\scons $scons_options"
 	\scons "$scons_options"
 
 	# cleanup
