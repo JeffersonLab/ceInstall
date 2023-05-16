@@ -194,10 +194,10 @@ scons_build_and_install() {
 	cd "$install_dir" || whine_and_quit "cd $install_dir"
 
 	scons_options=" -j$n_cpu OPT=1 $build_shared"
-	echo "$magenta > Building using scons options: > $scons_options < $reset"
+	echo "$magenta > Building using scons options: > $=scons_options < $reset"
 	rm -f .sconsign.dblite # for some reason this still linger
 #	\scons "$scons_options" 2>"$install_dir/build_err.txt" 1>"$install_dir/build_log.txt" || whine_and_quit "\scons $scons_options"
-	\scons "$scons_options"
+	\scons "$=scons_options"
 
 	# cleanup
 	echo "$magenta > Cleaning up...$reset"
