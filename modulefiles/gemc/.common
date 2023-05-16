@@ -29,17 +29,15 @@ setenv FIELD_DIR $noarch_dir/data/magfield
 # if major $version is 2, then it is gemc2, otherwise it's clas12Tags
 if { [ lindex [ split $version . ] 0 ] == 2 } {
     setenv GEMC_VERSION      $version
-    set dir $base_dir/gemc2/${version}
     setenv GEMC_BASE_DIR     $base_dir/gemc2
     setenv GEMC              $base_dir/gemc2/${version}
-    prepend-path PATH        $dir
+    prepend-path PATH        $base_dir/gemc2/${version}
 } else {
-    setenv CLAS12TAG_VERSION $version
-    set dir $base_dir/clas12Tags/${version}
+    setenv CLAS12TAG_VERSION  $version
     setenv CLAS12TAG_BASE_DIR $base_dir/clas12Tags
     setenv GEMC               $base_dir/clas12Tags/${version}/source
-    setenv GEMC_DATA_DIR      $dir
-    prepend-path PATH $dir/source
+    setenv GEMC_DATA_DIR      $base_dir/clas12Tags/
+    prepend-path PATH         $base_dir/clas12Tags/${version}/source
 }
 
 
