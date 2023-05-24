@@ -20,5 +20,8 @@ unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
 
 scons_build_and_install "$base_dir"
 
+cd $GEMC
+git clone https://github.com/gemc/api
+
 echo "$magenta > $what installation completed.$reset"
 echo
