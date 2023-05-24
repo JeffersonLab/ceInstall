@@ -36,7 +36,7 @@ if { [ lindex [ split $version . ] 0 ] == 2 } {
     setenv CLAS12TAG_VERSION  $version
     setenv CLAS12TAG_BASE_DIR $base_dir/clas12Tags
     setenv GEMC               $base_dir/clas12Tags/${version}/source
-    setenv GEMC_DATA_DIR      $base_dir/clas12Tags/
+    setenv GEMC_DATA_DIR      $base_dir/clas12Tags/${version}
     prepend-path PATH         $base_dir/clas12Tags/${version}/source
 }
 

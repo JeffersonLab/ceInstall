@@ -15,7 +15,7 @@ tar_strip=1                               # in the tarball, the source is inside
 
 base_dir=$C12BFIELDS
 
-log_general hipo "$CMAG_VERSION" "$filename" "$base_dir"
+log_general cmag "$CMAG_VERSION" "$filename" "$base_dir"
 
 unpack_source_in_directory_from_jlab_repo "$filename" "$base_dir" "$tar_strip"
 
