@@ -91,15 +91,15 @@ unpack_source_in_directory_from_url() {
 
 	echo "$magenta > Fetching source from $url onto $filename$reset"
 	rm -f "$filename"
-	curl -sSL "$url" --output "$filename"
+	curl -SL "$url" -O
 	echo "Downloaded file:"
-	ls -lrt
+	ls -lrt $filename
 
 	echo "$magenta > Unpacking $filename in $dir$reset"
 	echo
 
 	tar -zxpf "$filename" --strip-components="$tar_strip"
-	#rm -f "$filename"
+	rm -f "$filename"
 }
 
 unpack_data_in_directory() {
