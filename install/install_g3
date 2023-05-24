@@ -6,7 +6,7 @@ if [[ -z "$GEMC3_BASE_DIR" || -z "$GEMC3_VERSION" ]]; then
 	exit 1
 fi
 
-what="scig"
+what="gemc3"
 what_version="$GEMC3_VERSION"
 base_dir="$GEMC3_BASE_DIR/$GEMC3_VERSION"
 grepo="https://github.com/gemc/src/archive/refs/tags/$what_version.tar.gz"

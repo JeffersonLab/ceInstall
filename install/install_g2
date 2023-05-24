@@ -6,29 +6,19 @@ if [[ -z "$GEMC"  ]]; then
 	exit 1
 fi
 
-source "$(dirname "$(readlink -f "$0")")"/functions.zsh
-
-filename="gemc/gemc-$GEMC_VERSION.tar.gz" # includes subdirectory name
-tar_strip=1                                  # in the tarball, the source is inside version
-
-# tar packages downloaded on the farm with:
-# cd /group/12gev_phys/www/packages/sources/clas12Tags
-# wget https://github.com/gemc/source/archive/refs/tags/v2.9.tar.gz  -O gemc-2.9.tar.gz
-# wget https://github.com/gemc/source/archive/refs/tags/v2.10.tar.gz -O gemc-2.10.tar.gz
-
-base_dir=$GEMC_BASE_DIR/$GEMC_VERSION
-
-log_general gemc2 "$GEMC_VERSION" "$filename" "$base_dir"
-
-unpack_source_in_directory_from_jlab_repo "$filename" "$base_dir" "$tar_strip"
-
-scons_build_and_install "$base_dir" "LIBRARY=shared"
-
-cd $GEMC
-what="api"
-what_version="1.0"
-base_dir="$GEMC/api"
-grepo="https://github.com/gemc/api/archive/refs/tags/$what_version.tar.gz"
+what="gemc"
+what_version="$GEMC_VERSION"
+base_dir="$GEMC_BASE_DIR/$GEMC_VERSION"
+grepo="https://github.com/gemc/source/archive/refs/tags/v2.11.tar.gz"
 tar_strip=1  # tarball number of subdirs to strip
 
+source "$(dirname "$(readlink -f "$0")")"/functions.zsh
+
+log_general "$what" "$what_version" "$grepo" "$base_dir"
+
 unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
+
+scons_build_and_install "$base_dir"
+
+echo "$magenta > $what installation completed.$reset"
+echo
