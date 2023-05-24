@@ -29,7 +29,7 @@ log_general() {
 	base_dir=$4
 	echo
 	echo " > Package:                 $this_package version $version"
-	echo " > Origin:                  $repo/$filename"
+	echo " > Origin:                  $filename"
 	echo " > Destination:             $base_dir"
 	echo " > Release:                 $OSRELEASE"
 	echo " > Multithread Compilation: $n_cpu"
