@@ -24,7 +24,9 @@ if [[ $what_version != "dev" ]]; then
   unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
 else
   echo "$magenta > cloning $srepo.$reset"
+  mkdir -p "$GLIBRARY"
   cd "$GLIBRARY/.."
+  rm -rf "$what_version"
   git clone "$srepo" "$what_version"
 fi
 
