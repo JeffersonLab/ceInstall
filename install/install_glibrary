@@ -26,8 +26,8 @@ else
   echo "$magenta > cloning $srepo.$reset"
   mkdir -p "$GLIBRARY"
   cd "$GLIBRARY/.."
-  rm -rf "$what_version"
-  git clone "$srepo" "$what_version"
+  rm -rf "dev"
+  git clone "$srepo" "dev"
 fi
 
 scons_build_and_install "$base_dir"

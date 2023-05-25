@@ -23,8 +23,8 @@ else
   echo "$magenta > cloning $srepo.$reset"
   mkdir -p "$SCONS_BM"
   cd "$SCONS_BM/.."
-  rm -rf "$what_version"
-  git clone "$srepo" "$what_version"
+  rm -rf "dev"
+  git clone "$srepo" "dev"
 fi
 
 echo "$magenta > scons_bm installation completed.$reset"

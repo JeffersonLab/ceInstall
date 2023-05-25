@@ -23,7 +23,7 @@ else
   echo "$magenta > cloning $srepo.$reset"
   mkdir "$GEMC3_BASE_DIR"
   cd "$GEMC3_BASE_DIR"
-  git clone "$srepo" "$what_version"
+  git clone "$srepo" "dev"
 fi
 
 scons_build_and_install "$base_dir"

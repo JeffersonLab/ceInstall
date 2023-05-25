@@ -12,15 +12,22 @@ what="clas12_systems"
 what_version="$CLAS12_SYSTEMS_VERSION"
 base_dir="$CLAS12_SYSTEMS"
 grepo="https://github.com/gemc/clas12-systems/archive/refs/tags/$CLAS12_SYSTEMS_VERSION.tar.gz"
+srepo="https://github.com/maureeungaro/clas12-systems"
 tar_strip=1  # tarball number of subdirs to strip
 
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
 log_general "$what" "$what_version" "$grepo" "$base_dir"
 
-unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
-
-
+if [[ $what_version != "dev" ]]; then
+  unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
+else
+  echo "$magenta > cloning $srepo.$reset"
+  mkdir -p "$CLAS12_SYSTEMS"
+  cd "$CLAS12_SYSTEMS/.."
+  rm -rf "dev"
+  git clone "$srepo" "dev"
+fi
 
 echo "$magenta > $what installation completed.$reset"
 echo
