@@ -21,7 +21,7 @@ if [[ $what_version != "dev" ]]; then
 else
   log_general "$what" "$what_version" "$srepo" "$base_dir"
   echo "$magenta > cloning $srepo.$reset"
-  mkdir "$SCIG"
+  mkdir -p "$SCIG"
   cd "$SCIG/.."
   rm -rf "dev"
   git clone "$srepo" "dev"
