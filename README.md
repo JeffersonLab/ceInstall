@@ -255,6 +255,9 @@ set brewDir=`brew --prefix`
 source $brewDir/opt/modules/init/tcsh
 ```
 
+Notice that this will enable the use of modules, but to use the `install_sim` or `install_gemc` scripts you need to add the lines to the `.zshrc`
+script as described above.
+
 #### Linux Fedora one-liner installation of requirements[^1]:
 
 ```yum install     cmake3 make gcc-c++ gfortran expat-devel         wget git environment-modules mysql-devel      zlib-devel libX11-devel mesa-libGLU-devel libXmu-devel  qt5-qttools-devel scons sqlite-devel```

@@ -6,8 +6,6 @@ if [[ -z "$CLAS12_SYSTEMS" || -z "$CLAS12_SYSTEMS_VERSION" ]]; then
 	exit 1
 fi
 
-source "$(dirname "$(readlink -f "$0")")"/functions.zsh
-
 what="clas12_systems"
 what_version="$CLAS12_SYSTEMS_VERSION"
 base_dir="$CLAS12_SYSTEMS"
@@ -16,7 +14,6 @@ srepo="https://github.com/maureeungaro/clas12-systems"
 tar_strip=1  # tarball number of subdirs to strip
 
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
-
 
 if [[ $what_version != "dev" ]]; then
   log_general "$what" "$what_version" "$grepo" "$base_dir"
