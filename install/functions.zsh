@@ -11,7 +11,7 @@ reset=`  tput sgr0`
 export CC=gcc
 export CXX=g++
 
-# should be deeprecated soon
+# should be deprecated soon
 repo="https://www.jlab.org/12gev_phys/packages/sources"
 
 n_cpu=$(getconf _NPROCESSORS_ONLN)
