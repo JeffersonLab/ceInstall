@@ -31,4 +31,4 @@ endif
 
 
 
-source $SIM_HOME/ceInstall/setup.sh
+source $SIM_HOME/ceInstall/setup.csh
