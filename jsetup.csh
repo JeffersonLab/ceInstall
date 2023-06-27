@@ -3,15 +3,20 @@
 # Use JLab modules
 module use /apps/modulefiles
 
+# need modules veesuib 5 or above
+source /group/clas12/packages/modules/5.2.0/init/csh
+
 # check that gcc --version gives a version number different than 9
-set gcc_version = `gcc --version | grep -o -E '[0-9]+' | head -1`
+# set gcc_version = `gcc --version | grep -o -E '[0-9]+' | head -1`
+#
+# if ( $gcc_version != 9 ) then
+#     echo "ERROR: gcc version must be 9. Use module load gcc/9.2.0 to load the correct version before sourcing this file"
+#     exit 1
+# endif
 
-if ( $gcc_version == 9 ) then
-    echo "ERROR: gcc version must be 9. Use module load gcc/9.2.0 to load the correct version before sourcing this file"
-    exit 1
-endif
-
-# This script is used to as pre-setup the environment at Jefferson Lab (JLab)
+echo "Loading modules gcc/9.2.0 and scons/4.4.0"
+module load gcc/9.2.0
+module load scons/4.4.0
 
 setenv SIM_HOME /site/12gev_phys
 
