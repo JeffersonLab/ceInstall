@@ -33,4 +33,3 @@ fi
 
 source $SIM_HOME/ceInstall/setup.sh
 
-ce /site/12gev_phys/ceInstall/jsetup.sh install
