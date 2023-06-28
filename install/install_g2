@@ -9,7 +9,7 @@ fi
 what="gemc"
 what_version="$GEMC_VERSION"
 base_dir="$GEMC_BASE_DIR/$GEMC_VERSION"
-grepo="https://github.com/gemc/source/archive/refs/tags/v2.11.tar.gz"
+grepo="https://github.com/gemc/source/archive/refs/tags/v$what_version.tar.gz"
 tar_strip=1  # tarball number of subdirs to strip
 
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh

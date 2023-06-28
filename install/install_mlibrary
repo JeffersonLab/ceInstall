@@ -6,28 +6,19 @@ if [[ -z "$MLIBRARY" || -z "$MLIBRARY_VERSION" ]]; then
 	exit 1
 fi
 
+what="mlibrary"
+what_version="$MLIBRARY_VERSION"
+base_dir="$MLIBRARY"
+grepo="https://github.com/gemc/mlibrary/archive/refs/tags/v$what_version.tar.gz"
+tar_strip=1  # tarball number of subdirs to strip
 
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
-filename="mlibrary/mlibrary_$MLIBRARY_VERSION.tar.gz" # includes subdirectory name
-tar_strip=1                                           # in the tarball, the source is inside mlibrary-version
+log_general "$what" "$what_version" "$grepo" "$base_dir"
 
-# tar packages downloaded on the farm with:
-# cd /group/12gev_phys/www/packages/sources/mlibrary
-# wget https://github.com/gemc/mlibrary/archive/refs/tags/v1.7.tar.gz -O mlibrary_1.7.tar.gz
+unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
 
-
-base_dir=$MLIBRARY
-
-
-log_general mlibrary "$MLIBRARY_VERSION" "$filename" "$base_dir"
-
-unpack_source_in_directory_from_jlab_repo "$filename" "$base_dir" "$tar_strip"
-
-# notice that if the system is updated, the OPENGL library may point to a different location
-# for example /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/OpenGL.framework instead of 13.0
-cd $MLIBRARY
+cd $base_dir
 ./compileCmesh 2>"cmesh_build_err.txt" 1>"cmesh_build_log.txt" || exit
 
 scons_build_and_install "$base_dir" "LIBRARY=shared"
-
