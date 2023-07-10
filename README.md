@@ -12,7 +12,7 @@ git clone https://github.com/jeffersonlab/ceInstall
 
 To set up the enviromnent, run the following command:
 
-`source  $SIM_HOME/ceInstall/setup.sh install` or `source  $SIM_HOME/ceInstall/setup.csh install`
+`source  $SIM_HOME/ceInstall/setup.[c]sh install`
 
 The (optional) argument `install` adds the installation scripts in your PATH. 
 
