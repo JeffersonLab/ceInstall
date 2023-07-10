@@ -4,7 +4,7 @@
 module use /apps/modulefiles
 
 # need modules veesuib 5 or above
-source /group/clas12/packages/modules/5.2.0/init/sh
+source /apps/modules/5.2.0/init/sh
 
 # check that gcc --version gives a version number different than 9
 #gcc_version=$(gcc --version | head -n 1 | cut -d ' ' -f 3)
