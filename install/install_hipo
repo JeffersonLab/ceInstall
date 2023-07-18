@@ -2,32 +2,33 @@
 
 # if the environment variables HIPO and HIPO_VERSION are not set, exit
 if [[ -z "$HIPO" || -z "$HIPO_VERSION" ]]; then
-	echo "$red > HIPO and HIPO_VERSION environment variables are not set. Exiting.$reset"
-	exit 1
+  echo "$red > HIPO and HIPO_VERSION environment variables are not set. Exiting.$reset"
+  exit 1
 fi
-
 
 what="hipo"
 what_version="$HIPO_VERSION"
 base_dir="$HIPO"
 grepo="https://github.com/gavalian/hipo/archive/refs/tags/v$what_version.tar.gz"
-tar_strip=1  # tarball number of subdirs to strip
+tar_strip=1 # tarball number of subdirs to strip
 
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
 log_general "$what" "$what_version" "$grepo" "$base_dir"
 
-unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
+# for now get the repo and checkout the tag
+# unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
+mkdir -p $base_dir
+cd $base_dir/..
+rm -rf $base_dir
+git clone --recurse-submodules https://github.com/gavalian/hipo/ $what_version
+
 
 # manual installation includes building lz4 and hipo4
 # cmake from top level does not work for me
 cd $HIPO
 mkdir -p lib slib
-
-rm -rf lz4
-git clone https://github.com/lz4/lz4
 cd lz4
-git checkout $HIPO_LZ4_COMMIT
 
 # notice: this is a hacked manual installation until make works from the top level on MacOs Ventura
 
@@ -36,14 +37,32 @@ cp lib/liblz4* ../lib
 cp lib/liblz4* ../slib
 
 cd ../hipo4
-make          -j "$n_cpu" 2> "hipo_build_err.txt" 1>"hipo_build_log.txt"  || exit
+make -j "$n_cpu"          2>"hipo_build_err.txt"  1>"hipo_build_log.txt"  || exit
 make slibhipo -j "$n_cpu" 2>"shipo_build_err.txt" 1>"shipo_build_log.txt" || exit
-cd ..
-make          -j "$n_cpu" 2> "hipo_build_err.txt" 1>"hipo_build_log.txt"  || exit
 
+# if what_version is 2.X install DRIFTCHAMBERS
+
+
+if [[ $what_version == "2."* ]]; then
+  what="DRIFTCHAMBERS"
+  what_version="$HIPO_VERSION"
+  base_dir="$DRIFTCHAMBERS"
+  grepo="https://github.com/gavalian/driftchambers/archive/refs/tags/v$what_version.tar.gz"
+  tar_strip=1 # tarball number of subdirs to strip
+  log_general "$what" "$what_version" "$grepo" "$base_dir"
+
+  # for now get the repo and checkout the tag
+  # unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
+  mkdir -p $base_dir
+  cd $base_dir/..
+  rm -rf $base_dir
+  git clone --recurse-submodules https://github.com/gavalian/driftchambers/ $what_version
+
+  cd $DRIFTCHAMBERS
+  export HIPO_DIR=$HIPO
+  make 2>"dc_build_err.txt" 1>"dc_build_log.txt" || exit
+
+fi
 
 echo "$magenta > $what installation completed.$reset"
 echo
-
-
-
