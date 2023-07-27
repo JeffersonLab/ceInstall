@@ -102,25 +102,25 @@ unpack_source_in_directory_from_url() {
 	rm -f "$filename"
 }
 
-unpack_data_in_directory() {
-	url=$repo/$1
-	dir=$2
-	
-	filename=$(basename "$url")
-	
-	mkdir -p "$dir"
-	cd "$dir" || whine_and_quit "cd $dir"
-	
-	echo "$magenta > Fetching source from $url onto $filename$reset"
-	rm -f "$filename"
-	curl -sSL "$url" --output "$filename"
-	
-	echo "$magenta > Unpacking $filename in $dir$reset"
-	echo
-	
-	tar -zxpf "$filename"
-	rm -f "$filename"
-}
+#unpack_data_in_directory() {
+#	url=$repo/$1
+#	dir=$2
+#
+#	filename=$(basename "$url")
+#
+#	mkdir -p "$dir"
+#	cd "$dir" || whine_and_quit "cd $dir"
+#
+#	echo "$magenta > Fetching source from $url onto $filename$reset"
+#	rm -f "$filename"
+#	curl -sSL "$url" --output "$filename"
+#
+#	echo "$magenta > Unpacking $filename in $dir$reset"
+#	echo
+#
+#	tar -zxpf "$filename"
+#	rm -f "$filename"
+#}
 
 cmake_build_and_install() {
 	source_dir=$1

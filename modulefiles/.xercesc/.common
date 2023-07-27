@@ -13,16 +13,19 @@ set base_dir $env(SIM_HOME)/$env(OSRELEASE)/$env(SIM_SUB_DIR)/$env(SIM_VERSION)
 
 set dir $base_dir/xercesc/${version}
 
-# set LD_LIBRARY_PATH depending on Darwin/Linux
-if { [uname sysname] == "Linux" } {
-	prepend-path LD_LIBRARY_PATH $dir/lib64
-} elseif { [uname sysname] == "Darwin" } {
-	prepend-path LD_LIBRARY_PATH   $dir/lib
-	setenv DYLD_LIBRARY_PATH $env(LD_LIBRARY_PATH)
-} else {
-	puts stderr "Unknown system type"
-	exit 1
+set lib_location $dir/lib
+set lib64_location $dir/lib
+if { [file isdirectory $lib_location ] } {
+	prepend-path LD_LIBRARY_PATH $lib_location
+} elseif { [file isdirectory $lib64_location ] } {
+	prepend-path LD_LIBRARY_PATH $lib64_location
 }
+
+if { [uname sysname] == "Darwin" } {
+	setenv DYLD_LIBRARY_PATH $env(LD_LIBRARY_PATH)
+}
+
+
 
 setenv XERCESC_VERSION $version
 setenv XERCESCROOT $dir
@@ -33,19 +36,20 @@ setenv XERCESCROOT $dir
 proc ModulesTest { } {
 	
 	set var XERCESC
-	set installation_dir  [ getenv XERCESCROOT ]/lib
-	if { [uname sysname] == "Linux" } {
-		set installation_dir  [ getenv XERCESCROOT ]/lib64
-	}
+	set installation_exe [ getenv XERCESCROOT ]/bin/CreateDOMDocument
+
 	set retcode 1
 
+	puts stderr "[uname machine]"
+
 	puts stderr ""
-	if { [file isdirectory $installation_dir ] } {
-		puts stderr " Y $var $installation_dir"
+	if { [file isfile $installation_exe ] } {
+		puts stderr " Y $var $installation_exe"
 	} else {
-		puts stderr " N $var $installation_dir"
+		puts stderr " N $var $installation_exe"
 		set retcode 0
-	}
+    }
+
 	
 	return $retcode
 }

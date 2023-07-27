@@ -33,7 +33,7 @@ if { [uname sysname] == "Darwin" } {
 proc ModulesTest { } {
 	
 	set var HIPO
-	set installation_dir  [ getenv HIPO ]/lib
+	set installation_dir [ getenv HIPO ]/lib
 	set retcode 1
 
 	puts stderr ""
@@ -45,7 +45,7 @@ proc ModulesTest { } {
 	}
 
     set var DENOISE
-	set installation_exe  [ getenv DRIFTCHAMBERS ]/install/bin/denoise2.exe
+	set installation_exe [ getenv DRIFTCHAMBERS ]/install/bin/denoise2.exe
 
 	if { [file isfile $installation_exe ] } {
 		puts stderr " Y $var \t\t $installation_exe"
