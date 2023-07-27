@@ -42,7 +42,6 @@ make slibhipo -j "$n_cpu" 2>"shipo_build_err.txt" 1>"shipo_build_log.txt" || exi
 
 # if what_version is 2.X install DRIFTCHAMBERS
 
-
 if [[ $what_version == "2."* ]]; then
   what="DRIFTCHAMBERS"
   what_version="$HIPO_VERSION"

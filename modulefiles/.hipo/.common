@@ -44,12 +44,9 @@ proc ModulesTest { } {
 		set retcode 0
 	}
 
-    set var DRIFTCHAMBERS
+    set var DENOISE
 	set installation_exe  [ getenv DRIFTCHAMBERS ]/install/bin/denoise2.exe
 
-	set retcode 1
-
-	puts stderr ""
 	if { [file isfile $installation_exe ] } {
 		puts stderr " Y $var \t\t $installation_exe"
 	} else {
