@@ -17,17 +17,13 @@ set dir $base_dir/geant4/${version}
 
 prepend-path PATH $dir/bin
 
-set lib_location $dir/lib
-set lib64_location $dir/lib
-if { [file isdirectory $lib_location ] } {
-    set G4LIB $lib_location
-    setenv G4LIB $lib_location
-} elseif { [file isdirectory $lib64_location ] } {
-    set G4LIB $lib_location
+setenv G4LIB $dir/lib
+set lib64_location $dir/lib64
+if { [file isdirectory $lib64_location ] } {
     setenv G4LIB $lib64_location
 }
 
-prepend-path LD_LIBRARY_PATH $G4LIB
+prepend-path LD_LIBRARY_PATH $env(G4LIB)
 
 if { [uname sysname] == "Darwin" } {
 	setenv DYLD_LIBRARY_PATH $env(LD_LIBRARY_PATH)
