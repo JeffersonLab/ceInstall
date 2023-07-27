@@ -1,6 +1,8 @@
-#!/bin/zsh -i
+#!/bin/zsh
 
-# -i: interactive mode. Needed to load modules
+# on fedora and ubuntu installation dir is different for modules
+[[ -f /usr/share/Modules/init/sh ]] && source /usr/share/Modules/init/sh
+[[ -f /usr/share/modules/init/sh ]] && source /usr/share/modules/init/sh
 
 . "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
