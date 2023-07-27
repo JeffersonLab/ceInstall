@@ -45,14 +45,15 @@ proc ModulesTest { } {
 	}
 
     set var DRIFTCHAMBERS
-	set installation_dir  [ getenv DRIFTCHAMBERS ]/lib
+	set installation_exe  [ getenv DRIFTCHAMBERS ]/install/bin/denoise2.exe
+
 	set retcode 1
 
 	puts stderr ""
-	if { [file isdirectory $installation_dir ] } {
-		puts stderr " Y $var \t\t $installation_dir"
+	if { [file isfile $installation_exe ] } {
+		puts stderr " Y $var \t\t $installation_exe"
 	} else {
-		puts stderr " N $var \t\t $installation_dir"
+		puts stderr " N $var \t\t $installation_exe"
 		set retcode 0
 	}
 

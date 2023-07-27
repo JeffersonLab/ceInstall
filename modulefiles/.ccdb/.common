@@ -34,14 +34,14 @@ if {  [info exists ::env(USER)] } {
 proc ModulesTest { } {
 	
 	set var CCDB
-	set installation_dir  [ getenv CCDB_HOME ]/lib
+	set installation_exe  [ getenv CCDB_HOME ]/lib/libccdb.a
 	set retcode 1
 
 	puts stderr ""
-	if { [file isdirectory $installation_dir ] } {
-		puts stderr " Y $var $installation_dir"
+	if { [file isfile $installation_exe ] } {
+		puts stderr " Y $var $installation_exe"
 	} else {
-		puts stderr " N $var $installation_dir"
+		puts stderr " N $var $installation_exe"
 		set retcode 0
 	}
 	
