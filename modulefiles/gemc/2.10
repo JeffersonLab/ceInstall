@@ -6,7 +6,7 @@ set version 2.10
 set clhep_version          2.4.4.2
 set xercesc_version        3.2.3
 set qt_version             system
-set geant4_version         4.10.07.p04
+set geant4_version         10.7.4
 set scons_bm_version       1.11
 set ccdb_version           1.07.01
 set evio_version           5.1

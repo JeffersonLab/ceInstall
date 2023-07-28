@@ -10,13 +10,7 @@ fi
 
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
-filename="geant4/geant4-v$G4_VERSION.tar.gz" # includes subdirectory name
-
-# tarball name is different in old geant4 version
-if [[ $SIM_VERSION == 2.4 || $SIM_VERSION == 2.5 ]]; then
-    filename="geant4/geant$G4_VERSION.tar.gz"
-    tar_strip=1
-fi
+filename="https://gitlab.cern.ch/geant4/geant4/-/archive/v$G4_VERSION/geant4-v$G4_VERSION.tar.gz"
 
 tar_strip=1   # in the tarball, the source is inside VERSION/CLHEP
 
@@ -64,10 +58,10 @@ esac
 
 log_general geant4 "$G4_VERSION" "$filename" "$base_dir"
 
-unpack_source_in_directory_from_jlab_repo "$filename" "$source_dir" "$tar_strip"
+unpack_source_in_directory_from_url "$filename" "$source_dir" "$tar_strip"
 
 # change fsqrt definition if geant4 version < 10.7
-if [[ $G4_VERSION == "4.10.06.p02" ]]; then
+if [[ $G4_VERSION == "10.6.2" ]]; then
     echo
     echo "Geant4 version is $G4_VERSION, applying fsqrt patch to $source_dir/source/persistency/ascii/src/G4tgrEvaluator.cc"
     echo
