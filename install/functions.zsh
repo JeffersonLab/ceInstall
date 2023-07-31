@@ -93,7 +93,7 @@ unpack_source_in_directory_from_url() {
 	echo " > filename: $filename"
 	echo
 
-  # if no_remove is 0, do not remove the tarball
+  # if no_remove is 1, do not remove the tarball
   if [ "$no_remove" -eq 0 ]; then
     dir_remove_and_create "$dir"
   else
