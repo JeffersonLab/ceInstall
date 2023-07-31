@@ -76,6 +76,13 @@ unpack_source_in_directory_from_url() {
 	url=$1
 	dir=$2
 	tar_strip=$3
+	# if the fourth argument 'no_remove' is given, do not remove the tarball
+	if [ "$#" -eq 4 ]; then
+    no_remove=$4
+  else
+    no_remove=0
+  fi
+
 	filename=$(basename "$url")
 
 	echo
@@ -86,7 +93,13 @@ unpack_source_in_directory_from_url() {
 	echo " > filename: $filename"
 	echo
 
-	dir_remove_and_create "$dir"
+  # if no_remove is given, do not remove the tarball
+  if [ "$no_remove" -eq 0 ]; then
+    dir_remove_and_create "$dir"
+  else
+    mkdir -p "$dir"
+  fi
+
 	cd "$dir" || whine_and_quit "cd $dir"
 
 	echo "$magenta > Fetching source from $url onto $filename$reset"

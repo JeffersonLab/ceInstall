@@ -35,6 +35,7 @@ proc ModulesTest { } {
 	set var HIPO
 	set installation_dir [ getenv HIPO ]/lib
 	set retcode 1
+	set hipo_version [ getenv HIPO_VERSION ]
 
 	puts stderr ""
 	if { [file isdirectory $installation_dir ] } {
@@ -44,15 +45,22 @@ proc ModulesTest { } {
 		set retcode 0
 	}
 
-    set var DENOISE
-	set installation_exe [ getenv DRIFTCHAMBERS ]/install/bin/denoise2.exe
+    # if version is 2.1 or higher, check for denoise2.exe
+    if { [string first "2.1" $hipo_version] != -1 } {
+        set var DENOISE
+	    set installation_exe [ getenv DRIFTCHAMBERS ]/install/bin/denoise2.exe
 
-	if { [file isfile $installation_exe ] } {
-		puts stderr " Y $var \t\t $installation_exe"
-	} else {
-		puts stderr " N $var \t\t $installation_exe"
-		set retcode 0
+	    if { [file isfile $installation_exe ] } {
+		    puts stderr " Y $var \t\t $installation_exe"
+	    } else {
+		    puts stderr " N $var \t\t $installation_exe"
+		    set retcode 0
+	    }
 	}
+
+
+
+
 
 	return $retcode
 }
