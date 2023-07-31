@@ -15,6 +15,10 @@ source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 dir_remove_and_create "$QTDIR"
 
 # load module for the current OS
+# to find the includes (after the path to qmake is set)
+# qmake -query QT_INSTALL_HEADERS
+# linux other paths:
+# qtchooser -print-env
 case $(uname -s) in
     Darwin)
         brewDir="$(brew --prefix)/Cellar/qt@5"
@@ -51,7 +55,7 @@ case $(uname -s) in
         elif [ -f /etc/os-release ]; then
             echo  " > QT Line: Ubuntu "
             SQTDIR=/usr/lib/x86_64-linux-gnu
-            QTDIR_INCS=/usr/include/qt5  # includes
+            QTDIR_INCS=/usr/include/x86_64-linux-gnu/qt5  # includes
             SQTDIR_ALL=$SQTDIR/qt5       # binaries, mkspecs and plugins
         else
             echo  " > Linux line not supported yet "
