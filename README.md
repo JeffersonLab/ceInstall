@@ -278,7 +278,7 @@ To enable modules, the following line should be added to your `.bashrc` or `.zsh
 
 #### Linux Ubuntu one-liner installation of requirements[^2]:
 
-```apt-get install cmake  make g++     gfortran expat libexpat1-dev wget git environment-modules                     mysql-client libmysqlclient-dev scons libx11-dev libxext-dev libglu1-mesa-dev libxt-dev libxmu-dev libxrender-dev libxft-dev libafterimage-dev qtbase5-dev sqlite-devel```
+```apt-get install cmake  make g++     gfortran expat libexpat1-dev wget git environment-modules                     mysql-client libmysqlclient-dev scons libx11-dev libxext-dev libglu1-mesa-dev libxt-dev libxmu-dev libxrender-dev libxft-dev libafterimage-dev qtbase5-dev libqt5widgets5 libqt5opengl5-dev libqt5printsupport5 libsqlite3-dev```
 
 To enable modules, the following line should be added to your `.bashrc` or `.zshrc`:
 
