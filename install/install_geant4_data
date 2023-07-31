@@ -34,5 +34,5 @@ tar_strip=0
 
 # loop over DATAFILES
 for file in $DATAFILES; do
-  unpack_source_in_directory_from_url https://cern.ch/geant4-data/datasets/$file $G4DATA_DIR $tar_strip "no_remove"
+  unpack_source_in_directory_from_url https://cern.ch/geant4-data/datasets/$file $G4DATA_DIR $tar_strip 0
 done

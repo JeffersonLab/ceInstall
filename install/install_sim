@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/zsh -i
 
 # on fedora and ubuntu installation dir is different for modules
 [[ -f /usr/share/Modules/init/sh ]] && source /usr/share/Modules/init/sh
