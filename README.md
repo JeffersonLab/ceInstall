@@ -221,6 +221,16 @@ under $SIM_HOME (see Installation Tree).  Its default is `sim`.
 - `zsh`
 - `wget`
 
+The following qt packages must be installed:
+
+- Qt5Core
+- Qt5Gui
+- Qt5Widgets
+- Qt5OpenGL
+- Qt5PrintSupport
+
+Unfortunately different Linux distro have different package names for these. 
+
 ### Optional:
 
 - `root`: for gemc3 root plugin and gemc2 evio2root converter
@@ -268,7 +278,7 @@ To enable modules, the following line should be added to your `.bashrc` or `.zsh
 
 #### Linux Ubuntu one-liner installation of requirements[^2]:
 
-```apt-get install cmake  make g++     gfortran expat libexpat1-dev wget git environment-modules                     mysql-client libmysqlclient-dev scons libx11-dev libxext-dev libglu1-mesa-dev libxt-dev libxmu-dev libxrender-dev libxft-dev libafterimage-dev sqlite-devel```
+```apt-get install cmake  make g++     gfortran expat libexpat1-dev wget git environment-modules                     mysql-client libmysqlclient-dev scons libx11-dev libxext-dev libglu1-mesa-dev libxt-dev libxmu-dev libxrender-dev libxft-dev libafterimage-dev qtbase5-dev sqlite-devel```
 
 To enable modules, the following line should be added to your `.bashrc` or `.zshrc`:
 

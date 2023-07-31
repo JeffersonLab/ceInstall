@@ -62,11 +62,11 @@ case $(uname -s) in
         fi
 
         dir_remove_and_create "$QTDIR/lib"
-        cp    "$SQTDIR"/libQt*      "$QTDIR/lib"
-        cp -r "$QTDIR_INCS"         "$QTDIR"
-        cp -r "$SQTDIR_ALL/bin"     "$QTDIR"
-        cp -r "$SQTDIR_ALL/mkspecs" "$QTDIR"
-        cp -r "$SQTDIR_ALL/plugins" "$QTDIR"
+        cp       "$SQTDIR"/libQt*      "$QTDIR/lib"
+        cp -r -L "$QTDIR_INCS"         "$QTDIR"
+        cp -r -L "$SQTDIR_ALL/bin"     "$QTDIR"
+        cp -r -L "$SQTDIR_ALL/mkspecs" "$QTDIR"
+        cp -r -L "$SQTDIR_ALL/plugins" "$QTDIR"
 
         echo "$magenta > QT Libraries / Includes copy completed.$reset"
         echo " Content of $QTDIR:"
