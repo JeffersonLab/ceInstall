@@ -17,7 +17,7 @@ set dir $base_dir/geant4/${version}
 
 prepend-path PATH $dir/bin
 
-setenv G4LIB $dir/lib
+setenv G4LIB       $dir/lib
 set lib64_location $dir/lib64
 if { [file isdirectory $lib64_location ] } {
     setenv G4LIB $lib64_location

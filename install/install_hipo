@@ -52,10 +52,11 @@ if [[ $what_version == "2."* ]]; then
 
   # for now get the repo and checkout the tag
   # unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
-  mkdir -p $base_dir
-  cd $base_dir/..
-  rm -rf $base_dir
-  git clone --recurse-submodules https://github.com/gavalian/driftchambers/ $what_version
+  #mkdir -p $base_dir
+  #cd $base_dir/..
+  #rm -rf $base_dir
+  #git clone --recurse-submodules https://github.com/gavalian/driftchambers/ $what_version
+  unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
 
   cd $DRIFTCHAMBERS
   export HIPO_DIR=$HIPO

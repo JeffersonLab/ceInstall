@@ -13,8 +13,8 @@ set base_dir $env(SIM_HOME)/$env(OSRELEASE)/$env(SIM_SUB_DIR)/$env(SIM_VERSION)
 
 set dir $base_dir/xercesc/${version}
 
-set lib_location $dir/lib
-set lib64_location $dir/lib
+set lib_location   $dir/lib
+set lib64_location $dir/lib64
 if { [file isdirectory $lib_location ] } {
 	prepend-path LD_LIBRARY_PATH $lib_location
 } elseif { [file isdirectory $lib64_location ] } {
