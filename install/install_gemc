@@ -1,6 +1,9 @@
 #!/bin/zsh -i
 
 # -i: interactive mode. Needed to load modules
+# also checking for container env setup in /app
+[[ -f /app/localSetup.sh ]] && source  /app/localSetup.sh
+
 
 . "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
