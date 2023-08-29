@@ -17,6 +17,7 @@ source /apps/modules/5.2.0/init/sh
 echo "Loading modules gcc/9.2.0 and scons/4.4.0"
 module load gcc/9.2.0
 module load scons/4.4.0
+module load cmake
 
 export SIM_HOME=/site/12gev_phys
 
