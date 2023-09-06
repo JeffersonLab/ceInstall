@@ -20,6 +20,8 @@ if { [uname sysname] == "Darwin" } {
 
 setenv CLHEP_VERSION  $version
 setenv CLHEP_BASE_DIR $dir
+# for cmake:
+setenv CLHEP_DIR $dir
 
 
 
