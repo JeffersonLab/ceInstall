@@ -6,18 +6,12 @@ module use /apps/modulefiles
 # need modules veesuib 5 or above
 . /apps/modules/5.2.0/init/sh
 
-# check that gcc --version gives a version number different than 9
-#gcc_version=$(gcc --version | head -n 1 | cut -d ' ' -f 3)
-#gcc_major=$(echo $gcc_version | cut -d '.' -f 1)
-#if [ $gcc_major -ne 9 ]; then
-#    echo "ERROR: gcc version must be 9. Use module load gcc/9.2.0 to load the correct version before sourcing this file"
-#    return 1
-#fi
-
 echo "Loading modules gcc/9.2.0 and scons/4.4.0"
 module load gcc/9.2.0
 module load scons/4.4.0
 module load cmake
+export CC=gcc
+export CXX=g++
 
 export SIM_HOME=/site/12gev_phys
 
