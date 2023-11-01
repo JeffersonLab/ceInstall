@@ -4,7 +4,7 @@
 module use /apps/modulefiles
 
 # need modules veesuib 5 or above
-source /apps/modules/5.2.0/init/sh
+. /apps/modules/5.2.0/init/sh
 
 # check that gcc --version gives a version number different than 9
 #gcc_version=$(gcc --version | head -n 1 | cut -d ' ' -f 3)
@@ -26,11 +26,11 @@ export SIM_HOME=/site/12gev_phys
 if [ -f /etc/centos-release ] && grep -q 'CentOS Linux release 7' /etc/centos-release; then
     echo "CentOS 7 detected at JLab. Loading site modules"
     if [ -n "$BASH_VERSION" ]; then
-        source /site/12gev_phys/modules/init/bash
+        . /site/12gev_phys/modules/init/bash
     elif [ -n "$ZSH_VERSION" ]; then
-        source /site/12gev_phys/modules/init/zsh
+        . /site/12gev_phys/modules/init/zsh
     fi
 fi
 
-source $SIM_HOME/ceInstall/setup.sh
+source $SIM_HOME/ceInstall/setup.sh "$@"
 
