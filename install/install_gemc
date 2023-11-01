@@ -1,9 +1,12 @@
 #!/bin/zsh -i
 
-# -i: interactive mode. Needed to load modules
+# on fedora and ubuntu installation dir is different for modules
+# at JLab we need to use modules 5.2 and higher
 # also checking for container env setup in /app
-[[ -f /app/localSetup.sh ]] && source  /app/localSetup.sh
-
+[[ -f /usr/share/Modules/init/zsh ]]  && . /usr/share/Modules/init/zsh
+[[ -f /usr/share/modules/init/zsh ]]  && . /usr/share/modules/init/zsh
+[[ -f /apps/modules/5.2.0/init/zsh ]] && . /apps/modules/5.2.0/init/zsh
+[[ -f /app/localSetup.sh ]]           && .  /app/localSetup.sh
 
 . "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
