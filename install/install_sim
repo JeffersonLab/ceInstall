@@ -1,8 +1,8 @@
 #!/bin/zsh -i
 
 # on fedora and ubuntu installation dir is different for modules
-[[ -f /usr/share/Modules/init/sh ]] && source /usr/share/Modules/init/sh
-[[ -f /usr/share/modules/init/sh ]] && source /usr/share/modules/init/sh
+[[ -f /usr/share/Modules/init/zsh ]] && source /usr/share/Modules/init/zsh
+[[ -f /usr/share/modules/init/zsh ]] && source /usr/share/modules/init/zsh
 
 . "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
