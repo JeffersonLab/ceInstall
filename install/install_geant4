@@ -12,8 +12,7 @@ source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
 filename="https://gitlab.cern.ch/geant4/geant4/-/archive/v$G4_VERSION/geant4-v$G4_VERSION.tar.gz"
 
-tar_strip=1   # in the tarball, the source is inside VERSION/CLHEP
-
+tar_strip=1 # in the tarball, the source is inside VERSION/CLHEP
 
 source_dir=$G4INSTALL/source
 build_dir=$G4INSTALL/build
@@ -28,33 +27,30 @@ cmake_options4=" -DGEANT4_BUILD_MULTITHREADED=ON  -DGEANT4_BUILD_BUILTIN_BACKTRA
 
 # add cmake_options4 if G4_VERSION is 11.0 or higher
 if [[ $G4_VERSION == 11.* ]]; then
-    cmake_options="$cmake_options1 $cmake_options2 $cmake_options3 $cmake_options4"
+	cmake_options="$cmake_options1 $cmake_options2 $cmake_options3 $cmake_options4"
 else
-    cmake_options="$cmake_options1 $cmake_options2 $cmake_options3"
+	cmake_options="$cmake_options1 $cmake_options2 $cmake_options3"
 fi
 
-
 case $(uname -s) in
-    Linux)
-		x11_option="-DGEANT4_USE_OPENGL_X11=ON"
+Linux)
+	x11_option="-DGEANT4_USE_OPENGL_X11=ON"
 
-	  	opt1=" -I$QTDIR/include -I$QTDIR/include/QtOpenGL -I$QTDIR/include/QtWidgets"
-	  	opt2=" -I$QTDIR/include/QtGui -I$QTDIR/include/QtCore -I$QTDIR/include/QtPrintSupport"
-	  	opt3=" -Wall -pedantic -Wno-non-virtual-dtor -Wno-long-long -Wwrite-strings -Wpointer-arith -Woverloaded-virtual -pipe"
+	opt1=" -I$QTDIR/include -I$QTDIR/include/QtOpenGL -I$QTDIR/include/QtWidgets"
+	opt2=" -I$QTDIR/include/QtGui -I$QTDIR/include/QtCore -I$QTDIR/include/QtPrintSupport"
+	opt3=" -Wall -pedantic -Wno-non-virtual-dtor -Wno-long-long -Wwrite-strings -Wpointer-arith -Woverloaded-virtual -pipe"
 
-		# need to check if QtPrintSupport is needed
-		set conf_options = "$x11_option $opt1 $opt2 $opt3"
-    cmake_options="$cmake_options $conf_options"
-        ;;
-    Darwin)
-        ;;
-    *)
-        echo "Unsupported OS: $(uname -s)"
-        exit 1
-        ;;
+	# need to check if QtPrintSupport is needed
+	set conf_options = "$x11_option $opt1 $opt2 $opt3"
+	cmake_options="$cmake_options $conf_options"
+	;;
+Darwin) ;;
+
+*)
+	echo "Unsupported OS: $(uname -s)"
+	exit 1
+	;;
 esac
-
-
 
 log_general geant4 "$G4_VERSION" "$filename" "$base_dir"
 
@@ -62,24 +58,22 @@ unpack_source_in_directory_from_url "$filename" "$source_dir" "$tar_strip"
 
 # change fsqrt definition if geant4 version < 10.7
 if [[ $G4_VERSION == "10.6.2" ]]; then
-    echo
-    echo "Geant4 version is $G4_VERSION, applying fsqrt patch to $source_dir/source/persistency/ascii/src/G4tgrEvaluator.cc"
-    echo
-    case $(uname -s) in
-      Linux)
-        sed -i    s/fsqrt/fltsqrt/ "$source_dir/source/persistency/ascii/src/G4tgrEvaluator.cc"
-        ;;
-    Darwin)
-        sed -i '' s/fsqrt/fltsqrt/ "$source_dir/source/persistency/ascii/src/G4tgrEvaluator.cc"
-        ;;
-    *)
-        echo "Unsupported OS: $(uname -s)"
-        exit 1
-        ;;
-esac
+	echo
+	echo "Geant4 version is $G4_VERSION, applying fsqrt patch to $source_dir/source/persistency/ascii/src/G4tgrEvaluator.cc"
+	echo
+	case $(uname -s) in
+	Linux)
+		sed -i s/fsqrt/fltsqrt/ "$source_dir/source/persistency/ascii/src/G4tgrEvaluator.cc"
+		;;
+	Darwin)
+		sed -i '' s/fsqrt/fltsqrt/ "$source_dir/source/persistency/ascii/src/G4tgrEvaluator.cc"
+		;;
+	*)
+		echo "Unsupported OS: $(uname -s)"
+		exit 1
+		;;
+	esac
 
 fi
 
-
 cmake_build_and_install "$source_dir" "$build_dir" "$base_dir" "$cmake_options" "do_not_delete_source"
-
