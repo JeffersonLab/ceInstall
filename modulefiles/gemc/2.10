@@ -1,12 +1,8 @@
 #%Module4.5
 
-setenv SIM_VERSION 2.5
 set version 2.10
+setenv SIM_VERSION 2.5
 
-set clhep_version          2.4.4.2
-set xercesc_version        3.2.3
-set qt_version             system
-set geant4_version         10.7.4
 set scons_bm_version       1.11
 set ccdb_version           1.07.01
 set evio_version           5.1
