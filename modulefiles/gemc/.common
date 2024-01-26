@@ -2,8 +2,6 @@
 
 conflict gemc
 
-module load .osrelease
-
 module load sim/$env(SIM_VERSION)
 module load .scons_bm/${scons_bm_version}
 module load .ccdb/${ccdb_version}

@@ -2,12 +2,7 @@
 
 conflict gemc3
 
-module load .osrelease
-module load .clhep/${clhep_version}
-module load .xercesc/${xercesc_version}
-module load .qt/${qt_version}
-module load .g4data/${geant4_version}
-module load .geant4/${geant4_version}
+module load sim/$env(SIM_VERSION)
 module load .scons_bm/${scons_bm_version}
 module load .glibrary/${glibrary_version}
 module load .scig/${scig_version}
