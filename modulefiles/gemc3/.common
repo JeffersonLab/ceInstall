@@ -22,8 +22,9 @@ if { $command == "test" } {
 
 # Environment
 
-set base_dir $env(SIM_HOME)/$env(OSRELEASE)/$env(SIM_SUB_DIR)/$env(SIM_VERSION)
-set dir $base_dir/gemc3/${version}
+
+set dir $env(SIM_INSTALLATION_DIR)/gemc3/${version}
+
 
 setenv GEMC3_BASE_DIR $base_dir/gemc3
 setenv GEMC3_VERSION  $version

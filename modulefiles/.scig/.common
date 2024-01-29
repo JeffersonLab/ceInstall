@@ -9,16 +9,23 @@ if { ! [info exist ::env(SIM_VERSION)]  }  {
 	exit 1
 }
 
-set base_dir $env(SIM_HOME)/noarch
-
-set dir $base_dir/scig/${version}
-
+set dir $env(SIM_INSTALLATION_DIR)/scig/${version}
 
 setenv SCIG_VERSION $version
 setenv SCIG         $dir
 
 prepend-path PYTHONPATH $dir
 prepend-path PATH $dir
+
+
+
+
+
+
+
+
+
+
 
 
 

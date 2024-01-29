@@ -9,9 +9,7 @@ if { ! [info exist ::env(SIM_VERSION)]  }  {
 	exit 1
 }
 
-set base_dir $env(SIM_HOME)/$env(OSRELEASE)/$env(SIM_SUB_DIR)/$env(SIM_VERSION)
-
-set dir $base_dir/glibrary/${version}
+set dir $env(SIM_INSTALLATION_DIR)/glibrary/${version}
 
 prepend-path LD_LIBRARY_PATH $dir/lib
 if { [uname sysname] == "Darwin" } {
@@ -21,6 +19,13 @@ if { [uname sysname] == "Darwin" } {
 setenv GLIBRARY_VERSION $version
 setenv GLIBRARY $dir
 prepend-path GPLUGIN_PATH $dir/plugins
+
+
+
+
+
+
+
 
 
 

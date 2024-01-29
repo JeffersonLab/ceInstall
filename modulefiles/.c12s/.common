@@ -2,7 +2,6 @@
 
 conflict .clas12_systems
 
-
 # Environment
 
 if { ! [info exist ::env(SIM_VERSION)]  }  {
@@ -10,10 +9,7 @@ if { ! [info exist ::env(SIM_VERSION)]  }  {
 	exit 1
 }
 
-set base_dir $env(SIM_HOME)/noarch
-
-set dir $base_dir/clas12-systems/${version}
-
+set dir $env(SIM_INSTALLATION_DIR)/clas12-systems/${version}
 
 setenv CLAS12_SYSTEMS_VERSION $version
 setenv CLAS12_SYSTEMS         $dir
@@ -22,6 +18,14 @@ setenv GEMCDB_ENV             $dir/systemsTxtDB
 
 prepend-path PYTHONPATH $dir
 prepend-path PATH $dir
+
+
+
+
+
+
+
+
 
 
 

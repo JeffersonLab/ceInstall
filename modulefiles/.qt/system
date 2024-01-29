@@ -22,9 +22,7 @@ if { [uname sysname] == "Linux" } {
 	exit 1
 }
 
-set base_dir $env(SIM_HOME)/$env(OSRELEASE)/$env(SIM_SUB_DIR)/$env(SIM_VERSION)
-
-set dir $base_dir/qt/${version}/${QTSYSTEM}
+set dir $env(SIM_INSTALLATION_DIR)/qt/${version}/${QTSYSTEM}
 
 prepend-path LD_LIBRARY_PATH $dir/lib
 if { [uname sysname] == "Darwin" } {

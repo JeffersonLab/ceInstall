@@ -9,12 +9,9 @@ if { ! [info exist ::env(SIM_VERSION)]  }  {
 	exit 1
 }
 
-set base_dir $env(SIM_HOME)/$env(OSRELEASE)/$env(SIM_SUB_DIR)/$env(SIM_VERSION)
-
-set dir $base_dir/geant4/${version}
+set dir $env(SIM_INSTALLATION_DIR)/geant4/${version}
 
 # on Darwin/Ubuntu geant4 is installed in lib. On Fedora it is installed in lib64
-
 prepend-path PATH $dir/bin
 
 setenv G4LIB       $dir/lib
@@ -30,9 +27,7 @@ if { [uname sysname] == "Darwin" } {
 }
 
 setenv G4INSTALL $dir
-
 setenv G4_VERSION $version
-
 
 proc ModulesTest { } {
 

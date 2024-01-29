@@ -9,12 +9,12 @@ if { ! [info exist ::env(SIM_VERSION)]  }  {
 	exit 1
 }
 
-set base_dir $env(SIM_HOME)/$env(OSRELEASE)/$env(SIM_SUB_DIR)/$env(SIM_VERSION)
-
-set dir $base_dir/cmag/${version}
+set dir $env(SIM_INSTALLATION_DIR)/cmag/${version}
 
 setenv CMAG_VERSION $version
 setenv C12BFIELDS $dir
+
+
 
 
 

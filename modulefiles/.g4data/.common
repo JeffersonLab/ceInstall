@@ -9,9 +9,7 @@ if { ! [info exist ::env(SIM_VERSION)]  }  {
 	exit 1
 }
 
-set base_dir $env(SIM_HOME)/$env(OSRELEASE)/$env(SIM_SUB_DIR)/$env(SIM_VERSION)
-
-set dir $base_dir/geant4/${version}
+set dir $env(SIM_INSTALLATION_DIR)/geant4/${version}
 
 setenv G4DATA_DIR $dir/data/$data_version/data
 
@@ -28,6 +26,7 @@ setenv G4INCLDATA        $env(G4DATA_DIR)/G4INCL$env(g4incl_version)
 setenv G4PIIDATA         $env(G4DATA_DIR)/G4PII$env(g4pii_version)
 setenv G4ENSDFSTATEDATA  $env(G4DATA_DIR)/G4ENSDFSTATE$env(g4ensdfstate_version)
 setenv G4REALSURFACEDATA $env(G4DATA_DIR)/RealSurface$env(g4real_surface_version)
+
 
 
 proc ModulesTest { } {

@@ -10,13 +10,14 @@ module load .mlibrary/${mlibrary_version}
 module load .hipo/${hipo_version}
 module load .cmag/${cmag_version}
 
-if { $banks_version != "0.9" } {
+# 0.0 is a special tag indicating no need to load banks
+if { $banks_version != "0.0" } {
     module load .banks/${banks_version}
 }
 
 # Environment
+set base_dir $env(SIM_INSTALLATION_DIR)
 
-set base_dir $env(SIM_HOME)/$env(OSRELEASE)/$env(SIM_SUB_DIR)/$env(SIM_VERSION)
 set noarch_dir $env(SIM_HOME)/noarch
 setenv FIELD_DIR $noarch_dir/data/magfield
 

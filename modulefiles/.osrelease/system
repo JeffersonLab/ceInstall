@@ -1,5 +1,6 @@
 #%Module4.5
 
 setenv OSRELEASE [ exec $env(SIM_HOME)/ceInstall/osrelease.py ]
+setenv SIM_INSTALLATION_DIR $env(SIM_HOME)/$env(OSRELEASE)/$env(SIM_SUB_DIR)/$env(SIM_VERSION)
 
 
