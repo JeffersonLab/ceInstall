@@ -1,8 +1,7 @@
 #%Module4.5
 
-prereq .clhep/2.4.7.1 .xercesc/3.2.3 .qt/system .g4data/11.2.0
-
 set version 11.2.0
+setenv SIM_VERSION 1.2
 
 set moduledir [file dirname $ModulesCurrentModulefile]
 source $moduledir/.common

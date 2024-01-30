@@ -1,6 +1,6 @@
 #%Module4.5
 
-#conflict .geant4
+module load sim/$env(SIM_VERSION)
 
 # Environment
 

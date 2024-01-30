@@ -2,6 +2,8 @@
 
 #conflict .g4data
 
+module load sim/$env(SIM_VERSION)
+
 # Environment
 
 if { ! [info exist ::env(SIM_VERSION)]  }  {

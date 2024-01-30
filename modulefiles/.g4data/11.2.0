@@ -1,9 +1,8 @@
 #%Module4.5
 
-prereq .clhep/2.4.7.1 .xercesc/3.2.4 .qt/system
-
 set version 11.2.0
 set data_version Geant4-11.1.2
+setenv SIM_VERSION 1.2
 
 setenv g4ndl_version               4.7
 setenv g4emlow_version             8.5
