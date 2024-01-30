@@ -61,6 +61,8 @@ if [[ $what_version == "2."* ]]; then
   cd $DRIFTCHAMBERS
   export HIPO_DIR=$HIPO
   make 2>"dc_build_err.txt" 1>"dc_build_log.txt" || exit
+  # parallel installation does not work yet
+  #  make -j "$n_cpu" 2>"dc_build_err.txt" 1>"dc_build_log.txt" || exit
 
 fi
 
