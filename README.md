@@ -22,13 +22,13 @@ ___
 
 `module avail`: shows available modules
 
-`module load gemc/4.4.2`: loads gemc (clas12Tags) version 4.4.2, that uses geant4 10.6
+`module load gemc/5.5`: loads gemc (clas12Tags) version 5.5, that uses geant4 10.6
 
 `module load gemc/2.10`: loads gemc version 2.10, that uses geant4 10.7
 
-`module load gemc3/3.0`: loads gemc3 version 1.0, that uses geant4 11
+`module load gemc3/1.1`: loads gemc3 version 1.1, that uses geant4 11.2
 
-`module load sim/2.6`: loads standalone geant4 libraries, version 2.6 (geant4 11.0.3)
+`module load sim/2.6`: loads standalone geant4 libraries, version 2.6 (geant4 11.2)
 
 `module show <module>/<version>`: shows what is loaded by a module
 
@@ -59,9 +59,9 @@ the software needed to run clas12 simulations with gemc.
 ` <gemc_version>` is the gemc or clas12Tag version. 
 
 - `4.4.2`: uses `geant4 10.6` and clas12Tags `4.4.2` 
-- `5.1`: uses `geant4 10.6` and clas12Tags `5.1`
-- `2.9`: uses `geant4 10.7`
-- `2.10`: uses `geant4 10.7`
+- `5.5`: uses `geant4 10.6` and clas12Tags `5.5`
+- `5.6`: uses `geant4 10.7` and clas12Tags `5.6`
+- `2.11`: uses `geant4 10.7`
 
 `install_gemc` will install, if not present already, the libraries needed for Geant4 simulations. 
 In addition, in order to run clas12 simulations using gemc, the following software is installed:
@@ -84,7 +84,7 @@ the software needed to run clas12 simulations with gemc.
 
 ` <gemc_version>` is the clas12Tag containing gemc and the clas12 geometry database.
 
-- `1.0`: uses `geant4 11.0.3`` 
+- `1.1`: uses `geant4 11.2`` 
 
 `install_gemc3` will install, if not present already, the libraries needed for Geant4 simulations. 
 In addition the following software is installed:
@@ -109,9 +109,9 @@ Run `install_sim` with the option `<sim_version>` to install the libraries neede
 
 ` <sim_version>` can be:
 
-- `2.4`: for `geant4` `10.6.02`
-- `2.5`: for `geant4` `10.7.03`
-- `2.6`: for `geant4` `11.0.3`
+- `2.4`: for `geant4` `10.6.2`
+- `2.5`: for `geant4` `10.7.4`
+- `2.6`: for `geant4` `11.2.0`
 
 The script will first test for the existence of the libraries and 
 will not install them if they are already present.
@@ -290,7 +290,11 @@ To enable modules, the following line should be added to your `.bashrc` or `.zsh
 
 To enable modules, the following line should be added to your `.bashrc` or `.zshrc`:
 
-`. /usr/share/Modules/init/zsh` or `. /usr/share/Modules/init/bash`
+`. /usr/share/Modules/init/zsh` 
+
+or 
+
+`. /usr/share/Modules/init/bash`
 
 ___
 
@@ -300,8 +304,8 @@ ___
 ### Check which libraries are installed / not installed
 `module test` can be used to check if the libraries are installed. For example:
 
-- `module test sim/2.4`
-- `module test gemc/5.1`
+- `module test sim/2.5`
+- `module test gemc/5.5`
 - `module test gemc3/1.0`
 
 In the resulting log, `Y` means the library is installed, an `N` means it is not installed.
