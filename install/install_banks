@@ -2,7 +2,7 @@
 
 # if the environment variables BANKS and BANKS_VERSION are not set, exit
 if [[ -z "$BANKS" || -z "$BANKS_VERSION" ]]; then
-	echo "$red > BANKS and BANKS_VERSION environment variables are not set. Exiting.$reset"
+	echo "$red > BANKS or BANKS_VERSION environment variables are not set. Exiting.$reset"
 	exit 1
 fi
 

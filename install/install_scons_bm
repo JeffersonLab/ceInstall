@@ -2,7 +2,7 @@
 
 # if the environment variables SCONS_BM and SCONS_BM_VERSION are not set, exit
 if [[ -z "$SCONS_BM" || -z "$SCONS_BM_VERSION" ]]; then
-	echo "$red > SCONS_BM and SCONS_BM_VERSION environment variables are not set. Exiting.$reset"
+	echo "$red > SCONS_BM or SCONS_BM_VERSION environment variables are not set. Exiting.$reset"
 	exit 1
 fi
 

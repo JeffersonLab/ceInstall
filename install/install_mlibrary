@@ -2,7 +2,7 @@
 
 # if the environment variables MLIBRARY and MLIBRARY_VERSION are not set, exit
 if [[ -z "$MLIBRARY" || -z "$MLIBRARY_VERSION" ]]; then
-	echo "$red > MLIBRARY and MLIBRARY_VERSION environment variables are not set. Exiting.$reset"
+	echo "$red > MLIBRARY or MLIBRARY_VERSION environment variables are not set. Exiting.$reset"
 	exit 1
 fi
 

@@ -2,7 +2,7 @@
 
 # if the environment variables EVIO and EVIO_VERSION are not set, exit
 if [[ -z "$EVIO" || -z "$EVIO_VERSION" ]]; then
-	echo "$red > EVIO and EVIO_VERSION environment variables are not set. Exiting.$reset"
+	echo "$red > EVIO or EVIO_VERSION environment variables are not set. Exiting.$reset"
 	exit 1
 fi
 

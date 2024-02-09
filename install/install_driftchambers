@@ -1,0 +1,30 @@
+#!/bin/zsh
+
+# if the environment variables DRIFTCHAMBERS and DRIFTCHAMBERS_VERSION are not set, exit
+if [[ -z "$DRIFTCHAMBERS" || -z "$DRIFTCHAMBERS_VERSION" ]]; then
+  echo "$red > DRIFTCHAMBERS ($DRIFTCHAMBERS) or DRIFTCHAMBERS_VERSION ($DRIFTCHAMBERS_VERSION) environment variables are not set. Exiting.$reset"
+  exit 1
+fi
+
+what="driftchambers"
+what_version="$DRIFTCHAMBERS_VERSION"
+base_dir="$DRIFTCHAMBERS"
+grepo="https://github.com/gavalian/driftchambers/archive/refs/tags/$what_version.tar.gz"
+tar_strip=1 # tarball number of subdirs to strip
+
+source "$(dirname "$(readlink -f "$0")")"/functions.zsh
+
+log_general "$what" "$what_version" "$grepo" "$base_dir"
+
+# for now get the repo and checkout the tag
+unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
+
+cd $DRIFTCHAMBERS
+export HIPO_DIR=$HIPO
+make 2>"dc_build_err.txt" 1>"dc_build_log.txt" || exit
+# parallel installation does not work yet
+#  make -j "$n_cpu" 2>"dc_build_err.txt" 1>"dc_build_log.txt" || exit
+
+
+echo "$magenta > $what installation completed.$reset"
+echo

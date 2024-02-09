@@ -2,7 +2,7 @@
 
 # if the environment variables CCDB_HOME and CCDB_VERSION are not set, exit
 if [[ -z "$CCDB_HOME" || -z "$CCDB_VERSION" ]]; then
-	echo "$red > CCDB_HOME and CCDB_VERSION environment variables are not set. Exiting.$reset"
+	echo "$red > CCDB_HOME or CCDB_VERSION environment variables are not set. Exiting.$reset"
 	exit 1
 fi
 

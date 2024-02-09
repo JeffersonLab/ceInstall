@@ -2,7 +2,7 @@
 
 # if the environment variables SCIG and SCIG_VERSION are not set, exit
 if [[ -z "$CLAS12_SYSTEMS" || -z "$CLAS12_SYSTEMS_VERSION" ]]; then
-	echo "$red > $CLAS12_SYSTEMS and CLAS12_SYSTEMS_VERSION environment variables are not set. Exiting.$reset"
+	echo "$red > $CLAS12_SYSTEMS or CLAS12_SYSTEMS_VERSION environment variables are not set. Exiting.$reset"
 	exit 1
 fi
 

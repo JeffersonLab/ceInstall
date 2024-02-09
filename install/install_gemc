@@ -36,17 +36,18 @@ if [[ $? -ne 0 ]]; then
 fi
 echo
 
-[ "$(moduleTestResult .clhep     $CLHEP_VERSION )"    -eq 0 ] && echo " > clhep is installed"    || install_clhep
-[ "$(moduleTestResult .xercesc   $XERCESC_VERSION )"  -eq 0 ] && echo " > xercesc is installed"  || install_xercesc
-[ "$(moduleTestResult .qt        $QT_VERSION)"        -eq 0 ] && echo " > qt is installed"       || copy_qt
-[ "$(moduleTestResult .g4data    $G4_VERSION)"        -eq 0 ] && echo " > g4data is installed"   || install_geant4_data
-[ "$(moduleTestResult .geant4    $G4_VERSION)"        -eq 0 ] && echo " > geant4 is installed"   || install_geant4
-[ "$(moduleTestResult .scons_bm  $SCONS_BM_VERSION)"  -eq 0 ] && echo " > scons_bm is installed" || install_scons_bm
-[ "$(moduleTestResult .ccdb      $CCDB_VERSION)"      -eq 0 ] && echo " > ccdb is installed"     || install_ccdb
-[ "$(moduleTestResult .evio      $EVIO_VERSION)"      -eq 0 ] && echo " > evio is installed"     || install_evio
-[ "$(moduleTestResult .hipo      $HIPO_VERSION)"      -eq 0 ] && echo " > hipo is installed"     || install_hipo
-[ "$(moduleTestResult .cmag      $CMAG_VERSION)"      -eq 0 ] && echo " > cmag is installed"     || install_cmag
-[ "$(moduleTestResult .mlibrary  $MLIBRARY_VERSION)"  -eq 0 ] && echo " > mlibrary is installed" || install_mlibrary
+[ "$(moduleTestResult .clhep         $CLHEP_VERSION )"         -eq 0 ] && echo " > clhep is installed"             || install_clhep
+[ "$(moduleTestResult .xercesc       $XERCESC_VERSION )"       -eq 0 ] && echo " > xercesc is installed"           || install_xercesc
+[ "$(moduleTestResult .qt            $QT_VERSION)"             -eq 0 ] && echo " > qt is installed"                || copy_qt
+[ "$(moduleTestResult .g4data        $G4_VERSION)"             -eq 0 ] && echo " > g4data is installed"            || install_geant4_data
+[ "$(moduleTestResult .geant4        $G4_VERSION)"             -eq 0 ] && echo " > geant4 is installed"            || install_geant4
+[ "$(moduleTestResult .scons_bm      $SCONS_BM_VERSION)"       -eq 0 ] && echo " > scons_bm is installed"          || install_scons_bm
+[ "$(moduleTestResult .ccdb          $CCDB_VERSION)"           -eq 0 ] && echo " > ccdb is installed"              || install_ccdb
+[ "$(moduleTestResult .evio          $EVIO_VERSION)"           -eq 0 ] && echo " > evio is installed"              || install_evio
+[ "$(moduleTestResult .hipo          $HIPO_VERSION)"           -eq 0 ] && echo " > hipo is installed"              || install_hipo
+[ "$(moduleTestResult .driftchambers $DRIFTCHAMBERS_VERSION)"  -eq 0 ] && echo " > driftchambers is installed"     || install_driftchambers
+[ "$(moduleTestResult .cmag          $CMAG_VERSION)"           -eq 0 ] && echo " > cmag is installed"              || install_cmag
+[ "$(moduleTestResult .mlibrary      $MLIBRARY_VERSION)"       -eq 0 ] && echo " > mlibrary is installed"          || install_mlibrary
 
 
 # if major version of GEMC_VERSION is 2, install_gemc2, install_clas12Tag

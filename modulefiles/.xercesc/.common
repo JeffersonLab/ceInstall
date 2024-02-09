@@ -43,7 +43,6 @@ proc ModulesTest { } {
 		set retcode 0
     }
 
-	
 	return $retcode
 }
 

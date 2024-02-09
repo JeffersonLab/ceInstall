@@ -2,7 +2,7 @@
 
 # if the environment variables SCIG and SCIG_VERSION are not set, exit
 if [[ -z "$SCIG" || -z "$SCIG_VERSION" ]]; then
-	echo "$red > SCIG and SCIG_VERSION environment variables are not set. Exiting.$reset"
+	echo "$red > SCIG or SCIG_VERSION environment variables are not set. Exiting.$reset"
 	exit 1
 fi
 

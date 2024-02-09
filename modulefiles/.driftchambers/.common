@@ -1,0 +1,48 @@
+#%Module4.5
+
+#conflict .driftchambers
+
+# Environment
+
+if { ! [info exist ::env(SIM_VERSION)]  }  {
+	puts stderr " ERROR: SIM_VERSION not set. Load module sim or gemc first"
+	exit 1
+}
+
+set dir $env(SIM_INSTALLATION_DIR)/driftchambers/${version}
+
+setenv DRIFTCHAMBERS_VERSION $version
+setenv DRIFTCHAMBERS $dir
+
+
+
+
+
+
+
+
+if { [uname sysname] == "Darwin" } {
+	setenv DYLD_LIBRARY_PATH $env(LD_LIBRARY_PATH)
+}
+
+
+
+
+
+proc ModulesTest { } {
+	
+	set var DRIFTCHAMBERS
+	set installation_exe [ getenv DRIFTCHAMBERS ]/install/bin/denoise2.exe
+	set retcode 1
+
+	puts stderr ""
+	if { [file isfile $installation_exe ] } {
+		puts stderr " Y $var \t\t $installation_exe"
+	} else {
+		puts stderr " N $var \t\t $installation_exe"
+		set retcode 0
+	}
+
+	return $retcode
+}
+

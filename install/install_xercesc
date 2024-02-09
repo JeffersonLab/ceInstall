@@ -5,7 +5,7 @@
 
 # if the environment variables XERCESCROOT and XERCESC_VERSION are not set, exit
 if [[ -z "$XERCESCROOT" || -z "$XERCESC_VERSION" ]]; then
-	echo "$red > XERCESCROOT and XERCESC_VERSION environment variables are not set. Exiting.$reset"
+	echo "$red > XERCESCROOT or XERCESC_VERSION environment variables are not set. Exiting.$reset"
 	exit 1
 fi
 

@@ -2,7 +2,7 @@
 
 # if the environment variables GEMC3_BASE_DIR and GEMC3_VERSION are not set, exit
 if [[ -z "$GEMC3_BASE_DIR" || -z "$GEMC3_VERSION" ]]; then
-	echo "$red > GEMC3_BASE_DIR and GEMC3_VERSION environment variables are not set. Exiting.$reset"
+	echo "$red > GEMC3_BASE_DIR or GEMC3_VERSION environment variables are not set. Exiting.$reset"
 	exit 1
 fi
 

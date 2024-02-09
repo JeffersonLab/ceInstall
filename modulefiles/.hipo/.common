@@ -20,7 +20,6 @@ prepend-path LD_LIBRARY_PATH $dir/lib
 prepend-path LD_LIBRARY_PATH $dir/slib
 
 
-setenv DRIFTCHAMBERS $env(SIM_INSTALLATION_DIR)/driftchambers/${version}
 
 if { [uname sysname] == "Darwin" } {
 	setenv DYLD_LIBRARY_PATH $env(LD_LIBRARY_PATH)
@@ -29,37 +28,20 @@ if { [uname sysname] == "Darwin" } {
 
 
 
+
 proc ModulesTest { } {
 	
 	set var HIPO
-	set installation_dir [ getenv HIPO ]/lib
+	set installation_lib [ getenv HIPO ]/lib/libhipo4.a
 	set retcode 1
-	set hipo_version [ getenv HIPO_VERSION ]
 
 	puts stderr ""
-	if { [file isdirectory $installation_dir ] } {
-		puts stderr " Y $var \t\t $installation_dir"
+	if { [file isfile $installation_lib ] } {
+		puts stderr " Y $var \t\t $installation_lib"
 	} else {
-		puts stderr " N $var \t\t $installation_dir"
+		puts stderr " N $var \t\t $installation_lib"
 		set retcode 0
 	}
-
-    # if version is 2.1 or higher, check for denoise2.exe
-    if { [string first "2.1" $hipo_version] == -1 } {
-        set var DENOISE
-	    set installation_exe [ getenv DRIFTCHAMBERS ]/install/bin/denoise2.exe
-
-	    if { [file isfile $installation_exe ] } {
-		    puts stderr " Y $var \t\t $installation_exe"
-	    } else {
-		    puts stderr " N $var \t\t $installation_exe"
-		    set retcode 0
-	    }
-	}
-
-
-
-
 
 	return $retcode
 }

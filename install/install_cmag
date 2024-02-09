@@ -2,7 +2,7 @@
 
 # if the environment variables C12BFIELDS and CMAG_VERSION are not set, exit
 if [[ -z "$C12BFIELDS" || -z "$CMAG_VERSION" ]]; then
-	echo "$red > C12BFIELDS and CMAG_VERSION environment variables are not set. Exiting.$reset"
+	echo "$red > C12BFIELDS or CMAG_VERSION environment variables are not set. Exiting.$reset"
 	exit 1
 fi
 

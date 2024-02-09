@@ -2,7 +2,7 @@
 
 # if the environment variables GLIBRARY and GLIBRARY_VERSION are not set, exit
 if [[ -z "$GLIBRARY" || -z "$GLIBRARY_VERSION" ]]; then
-	echo "$red > GLIBRARY and GLIBRARY_VERSION environment variables are not set. Exiting.$reset"
+	echo "$red > GLIBRARY or GLIBRARY_VERSION environment variables are not set. Exiting.$reset"
 	exit 1
 fi
 
