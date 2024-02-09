@@ -61,15 +61,11 @@ proc ModulesTest { } {
 	    puts stderr " Y gemc \t\t $installation_exe"
     } else {
         puts stderr " N gemc \t\t $installation_exe"
-		set missing [ linsert $missing end gemc ]
 	    set retcode 0
     }
 
 	puts stderr ""
-	if { $missing != "" } {
-		puts stderr " Modules Missing: $missing"
-		puts stderr ""
-	}
+
 	
 	return $retcode
 }
