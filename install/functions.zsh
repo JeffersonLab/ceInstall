@@ -187,7 +187,6 @@ cmake_build_and_install() {
 	elapsed=$((cmd_end-cmd_start))
 	
 	echo "$magenta > Compilation and installation completed in $elapsed seconds.$reset"
-	echo
 }
 
 scons_build_and_install() {
@@ -227,7 +226,6 @@ scons_build_and_install() {
 	fi
 
 	echo "$magenta > Compilation and installation completed in $elapsed seconds.$reset"
-	echo
 }
 
 function moduleTestResult() {
