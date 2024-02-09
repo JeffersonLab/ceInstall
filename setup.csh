@@ -12,19 +12,12 @@ if ( ! -d ${SIM_HOME}"/ceInstall/" ) then
     exit 1
 endif
 
-# if SIM_SUB_DIR environment variable is not set, set it to 'sim'
-if ( ! $?SIM_SUB_DIR ) then
-    setenv SIM_SUB_DIR sim
-endif
 
 module use "${SIM_HOME}"/ceInstall/modulefiles
 
 # if the optional argument 'install' is given, add the $SIM_HOME/ceInstall/install to PATH
-if ( $#argv > 0 ) then
-    if ( $1 == "install" ) then
-        setenv PATH ${SIM_HOME}"/ceInstall/install":$PATH
-        echo "Added ${SIM_HOME}/ceInstall/install to PATH."
-        echo
-    endif
+if ( $1 == "install" ) then
+	setenv PATH ${SIM_HOME}"/ceInstall/install":$PATH
+	echo "Added ${SIM_HOME}/ceInstall/install to PATH."
 endif
-echo
+

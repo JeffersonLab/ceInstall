@@ -12,10 +12,6 @@ if [ ! -d "${SIM_HOME}"/ceInstall ]; then
     return 1
 fi
 
-# if SIM_SUB_DIR environment variable is not set, set it to 'sim'
-if [ -z "$SIM_SUB_DIR" ]; then
-    export SIM_SUB_DIR=sim
-fi
 
 module use "${SIM_HOME}"/ceInstall/modulefiles
 
@@ -24,8 +20,4 @@ if [ "$1" = "install" ]; then
     export PATH=$PATH:"${SIM_HOME}"/ceInstall/install
     echo "Added ${SIM_HOME}/ceInstall/install to PATH."
 fi
-
-
-
-echo
 
