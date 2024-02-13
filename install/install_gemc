@@ -70,6 +70,4 @@ if [[ -n "$BANKS_VERSION" ]]; then
 fi
 
 echo
-module test gemc/$gemc_version
-
 echo

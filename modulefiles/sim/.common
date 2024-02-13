@@ -5,7 +5,6 @@ conflict sim
 set SIM_VERSION $env(SIM_VERSION)
 
 module load .osrelease
-#setenv SIM_INSTALLATION_DIR $env(SIM_HOME)/$env(OSRELEASE)/$env(SIM_SUB_DIR)/$env(SIM_VERSION)
 
 module load .clhep/${clhep_version}
 module load .xercesc/${xercesc_version}

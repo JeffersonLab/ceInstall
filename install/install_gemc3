@@ -6,7 +6,7 @@
 [[ -f /usr/share/Modules/init/zsh ]]  && . /usr/share/Modules/init/zsh
 [[ -f /usr/share/modules/init/zsh ]]  && . /usr/share/modules/init/zsh
 [[ -f /apps/modules/5.2.0/init/zsh ]] && . /apps/modules/5.2.0/init/zsh
-[[ -f /app/localSetup.sh ]]           && .  /app/localSetup.sh
+[[ -f /app/localSetup.sh ]]           && . /app/localSetup.sh
 
 . "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
@@ -48,7 +48,4 @@ echo
 
 
 echo
-# run this after the ModulesTest in gemc3 calls other modules tests - maybe with external script
-# module test gemc3/$gemc3_version
-
 echo
