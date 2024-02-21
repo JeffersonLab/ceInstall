@@ -9,26 +9,24 @@ fi
 what="hipo"
 what_version="$HIPO_VERSION"
 base_dir="$HIPO"
-grepo="https://github.com/gavalian/hipo/archive/refs/tags/$what_version.tar.gz"
-tar_strip=1 # tarball number of subdirs to strip
+grepo="https://github.com/gavalian/hipo"
 
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
 log_general "$what" "$what_version" "$grepo" "$base_dir"
 
-# for now get the repo and checkout the tag because lz4 is not in the tag
-#unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
-mkdir -p $base_dir
-cd $base_dir/..
-rm -rf $base_dir
-git clone --recurse-submodules https://github.com/gavalian/hipo/ $what_version
+# git cloning the tag because lz4 is not in the tarball
+mkdir -p "$base_dir"
+cd "$base_dir/".. || exit
+rm -rf "$base_dir"
+git clone --recurse-submodules --single-branch -b $what_version "$grepo" "$what_version"
 
 
 # manual installation includes building lz4 and hipo4
 # cmake from top level does not work for me
-cd $HIPO
+cd "$HIPO" || exit
 mkdir -p lib slib
-cd lz4
+cd lz4 || exit
 
 # notice: this is a hacked manual installation until make works from the top level on MacOs Ventura
 
@@ -36,7 +34,7 @@ make -j "$n_cpu" 2>"lz4_build_err.txt" 1>"lz4_build_log.txt" || exit
 cp lib/liblz4* ../lib
 cp lib/liblz4* ../slib
 
-cd ../hipo4
+cd ../hipo4 || exit
 make -j "$n_cpu"          2>"hipo_build_err.txt"  1>"hipo_build_log.txt"  || exit
 make slibhipo -j "$n_cpu" 2>"shipo_build_err.txt" 1>"shipo_build_log.txt" || exit
 
