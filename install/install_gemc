@@ -3,10 +3,10 @@
 # on fedora and ubuntu installation dir is different for modules
 # at JLab we need to use modules 5.2 and higher
 # also checking for container env setup in /app
-[[ -f /usr/share/Modules/init/zsh ]]  && . /usr/share/Modules/init/zsh
-[[ -f /usr/share/modules/init/zsh ]]  && . /usr/share/modules/init/zsh
+[[ -f /usr/share/Modules/init/zsh ]] && . /usr/share/Modules/init/zsh
+[[ -f /usr/share/modules/init/zsh ]] && . /usr/share/modules/init/zsh
 [[ -f /apps/modules/5.2.0/init/zsh ]] && . /apps/modules/5.2.0/init/zsh
-[[ -f /app/localSetup.sh ]]           && . /app/localSetup.sh
+[[ -f /app/localSetup.sh ]] && . /app/localSetup.sh
 
 . "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
@@ -18,16 +18,14 @@ else
 	exit 1
 fi
 
-
 echo " > gemc_version: $gemc_version"
 echo
-
 
 echo " > Checking missing modules in sim version $pv"
 module unload sim
 module unload gemc
 module unload gemc3
-module load	  gemc/$gemc_version
+module load gemc/$gemc_version
 
 # if the above command fails, exit
 if [[ $? -ne 0 ]]; then
@@ -36,37 +34,36 @@ if [[ $? -ne 0 ]]; then
 fi
 echo
 
-[ "$(moduleTestResult .clhep         $CLHEP_VERSION )"         -eq 0 ] && echo " > clhep is installed"             || install_clhep
-[ "$(moduleTestResult .xercesc       $XERCESC_VERSION )"       -eq 0 ] && echo " > xercesc is installed"           || install_xercesc
-[ "$(moduleTestResult .qt            $QT_VERSION)"             -eq 0 ] && echo " > qt is installed"                || copy_qt
-[ "$(moduleTestResult .g4data        $G4_VERSION)"             -eq 0 ] && echo " > g4data is installed"            || install_geant4_data
-[ "$(moduleTestResult .geant4        $G4_VERSION)"             -eq 0 ] && echo " > geant4 is installed"            || install_geant4
-[ "$(moduleTestResult .scons_bm      $SCONS_BM_VERSION)"       -eq 0 ] && echo " > scons_bm is installed"          || install_scons_bm
-[ "$(moduleTestResult .ccdb          $CCDB_VERSION)"           -eq 0 ] && echo " > ccdb is installed"              || install_ccdb
-[ "$(moduleTestResult .evio          $EVIO_VERSION)"           -eq 0 ] && echo " > evio is installed"              || install_evio
-[ "$(moduleTestResult .hipo          $HIPO_VERSION)"           -eq 0 ] && echo " > hipo is installed"              || install_hipo
-[ "$(moduleTestResult .driftchambers $DRIFTCHAMBERS_VERSION)"  -eq 0 ] && echo " > driftchambers is installed"     || install_driftchambers
-[ "$(moduleTestResult .cmag          $CMAG_VERSION)"           -eq 0 ] && echo " > cmag is installed"              || install_cmag
-[ "$(moduleTestResult .mlibrary      $MLIBRARY_VERSION)"       -eq 0 ] && echo " > mlibrary is installed"          || install_mlibrary
-
+[ "$(moduleTestResult .clhep $CLHEP_VERSION)" -eq 0 ] && echo " > clhep is installed" || install_clhep
+[ "$(moduleTestResult .xercesc $XERCESC_VERSION)" -eq 0 ] && echo " > xercesc is installed" || install_xercesc
+[ "$(moduleTestResult .qt $QT_VERSION)" -eq 0 ] && echo " > qt is installed" || copy_qt
+[ "$(moduleTestResult .g4data $G4_VERSION)" -eq 0 ] && echo " > g4data is installed" || install_geant4_data
+[ "$(moduleTestResult .geant4 $G4_VERSION)" -eq 0 ] && echo " > geant4 is installed" || install_geant4
+[ "$(moduleTestResult .scons_bm $SCONS_BM_VERSION)" -eq 0 ] && echo " > scons_bm is installed" || install_scons_bm
+[ "$(moduleTestResult .ccdb $CCDB_VERSION)" -eq 0 ] && echo " > ccdb is installed" || install_ccdb
+[ "$(moduleTestResult .cmag $CMAG_VERSION)" -eq 0 ] && echo " > cmag is installed" || install_cmag
+[ "$(moduleTestResult .mlibrary $MLIBRARY_VERSION)" -eq 0 ] && echo " > mlibrary is installed" || install_mlibrary
 
 # if major version of GEMC_VERSION is 2, install_gemc2, install_clas12Tag
 if [[ $gemc_version == 2* ]]; then
-	[ "$(moduleTestResult gemc $gemc_version)" -eq 0 ] && echo " > gemc2 is installed"     || install_g2
+	[ "$(moduleTestResult gemc $gemc_version)" -eq 0 ] && echo " > gemc2 is installed" || install_g2
+	[ "$(moduleTestResult .evio $EVIO_VERSION)" -eq 0 ] && echo " > evio is installed" || install_evio
 else
+	[ "$(moduleTestResult .hipo $HIPO_VERSION)" -eq 0 ] && echo " > hipo is installed" || install_hipo
+	[ "$(moduleTestResult .driftchambers $DRIFTCHAMBERS_VERSION)" -eq 0 ] && echo " > driftchambers is installed" || install_driftchambers
 	[ "$(moduleTestResult gemc $gemc_version)" -eq 0 ] && echo " > clas12Tag is installed" || install_clas12Tag
 	# if the file $FIELD_DIR/Full_torus_r251_phi181_z251_25Jan2021.dat does not exist, run install_fields
 	if [[ ! -f "$FIELD_DIR/Full_torus_r251_phi181_z251_25Jan2021.dat" ]]; then
-	  echo " > Field map does not exist. Installing field map."
-    install_fields
-  else
-    echo " > Field maps are installed."
-  fi
+		echo " > Field map does not exist. Installing field map."
+		install_fields
+	else
+		echo " > Field maps are installed."
+	fi
 fi
 
 # if $BANKS_VERSION exists (gemc2), test/install banks
 if [[ -n "$BANKS_VERSION" ]]; then
-	[ "$(moduleTestResult .banks     $BANKS_VERSION)"     -eq 0 ] && echo " > banks is installed"    || install_banks
+	[ "$(moduleTestResult .banks $BANKS_VERSION)" -eq 0 ] && echo " > banks is installed" || install_banks
 fi
 
 echo

@@ -1,25 +1,17 @@
 #%Module4.5
 
-#conflict .gemc3
+
+module load sim/$env(SIM_VERSION)
+
 
 # Environment
+set base_dir $env(SIM_INSTALLATION_DIR)
 
-if { ! [info exist ::env(SIM_VERSION)]  }  {
-	puts stderr " ERROR: SIM_VERSION not set. Load module sim or gemc first"
-	exit 1
-}
-
-set dir $env(SIM_INSTALLATION_DIR)/scig/${version}
-
+setenv SCIG         $base_dir/scig/$version
 setenv SCIG_VERSION $version
-setenv SCIG         $dir
 
-prepend-path PYTHONPATH $dir
-prepend-path PATH $dir
-
-
-
-
+prepend-path PYTHONPATH $base_dir/scig/$version
+prepend-path PATH       $base_dir/scig/$version
 
 
 

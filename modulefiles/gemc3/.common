@@ -7,30 +7,13 @@ module load .scons_bm/${scons_bm_version}
 module load .glibrary/${glibrary_version}
 module load .scig/${scig_version}
 
-set command [module-info command]
-
-#puts stderr $command
-
-
-if { $command == "test" } {
-    puts stderr $command
-    module test .clhep/${clhep_version}
-    module test .scig/${scig_version}
-    puts stderr $command
-}
-
-
 # Environment
+set base_dir $env(SIM_INSTALLATION_DIR)
 
-
-set dir $env(SIM_INSTALLATION_DIR)/gemc3/${version}
-
-
+setenv GEMC3_VERSION $version
 setenv GEMC3_BASE_DIR $base_dir/gemc3
-setenv GEMC3_VERSION  $version
-
-setenv GEMC       $dir
-prepend-path PATH $dir
+setenv GEMC           $base_dir/gemc3/$version
+prepend-path PATH     $base_dir/gemc3/$version
 
 proc ModulesTest { } {
 	
@@ -47,46 +30,15 @@ proc ModulesTest { } {
 		return 0
 	}
 
-	set dirs_to_test { CLHEP_BASE_DIR XERCESCROOT QTDIR G4LEDATA G4LIB SCONS_BM GLIBRARY SCIG }
-	set missing {}
-
-	puts stderr " Running $command for $is_loaded "
-
-	puts stderr ""
-	foreach dir $dirs_to_test {
-		set installation_dir  [ getenv $dir ]
-		if { [file isdirectory $installation_dir ] } {
-			if { $dir == "CLHEP_BASE_DIR" } {
-				puts stderr " Y $dir \t $installation_dir"
-			} else {
-				puts stderr " Y $dir \t\t $installation_dir"
-			}
-		} else {
-			if { $dir == "CLHEP_BASE_DIR" } {
-				puts stderr " N $dir \t $installation_dir"
-			} else {
-				puts stderr " N $dir \t\t $installation_dir"
-			}
-			set missing [ linsert $missing end $dir ]
-			set retcode 0
-		}
-	}
-
 	set installation_dir  [ getenv GEMC ]
     set installation_exe  $installation_dir/gemc
     if { [file isfile $installation_exe ] } {
 	    puts stderr " Y gemc \t\t $installation_exe"
     } else {
         puts stderr " N gemc \t\t $installation_exe"
-		set missing [ linsert $missing end gemc ]
 	    set retcode 0
     }
 
-	puts stderr ""
-	if { $missing != "" } {
-		puts stderr " Modules Missing: $missing"
-		puts stderr ""
-	}
 	
 	return $retcode
 }
