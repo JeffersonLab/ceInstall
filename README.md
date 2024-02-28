@@ -22,13 +22,13 @@ ___
 
 `module avail`: shows available modules
 
-`module load sim/1.2`: loads standalone geant4 libraries, version 1.2 (geant4 11.2)
+`module load sim/1.2`: loads standalone geant4 libraries, version 1.2 (geant4 11.2.1)
 
-`module load gemc/5.6`: loads gemc (clas12Tags) version 5.6, that uses geant4 10.7.2
+`module load gemc/5.6`: loads gemc (clas12Tags) version 5.6, that uses geant4 10.7.4
 
-`module load gemc/2.11`: loads gemc version 2.10, that uses geant4 10.7.2
+`module load gemc/2.12`: loads gemc version 2.10, that uses geant4 10.7.4
 
-`module load gemc3/1.1`: loads gemc3 version 1.1, that uses geant4 11.2
+`module load gemc3/1.1`: loads gemc3 version 1.1, that uses geant4 11.2.1
 
 `module show <module>/<version>`: shows what is loaded by a module
 
@@ -51,12 +51,12 @@ Example:
 
 ```install_sim 1.2```
 
-The argument, that specifies the versions of geant4 and the dependecies, 
+The argument, that specifies the versions of geant4 and the dependencies, 
 can be:
 
 - `1.0`: for `geant4` `10.6.2`
 - `1.1`: for `geant4` `10.7.4`
-- `1.2`: for `geant4` `11.2.0`
+- `1.2`: for `geant4` `11.2.1`
 
 The script will test for the existence of the libraries and 
 will not install what is already present.
@@ -76,19 +76,9 @@ the software needed to run clas12 simulations with gemc.
 - `4.4.2`: uses `geant4 10.6.2` and clas12Tags `4.4.2` 
 - `5.5`: uses `geant4 10.6.2` and clas12Tags `5.5`
 - `5.6`: uses `geant4 10.7.4` and clas12Tags `5.6`
-- `2.11`: uses `geant4 10.7.4`
+- `2.12`: uses `geant4 10.7.4` and gemc `2.12`
 
 `install_gemc` will install, if not present already, the libraries needed for Geant4 simulations. 
-In addition, in order to run clas12 simulations using gemc, the following software is installed:
-
-- `evio`
-- `hipo`
-- `driftchambers`
-- `ccdb`
-- `scons`
-- `cmag`
-- `mlibrary`
-- `clas12Tags` code, geometry and gcards
 
 
 ___
@@ -103,13 +93,6 @@ the software needed to run clas12 simulations with gemc.
 - `1.1`: uses `geant4 11.2`` 
 
 `install_gemc3` will install, if not present already, the libraries needed for Geant4 simulations. 
-In addition the following software is installed:
-
-
-- `scons`
-- `glibrary`
-- `gemc3` 
-- `scig`: python interface to gemc3
 
 ___ 
 
@@ -250,9 +233,9 @@ To enable modules, the following line should be added to your `.bashrc` or `.zsh
 
 ___
 
-[^1]: tested on fedora36, almalinux9, ubuntu22
+[^1]: tested on fedora36, almalinux9
 
-[^1]: tested on ubuntu22
+[^2]: tested on ubuntu22
 
 ---
 
