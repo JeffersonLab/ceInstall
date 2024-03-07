@@ -42,13 +42,12 @@ echo
 [ "$(moduleTestResult .g4data    $G4_VERSION)"        -eq 0 ] && echo " > g4data is installed"   || install_geant4_data
 [ "$(moduleTestResult .geant4    $G4_VERSION)"        -eq 0 ] && echo " > geant4 is installed"   || install_geant4
 
+# test for library existence
+[ -f $CLHEP_BASE_DIR/lib/libCLHEP.a ]     || exit 1
+[ -f $XERCESCROOT/bin/CreateDOMDocument ] || exit 1
+[ -d $QTDIR/lib ] || exit 1
+[ -d $G4LEDATA ] || exit 1
+[ -d $G4LIB ] || exit 1
 
 
-
-
-
-echo
-module test sim/$sim_version
-
-echo
 

@@ -66,5 +66,16 @@ if [[ -n "$BANKS_VERSION" ]]; then
 	[ "$(moduleTestResult .banks $BANKS_VERSION)" -eq 0 ] && echo " > banks is installed" || install_banks
 fi
 
-echo
-echo
+# test for library existence
+# notice module gemc must be loaded
+[ -f $CLHEP_BASE_DIR/lib/libCLHEP.a ]     || exit 1
+[ -f $XERCESCROOT/bin/CreateDOMDocument ] || exit 1
+[ -d $QTDIR/lib ] || exit 1
+[ -d $G4LEDATA ] || exit 1
+[ -d $G4LIB ] || exit 1
+[ -f $SCONS_BM/init_env.py  ] || exit 1
+[ -d $CCDB_HOME/lib  ] || exit 1
+[ -d $MLIBRARY/lib   ] || exit 1
+[ -f $GEMC/gemc ] || exit 1
+
+

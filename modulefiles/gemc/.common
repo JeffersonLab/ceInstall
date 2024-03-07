@@ -38,35 +38,5 @@ if { [ lindex [ split $version . ] 0 ] == 2 } {
 }
 
 
-
-proc ModulesTest { } {
-	
-	global SIM_VERSION
-	global banks_version
-	set retcode 1
-
-	set command [module-info command]
-	set is_loaded [module-info loaded gemc]
-
-	# exit if is_loaded is empty
-	if { $is_loaded == "" } {
-		puts stderr "module 'gemc' is not loaded. Use 'module load gemc/<version>'' to load it."
-		puts stderr ""
-		return 0
-	}
-
-	set installation_dir  [ getenv GEMC ]
-    set installation_exe  $installation_dir/gemc
-    if { [file isfile $installation_exe ] } {
-	    puts stderr " Y gemc \t\t $installation_exe"
-    } else {
-        puts stderr " N gemc \t\t $installation_exe"
-	    set retcode 0
-    }
-
-	puts stderr ""
-
-	
-	return $retcode
-}
+# test removed for now, install_sim will exit 1 if any failure
 
