@@ -77,7 +77,9 @@ echo
 [ -d $G4LEDATA ] && echo GEANT4 Data success || exit 1
 [ -d $G4LIB ] && echo GEANT4 success || exit 1
 [ -f $SCONS_BM/init_env.py ] && echo SCONS success || exit 1
-[ -d $CCDB_HOME/lib ] && echo CCDB success || exit 1
-[ -d $MLIBRARY/lib ] && echo MLIBRARY success || exit 1
+[ -f $CCDB_HOME/lib/libccdb.a ] && echo CCDB success || exit 1
+[ -f $MLIBRARY/lib/libgoptions.a ] && echo MLIBRARY success || exit 1
+cad=$(find $MLIBRARY/lib -name 'libcadmesh*' | wc -l)
+(( $cad == 1 )) && echo CADMESH success || exit 1
 [ -f $GEMC/gemc ] && echo GEMC success || exit 1
 echo
