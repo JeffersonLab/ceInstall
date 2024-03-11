@@ -38,5 +38,20 @@ if { [ lindex [ split $version . ] 0 ] == 2 } {
 }
 
 
-# test removed for now, install_sim will exit 1 if any failure
+
+proc ModulesTest { } {
+
+	set installation_exe  [ getenv GEMC ]/gemc
+	set retcode 1
+
+	puts stderr ""
+	if { [file isfile $installation_exe ] } {
+		puts stderr " Y GEMC $installation_exe"
+	} else {
+		puts stderr " N GEMC $installation_exe"
+		set retcode 0
+	}
+
+	return $retcode
+}
 
