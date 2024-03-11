@@ -15,7 +15,7 @@ base_dir="$XERCESCROOT"
 source_dir=$XERCESCROOT/source
 build_dir=$XERCESCROOT/build
 cmake_options="-Wno-dev"
-grepo="https://archive.apache.org/dist/xerces/c/3/sources/xerces-c-$what_version.tar.gz"
+grepo="https://dlcdn.apache.org//xerces/c/3/sources/xerces-c-$what_version.tar.gz"
 tar_strip=1  # tarball number of subdirs to strip
 
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
