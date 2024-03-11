@@ -47,8 +47,10 @@ echo
 # if major version of GEMC_VERSION is 2, install_gemc2, install_clas12Tag
 if [[ $gemc_version == 2* ]]; then
 	[ "$(moduleTestResult gemc $gemc_version)" -eq 0 ] && echo " > gemc2 is installed" || install_g2
-	[ "$(moduleTestResult .evio $EVIO_VERSION)" -eq 0 ] && echo " > evio is installed" || install_evio
 else
+	if [[ $gemc_version == 4* ]]; then
+		[ "$(moduleTestResult .evio $EVIO_VERSION)" -eq 0 ] && echo " > evio is installed" || install_evio
+	fi
 	[ "$(moduleTestResult .hipo $HIPO_VERSION)" -eq 0 ] && echo " > hipo is installed" || install_hipo
 	[ "$(moduleTestResult .driftchambers $DRIFTCHAMBERS_VERSION)" -eq 0 ] && echo " > driftchambers is installed" || install_driftchambers
 	[ "$(moduleTestResult gemc $gemc_version)" -eq 0 ] && echo " > clas12Tag is installed" || install_clas12Tag
@@ -80,6 +82,6 @@ echo
 [ -f $CCDB_HOME/lib/libccdb.a ] && echo CCDB success || exit 1
 [ -f $MLIBRARY/lib/libgoptions.a ] && echo MLIBRARY success || exit 1
 cad=$(find $MLIBRARY/lib -name 'libcadmesh*' | wc -l)
-(( $cad == 1 )) && echo CADMESH success || exit 1
+(($cad == 1)) && echo CADMESH success || exit 1
 [ -f $GEMC/gemc ] && echo GEMC success || exit 1
 echo
