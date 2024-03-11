@@ -50,5 +50,6 @@ echo
 [ -f $XERCESCROOT/bin/CreateDOMDocument ] && echo XERCESC success || exit 1
 [ -d $QTDIR/lib ] && echo QT success || exit 1
 [ -d $G4LEDATA ] && echo GEANT4 Data success || exit 1
+echo "G4LIB: $G4LIB"
 [ -d $G4LIB ] && echo GEANT4 success || exit 1
 echo
