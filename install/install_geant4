@@ -77,3 +77,6 @@ if [[ $G4_VERSION == "10.6.2" ]]; then
 fi
 
 cmake_build_and_install "$source_dir" "$build_dir" "$base_dir" "$cmake_options" "do_not_delete_source"
+
+echo "G4LIB: $G4LIB"
+ls -l "$G4LIB"
