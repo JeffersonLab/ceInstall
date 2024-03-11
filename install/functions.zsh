@@ -105,7 +105,7 @@ unpack_source_in_directory_from_url() {
 	echo "$magenta > Fetching source from $url onto $filename$reset"
 	rm -f "$filename"
 #	wget "$url" || whine_and_quit "wget $url"
-	curl -S  --progress-bar  "$url" -O || whine_and_quit "wget $url"
+	curl  -S --location-trusted --progress-bar  --retry 4 "$url" -O || whine_and_quit "wget $url"
 	echo "Downloaded file:"
 	ls -lrt $filename
 
