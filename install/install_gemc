@@ -77,7 +77,7 @@ echo
 [ -f "$XERCESCROOT/bin/CreateDOMDocument" ] && echo XERCESC success || whine_and_quit "$XERCESCROOT/bin/CreateDOMDocument not found"
 [ -d "$QTDIR/lib" ] && echo QT success || whine_and_quit "$QTDIR/lib not found"
 [ -d "$G4LEDATA" ] && echo GEANT4 Data success || whine_and_quit "$G4LEDATA not found"
-[ -d "$G4LIB" ] && echo GEANT4 success || whine_and_quit "$G4LIB not found"
+#[ -d "$G4LIB" ] && echo GEANT4 success || whine_and_quit "$G4LIB not found"
 [ -f "$SCONS_BM/init_env.py" ] && echo SCONS success || whine_and_quit "$SCONS_BM/init_env.py not found"
 [ -f "$CCDB_HOME/lib/libccdb.a" ] && echo CCDB success || whine_and_quit "$CCDB_HOME/lib/libccdb.a not found"
 [ -f "$MLIBRARY/lib/libgoptions.a" ] && echo MLIBRARY success || whine_and_quit "$MLIBRARY/lib/libgoptions.a not found"
