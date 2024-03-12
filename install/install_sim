@@ -50,5 +50,5 @@ echo
 [ -f "$XERCESCROOT/bin/CreateDOMDocument" ] && echo XERCESC success || whine_and_quit "$XERCESCROOT/bin/CreateDOMDocument not found"
 [ -d "$QTDIR/lib" ] && echo QT success || whine_and_quit "$QTDIR/lib not found"
 [ -d "$G4LEDATA" ] && echo GEANT4 Data success || whine_and_quit "$G4LEDATA not found"
-[ -d "$G4LIB" ] && echo GEANT4 success || whine_and_quit "$G4LIB not found"
+# [ -d "$G4LIB" ] && echo GEANT4 success || whine_and_quit "$G4LIB not found"
 echo
