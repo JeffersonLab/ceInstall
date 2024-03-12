@@ -73,15 +73,15 @@ fi
 echo
 echo Tests:
 echo
-[ -f $CLHEP_BASE_DIR/lib/libCLHEP.a ] && echo CLHEP success || exit 1
-[ -f $XERCESCROOT/bin/CreateDOMDocument ] && echo XERCESC success || exit 1
-[ -d $QTDIR/lib ] && echo QT success || exit 1
-[ -d $G4LEDATA ] && echo GEANT4 Data success || exit 1
-[ -d $G4LIB ] && echo GEANT4 success || exit 1
-[ -f $SCONS_BM/init_env.py ] && echo SCONS success || exit 1
-[ -f $CCDB_HOME/lib/libccdb.a ] && echo CCDB success || exit 1
-[ -f $MLIBRARY/lib/libgoptions.a ] && echo MLIBRARY success || exit 1
+[ -f $CLHEP_BASE_DIR/lib/libCLHEP.a ] && echo CLHEP success || whine_and_quit "$CLHEP_BASE_DIR/lib/libCLHEP.a "
+[ -f $XERCESCROOT/bin/CreateDOMDocument ] && echo XERCESC success || whine_and_quit "$XERCESCROOT/bin/CreateDOMDocument not found"
+[ -d $QTDIR/lib ] && echo QT success || whine_and_quit "$QTDIR/lib not found"
+[ -d $G4LEDATA ] && echo GEANT4 Data success || whine_and_quit "$G4LEDATA not found"
+[ -d $G4LIB ] && echo GEANT4 success || whine_and_quit "$G4LIB not found"
+[ -f $SCONS_BM/init_env.py ] && echo SCONS success || whine_and_quit "$SCONS_BM/init_env.py not found"
+[ -f $CCDB_HOME/lib/libccdb.a ] && echo CCDB success || whine_and_quit "$CCDB_HOME/lib/libccdb.a not found"
+[ -f $MLIBRARY/lib/libgoptions.a ] && echo MLIBRARY success || whine_and_quit "$MLIBRARY/lib/libgoptions.a not found"
 cad=$(find $MLIBRARY/lib -name 'libcadmesh*' | wc -l)
-(($cad == 1)) && echo CADMESH success || exit 1
-[ -f $GEMC/gemc ] && echo GEMC success || exit 1
+(($cad == 1)) && echo CADMESH success || whine_and_quit "CADMESH not found"
+[ -f $GEMC/gemc ] && echo GEMC success || whine_and_quit "$GEMC/gemc not found"
 echo
