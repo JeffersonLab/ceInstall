@@ -1,5 +1,7 @@
 #!/bin/zsh -i
 
+# shell has to be interactive to load modules
+
 # on fedora and ubuntu installation dir is different for modules
 # at JLab we need to use modules 5.2 and higher
 # also checking for container env setup in /app
