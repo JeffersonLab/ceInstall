@@ -75,15 +75,22 @@ fi
 echo
 echo SIM and GEMC Tests:
 echo
-[ -f "$CLHEP_BASE_DIR/lib/libCLHEP.a" ] && echo CLHEP success || whine_and_quit "$CLHEP_BASE_DIR/lib/libCLHEP.a "
-[ -f "$XERCESCROOT/bin/CreateDOMDocument" ] && echo XERCESC success || whine_and_quit "$XERCESCROOT/bin/CreateDOMDocument not found"
-[ -d "$QTDIR/lib" ] && echo QT success || whine_and_quit "$QTDIR/lib not found"
-[ -d "$G4LEDATA" ] && echo GEANT4 Data success || whine_and_quit "$G4LEDATA not found"
-#[ -d "$G4LIB" ] && echo GEANT4 success || whine_and_quit "$G4LIB not found"
-[ -f "$SCONS_BM/init_env.py" ] && echo SCONS success || whine_and_quit "$SCONS_BM/init_env.py not found"
-[ -f "$CCDB_HOME/lib/libccdb.a" ] && echo CCDB success || whine_and_quit "$CCDB_HOME/lib/libccdb.a not found"
-[ -f "$MLIBRARY/lib/libgoptions.a" ] && echo MLIBRARY success || whine_and_quit "$MLIBRARY/lib/libgoptions.a not found"
+[ -f "$CLHEP_BASE_DIR/lib/libCLHEP.a" ] && echo "CLHEP $CLHEP_BASE_DIR/lib/libCLHEP.a found" || whine_and_quit "$CLHEP_BASE_DIR/lib/libCLHEP.a not found"
+[ -f "$XERCESCROOT/bin/CreateDOMDocument" ] && echo "XERCESC $XERCESCROOT/bin/CreateDOMDocument found" || whine_and_quit "$XERCESCROOT/bin/CreateDOMDocument not found"
+[ -d "$QTDIR/lib" ] && echo "QT $QTDIR/lib found" || whine_and_quit "$QTDIR/lib not found"
+[ -d "$G4LEDATA" ] && echo "GEANT4 $G4LEDATA Data found" || whine_and_quit "$G4LEDATA not found"
+# not sure why when this is run for the first time, or in autobuild, the G4LIB is not set to lib64 but to lib
+if [[ -d "$G4LIB" ]]; then
+	echo "Geant4: $G4LIB found"
+else
+	newG4LIB=$(echo $G4LIB | sed 's/lib/lib64/')
+	[ -d "$newG4LIB" ] && echo "Geant4: $newG4LIB found" || whine_and_quit "$newG4LIB or $G4LIB not found"
+fi
+
+[ -f "$SCONS_BM/init_env.py" ] && echo "SCONS $SCONS_BM/init_env.py found" || whine_and_quit "$SCONS_BM/init_env.py not found"
+[ -f "$CCDB_HOME/lib/libccdb.a" ] && echo "CCDB $CCDB_HOME/lib/libccdb.a found" || whine_and_quit "$CCDB_HOME/lib/libccdb.a not found"
+[ -f "$MLIBRARY/lib/libgoptions.a" ] && echo "MLIBRARY $MLIBRARY/lib/libgoptions.a found" || whine_and_quit "$MLIBRARY/lib/libgoptions.a not found"
 cad=$(find "$MLIBRARY/lib" -name 'libcadmesh*' | wc -l)
-(($cad == 1)) && echo CADMESH success || whine_and_quit "CADMESH not found"
-[ -f "$GEMC/gemc" ] && echo GEMC success || whine_and_quit "$GEMC/gemc not found"
+(($cad == 1)) && echo "CADMESH found" || whine_and_quit "CADMESH not found"
+[ -f "$GEMC/gemc" ] && echo "GEMC $GEMC/gemc found" || whine_and_quit "$GEMC/gemc not found"
 echo

@@ -46,15 +46,15 @@ echo
 echo
 echo SIM Tests:
 echo
-[ -f "$CLHEP_BASE_DIR/lib/libCLHEP.a" ] && echo CLHEP success || whine_and_quit "$CLHEP_BASE_DIR/lib/libCLHEP.a "
-[ -f "$XERCESCROOT/bin/CreateDOMDocument" ] && echo XERCESC success || whine_and_quit "$XERCESCROOT/bin/CreateDOMDocument not found"
-[ -d "$QTDIR/lib" ] && echo QT success || whine_and_quit "$QTDIR/lib not found"
-[ -d "$G4LEDATA" ] && echo GEANT4 Data success || whine_and_quit "$G4LEDATA not found"
+[ -f "$CLHEP_BASE_DIR/lib/libCLHEP.a" ] && echo "CLHEP $CLHEP_BASE_DIR/lib/libCLHEP.a found" || whine_and_quit "$CLHEP_BASE_DIR/lib/libCLHEP.a not found"
+[ -f "$XERCESCROOT/bin/CreateDOMDocument" ] && echo "XERCESC $XERCESCROOT/bin/CreateDOMDocument found" || whine_and_quit "$XERCESCROOT/bin/CreateDOMDocument not found"
+[ -d "$QTDIR/lib" ] && echo "QT $QTDIR/lib found" || whine_and_quit "$QTDIR/lib not found"
+[ -d "$G4LEDATA" ] && echo "GEANT4 $G4LEDATA Data found" || whine_and_quit "$G4LEDATA not found"
 # not sure why when this is run for the first time, or in autobuild, the G4LIB is not set to lib64 but to lib
 if [[ -d "$G4LIB" ]]; then
-	echo "$G4LIB success"
+	echo "Geant4: $G4LIB found"
 else
 	newG4LIB=$(echo $G4LIB | sed 's/lib/lib64/')
-	[ -d "$newG4LIB" ] && echo "$newG4LIB success" || whine_and_quit "$newG4LIB or $G4LIB not found"
+	[ -d "$newG4LIB" ] && echo "Geant4: $newG4LIB found" || whine_and_quit "$newG4LIB or $G4LIB not found"
 fi
 echo
