@@ -2,7 +2,8 @@
 
 # check if OSRELEASE is set
 if { [info exists env(OSRELEASE)] } {
-  # do nothing
+  # print warning message
+  puts stderr "Warning: OSRELEASE is already set to $env(OSRELEASE)."
 } else {
   setenv OSRELEASE [ exec $env(SIM_HOME)/ceInstall/osrelease.py ]
 }
