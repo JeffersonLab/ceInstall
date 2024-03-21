@@ -1,6 +1,13 @@
 #%Module4.5
 
-setenv OSRELEASE [ exec $env(SIM_HOME)/ceInstall/osrelease.py ]
+# check if OSRELEASE is set
+if { [info exists env(OSRELEASE)] } {
+  # do nothing
+} else {
+  setenv OSRELEASE [ exec $env(SIM_HOME)/ceInstall/osrelease.py ]
+}
+
+#setenv OSRELEASE [ exec $env(SIM_HOME)/ceInstall/osrelease.py ]
 setenv SIM_INSTALLATION_DIR $env(SIM_HOME)/$env(SIM_VERSION)/$env(OSRELEASE)
 
 
