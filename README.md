@@ -116,8 +116,8 @@ make -j4
 
 # Installation Tree
 
-**Software based on compiled code** (C++, fortran, etc) is organized in the `OSRELEASE` 
-directory. The OSRELEASE string is composed by the OS name and the compiler major version. 
+**Software based on compiled code** (C++, fortran, etc) is organized in the `SIM_OSRELEASE` 
+directory. `SIM_OSRELEASE`, set by the modules, is a  string is composed by the OS name and the compiler major version. 
 For example: `macosx14-clang15`, `fedora34-gcc12`.
 
 **Architecture-independent stuff** (python, JAVA, etc) is organized in then `noarch` directory.
