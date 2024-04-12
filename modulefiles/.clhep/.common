@@ -12,6 +12,8 @@ if { ! [info exist ::env(SIM_VERSION)]  }  {
 set dir $env(SIM_INSTALLATION_DIR)/clhep/${version}
 
 prepend-path LD_LIBRARY_PATH $dir/lib
+prepend-path PKG_CONFIG_PATH $dir/lib/pkgconfig
+
 if { [uname sysname] == "Darwin" } {
 	setenv DYLD_LIBRARY_PATH $env(LD_LIBRARY_PATH)
 }
