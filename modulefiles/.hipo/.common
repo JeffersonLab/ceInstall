@@ -4,9 +4,10 @@
 
 # Environment
 
-if { ! [info exist ::env(SIM_VERSION)]  }  {
-	puts stderr " ERROR: SIM_VERSION not set. Load module sim or gemc first"
-	exit 1
+# SIM_INSTALLATION_DIR is not set when hipo is used independently of sim or gemc
+if {![info exists SIM_INSTALLATION_DIR]} {
+	setenv SIM_OSRELEASE [ exec $env(SIM_HOME)/ceInstall/sim_osrelease.py ]
+	setenv SIM_INSTALLATION_DIR $env(SIM_HOME)/$env(SIM_VERSION)/$env(SIM_OSRELEASE)
 }
 
 set dir $env(SIM_INSTALLATION_DIR)/hipo/${version}
@@ -18,12 +19,11 @@ prepend-path PYTHONPATH $dir/extensions/python
 
 prepend-path LD_LIBRARY_PATH $dir/lib
 prepend-path LD_LIBRARY_PATH $dir/slib
-
-
-
 if { [uname sysname] == "Darwin" } {
 	setenv DYLD_LIBRARY_PATH $env(LD_LIBRARY_PATH)
 }
+
+
 
 
 

@@ -10,33 +10,30 @@ what="hipo"
 what_version="$HIPO_VERSION"
 base_dir="$HIPO"
 grepo="https://github.com/gavalian/hipo"
+source_dir=hipo_source
 
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
 log_general "$what" "$what_version" "$grepo" "$base_dir"
 
-# git cloning the tag because lz4 is not in the tarball
-mkdir -p "$base_dir"
-cd "$base_dir/".. || exit
-rm -rf "$base_dir"
-git clone --recurse-submodules --single-branch -b $what_version "$grepo" "$what_version"
+git clone --recurse-submodules --single-branch -b $what_version "$grepo" $source_dir
+cd $source_dir || exit
+mkdir build
+cd build || exit
 
 
-# manual installation includes building lz4 and hipo4
-# cmake from top level does not work for me
-cd "$HIPO" || exit
-mkdir -p lib slib
-cd lz4 || exit
 
-# notice: this is a hacked manual installation until make works from the top level on MacOs Ventura
 
-make -j "$n_cpu" 2>"lz4_build_err.txt" 1>"lz4_build_log.txt" || exit
-cp lib/liblz4* ../lib
-cp lib/liblz4* ../slib
 
-cd ../hipo4 || exit
-make -j "$n_cpu"          2>"hipo_build_err.txt"  1>"hipo_build_log.txt"  || exit
-make slibhipo -j "$n_cpu" 2>"shipo_build_err.txt" 1>"shipo_build_log.txt" || exit
+cmake -DCMAKE_INSTALL_PREFIX=$base_dir ../
+make -j "$n_cpu" install || exit
+cd ../../ || exit
+rm -rf $source_dir
+
+# temp copying hipo4 from include until this is fixed in scons
+cd "$base_dir/include" || exit
+cp -r hipo4 ..
+
 
 
 echo "$magenta > $what installation completed.$reset"

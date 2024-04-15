@@ -1,12 +1,13 @@
 #%Module4.5
 
-#conflict .ccdb
+conflict .ccdb
 
 # Environment
 
-if { ! [info exist ::env(SIM_VERSION)]  }  {
-	puts stderr " ERROR: SIM_VERSION not set. Load module sim or gemc first"
-	exit 1
+# SIM_INSTALLATION_DIR is not set when ccdb is used independently of sim or gemc
+if {![info exists SIM_INSTALLATION_DIR]} {
+	setenv SIM_OSRELEASE [ exec $env(SIM_HOME)/ceInstall/sim_osrelease.py ]
+	setenv SIM_INSTALLATION_DIR $env(SIM_HOME)/$env(SIM_VERSION)/$env(SIM_OSRELEASE)
 }
 
 set dir $env(SIM_INSTALLATION_DIR)/ccdb/${version}
@@ -26,8 +27,7 @@ if {  [info exists ::env(USER)] } {
 	setenv CCDB_USER $env(USER)
 }
 
-#setenv CCDB_CONNECTION mysql://clas12reader@clasdb.jlab.org/clas12
-#setenv CCDB_CONNECTION mysql://clas12reader@clasdb.jlab.org/clas12
+
 
 proc ModulesTest { } {
 	

@@ -74,8 +74,8 @@ the software needed to run clas12 simulations with gemc.
 ` <gemc_version>` is the gemc or clas12Tag version. 
 
 - `4.4.2`: uses `geant4 10.6.2` and clas12Tags `4.4.2` 
-- `5.5`: uses `geant4 10.6.2` and clas12Tags `5.5`
-- `5.6`: uses `geant4 10.7.4` and clas12Tags `5.6`
+- `5.7`: uses `geant4 10.6.2` and clas12Tags `5.7`
+- `5.8`: uses `geant4 10.7.4` and clas12Tags `5.8`
 - `2.12`: uses `geant4 10.7.4` and gemc `2.12`
 
 `install_gemc` will install, if not present already, the libraries needed for Geant4 simulations. 

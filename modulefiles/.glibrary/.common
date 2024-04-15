@@ -15,6 +15,7 @@ prepend-path LD_LIBRARY_PATH $dir/lib
 if { [uname sysname] == "Darwin" } {
 	setenv DYLD_LIBRARY_PATH $env(LD_LIBRARY_PATH)
 }
+prepend-path PKG_CONFIG_PATH $dir/lib/pkgconfig
 
 setenv GLIBRARY_VERSION $version
 setenv GLIBRARY $dir
