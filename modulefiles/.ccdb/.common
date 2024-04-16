@@ -4,11 +4,11 @@ conflict .ccdb
 
 # Environment
 
-# SIM_INSTALLATION_DIR is not set when ccdb is used independently of sim or gemc
-if {![info exists SIM_INSTALLATION_DIR]} {
-	setenv SIM_OSRELEASE [ exec $env(SIM_HOME)/ceInstall/sim_osrelease.py ]
-	setenv SIM_INSTALLATION_DIR $env(SIM_HOME)/$env(SIM_VERSION)/$env(SIM_OSRELEASE)
-}
+# CCDB is an external package, installed on SIM_VERSION 1.0
+set CCDB_SIM_VERSION 1.0
+set SIM_OSRELEASE [ exec $env(SIM_HOME)/ceInstall/sim_osrelease.py ]
+set SIM_INSTALLATION_DIR $env(SIM_HOME)/$CCDB_SIM_VERSION/$SIM_OSRELEASE
+
 
 set dir $env(SIM_INSTALLATION_DIR)/ccdb/${version}
 
