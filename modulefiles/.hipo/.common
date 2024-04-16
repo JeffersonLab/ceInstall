@@ -10,7 +10,7 @@ set SIM_OSRELEASE [ exec $env(SIM_HOME)/ceInstall/sim_osrelease.py ]
 set SIM_INSTALLATION_DIR $env(SIM_HOME)/$HIPO_SIM_VERSION/$SIM_OSRELEASE
 
 
-set dir $env(SIM_INSTALLATION_DIR)/hipo/${version}
+set dir $SIM_INSTALLATION_DIR/ccdb/${version}
 
 setenv HIPO_VERSION $version
 setenv HIPO $dir

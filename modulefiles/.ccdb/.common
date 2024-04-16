@@ -10,7 +10,7 @@ set SIM_OSRELEASE [ exec $env(SIM_HOME)/ceInstall/sim_osrelease.py ]
 set SIM_INSTALLATION_DIR $env(SIM_HOME)/$CCDB_SIM_VERSION/$SIM_OSRELEASE
 
 
-set dir $env(SIM_INSTALLATION_DIR)/ccdb/${version}
+set dir $SIM_INSTALLATION_DIR/ccdb/${version}
 
 prepend-path LD_LIBRARY_PATH $dir/lib
 if { [uname sysname] == "Darwin" } {
