@@ -8,33 +8,16 @@ fi
 
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
-what="ccdb"
-srepo="https://github.com/baltzell/ccdb"
+filename="ccdb/ccdb-$CCDB_VERSION.tar.gz" # includes subdirectory name
+tar_strip=1                               # in the tarball, the source is inside ccdb-version
+
+
 base_dir=$CCDB_HOME
-source_dir=ccdb_source
 
 log_general ccdb "$CCDB_VERSION" "$filename" "$base_dir"
 
-git clone  --single-branch -b "v$CCDB_VERSION" "$srepo" $source_dir
-cd $source_dir || exit
-mkdir build
-cd build || exit
+unpack_source_in_directory_from_jlab_repo "$filename" "$base_dir" "$tar_strip"
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-	echo "macos, setting LDFLAGS to find zstd"
-	export LDFLAGS="-L$(brew --prefix zstd)/lib -L$(brew --prefix openssl)/lib"
-fi
+unset SCONSFLAGS
+scons_build_and_install "$base_dir"
 
-cmake -DCMAKE_INSTALL_PREFIX=$base_dir ../
-make -j "$n_cpu" install || exit
-cd ../../ || exit
-rm -rf $source_dir
-
-# temp moving include dirs until gemc uses new paths
-cd "$base_dir/include" || exit
-mv ccdb tmp
-mv tmp/* .
-rm -rf tmp
-
-echo "$magenta > $what installation completed.$reset"
-echo

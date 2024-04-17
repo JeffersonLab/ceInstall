@@ -4,13 +4,12 @@
 
 # Environment
 
-# HIPO is an external package, installed on SIM_VERSION 1.0
-set HIPO_SIM_VERSION 1.0
-set SIM_OSRELEASE [ exec $env(SIM_HOME)/ceInstall/sim_osrelease.py ]
-set SIM_INSTALLATION_DIR $env(SIM_HOME)/$HIPO_SIM_VERSION/$SIM_OSRELEASE
+if { ! [info exist ::env(SIM_VERSION)]  }  {
+	puts stderr " ERROR: SIM_VERSION not set. Load module sim or gemc first"
+	exit 1
+}
 
-
-set dir $SIM_INSTALLATION_DIR/ccdb/${version}
+set dir $env(SIM_INSTALLATION_DIR)/hipo/${version}
 
 setenv HIPO_VERSION $version
 setenv HIPO $dir
@@ -19,11 +18,12 @@ prepend-path PYTHONPATH $dir/extensions/python
 
 prepend-path LD_LIBRARY_PATH $dir/lib
 prepend-path LD_LIBRARY_PATH $dir/slib
+
+
+
 if { [uname sysname] == "Darwin" } {
 	setenv DYLD_LIBRARY_PATH $env(LD_LIBRARY_PATH)
 }
-
-
 
 
 

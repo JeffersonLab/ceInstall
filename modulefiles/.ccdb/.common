@@ -1,16 +1,15 @@
 #%Module4.5
 
-conflict .ccdb
+#conflict .ccdb
 
 # Environment
 
-# CCDB is an external package, installed on SIM_VERSION 1.0
-set CCDB_SIM_VERSION 1.0
-set SIM_OSRELEASE [ exec $env(SIM_HOME)/ceInstall/sim_osrelease.py ]
-set SIM_INSTALLATION_DIR $env(SIM_HOME)/$CCDB_SIM_VERSION/$SIM_OSRELEASE
+if { ! [info exist ::env(SIM_VERSION)]  }  {
+	puts stderr " ERROR: SIM_VERSION not set. Load module sim or gemc first"
+	exit 1
+}
 
-
-set dir $SIM_INSTALLATION_DIR/ccdb/${version}
+set dir $env(SIM_INSTALLATION_DIR)/ccdb/${version}
 
 prepend-path LD_LIBRARY_PATH $dir/lib
 if { [uname sysname] == "Darwin" } {
@@ -27,7 +26,8 @@ if {  [info exists ::env(USER)] } {
 	setenv CCDB_USER $env(USER)
 }
 
-
+#setenv CCDB_CONNECTION mysql://clas12reader@clasdb.jlab.org/clas12
+#setenv CCDB_CONNECTION mysql://clas12reader@clasdb.jlab.org/clas12
 
 proc ModulesTest { } {
 	
