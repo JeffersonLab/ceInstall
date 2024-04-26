@@ -1,33 +1,26 @@
 #!/bin/zsh
 
 # if the environment variables GEMC3_BASE_DIR and GEMC3_VERSION are not set, exit
-if [[ -z "$GEMC3_BASE_DIR" || -z "$GEMC3_VERSION" ]]; then
+if [[ -z "$GEMC" || -z "$GEMC3_VERSION" ]]; then
 	echo "$red > GEMC3_BASE_DIR or GEMC3_VERSION environment variables are not set. Exiting.$reset"
 	exit 1
 fi
 
 what="gemc3"
 what_version="$GEMC3_VERSION"
-base_dir="$GEMC3_BASE_DIR/$GEMC3_VERSION"
-grepo="https://github.com/gemc/src/archive/refs/tags/$what_version.tar.gz"
-srepo="https://github.com/maureeungaro/src"
-tar_strip=1  # tarball number of subdirs to strip
+install_dir="$GEMC"
+source_dir="gemc3_source"
+grepo="https://github.com/gemc/src"
 
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
+rm -rf $source_dir
+clone_tag "$grepo" "$what_version" "$source_dir"
+cd $source_dir
 
-if [[ $what_version != "dev" ]]; then
-  log_general "$what" "$what_version" "$grepo" "$base_dir"
-  unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
-else
-  log_general "$what" "$what_version" "$srepo" "$base_dir"
-  echo "$magenta > cloning $srepo.$reset"
-  mkdir "$GEMC3_BASE_DIR"
-  cd "$GEMC3_BASE_DIR"
-  rm -rf "dev"
-  git clone "$srepo" "dev"
-fi
-
-scons_build_and_install "$base_dir"
+dir_remove_and_create   "$install_dir"
+meson_install "--native-file=release.ini" "$install_dir"
+cd ..
+rm -rf $source_dir
 
 echo "$magenta > $what installation completed.$reset"
 echo

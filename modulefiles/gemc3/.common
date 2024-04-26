@@ -3,24 +3,21 @@
 conflict gemc3
 
 module load sim/$env(SIM_VERSION)
-module load .scons_bm/${scons_bm_version}
-module load .glibrary/${glibrary_version}
 module load .scig/${scig_version}
 
 # Environment
 set base_dir $env(SIM_INSTALLATION_DIR)
 
-setenv GEMC3_VERSION $version
-setenv GEMC3_BASE_DIR $base_dir/gemc3
-setenv GEMC           $base_dir/gemc3/$version
-prepend-path PATH     $base_dir/gemc3/$version
+setenv GEMC3_VERSION 		 $version
+setenv GEMC                  $base_dir/gemc3/$version
+prepend-path PATH            $base_dir/gemc3/$version/bin
+prepend-path PKG_CONFIG_PATH $base_dir/lib/pkgconfig
 
 proc ModulesTest { } {
 	
 	global SIM_VERSION
 	set retcode 1
 
-	set command [module-info command]
 	set is_loaded [module-info loaded gemc3]
 
 	# exit if is_loaded is empty
@@ -31,7 +28,7 @@ proc ModulesTest { } {
 	}
 
 	set installation_dir  [ getenv GEMC ]
-    set installation_exe  $installation_dir/gemc
+    set installation_exe  $installation_dir/bin/gemc
     if { [file isfile $installation_exe ] } {
 	    puts stderr " Y gemc \t\t $installation_exe"
     } else {

@@ -1,11 +1,9 @@
 #!/bin/zsh -i
 
 # on fedora and ubuntu installation dir is different for modules
-# at JLab we need to use modules 5.2 and higher
 # also checking for container env setup in /app
 [[ -f /usr/share/Modules/init/zsh ]] && . /usr/share/Modules/init/zsh
 [[ -f /usr/share/modules/init/zsh ]] && . /usr/share/modules/init/zsh
-[[ -f /apps/modules/5.2.0/init/zsh ]] && . /apps/modules/5.2.0/init/zsh
 [[ -f /app/localSetup.sh ]] && . /app/localSetup.sh
 
 . "$(dirname "$(readlink -f "$0")")"/functions.zsh
@@ -39,8 +37,6 @@ echo
 [ "$(moduleTestResult .qt $QT_VERSION)" -eq 0 ] && echo " > qt is installed" || copy_qt
 [ "$(moduleTestResult .g4data $G4_VERSION)" -eq 0 ] && echo " > g4data is installed" || install_geant4_data
 [ "$(moduleTestResult .geant4 $G4_VERSION)" -eq 0 ] && echo " > geant4 is installed" || install_geant4
-[ "$(moduleTestResult .scons_bm $SCONS_BM_VERSION)" -eq 0 ] && echo " > scons_bm is installed" || install_scons_bm
-[ "$(moduleTestResult .glibrary $GLIBRARY_VERSION)" -eq 0 ] && echo " > glibrary is installed" || install_glibrary
 [ "$(moduleTestResult gemc3 $GEMC3_VERSION)" -eq 0 ] && echo " > gemc3 is installed" || install_g3
 [ "$(moduleTestResult .scig $SCIG_VERSION)" -eq 0 ] && echo " > scig is installed" || install_scig
 
