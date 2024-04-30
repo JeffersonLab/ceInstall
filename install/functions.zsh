@@ -125,7 +125,7 @@ clone_tag() {
 	echo " > clone_tag: " $version
 	echo " > in directory: $install_dir"
 
-	git clone --recurse-submodules --single-branch -b $version "$url" "$source_dir"
+	git clone -c advice.detachedHead=false --recurse-submodules --single-branch -b $version "$url" "$source_dir"
 	echo
 }
 
