@@ -18,7 +18,7 @@ clone_tag "$grepo" "$what_version" "$source_dir"
 cd $source_dir
 
 dir_remove_and_create   "$install_dir"
-meson_install "--native-file=release.ini" "$install_dir"
+meson_install "--native-file=release.ini -Duse_root=true" "$install_dir"
 cd ..
 rm -rf $source_dir
 
