@@ -39,8 +39,8 @@ if { [ lindex [ split $version . ] 0 ] == 2 } {
 
 
 
-if { $version eq "5.4" || $version eq "5.5" || $version eq "5.6"} {
-	puts stderr "Warning: gemc $version is deprecated. Use 5.7 instead."
+if { $version eq "5.4" || $version eq "5.5" || $version eq "5.6" || $version eq "5.7" || $version eq "5.8"} {
+	puts stderr "Warning: gemc $version is deprecated. Use 5.10 instead."
 }
 
 proc ModulesTest { } {
