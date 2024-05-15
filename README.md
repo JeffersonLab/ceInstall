@@ -24,7 +24,7 @@ ___
 
 `module load sim/1.2`: loads standalone geant4 libraries, version 1.2 (geant4 11.2.1)
 
-`module load gemc/5.6`: loads gemc (clas12Tags) version 5.6, that uses geant4 10.7.4
+`module load gemc/5.10`: loads gemc (clas12Tags) version 5.10, that uses geant4 10.7.4
 
 `module load gemc/2.12`: loads gemc version 2.10, that uses geant4 10.7.4
 
@@ -193,22 +193,32 @@ ___
 
 #### Bash, zsh
 
-To enable modules, the following lines should be added to your `.bashrc` or `.zshrc`:
+To enable modules you can use the following commands:
 
 ```
 brewDir=$(brew --prefix)
 source $brewDir/opt/modules/init/zsh` or `. $brewDir/opt/modules/init/bash
 ```
 
+In order to avoid re-typing them every time, the lines could be added to the files `.bashrc` or `.zshrc` 
+in your home directory, so they will be executed every time you open a new terminal.
+You can create the file if it does not exist. 
 
 #### Tcsh, csh
 
-To enable modules, the following lines should be added to your `.tcshrc` or `.cshrc`:
+To enable modules you can use the following commands:
 
 ```
 set brewDir=`brew --prefix`
 source $brewDir/opt/modules/init/tcsh
 ```
+
+In order to avoid re-typing them every time, the lines could be added to the files `.tcshrc` or `.cshrc` 
+in your home directory, so they will be executed every time you open a new terminal.
+You can create the file if it does not exist. 
+
+---
+
 
 Notice that this will enable the use of modules, but to use the `install_sim` or `install_gemc` scripts you need to add the lines to the `.zshrc`
 script as described above.
