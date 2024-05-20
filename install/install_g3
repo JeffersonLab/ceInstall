@@ -17,8 +17,17 @@ rm -rf $source_dir
 clone_tag "$grepo" "$what_version" "$source_dir"
 cd $source_dir
 
-dir_remove_and_create   "$install_dir"
-meson_install "--native-file=release.ini -Duse_root=true" "$install_dir"
+
+meson setup build --native-file=release.ini -Duse_root=true --wipe
+cd build
+dir_remove_and_create  "$install_dir"
+meson configure "-Dprefix=$install_dir"
+meson install
+
+# why?
+export DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH
+meson test -v
+
 cd ..
 rm -rf $source_dir
 
