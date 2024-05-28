@@ -6,18 +6,53 @@ if [[ -z "$CCDB_HOME" || -z "$CCDB_VERSION" ]]; then
 	exit 1
 fi
 
+what="ccdb"
+what_version="$CCDB_VERSION"
+base_dir="$CCDB_HOME"
+
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
-filename="ccdb/ccdb-$CCDB_VERSION.tar.gz" # includes subdirectory name
-tar_strip=1                               # in the tarball, the source is inside ccdb-version
+log_general "$what" "$what_version" "$srepo" "$base_dir"
 
+# if version is less than 1.08, use the old repository
+if [[ "$what_version" < "1.08" ]]; then
+	srepo="https://github.com/maureeungaro/ccdb"
 
-base_dir=$CCDB_HOME
+	mkdir -p "$base_dir"
+	cd "$base_dir/".. || exit
+	rm -rf "$base_dir"
+	git clone --single-branch -b "v$what_version" "$srepo" "$what_version"
 
-log_general ccdb "$CCDB_VERSION" "$filename" "$base_dir"
+	unset SCONSFLAGS
+	scons_build_and_install "$base_dir"
 
-unpack_source_in_directory_from_jlab_repo "$filename" "$base_dir" "$tar_strip"
+else
+	srepo="https://github.com/baltzell/ccdb"
+	source_dir=ccdb_source
 
-unset SCONSFLAGS
-scons_build_and_install "$base_dir"
+	git clone  --single-branch -b "v$CCDB_VERSION" "$srepo" $source_dir
 
+	cd $source_dir || exit
+	mkdir build
+	cd build || exit
+
+	if [[ "$OSTYPE" == "darwin"* ]]; then
+		echo "macos, setting LDFLAGS to find zstd"
+		export LDFLAGS="-L$(brew --prefix zstd)/lib -L$(brew --prefix openssl)/lib"
+	fi
+
+	cmake -DCMAKE_INSTALL_PREFIX=$base_dir ../
+	make -j "$n_cpu" install || exit
+	cd ../../ || exit
+	rm -rf $source_dir
+
+	# temp moving include dirs until gemc uses new paths
+	cd "$base_dir/include" || exit
+	mv ccdb tmp
+	mv tmp/* .
+	rm -rf tmp
+	cd ../../ || exit
+fi
+
+echo "$magenta > $what installation completed.$reset"
+echo

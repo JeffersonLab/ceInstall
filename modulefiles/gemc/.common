@@ -4,7 +4,7 @@
 
 module load sim/$env(SIM_VERSION)
 module load .scons_bm/${scons_bm_version}
-module load .ccdb/${ccdb_version}
+module load --not-req ccdb/${ccdb_version}
 module load .evio/${evio_version}
 module load .mlibrary/${mlibrary_version}
 module load .hipo/${hipo_version}

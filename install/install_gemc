@@ -42,7 +42,7 @@ echo
 [ "$(moduleTestResult .g4data $G4_VERSION)" -eq 0 ] && echo " > g4data is installed" || install_geant4_data
 [ "$(moduleTestResult .geant4 $G4_VERSION)" -eq 0 ] && echo " > geant4 is installed" || install_geant4
 [ "$(moduleTestResult .scons_bm $SCONS_BM_VERSION)" -eq 0 ] && echo " > scons_bm is installed" || install_scons_bm
-[ "$(moduleTestResult .ccdb $CCDB_VERSION)" -eq 0 ] && echo " > ccdb is installed" || install_ccdb
+[ "$(moduleTestResult ccdb $CCDB_VERSION)" -eq 0 ] && echo " > ccdb is installed" || install_ccdb
 [ "$(moduleTestResult .cmag $CMAG_VERSION)" -eq 0 ] && echo " > cmag is installed" || install_cmag
 [ "$(moduleTestResult .mlibrary $MLIBRARY_VERSION)" -eq 0 ] && echo " > mlibrary is installed" || install_mlibrary
 
