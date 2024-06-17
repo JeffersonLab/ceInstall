@@ -42,7 +42,7 @@ ___
 Make sure the [__requirements__](#requirements) for the libraries / environment installation 
 listed at the bottom of this page are met.
 
-The installation scripts below are found in `"${SIM_HOME}"/ceInstall/install`. 
+Add the installation scripts location to your path 'module load sim'
 
 ### Standalone Geant4 Simulation Software Installation
 
