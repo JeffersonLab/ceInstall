@@ -42,7 +42,13 @@ ___
 Make sure the [__requirements__](#requirements) for the libraries / environment installation 
 listed at the bottom of this page are met.
 
-Add the installation scripts location to your path 'module load sim'
+Make sure you have write and execute permissions on $SIM_HOME:
+
+```
+chmod -R 755 $SIM_HOME
+```
+
+Add the installation scripts location to your path `module load sim`
 
 ### Standalone Geant4 Simulation Software Installation
 
