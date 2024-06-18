@@ -14,10 +14,10 @@ set dir $env(SIM_INSTALLATION_DIR)/hipo/${version}
 setenv HIPO_VERSION $version
 setenv HIPO $dir
 
-prepend-path PYTHONPATH $dir/extensions/python
+append-path PYTHONPATH $dir/extensions/python
 
-prepend-path LD_LIBRARY_PATH $dir/lib
-prepend-path LD_LIBRARY_PATH $dir/slib
+append-path LD_LIBRARY_PATH $dir/lib
+append-path LD_LIBRARY_PATH $dir/slib
 
 
 
