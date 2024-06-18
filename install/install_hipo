@@ -16,6 +16,10 @@ source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
 log_general "$what" "$what_version" "$grepo" "$base_dir"
 
+echo hello
+echo ls -l /.dockerenv
+export 
+
 # if we are in a docker container temp hiding root
 if [[ -f /.dockerenv ]]; then
 	echo "$magenta > Running in a docker container. Temp hiding /usr/share/root by moving it $reset"
@@ -25,7 +29,7 @@ fi
 git clone --recurse-submodules --single-branch -b $what_version "$grepo" $source_dir
 cd $source_dir || exit
 
-# in a docker container, we need to build lz4
+# in a docker container, we need to build lz4. No
 if [[ -f /.dockerenv ]]; then
 	cd lz4
 	make PREFIX=$base_dir CFLAGS='-fPIC' install || exit
