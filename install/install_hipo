@@ -45,10 +45,12 @@ make -j "$n_cpu" install || exit
 cd ../../ || exit
 rm -rf $source_dir
 
-# temp copying hipo4 from include until this is fixed in scons loadhipo
-cd "$base_dir/include" || exit
-cp -r hipo4 ..
-cp -r *.h ..
+# temp copying hipo4 from include until this is fixed in scons loadhipo,
+# which looks things inside $HIPO/hipo4
+cd "$base_dir" || exit
+cp -r include/hipo4 ..
+cp -r include/*.h hipo4
+ls -l
 
 echo "$magenta > $what installation completed.$reset"
 echo
