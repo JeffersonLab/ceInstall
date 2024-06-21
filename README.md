@@ -22,13 +22,13 @@ ___
 
 `module avail`: shows available modules
 
-`module load sim/1.2`: loads standalone geant4 libraries, version 1.2 (geant4 11.2.1)
+`module load sim/1.2`: loads standalone geant4 libraries, version 1.2 (geant4 11.2.2)
 
 `module load gemc/5.10`: loads gemc (clas12Tags) version 5.10, that uses geant4 10.7.4
 
 `module load gemc/2.12`: loads gemc version 2.10, that uses geant4 10.7.4
 
-`module load gemc3/1.1`: loads gemc3 version 1.1, that uses geant4 11.2.1
+`module load gemc3/1.1`: loads gemc3 version 1.1, that uses geant4 11.2.2
 
 `module show <module>/<version>`: shows what is loaded by a module
 
@@ -62,7 +62,7 @@ can be:
 
 - `1.0`: for `geant4` `10.6.2`
 - `1.1`: for `geant4` `10.7.4`
-- `1.2`: for `geant4` `11.2.1`
+- `1.2`: for `geant4` `11.2.2`
 
 The script will test for the existence of the libraries and 
 will not install what is already present.
