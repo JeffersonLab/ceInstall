@@ -7,7 +7,7 @@ module load .scons_bm/${scons_bm_version}
 module load --not-req ccdb/${ccdb_version}
 module load .evio/${evio_version}
 module load .mlibrary/${mlibrary_version}
-module load .hipo/${hipo_version}
+module load hipo
 module load --not-req .driftchambers/${driftchambers_version}
 module load .cmag/${cmag_version}
 
