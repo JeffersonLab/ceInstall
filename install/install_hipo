@@ -16,9 +16,6 @@ source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
 log_general "$what" "$what_version" "$grepo" "$base_dir"
 
-echo hello
-export
-
 
 # if we are in a docker container temp hiding root
 if [[ -n "$AUTOBUILD" ]]; then
@@ -29,12 +26,10 @@ fi
 git clone --recurse-submodules --single-branch -b $what_version "$grepo" $source_dir
 cd $source_dir || exit
 
-# in a docker container, we need to build lz4.
-if [[ -n "$AUTOBUILD" ]]; then
-	cd lz4
-	make PREFIX=$base_dir CFLAGS='-fPIC' install || exit
-	cd ..
-fi
+cd  lz4
+make  PREFIX=$base_dir CFLAGS='-fPIC' install || exit
+cd  ..
+
 mkdir build
 cd build || exit
 
@@ -55,6 +50,7 @@ cd "$base_dir" || exit
 mv include/hipo4 .
 cp -r include/*.h hipo4
 ls -lR include
+ls -lR hipo4
 
 echo "$magenta > $what installation completed.$reset"
 echo
