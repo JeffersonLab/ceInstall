@@ -44,13 +44,5 @@ if [[ -n "$AUTOBUILD" ]]; then
 	mv $SIM_INSTALLATION_DIR/root /usr/share/root/
 fi
 
-# temp copying hipo4 from include until this is fixed in scons loadhipo,
-# which looks things inside $HIPO/hipo4
-cd "$base_dir" || exit
-mv include/hipo4 .
-cp -r include/*.h hipo4
-ls -lR include
-ls -lR hipo4
-
 echo "$magenta > $what installation completed.$reset"
 echo

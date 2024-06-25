@@ -19,12 +19,7 @@ if [[ $what_version != "dev" ]]; then
   log_general "$what" "$what_version" "$grepo" "$base_dir"
   unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
 else
-  log_general "$what" "$what_version" "$srepo" "$base_dir"
-  echo "$magenta > cloning $srepo.$reset"
-  mkdir -p "$SCONS_BM"
-  cd "$SCONS_BM/.."
-  rm -rf "dev"
-  git clone "$srepo" "dev"
+  echo make a link to the scons_bm dir containing the repo
 fi
 
 
