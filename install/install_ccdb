@@ -46,12 +46,6 @@ else
 	cd ../../ || exit
 	rm -rf $source_dir
 
-	# temp moving include dirs until gemc uses new paths
-	cd "$base_dir/include" || exit
-	mv ccdb tmp
-	mv tmp/* .
-	rm -rf tmp
-	cd ../../ || exit
 fi
 
 echo "$magenta > $what installation completed.$reset"
