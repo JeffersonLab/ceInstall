@@ -1,0 +1,10 @@
+#%Module
+
+module-whatis core environment variables for Geant4 Simulations
+source [file dirname $ModulesCurrentModulefile]/util/functions.tcl
+
+set installation_dir [home]/[osrelease]
+warndir $installation_dir "[osrelease] is currently not supported."
+
+# add the installation directory to the PATH
+prepend-path PATH $env(SIM_HOME)/ceInstall/install

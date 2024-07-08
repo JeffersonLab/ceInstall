@@ -1,4 +1,4 @@
-#%Module4.5
+#%Module
 
 set version 1.0
 setenv SIM_VERSION 1.2

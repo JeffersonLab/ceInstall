@@ -1,48 +1,24 @@
-#%Module4.5
+# Common modulefile
 
-#conflict .xercesc
+conflict .xercesc
 
-# Environment
+module-whatis A Class Library for High Energy Physics, https://proj-clhep.web.cern.ch/proj-clhep/
+source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
 
-if { ! [info exist ::env(SIM_VERSION)]  }  {
-	puts stderr " ERROR: SIM_VERSION not set. Load module sim or gemc first"
-	exit 1
-}
+set dir [home]/[osrelease]/xercesc/${version}
+set ilib [choose_dir $dir/lib $dir/lib64]
 
-set dir $env(SIM_INSTALLATION_DIR)/xercesc/${version}
-
-set lib_location   $dir/lib
-set lib64_location $dir/lib64
-if { [file isdirectory $lib_location ] } {
-	prepend-path LD_LIBRARY_PATH $lib_location
-} elseif { [file isdirectory $lib64_location ] } {
-	prepend-path LD_LIBRARY_PATH $lib64_location
-}
-
-if { [uname sysname] == "Darwin" } {
-	setenv DYLD_LIBRARY_PATH $env(LD_LIBRARY_PATH)
-}
-
-
+prepend-ldpath $ilib
+prepend-path PKG_CONFIG_PATH $ilib/pkgconfig
 
 setenv XERCESC_VERSION $version
-setenv XERCESCROOT $dir
+setenv XERCESCROOT     $dir
+
 
 
 proc ModulesTest { } {
-	
-	set var XERCESC
-	set installation_exe [ getenv XERCESCROOT ]/bin/CreateDOMDocument
-	set retcode 1
 
-	puts stderr ""
-	if { [file isfile $installation_exe ] } {
-		puts stderr " Y $var $installation_exe"
-	} else {
-		puts stderr " N $var $installation_exe"
-		set retcode 0
-    }
+	warndir [ getenv XERCESCROOT ]/include/xercesc "XERCESCROOT does not have the include directory"
 
-	return $retcode
 }
 

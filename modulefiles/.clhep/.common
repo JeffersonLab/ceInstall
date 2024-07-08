@@ -1,50 +1,24 @@
-#%Module4.5
+# Common modulefile
 
-#conflict .clhep
+conflict .clhep
 
-# Environment
+module-whatis A Class Library for High Energy Physics, https://proj-clhep.web.cern.ch/proj-clhep/
+source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
 
-if { ! [info exist ::env(SIM_VERSION)]  }  {
-	puts stderr " ERROR: SIM_VERSION not set. Load module sim or gemc first"
-	exit 1
-}
+set dir [home]/[osrelease]/clhep/${version}
+set ilib [choose_dir $dir/lib $dir/lib64]
 
-set dir $env(SIM_INSTALLATION_DIR)/clhep/${version}
-
-prepend-path LD_LIBRARY_PATH $dir/lib
-prepend-path PKG_CONFIG_PATH $dir/lib/pkgconfig
-
-if { [uname sysname] == "Darwin" } {
-	setenv DYLD_LIBRARY_PATH $env(LD_LIBRARY_PATH)
-}
+prepend-ldpath $ilib
+prepend-path PKG_CONFIG_PATH $ilib/pkgconfig
 
 setenv CLHEP_VERSION  $version
 setenv CLHEP_BASE_DIR $dir
-# for cmake:
-setenv CLHEP_DIR $dir
-
-
-
-
-
-
-
-
+# for cmake
+setenv CLHEP_DIR      $dir
 
 proc ModulesTest { } {
-	
-	set var CLHEP
-	set installation_dir  [ getenv CLHEP_BASE_DIR ]/lib
-	set retcode 1
 
-	puts stderr ""
-	if { [file isdirectory $installation_dir ] } {
-		puts stderr " Y $var $installation_dir"
-	} else {
-		puts stderr " N $var $installation_dir"
-		set retcode 0
-	}
-	
-	return $retcode
+	warndir [ getenv CLHEP_BASE_DIR ]/include/CLHEP "CLHEP_BASE_DIR does not have the include directory"
+
 }
 

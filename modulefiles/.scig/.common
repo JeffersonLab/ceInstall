@@ -1,4 +1,4 @@
-#%Module4.5
+#%Module
 
 
 module load sim/$env(SIM_VERSION)

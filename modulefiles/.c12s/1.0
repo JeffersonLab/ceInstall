@@ -1,4 +1,4 @@
-#%Module4.5
+#%Module
 
 prereq .ccdb/1.07.01
 
