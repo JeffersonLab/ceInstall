@@ -28,7 +28,7 @@ prereq geant4/${g4_version}
 
 # gemc
 prereq .scons_bm/${scons_bm_version}
-#prereq --optional ccdb/${ccdb_version}
+prereq --optional ccdb/${ccdb_version}
 if { $version == "4.4.2" } {
 #	prereq .evio/${evio_version}
 #    prereq .banks/${banks_version}

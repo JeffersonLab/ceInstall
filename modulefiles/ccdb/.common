@@ -1,48 +1,33 @@
-#%Module
+# Common modulefile
 
-#conflict .ccdb
+# no conflict .ccdb
 
-# Environment
+module-whatis Jefferson Lab Calibration Constants Database, https://github.com/JeffersonLab/ccdb
+source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
 
-if { ! [info exist ::env(SIM_VERSION)]  }  {
-	puts stderr " ERROR: SIM_VERSION not set. Load module sim or gemc first"
-	exit 1
-}
+set dir [home]/[osrelease]/ccdb/${version}
+set ilib [choose_dir $dir/lib $dir/lib64]
 
-set dir $env(SIM_INSTALLATION_DIR)/ccdb/${version}
+prepend-ldpath $ilib
+prepend-path PKG_CONFIG_PATH $ilib/pkgconfig
 
-prepend-path LD_LIBRARY_PATH $dir/lib
-if { [uname sysname] == "Darwin" } {
-	setenv DYLD_LIBRARY_PATH $env(LD_LIBRARY_PATH)
-}
-
-prepend-path PATH $dir/bin
+prepend-path PATH       $dir/bin
 prepend-path PYTHONPATH $dir/python
-
-setenv CCDB_VERSION $version
-setenv CCDB_HOME $dir
+setenv CCDB_VERSION     $version
+setenv CCDB_HOME        $dir
 
 if {  [info exists ::env(USER)] } {
 	setenv CCDB_USER $env(USER)
 }
 
 #setenv CCDB_CONNECTION mysql://clas12reader@clasdb.jlab.org/clas12
-#setenv CCDB_CONNECTION mysql://clas12reader@clasdb.jlab.org/clas12
 
 proc ModulesTest { } {
 	
-	set var CCDB
-	set installation_exe  [ getenv CCDB_HOME ]/lib/libccdb.a
 	set retcode 1
 
-	puts stderr ""
-	if { [file isfile $installation_exe ] } {
-		puts stderr " Y $var $installation_exe"
-	} else {
-		puts stderr " N $var $installation_exe"
-		set retcode 0
-	}
-	
+	if { [warndir [ getenv CCDB_HOME ]/include "CCDB_HOME does not have the include directory" err] eq 0 } { set retcode 0 }
+
 	return $retcode
 }
 
