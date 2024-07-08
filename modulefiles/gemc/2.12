@@ -2,13 +2,14 @@
 
 set version [file tail [module-info version [module-info name]]]
 
+set g4_version             10.7.4
 set scons_bm_version       1.12
-set ccdb_version           1.07.01
+set ccdb_version           1.99.2
 set evio_version           5.1
 set mlibrary_version       1.7
 set hipo_version           4.0.1
 set cmag_version           1.1
 set banks_version          1.9
 
-set moduledir [file dirname $ModulesCurrentModulefile]
-source $moduledir/.common
+source [file dirname $ModulesCurrentModulefile]/.common
+

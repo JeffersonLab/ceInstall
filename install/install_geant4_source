@@ -59,7 +59,7 @@ unpack_source_in_directory_from_url "$filename" "$source_dir" "$tar_strip"
 # change fsqrt definition if geant4 version < 10.7
 if [[ $G4_VERSION == "10.6.2" ]]; then
 	echo
-	echo "Geant4 version is $G4_VERSION, applying fsqrt patch to $source_dir/source/persistency/ascii/src/G4tgrEvaluator.cc"
+	echo " > Geant4 version is $G4_VERSION, applying fsqrt patch to $source_dir/source/persistency/ascii/src/G4tgrEvaluator.cc"
 	echo
 	case $(uname -s) in
 	Linux)

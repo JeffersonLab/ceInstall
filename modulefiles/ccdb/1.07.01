@@ -1,7 +1,0 @@
-#%Module
-
-# line 1137 of query line string removed: USE INDEX (id_UNIQUE) "
-set version 1.07.01
-
-set moduledir [file dirname $ModulesCurrentModulefile]
-source $moduledir/.common

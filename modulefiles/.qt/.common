@@ -2,7 +2,7 @@
 
 conflict .qt
 
-module-whatis Cross platform C++ graphical interface, https://www.qt.io/developers
+module-whatis Cross platform C++ graphical framework, https://www.qt.io/developers
 source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
 
 # set QTSYSTEM based on uname

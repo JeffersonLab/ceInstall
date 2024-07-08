@@ -1,49 +1,25 @@
 #%Module
 
-#conflict .scons_bm
+conflict .scons_bm
+prereq sim_system
 
-# Environment
+module-whatis scons build system for gemc, to be replaced in future versions by meson
+source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
 
-if { ! [info exist ::env(SIM_VERSION)]  }  {
-	puts stderr " ERROR: SIM_VERSION not set. Load module sim or gemc first"
-	exit 1
-}
-
-set base_dir $env(SIM_HOME)/noarch
-
-set dir $base_dir/scons_bm/${version}
+set dir [home]/noarch/scons_bm/${version}
 
 
 setenv SCONS_BM_VERSION $version
-
-setenv SCONS_BM $dir
-setenv SCONSFLAGS  "--site-dir=$dir"
-
+setenv SCONS_BM         $dir
+setenv SCONSFLAGS       "--site-dir=$dir"
 prepend-path PYTHONPATH $dir
-
-
-
-
-
-
-
-
-
 
 proc ModulesTest { } {
 	
-	set var SCONS_BM
-	set installation_dir  [ getenv SCONS_BM ]
 	set retcode 1
 
-    puts stderr ""
-	if { [file isdirectory $installation_dir ] } {
-		puts stderr " Y $var $installation_dir"
-	} else {
-		puts stderr " N $var $installation_dir"
-		set retcode 0
-	}
-	
+	if { [warndir [ getenv SCONS_BM ]/site_tools "SCONS_BM directory does not exist or have the site_tools sub-dir" err] eq 0 } { set retcode 0 }
+
 	return $retcode
 }
 

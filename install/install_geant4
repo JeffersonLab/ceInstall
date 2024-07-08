@@ -1,10 +1,4 @@
 #!/bin/zsh -i
-
-install_g4() {
-	install_geant4_data
-	install_geant4_source
-}
-
 # shell has to be interactive to load modules
 
 # on fedora and ubuntu installation dir is different for modules
@@ -27,7 +21,13 @@ echo " > geant4_version: $geant4_version"
 echo
 
 module purge
+module load sim_system
 module load geant4/$geant4_version
+if [[ $? -ne 0 ]]; then
+	echo " > ERROR: module load gemc/$gemc_version failed. Exiting."
+	exit 1
+fi
+echo
 
 echo
 echo " > Checking / Installing missing dependencies for geant4 version $geant4_version"

@@ -22,8 +22,6 @@ else
   echo make a link to the scons_bm dir containing the repo
 fi
 
-
-
 echo "$magenta > $what installation completed.$reset"
 echo
 

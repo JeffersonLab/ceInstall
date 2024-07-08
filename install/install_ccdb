@@ -14,39 +14,24 @@ source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
 log_general "$what" "$what_version" "$srepo" "$base_dir"
 
-# if version is less than 1.08, use the old repository
-if [[ "$what_version" < "1.08" ]]; then
-	srepo="https://github.com/maureeungaro/ccdb"
+srepo="https://github.com/baltzell/ccdb"
+source_dir=ccdb_source
 
-	mkdir -p "$base_dir"
-	cd "$base_dir/".. || exit
-	rm -rf "$base_dir"
-	git clone --single-branch -b "v$what_version" "$srepo" "$what_version"
+git  clone  --single-branch -b "v$CCDB_VERSION" "$srepo" $source_dir
 
-	unset SCONSFLAGS
-	scons_build_and_install "$base_dir"
+cd  $source_dir || exit
+mkdir  build
+cd  build || exit
 
-else
-	srepo="https://github.com/baltzell/ccdb"
-	source_dir=ccdb_source
-
-	git clone  --single-branch -b "v$CCDB_VERSION" "$srepo" $source_dir
-
-	cd $source_dir || exit
-	mkdir build
-	cd build || exit
-
-	if [[ "$OSTYPE" == "darwin"* ]]; then
-		echo "macos, setting LDFLAGS to find zstd"
-		export LDFLAGS="-L$(brew --prefix zstd)/lib -L$(brew --prefix openssl)/lib"
-	fi
-
-	cmake -DCMAKE_INSTALL_PREFIX=$base_dir ../
-	make -j "$n_cpu" install || exit
-	cd ../../ || exit
-	rm -rf $source_dir
-
+if  [[ "$OSTYPE" == "darwin"* ]]; then
+	echo "macos, setting LDFLAGS to find zstd"
+	export LDFLAGS="-L$(brew --prefix zstd)/lib -L$(brew --prefix openssl)/lib"
 fi
+
+cmake  -DCMAKE_INSTALL_PREFIX=$base_dir ../
+make  -j "$n_cpu" install || exit
+cd  ../../ || exit
+rm  -rf $source_dir
 
 echo "$magenta > $what installation completed.$reset"
 echo

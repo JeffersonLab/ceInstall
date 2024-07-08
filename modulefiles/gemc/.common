@@ -1,41 +1,47 @@
-#%Module
+# Common modulefile
 
-#conflict gemc
+conflict gemc
+prereq sim_system
 
-module load sim/$env(SIM_VERSION)
-module load .scons_bm/${scons_bm_version}
-module load --not-req ccdb/${ccdb_version}
-module load .evio/${evio_version}
-module load .mlibrary/${mlibrary_version}
-module load hipo
-module load --not-req .driftchambers/${driftchambers_version}
-module load .cmag/${cmag_version}
+module-whatis gemc, https://gemc.github.io/home
+source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
 
-# 0.0 is a special tag indicating no need to load banks
-if { $banks_version != "0.0" } {
-    module load .banks/${banks_version}
+# if major $version is 2, then it's gemc
+set which clas12tags
+if { [ lindex [ split $version . ] 0 ] == 2  } {
+	set which gemc
 }
 
-# Environment
-set base_dir $env(SIM_INSTALLATION_DIR)
+set dir [home]/[osrelease]/$which/${version}
+set ilib [choose_dir $dir/lib $dir/lib64]
 
-set noarch_dir $env(SIM_HOME)/noarch
-setenv FIELD_DIR $noarch_dir/data/magfield
+prepend-path PATH $dir/bin
+prepend-ldpath    $ilib
+prepend-path      PKG_CONFIG_PATH $ilib/pkgconfig
 
+setenv GEMC_VERSION  $version
+setenv GEMC_BASE_DIR $dir
+setenv FIELD_DIR     [home]/noarch/data/magfield
 
-# if major $version is 2, then it is gemc2, otherwise it's clas12Tags
-if { [ lindex [ split $version . ] 0 ] == 2 } {
-    setenv GEMC_VERSION      $version
-    setenv GEMC_BASE_DIR     $base_dir/gemc2
-    setenv GEMC              $base_dir/gemc2/${version}
-    prepend-path PATH        $base_dir/gemc2/${version}
-} else {
-    setenv CLAS12TAG_VERSION  $version
-    setenv CLAS12TAG_BASE_DIR $base_dir/clas12Tags
-    setenv GEMC               $base_dir/clas12Tags/${version}/source
-    setenv GEMC_DATA_DIR      $base_dir/clas12Tags/${version}
-    prepend-path PATH         $base_dir/clas12Tags/${version}/source
+# geant4
+prereq geant4/${g4_version}
+
+# gemc
+prereq .scons_bm/${scons_bm_version}
+#prereq --optional ccdb/${ccdb_version}
+if { $version == "4.4.2" } {
+#	prereq .evio/${evio_version}
+#    prereq .banks/${banks_version}
 }
+if { $version != "4.4.2" } {
+#	prereq hipo
+}
+#prereq .mlibrary/${mlibrary_version}
+#prereq .cmag/${cmag_version}
+
+
+
+
 
 
 
@@ -45,16 +51,9 @@ if { $version eq "5.4" || $version eq "5.5" || $version eq "5.6" || $version eq 
 
 proc ModulesTest { } {
 
-	set installation_exe  [ getenv GEMC ]/gemc
 	set retcode 1
 
-	puts stderr ""
-	if { [file isfile $installation_exe ] } {
-		puts stderr " Y GEMC $installation_exe"
-	} else {
-		puts stderr " N GEMC $installation_exe"
-		set retcode 0
-	}
+
 
 	return $retcode
 }

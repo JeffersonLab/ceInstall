@@ -65,7 +65,7 @@ proc choose_dir {path1 path2} {
 		return $path1
 	} elseif  [file isdirectory $path2]  {
 		return $path2
-    } elseif {[module-info mode load] || [module-info mode test]} {
+    } elseif {[module-info mode test]} {
 		warn "Neither $path1 nor $path2 exist"
     }
 }

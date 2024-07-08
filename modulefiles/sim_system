@@ -3,8 +3,8 @@
 module-whatis core environment variables for Geant4 Simulations
 source [file dirname $ModulesCurrentModulefile]/util/functions.tcl
 
-set installation_dir [home]/[osrelease]
-warndir $installation_dir "[osrelease] is currently not supported." warn
+setenv SIM_HOME [home]/[osrelease]
+warndir $env(SIM_HOME) "[osrelease] is currently not supported." warn
 
 # add the installation directory to the PATH
 prepend-path PATH [home]/install
