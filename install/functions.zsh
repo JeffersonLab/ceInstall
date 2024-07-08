@@ -85,7 +85,6 @@ unpack_source_in_directory_from_url() {
 	filename=$(basename "$url")
 
 	echo
-	echo " > unpack_source_in_directory_from_url: "
 	echo " > url: $url"
 	echo " > dir: $dir"
 	echo " > tar_strip: $tar_strip"
@@ -105,14 +104,12 @@ unpack_source_in_directory_from_url() {
 	rm -f "$filename"
 	#	wget "$url" || whine_and_quit "wget $url"
 	curl -S --location-trusted --progress-bar --retry 4 "$url" -O || whine_and_quit "wget $url"
-	echo "Downloaded file:"
-	ls -lrt $filename
-
-	echo "$magenta > Unpacking $filename in $dir$reset"
-	echo
-
-	tar -zxpf "$filename" --strip-components="$tar_strip"
+	echo "$magenta > GTar Unpacking $filename in $dir$reset"
+	gtar -zxpf "$filename" --strip-components="$tar_strip"
 	rm -f "$filename"
+	echo " > Done with $filename"
+	echo
+	echo
 }
 
 clone_tag() {
@@ -158,18 +155,18 @@ cmake_build_and_install() {
 	cd "$build_dir" || whine_and_quit "cd $build_dir"
 
 	echo
-	echo "$magenta > Configuring cmake with: $=cmake_options$reset"
+	echo "$magenta > Configuring cmake...$reset"
 	echo
 
 	cmake "$source_dir" -DCMAKE_INSTALL_PREFIX="$install_dir" $=cmake_options 2>"$install_dir/cmake_err.txt" 1>"$install_dir/cmake_log.txt" || whine_and_quit "cmake $source_dir -DCMAKE_INSTALL_PREFIX=$install_dir $=cmake_options"
 
-	echo "$magenta > Building$reset"
+	echo "$magenta > Done, now building...$reset"
 	make -j "$n_cpu" 2>$install_dir/build_err.txt 1>"$install_dir/build_log.txt" || whine_and_quit "make -j $n_cpu"
 
-	echo "$magenta > Installing$reset"
+	echo "$magenta > and installing...$reset"
 	make install 2>$install_dir/install_err.txt 1>"$install_dir/install_log.txt" || whine_and_quit "make install"
 
-	echo " Content of $install_dir:"
+	echo " Content of $install_dir after installation:"
 	ls -l "$install_dir"
 	if [[ -d "$install_dir/lib" ]]; then
 		echo " Content of $install_dir/lib:"

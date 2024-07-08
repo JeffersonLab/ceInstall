@@ -1,79 +1,58 @@
-#!/bin/zsh
+#!/bin/zsh -i
 
-# this legacy geant4 install script still uses source code and data on the jlab repo
+install_g4() {
+	install_geant4_data
+	install_geant4_source
+}
 
-# if the environment variables G4INSTALL and G4_VERSION are not set, exit
-if [[ -z "$G4INSTALL" || -z "$G4_VERSION" ]]; then
-	echo "$red > G4INSTALL or $G4_VERSION environment variables are not set. Exiting.$reset"
-	exit 1
-fi
+# shell has to be interactive to load modules
 
-source "$(dirname "$(readlink -f "$0")")"/functions.zsh
+# on fedora and ubuntu installation dir is different for modules
+# also checking for container env setup in /app
+[[ -f /usr/share/Modules/init/zsh ]] && . /usr/share/Modules/init/zsh
+[[ -f /usr/share/modules/init/zsh ]] && . /usr/share/modules/init/zsh
+[[ -f /app/localSetup.sh ]]          && . /app/localSetup.sh
 
-filename="https://gitlab.cern.ch/geant4/geant4/-/archive/v$G4_VERSION/geant4-v$G4_VERSION.tar.gz"
+.  "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
-tar_strip=1 # in the tarball, the source is inside VERSION/CLHEP
-
-source_dir=$G4INSTALL/source
-build_dir=$G4INSTALL/build
-base_dir=$G4INSTALL
-
-# notice DGEANT4_BUILD_BUILTIN_BACKTRACE and DGEANT4_INSTALL_DATA are OFF
-# also notice DCMAKE_INSTALL_DATAROOTDIR is not exactly $G4DATA_DIR but $G4INSTALL/data
-cmake_options1="-DGEANT4_USE_GDML=ON -DXERCESC_ROOT_DIR=$XERCESCROOT -DGEANT4_USE_QT=ON"
-cmake_options2=" -DQT_QMAKE_EXECUTABLE=$QTDIR/bin/qmake -DCLHEP_ROOT_DIR=$CLHEP_BASE_DIR"
-cmake_options3=" -DCMAKE_INSTALL_DATAROOTDIR=$G4INSTALL/data -DGEANT4_INSTALL_DATA=OFF"
-cmake_options4=" -DGEANT4_BUILD_MULTITHREADED=ON  -DGEANT4_BUILD_BUILTIN_BACKTRACE=OFF "
-
-# add cmake_options4 if G4_VERSION is 11.0 or higher
-if [[ $G4_VERSION == 11.* ]]; then
-	cmake_options="$cmake_options1 $cmake_options2 $cmake_options3 $cmake_options4"
+if [[ $# -eq 1 ]]; then
+	geant4_version=$1
 else
-	cmake_options="$cmake_options1 $cmake_options2 $cmake_options3"
-fi
-
-case $(uname -s) in
-Linux)
-	x11_option="-DGEANT4_USE_OPENGL_X11=ON"
-
-	opt1=" -I$QTDIR/include -I$QTDIR/include/QtOpenGL -I$QTDIR/include/QtWidgets"
-	opt2=" -I$QTDIR/include/QtGui -I$QTDIR/include/QtCore -I$QTDIR/include/QtPrintSupport"
-	opt3=" -Wall -pedantic -Wno-non-virtual-dtor -Wno-long-long -Wwrite-strings -Wpointer-arith -Woverloaded-virtual -pipe"
-
-	# need to check if QtPrintSupport is needed
-	set conf_options = "$x11_option $opt1 $opt2 $opt3"
-	cmake_options="$cmake_options $conf_options"
-	;;
-Darwin) ;;
-
-*)
-	echo "Unsupported OS: $(uname -s)"
+	# error
+	echo " > ERROR: No geant4 version given. Exiting."
 	exit 1
-	;;
-esac
-
-log_general geant4 "$G4_VERSION" "$filename" "$base_dir"
-
-unpack_source_in_directory_from_url "$filename" "$source_dir" "$tar_strip"
-
-# change fsqrt definition if geant4 version < 10.7
-if [[ $G4_VERSION == "10.6.2" ]]; then
-	echo
-	echo "Geant4 version is $G4_VERSION, applying fsqrt patch to $source_dir/source/persistency/ascii/src/G4tgrEvaluator.cc"
-	echo
-	case $(uname -s) in
-	Linux)
-		sed -i s/fsqrt/fltsqrt/ "$source_dir/source/persistency/ascii/src/G4tgrEvaluator.cc"
-		;;
-	Darwin)
-		sed -i '' s/fsqrt/fltsqrt/ "$source_dir/source/persistency/ascii/src/G4tgrEvaluator.cc"
-		;;
-	*)
-		echo "Unsupported OS: $(uname -s)"
-		exit 1
-		;;
-	esac
-
 fi
 
-cmake_build_and_install "$source_dir" "$build_dir" "$base_dir" "$cmake_options" "do_not_delete_source"
+echo " > geant4_version: $geant4_version"
+echo
+
+module purge
+module load geant4/$geant4_version
+
+echo
+echo " > Checking / Installing missing dependencies for geant4 version $geant4_version"
+[ "$(moduleTestResult .clhep   $CLHEP_VERSION)"   -eq 0 ] && echo " > clhep is installed"   || install_clhep
+[ "$(moduleTestResult .xercesc $XERCESC_VERSION)" -eq 0 ] && echo " > xercesc is installed" || install_xercesc
+[ "$(moduleTestResult .qt      $QT_VERSION)"      -eq 0 ] && echo " > qt is installed"      || copy_qt
+echo " > Done with dependencies, now checking / installing geant4 data"
+if [ ! -d "$G4NEUTRONHPDATA" ] ||
+	[ ! -d "$G4LEDATA" ] ||
+	[ ! -d "$G4LEVELGAMMADATA" ] ||
+	[ ! -d "$G4RADIOACTIVEDATA" ] ||
+	[ ! -d "$G4PARTICLEXSDATA" ] ||
+	[ ! -d "$G4PIIDATA" ] ||
+	[ ! -d "$G4REALSURFACEDATA" ] ||
+	[ ! -d "$G4SAIDXSDATA" ] ||
+	[ ! -d "$G4ABLADATA" ] ||
+	[ ! -d "$G4INCLDATA" ] ||
+	[ ! -d "$G4ENSDFSTATEDATA" ]; then
+	install_geant4_data
+fi
+
+[ ! -d "$G4ENSDFSTATEDATA" ] && install_geant4_data
+echo " > Done with geant4 data,  now fetching and compiling source code"
+[ "$(moduleTestResult geant4   $G4_VERSION)" -eq 0 ] && echo " > Done with geant4 installation scripts" || install_geant4_source
+
+echo " > Now testing geant4 installation:"
+module test geant4/$geant4_version
+echo
