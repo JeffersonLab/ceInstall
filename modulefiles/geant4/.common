@@ -33,24 +33,32 @@ setenv G4TENDLDATA       $env(G4DATA_DIR)/G4TENDL$g4tendl_version
 prereq sim_system
 prereq .clhep/${clhep_version}
 prereq .xercesc/${xercesc_version}
-
-set qt_version  system
-
+module load .qt/${qt_version}
 
 proc ModulesTest { } {
+	set retcode 1
 
-	warndir [ getenv G4LIB ] "G4LIB is not available"
+	if { [warndir [ getenv G4LIB ] "G4LIB is not available" err] eq 0 } {	set retcode 0 }
 
-	warndir [ getenv G4NEUTRONHPDATA ] "Dataset for G4NEUTRONHPDATA is not available"
-	warndir [ getenv G4LEDATA ] "Dataset for G4LEDATA is not available"
-	warndir [ getenv G4LEVELGAMMADATA ] "Dataset for G4LEVELGAMMADATA is not available"
-	warndir [ getenv G4RADIOACTIVEDATA ] "Dataset for G4RADIOACTIVEDATA is not available"
-	warndir [ getenv G4PARTICLEXSDATA ] "Dataset for G4PARTICLEXSDATA is not available"
-	warndir [ getenv G4PIIDATA ] "Dataset for G4PIIDATA is not available"
-	warndir [ getenv G4REALSURFACEDATA ] "Dataset for G4REALSURFACEDATA is not available"
-	warndir [ getenv G4SAIDXSDATA ] "Dataset for G4SAIDXSDATA is not available"
-	warndir [ getenv G4ABLADATA ] "Dataset for G4ABLADATA is not available"
-	warndir [ getenv G4INCLDATA ] "Dataset for G4INCLDATA is not available"
-	warndir [ getenv G4ENSDFSTATEDATA ] "Dataset for G4ENSDFSTATEDATA is not available"
+	# datasets tests
+	if { [warndir [ getenv G4NEUTRONHPDATA ] "Dataset for G4NEUTRONHPDATA is not available" err] eq 0 } {	set retcode 0 }
+	if { [warndir [ getenv G4LEDATA ] "Dataset for G4LEDATA is not available" err] eq 0 } {	set retcode 0 }
+	if { [warndir [ getenv G4LEVELGAMMADATA ] "Dataset for G4LEVELGAMMADATA is not available" err] eq 0 } {	set retcode 0 }
+	if { [warndir [ getenv G4RADIOACTIVEDATA ] "Dataset for G4RADIOACTIVEDATA is not available" err] eq 0 } {	set retcode 0 }
+	if { [warndir [ getenv G4PARTICLEXSDATA ] "Dataset for G4PARTICLEXSDATA is not available" err] eq 0 } {	set retcode 0 }
+	if { [warndir [ getenv G4PIIDATA ] "Dataset for G4PIIDATA is not available" err] eq 0 } {	set retcode 0 }
+	if { [warndir [ getenv G4REALSURFACEDATA ] "Dataset for G4REALSURFACEDATA is not available" err] eq 0 } {	set retcode 0 }
+	if { [warndir [ getenv G4SAIDXSDATA ] "Dataset for G4SAIDXSDATA is not available" err] eq 0 } {	set retcode 0 }
+	if { [warndir [ getenv G4ABLADATA ] "Dataset for G4ABLADATA is not available" err] eq 0 } {	set retcode 0 }
+	if { [warndir [ getenv G4INCLDATA ] "Dataset for G4INCLDATA is not available" err] eq 0 } {	set retcode 0 }
+	if { [warndir [ getenv G4ENSDFSTATEDATA ] "Dataset for G4ENSDFSTATEDATA is not available" err] eq 0 } {	set retcode 0 }
+
+	# copied from dependencies
+	if { [warndir [ getenv CLHEP_BASE_DIR ]/include/CLHEP "CLHEP_BASE_DIR does not have the include directory" err] eq 0 } {	set retcode 0 }
+	if { [warndir [ getenv XERCESCROOT ]/include/xercesc "XERCESCROOT does not have the include directory" err] eq 0 } {	set retcode 0 }
+	if { [warndir [ getenv QTDIR ]/include/QtWidgets "QTDIR does not have QtWidgets in the include directory" err] eq 0 } {	set retcode 0 }
+
+	return $retcode
+
 }
 

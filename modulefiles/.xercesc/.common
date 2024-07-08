@@ -18,7 +18,7 @@ setenv XERCESCROOT     $dir
 
 proc ModulesTest { } {
 
-	warndir [ getenv XERCESCROOT ]/include/xercesc "XERCESCROOT does not have the include directory"
+	if { [warndir [ getenv XERCESCROOT ]/include/xercesc "XERCESCROOT does not have the include directory" err] eq 0 } {	set retcode 0 }
 
 }
 

@@ -17,8 +17,10 @@ setenv CLHEP_BASE_DIR $dir
 setenv CLHEP_DIR      $dir
 
 proc ModulesTest { } {
+	set retcode 1
 
-	warndir [ getenv CLHEP_BASE_DIR ]/include/CLHEP "CLHEP_BASE_DIR does not have the include directory"
+	if { [warndir [ getenv CLHEP_BASE_DIR ]/include/CLHEP "CLHEP_BASE_DIR does not have the include directory" err] eq 0 } {	set retcode 0 }
 
+	return $retcode
 }
 

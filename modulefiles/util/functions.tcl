@@ -25,12 +25,17 @@ proc warn {msg} {
     puts stderr "\033\[1;33mWARNING:\033\[0m $msg"
 }
 
+
 # print a warning message if a path doesn't exist:
-proc warndir {path msg} {
+proc warndir {path msg what} {
     if [file isdirectory $path] {
         return 1
     } elseif {[module-info mode load] || [module-info mode test]} {
-        warn $msg
+    	if { $what eq "err" } {
+        	err $msg
+    	} elseif { $what eq "warn" } {
+			warn $msg
+		}
     }
     return 0
 }
@@ -61,6 +66,6 @@ proc choose_dir {path1 path2} {
 	} elseif  [file isdirectory $path2]  {
 		return $path2
     } elseif {[module-info mode load] || [module-info mode test]} {
-		warn "Neither $path1 nor $path2 exist"
+		err "Neither $path1 nor $path2 exist"
     }
 }
