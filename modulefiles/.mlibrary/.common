@@ -1,49 +1,25 @@
-#%Module
+# Common modulefile
 
-#conflict .mlibrary
+conflict .mlibrary
 
-# Environment
+module-whatis Utility libraries for GEMC, https://github.com/gemc/mlibrary
+source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
 
-if { ! [info exist ::env(SIM_VERSION)]  }  {
-	puts stderr " ERROR: SIM_VERSION not set. Load module sim or gemc first"
-	exit 1
-}
+set dir [home]/[osrelease]/mlibrary/${version}
+set ilib [choose_dir $dir/lib $dir/lib64]
 
-set dir $env(SIM_INSTALLATION_DIR)/mlibrary/${version}
-
-prepend-path LD_LIBRARY_PATH $dir/lib
-if { [uname sysname] == "Darwin" } {
-	setenv DYLD_LIBRARY_PATH $env(LD_LIBRARY_PATH)
-}
+prepend-ldpath $ilib
 
 setenv MLIBRARY_VERSION  $version
-setenv MLIBRARY $dir
-
-
-
-
-
-
-
-
-
-
+setenv MLIBRARY          $dir
 
 proc ModulesTest { } {
 	
-	set var MLIBRARY
-	set installation_dir  [ getenv MLIBRARY ]/lib
 
 	set retcode 1
 
-	puts stderr ""
-	if { [file isdirectory $installation_dir ] } {
-		puts stderr " Y $var \t\t $installation_dir"
-	} else {
-		puts stderr " N $var \t\t $installation_dir"
-		set retcode 0
-	}
-	
+	if { [warnfile [ getenv MLIBRARY ] "MLIBRARY is not installed" err ] eq 0 } { set retcode 0 }
+
 	return $retcode
 }
 

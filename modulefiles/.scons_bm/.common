@@ -1,4 +1,4 @@
-#%Module
+# Common modulefile
 
 conflict .scons_bm
 prereq sim_system
@@ -7,7 +7,6 @@ module-whatis scons build system for gemc, to be replaced in future versions by 
 source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
 
 set dir [home]/noarch/scons_bm/${version}
-
 
 setenv SCONS_BM_VERSION $version
 setenv SCONS_BM         $dir

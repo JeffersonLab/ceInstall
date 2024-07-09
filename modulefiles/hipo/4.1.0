@@ -1,6 +1,1 @@
-#%Module
-
-set version 4.1.0
-
-set moduledir [file dirname $ModulesCurrentModulefile]
-source $moduledir/.common
+.generic

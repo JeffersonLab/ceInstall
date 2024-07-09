@@ -3,6 +3,18 @@
 conflict gemc
 prereq sim_system
 
+prereq geant4/${g4_version}
+prereq .scons_bm/${scons_bm_version}
+prereq --optional ccdb/${ccdb_version}
+if { $version == "4.4.2" } {
+	prereq .evio/${evio_version}
+    prereq --optional .banks/${banks_version}
+} else  {
+	prereq hipo
+}
+prereq .mlibrary/${mlibrary_version}
+#prereq .cmag/${cmag_version}
+
 module-whatis gemc, https://gemc.github.io/home
 source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
 
@@ -19,40 +31,15 @@ prepend-path PATH $dir/bin
 prepend-ldpath    $ilib
 prepend-path      PKG_CONFIG_PATH $ilib/pkgconfig
 
-setenv GEMC_VERSION  $version
-setenv GEMC_BASE_DIR $dir
-setenv FIELD_DIR     [home]/noarch/data/magfield
+setenv GEMC       $dir
+setenv FIELD_DIR  [home]/noarch/data/magfield
 
-# geant4
-prereq geant4/${g4_version}
-
-# gemc
-prereq .scons_bm/${scons_bm_version}
-prereq --optional ccdb/${ccdb_version}
-if { $version == "4.4.2" } {
-	prereq .evio/${evio_version}
-    prereq --optional .banks/${banks_version}
-} else  {
-	prereq hipo
-}
-#prereq .mlibrary/${mlibrary_version}
-#prereq .cmag/${cmag_version}
-
-
-
-
-
-
-
-if { $version eq "5.4" || $version eq "5.5" || $version eq "5.6" || $version eq "5.7" || $version eq "5.8"} {
-	puts stderr "Warning: gemc $version is deprecated. Use 5.10 instead."
-}
 
 proc ModulesTest { } {
 
 	set retcode 1
 
-
+	if { [warndir [ getenv GEMC_BASE_DIR ]/bin/gemc "gemc executable is not installed" err] eq 0 } { set retcode 0 }
 
 	return $retcode
 }

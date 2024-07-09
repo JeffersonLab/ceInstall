@@ -5,7 +5,7 @@ if [[ -z "$CCDB_HOME" || -z "$CCDB_VERSION" ]]; then
 	echo "$red > CCDB_HOME or CCDB_VERSION environment variables are not set. Exiting.$reset"
 	exit 1
 fi
-2
+
 what="ccdb"
 what_version="$CCDB_VERSION"
 base_dir="$CCDB_HOME"
@@ -17,7 +17,7 @@ log_general "$what" "$what_version" "$srepo" "$base_dir"
 srepo="https://github.com/baltzell/ccdb"
 source_dir=ccdb_source
 
-git  clone  --single-branch -b "v$CCDB_VERSION" "$srepo" $source_dir
+git clone  --single-branch -b "v$CCDB_VERSION" "$srepo" $source_dir
 
 cd  $source_dir || exit
 mkdir  build

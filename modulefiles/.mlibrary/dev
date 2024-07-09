@@ -1,6 +1,1 @@
-#%Module
-
-set version dev
-
-set moduledir [file dirname $ModulesCurrentModulefile]
-source $moduledir/.common
+.generic

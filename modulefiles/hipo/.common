@@ -1,47 +1,26 @@
-#%Module
+# Common modulefile
 
-#conflict .hipo
+# no conflicts by design as it can also be installed by CLAS12
 
-# Environment
+module-whatis High Performance Output (HIPO) data format for experimental Physics, https://github.com/gavalian/hipo
+source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
 
-if { ! [info exist ::env(SIM_VERSION)]  }  {
-	puts stderr " ERROR: SIM_VERSION not set. Load module sim or gemc first"
-	exit 1
-}
+set dir [home]/[osrelease]/hipo/${version}
+set ilib [choose_dir $dir/lib $dir/lib64]
 
-set dir $env(SIM_INSTALLATION_DIR)/hipo/${version}
+prepend-ldpath $ilib
+prepend-path PATH            $dir/bin
+append-path  LD_LIBRARY_PATH $dir/slib
+append-path  PYTHONPATH      $dir/extensions/python
 
 setenv HIPO_VERSION $version
 setenv HIPO $dir
 
-append-path PYTHONPATH $dir/extensions/python
-
-append-path LD_LIBRARY_PATH $dir/lib
-append-path LD_LIBRARY_PATH $dir/slib
-
-
-
-if { [uname sysname] == "Darwin" } {
-	setenv DYLD_LIBRARY_PATH $env(LD_LIBRARY_PATH)
-}
-
-
-
-
-
 proc ModulesTest { } {
-	
-	set var HIPO
-	set installation_lib [ getenv HIPO ]/lib/libhipo4.a
+
 	set retcode 1
 
-	puts stderr ""
-	if { [file isfile $installation_lib ] } {
-		puts stderr " Y $var \t\t $installation_lib"
-	} else {
-		puts stderr " N $var \t\t $installation_lib"
-		set retcode 0
-	}
+	if { [warndir [ getenv HIPO ]/include/hipo4 "HIPO /include/hipo4 does not exist" err] eq 0 } { set retcode 0 }
 
 	return $retcode
 }

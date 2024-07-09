@@ -1,6 +1,9 @@
 # Common modulefile
 
 conflict geant4
+prereq .clhep/${clhep_version}
+prereq .xercesc/${xercesc_version}
+prereq .qt/${qt_version}
 
 module-whatis geant4 framework, https://geant4.web.cern.ch
 source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
@@ -31,9 +34,6 @@ setenv G4INCLDATA        $env(G4DATA_DIR)/G4INCL$env(g4incl_version)
 setenv G4ENSDFSTATEDATA  $env(G4DATA_DIR)/G4ENSDFSTATE$env(g4ensdfstate_version)
 setenv G4TENDLDATA       $env(G4DATA_DIR)/G4TENDL$env(g4tendl_version)
 
-prereq .clhep/${clhep_version}
-prereq .xercesc/${xercesc_version}
-prereq .qt/${qt_version}
 
 proc ModulesTest { } {
 	set retcode 1

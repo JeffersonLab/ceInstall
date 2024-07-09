@@ -41,12 +41,16 @@ proc warndir {path msg what} {
 }
 
 # print a warning message if a file doesn't exist:
-proc warnfile {path msg} {
+proc warnfile {path msg what} {
     if [file isfile $path] {
         return 1
     } elseif {[module-info mode load] || [module-info mode test]} {
-        warn $msg
-    }
+    	if { $what eq "err" } {
+        	err $msg
+    	} elseif { $what eq "warn" } {
+			warn $msg
+		}
+	}
     return 0
 }
 
