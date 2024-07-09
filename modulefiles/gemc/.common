@@ -6,6 +6,9 @@ prereq sim_system
 prereq geant4/${g4_version}
 prereq .scons_bm/${scons_bm_version}
 prereq --optional ccdb/${ccdb_version}
+if {  $version == "2.12"  } {
+	prereq .evio/${evio_version}
+}
 if { $version == "4.4.2" } {
 	prereq .evio/${evio_version}
     prereq --optional .banks/${banks_version}

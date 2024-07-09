@@ -9,12 +9,10 @@ fi
 what="evio"
 what_version="$EVIO_VERSION"
 base_dir="$SIM_HOME/$what"
+srepo="https://github.com/JeffersonLab/evio_clas12"
 
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
-
 log_general "$what" "$what_version" "$srepo" "$base_dir"
-
-srepo="https://github.com/JeffersonLab/evio_clas12"
 
 mkdir -p $base_dir ; cd $base_dir
 git  clone  --single-branch -b "$what_version" "$srepo" $what_version

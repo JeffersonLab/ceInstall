@@ -8,15 +8,11 @@ if [[ -z "$G4INSTALL" || -z "$G4_VERSION" ]]; then
 	exit 1
 fi
 
-source "$(dirname "$(readlink -f "$0")")"/functions.zsh
-
-filename="https://gitlab.cern.ch/geant4/geant4/-/archive/v$G4_VERSION/geant4-v$G4_VERSION.tar.gz"
-
-tar_strip=1 # in the tarball, the source is inside VERSION/CLHEP
-
 source_dir=$G4INSTALL/source
 build_dir=$G4INSTALL/build
 base_dir=$G4INSTALL
+filename="https://gitlab.cern.ch/geant4/geant4/-/archive/v$G4_VERSION/geant4-v$G4_VERSION.tar.gz"
+tar_strip=1 # in the tarball, the source is inside VERSION/CLHEP
 
 # notice DGEANT4_BUILD_BUILTIN_BACKTRACE and DGEANT4_INSTALL_DATA are OFF
 # also notice DCMAKE_INSTALL_DATAROOTDIR is not exactly $G4DATA_DIR but $G4INSTALL/data
@@ -52,6 +48,7 @@ Darwin) ;;
 	;;
 esac
 
+source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 log_general geant4 "$G4_VERSION" "$filename" "$base_dir"
 
 unpack_source_in_directory_from_url "$filename" "$source_dir" "$tar_strip"

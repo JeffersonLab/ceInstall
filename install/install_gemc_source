@@ -1,0 +1,48 @@
+#!/bin/zsh
+
+# if the environment variables GEMC is not set, exit
+if [[ -z "$GEMC" ]]; then
+	echo "$red > $GEMC is not set. Exiting.$reset"
+	exit 1
+fi
+
+what="gemc"
+what_version="$1"
+twhat_version="$1"
+source_dir=source
+
+# if major $what_version is 2, repo is gemc/source, if it's 4 or 5 it's gemc/clas12Tags
+if [[ $what_version == 2* ]]; then
+	srepo="https://github.com/gemc/source"
+	twhat_version=v$what_version
+	source_dir='.'
+elif [[ $what_version == 4* ]] || [[ $what_version == 5* ]]; then
+	what="clas12Tags"
+	srepo="https://github.com/gemc/clas12Tags"
+fi
+
+tar_strip=1  # tarball number of subdirs to strip
+base_dir="$SIM_HOME/$what"
+
+source "$(dirname "$(readlink -f "$0")")"/functions.zsh
+log_general "$what" "$what_version" "$grepo" "$base_dir"
+
+if [[ $what_version != 3* ]]; then
+
+	mkdir -p $base_dir ; cd $base_dir
+	git clone --single-branch -b "$twhat_version" "$srepo" $what_version
+
+	cd $what_version/$source_dir || exit
+	scons -j "$n_cpu" || exit
+
+	mkdir -p $GEMC/bin
+	mv gemc $GEMC/bin
+
+	# cleaning up
+	rm -f .sconsign.dblite # for some reason this still linger
+	find ./ -name "*.o" -delete
+
+fi
+
+echo "$magenta > $what installation completed.$reset"
+echo

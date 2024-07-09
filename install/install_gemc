@@ -22,9 +22,10 @@ echo
 
 module purge
 module load sim_system
+module unload gemc
 module load gemc/$gemc_version
 if [[ $? -ne 0 ]]; then
-	echo " > ERROR: module load gemc/$gemc_version failed. Exiting."
+	echo " > ERROR: module load gemc/$gemc_version failed. Probably $gemc_version is not supported. Exiting."
 	exit 1
 fi
 echo
@@ -34,17 +35,17 @@ echo " > Checking / Installing missing dependencies for gemc version $gemc_versi
 [ "$(moduleTestResult     .scons_bm $SCONS_BM_VERSION)" -eq 0 ] && echo " > scons_bm is installed"  || install_scons_bm
 [ "$(moduleTestResult     ccdb      $CCDB_VERSION)"     -eq 0 ] && echo " > ccdb is installed"      || install_ccdb
 if [[ $gemc_version == 2* ]] || [[ $gemc_version == 4* ]]; then
-	[ "$(moduleTestResult .evio     $EVIO_VERSION)"     -eq 0 ] && echo " > evio is installed"      || install_evio
-elif [[ $gemc_version == 5* ]]; then
-	[ "$(moduleTestResult hipo      $HIPO_VERSION)"     -eq 0 ] && echo " > hipo is installed"      || install_hipo
-    [ "$(moduleTestResult .cmag     $CMAG_VERSION)"     -eq 0 ] && echo " > cmag is installed"      || install_cmag
+	[ "$(moduleTestResult .evio $EVIO_VERSION)"       -eq 0 ] && echo " > evio is installed"      || install_evio
 fi
-[ "$(moduleTestResult .mlibrary $MLIBRARY_VERSION)" -eq 0 ] && echo " > mlibrary is installed"  || install_mlibrary
-
+if [[ $gemc_version == 2* ]] || [[ $gemc_version == 5* ]]; then
+	[ "$(moduleTestResult hipo $HIPO_VERSION)"        -eq 0 ] && echo " > hipo is installed"      || install_hipo
+	[ "$(moduleTestResult .cmag $CMAG_VERSION)"       -eq 0 ] && echo " > cmag is installed"      || install_cmag
+fi
+[ "$(moduleTestResult     .mlibrary $MLIBRARY_VERSION)" -eq 0 ] && echo " > mlibrary is installed"  || install_mlibrary
+[ "$(moduleTestResult     gemc      $gemc_version)"     -eq 0 ] && echo " > gemc is installed"      || install_gemc_source $gemc_version
 
 # if major version of GEMC_VERSION is 2, install_gemc2, install_clas12Tag
 #if [[ $gemc_version == 2* ]]; then
-#	[ "$(moduleTestResult gemc $gemc_version)" -eq 0 ] && echo " > gemc2 is installed" || install_g2
 #else
 #
 #	[ "$(moduleTestResult gemc $gemc_version)" -eq 0 ] && echo " > clas12Tag is installed" || install_clas12Tag

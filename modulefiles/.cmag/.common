@@ -13,6 +13,8 @@ prepend-ldpath $ilib
 setenv CMAG_VERSION $version
 setenv CLAS12_CMAG  $dir
 prepend-path PATH   $dir/bin
+# backward compatibility of scons
+setenv C12BFIELDS   $dir
 
 
 proc ModulesTest { } {

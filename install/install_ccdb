@@ -9,13 +9,11 @@ fi
 what="ccdb"
 what_version="$CCDB_VERSION"
 base_dir="$CCDB_HOME"
-
-source "$(dirname "$(readlink -f "$0")")"/functions.zsh
-
-log_general "$what" "$what_version" "$srepo" "$base_dir"
-
 srepo="https://github.com/baltzell/ccdb"
 source_dir=ccdb_source
+
+source "$(dirname "$(readlink -f "$0")")"/functions.zsh
+log_general "$what" "$what_version" "$srepo" "$base_dir"
 
 git clone  --single-branch -b "v$CCDB_VERSION" "$srepo" $source_dir
 
@@ -32,6 +30,10 @@ cmake  -DCMAKE_INSTALL_PREFIX=$base_dir ../
 make  -j "$n_cpu" install || exit
 cd  ../../ || exit
 rm  -rf $source_dir
+
+# backward compatibility: linking includes
+cd $base_dir/include
+cp -r ccdb/CCDB .
 
 echo "$magenta > $what installation completed.$reset"
 echo

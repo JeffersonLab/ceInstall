@@ -13,7 +13,6 @@ grepo="https://github.com/gavalian/hipo"
 source_dir=hipo_source
 
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
-
 log_general "$what" "$what_version" "$grepo" "$base_dir"
 
 
@@ -37,6 +36,10 @@ cmake -DCMAKE_INSTALL_PREFIX=$base_dir ../
 make -j "$n_cpu" install || exit
 cd ../../ || exit
 rm -rf $source_dir
+
+# backward compatibility: copying includes
+cp -r $base_dir/include/hipo4 $base_dir
+cp $base_dir/include/*.h $base_dir/hipo4
 
 # if we are in a docker container restoring root
 if [[ -n "$AUTOBUILD" ]]; then
