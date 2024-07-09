@@ -13,7 +13,7 @@ if { $version == "4.4.2" } {
 	prereq hipo
 }
 prereq .mlibrary/${mlibrary_version}
-#prereq .cmag/${cmag_version}
+prereq .cmag/${cmag_version}
 
 module-whatis gemc, https://gemc.github.io/home
 source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl

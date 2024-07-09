@@ -14,11 +14,10 @@ setenv MLIBRARY_VERSION  $version
 setenv MLIBRARY          $dir
 
 proc ModulesTest { } {
-	
 
 	set retcode 1
 
-	if { [warnfile [ getenv MLIBRARY ] "MLIBRARY is not installed" err ] eq 0 } { set retcode 0 }
+	if { [warndir [ getenv MLIBRARY ]/lib/pkgconfig "MLIBRARY cadmesh is not installed" err ] eq 0 } { set retcode 0 }
 
 	return $retcode
 }

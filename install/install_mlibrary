@@ -18,7 +18,18 @@ log_general "$what" "$what_version" "$grepo" "$base_dir"
 
 unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
 
+echo > Compiling cadmesh
 cd $base_dir
 ./compileCmesh 2>"cmesh_build_err.txt" 1>"cmesh_build_log.txt" || exit
+echo > Compiling mlibrary
+cd $base_dir
 
-scons_build_and_install "$base_dir" "LIBRARY=shared"
+scons  -j "$n_cpu" || exit
+
+# cleaning up
+rm -f .sconsign.dblite # for some reason this still linger
+find ./ -name "*.o" -delete
+
+echo "$magenta > $what installation completed.$reset"
+echo
+

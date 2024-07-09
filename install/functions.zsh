@@ -107,7 +107,7 @@ unpack_source_in_directory_from_url() {
 	echo "$magenta > GTar Unpacking $filename in $dir$reset"
 	gtar -zxpf "$filename" --strip-components="$tar_strip"
 	rm -f "$filename"
-	echo " > Done with $filename"
+	echo " > Done with unpacking $filename"
 	echo
 }
 

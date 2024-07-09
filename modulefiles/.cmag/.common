@@ -1,48 +1,27 @@
 # Common modulefile
 
-#conflict .cmag
+conflict .cmag
 
-# Environment
+module-whatis Utility libraries for GEMC, https://github.com/gemc/mlibrary
+source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
 
-if { ! [info exist ::env(SIM_VERSION)]  }  {
-	puts stderr " ERROR: SIM_VERSION not set. Load module sim or gemc first"
-	exit 1
-}
+set dir [home]/[osrelease]/clas12_cmag/${version}
+set ilib [choose_dir $dir/lib $dir/lib64]
 
-set dir $env(SIM_INSTALLATION_DIR)/cmag/${version}
+prepend-ldpath $ilib
 
 setenv CMAG_VERSION $version
-setenv C12BFIELDS $dir
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+setenv CLAS12_CMAG  $dir
+prepend-path PATH   $dir/bin
 
 
 proc ModulesTest { } {
 	
-	set var CMAG
-	set installation_dir  [ getenv C12BFIELDS ]/lib
 	set retcode 1
 
-	puts stderr ""
-	if { [file isdirectory $installation_dir ] } {
-		puts stderr " Y $var \t\t $installation_dir"
-	} else {
-		puts stderr " N $var \t\t $installation_dir"
-		set retcode 0
-	}
-	
+	if { [warnfile [ getenv CLAS12_CMAG ]/bin/cMagTest "CLAS12_CMAG is not installed" err] eq 0 } { set retcode 0 }
+
 	return $retcode
+
 }
 
