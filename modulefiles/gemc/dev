@@ -1,15 +1,15 @@
 #%Module
 
 set version [file tail [module-info version [module-info name]]]
+set which clas12tags
 
-set g4_version             10.7.4
-set scons_bm_version       dev
-set ccdb_version           1.99.2
-set evio_version           5.1
-set mlibrary_version       dev
-set hipo_version           4.1.0
-set cmag_version           1.1
-set banks_version          1.9
+prereq .scons_bm/dev
+prereq .mlibrary/dev
+prereq ccdb/1.99.2
+prereq hipo
+prereq .cmag/1.1
+
+set g4_version 10.7.4
 
 source [file dirname $ModulesCurrentModulefile]/.common
 

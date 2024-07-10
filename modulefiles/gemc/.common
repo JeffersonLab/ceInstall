@@ -2,37 +2,16 @@
 
 conflict gemc
 prereq sim_system
-
 prereq geant4/${g4_version}
-prereq .scons_bm/${scons_bm_version}
-prereq --optional ccdb/${ccdb_version}
-if {  $version == "2.12"  } {
-	prereq .evio/${evio_version}
-}
-if { $version == "4.4.2" } {
-	prereq .evio/${evio_version}
-    prereq --optional .banks/${banks_version}
-} else  {
-	prereq hipo
-}
-prereq .mlibrary/${mlibrary_version}
-prereq .cmag/${cmag_version}
 
-module-whatis gemc, https://gemc.github.io/home
 source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
-
-# if major $version is 2, then it's gemc
-set which clas12tags
-if { [ lindex [ split $version . ] 0 ] == 2  } {
-	set which gemc
-}
 
 set dir [home]/[osrelease]/$which/${version}
 set ilib [choose_dir $dir/lib $dir/lib64]
 
-prepend-path PATH $dir/bin
-prepend-ldpath    $ilib
-prepend-path      PKG_CONFIG_PATH $ilib/pkgconfig
+prepend-ldpath $ilib
+prepend-path   PATH            $dir/bin
+prepend-path   PKG_CONFIG_PATH $ilib/pkgconfig
 
 setenv GEMC       $dir
 setenv FIELD_DIR  [home]/noarch/data/magfield
@@ -42,7 +21,7 @@ proc ModulesTest { } {
 
 	set retcode 1
 
-	if { [warndir [ getenv GEMC_BASE_DIR ]/bin/gemc "gemc executable is not installed" err] eq 0 } { set retcode 0 }
+	if { [warnfile [ getenv GEMC ]/bin/gemc "gemc executable is not installed" err] eq 0 } { set retcode 0 }
 
 	return $retcode
 }

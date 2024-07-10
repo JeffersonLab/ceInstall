@@ -114,14 +114,14 @@ unpack_source_in_directory_from_url() {
 clone_tag() {
 	url=$1
 	version=$2
-	source_dir=$3
+	destination_dir=$3
 
 	echo
 	echo " > url: $url"
 	echo " > clone_tag: " $version
 	echo " > in directory: $install_dir"
 
-	git clone -c advice.detachedHead=false --recurse-submodules --single-branch -b $version "$url" "$source_dir"
+	git clone -c advice.detachedHead=false --recurse-submodules --single-branch -b $version "$url" "$destination_dir"
 	echo
 }
 

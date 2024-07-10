@@ -6,5 +6,5 @@ source [file dirname $ModulesCurrentModulefile]/util/functions.tcl
 setenv SIM_HOME [home]/[osrelease]
 warndir $env(SIM_HOME) "[osrelease] is currently not supported." warn
 
-# add the installation directory to the PATH
+# add the script installation directory to the PATH
 prepend-path PATH [home]/install

@@ -1,15 +1,18 @@
 #%Module
+module-whatis Geant4 Monte-Carlo (GEMC), https://gemc.jlab.org/gemc/html/index.html
 
 set version [file tail [module-info version [module-info name]]]
+set which gemc
 
-set g4_version             10.7.4
-set scons_bm_version       1.12
-set ccdb_version           1.99.2
-set evio_version           5.1
-set mlibrary_version       1.8
-set hipo_version           4.0.1
-set cmag_version           1.1
-set banks_version          1.9
+prereq .scons_bm/1.12
+prereq .evio/5.1
+prereq .mlibrary/1.8
+prereq ccdb/1.99.2
+prereq --optional banks/1.9
+prereq hipo
+prereq .cmag/1.1
+
+set g4_version 10.7.4
 
 source [file dirname $ModulesCurrentModulefile]/.common
 

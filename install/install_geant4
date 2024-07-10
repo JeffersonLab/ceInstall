@@ -24,7 +24,7 @@ module purge
 module load sim_system
 module load geant4/$geant4_version
 if [[ $? -ne 0 ]]; then
-	echo " > ERROR: module load gemc/$gemc_version failed. Exiting."
+	echo " > ERROR: module load geant4/$geant4_version failed. Exiting."
 	exit 1
 fi
 echo
@@ -49,9 +49,8 @@ if [ ! -d "$G4NEUTRONHPDATA" ] ||
 	install_geant4_data
 fi
 
-[ ! -d "$G4ENSDFSTATEDATA" ] && install_geant4_data
-echo " > Done with geant4 data,  now fetching and compiling source code"
-[ "$(moduleTestResult geant4   $G4_VERSION)" -eq 0 ] && echo " > Done with geant4 installation scripts" || install_geant4_source
+echo " > Done with geant4 data, now fetching and compiling geant4 source code"
+[ "$(moduleTestResult geant4 $G4_VERSION)" -eq 0 ] && echo " > Done with geant4 source" || install_geant4_source
 
 echo " > Now testing geant4 installation:"
 module test geant4/$geant4_version
