@@ -11,8 +11,7 @@ git clone https://github.com/jeffersonlab/ceInstall
 
 #### To set up the environment, run the following command:
 ```
-export SIM_HOME=<your_installation_path>
-module use "${SIM_HOME}"/ceInstall/modulefiles
+module use "${SIM_HOME}"/ceInstall/modules
 ```
 
 ___

@@ -12,7 +12,7 @@ proc osrelease {} {
     if { [ info exists env(OSRELEASE) ] } {
         return $env(OSRELEASE)
     }
-    return [ exec [home]/modulefiles/util/osrelease.py ]
+    return [ exec [home]/modules/util/osrelease.py ]
 }
 
 # print a colored error message:

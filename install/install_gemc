@@ -40,19 +40,19 @@ if [[ $gemc_version == 2* ]] || [[ $gemc_version == 4* ]] || [[ $gemc_version ==
 	[ "$(moduleTestResult .scons_bm $SCONS_BM_VERSION)" -eq 0 ] && echo " > scons_bm is installed" || install_scons_bm
 
 	if [[ $gemc_version == 2* ]] || [[ $gemc_version == 4* ]]; then
-		[ "$(moduleTestResult .evio $EVIO_VERSION)" -eq 0 ] && echo " > evio is installed"   || install_evio
+		[ "$(moduleTestResult .evio $EVIO_VERSION)" -eq 0 ] && echo " > evio is installed" || install_evio
 	fi
 	if [[ $gemc_version == 2* ]] || [[ $gemc_version == 5* ]]; then
-		[ "$(moduleTestResult hipo $HIPO_VERSION)" -eq 0 ] && echo " > hipo is installed"    || install_hipo
-		[ "$(moduleTestResult .cmag $CMAG_VERSION)" -eq 0 ] && echo " > cmag is installed"   || install_cmag
+		[ "$(moduleTestResult hipo $HIPO_VERSION)" -eq 0 ] && echo " > hipo is installed"  || install_hipo
+		[ "$(moduleTestResult .cmag $CMAG_VERSION)" -eq 0 ] && echo " > cmag is installed" || install_cmag
 	fi
 	[ "$(moduleTestResult .mlibrary $MLIBRARY_VERSION)" -eq 0 ] && echo " > mlibrary is installed" || install_mlibrary
 	if [[ ! -f "$FIELD_DIR/Full_transsolenoid_x321_y161_z321_April2024" ]]; then
 		echo " > Field map does not exist. Installing field map."
 		install_fields
-	else
-		echo " > Field maps are installed."
 	fi
+	echo " > Field maps are installed."
+# GEMC 3 line
 else
 	[ "$(moduleTestResult .scig $SCIG_VERSION)" -eq 0 ] && echo " > scig is installed" || install_scig
 fi
