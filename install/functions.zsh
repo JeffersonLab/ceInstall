@@ -82,6 +82,13 @@ unpack_source_in_directory_from_url() {
 		no_remove=0
 	fi
 
+	# define a gnutar alias to avoid issues with macOS
+	if [[ "$OSTYPE" == "darwin"* ]]; then
+		alias gtar="gtar"
+	else
+		alias gtar="tar"
+	fi
+
 	filename=$(basename "$url")
 
 	echo
