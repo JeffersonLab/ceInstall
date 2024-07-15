@@ -84,9 +84,9 @@ unpack_source_in_directory_from_url() {
 
 	# define a gnutar alias to avoid issues with macOS
 	if [[ "$OSTYPE" == "darwin"* ]]; then
-		alias gtar="gtar"
+		alias gnutar="gtar"
 	else
-		alias gtar="tar"
+		alias gnutar="tar"
 	fi
 
 	filename=$(basename "$url")
@@ -111,8 +111,8 @@ unpack_source_in_directory_from_url() {
 	rm -f "$filename"
 	#	wget "$url" || whine_and_quit "wget $url"
 	curl -S --location-trusted --progress-bar --retry 4 "$url" -O || whine_and_quit "wget $url"
-	echo "$magenta > GTar Unpacking $filename in $dir$reset"
-	gtar -zxpf "$filename" --strip-components="$tar_strip"
+	echo "$magenta > gnutar Unpacking $filename in $dir$reset"
+	gnutar -zxpf "$filename" --strip-components="$tar_strip"
 	rm -f "$filename"
 	echo " > Done with unpacking $filename"
 	echo
