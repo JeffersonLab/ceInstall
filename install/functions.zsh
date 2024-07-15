@@ -71,6 +71,15 @@ unpack_source_in_directory_from_jlab_repo() {
 	rm -f "$filename"
 }
 
+# run tar options if not macos, otherwise use gnutar
+gnutar() {
+	if [[ "$OSTYPE" == "darwin"* ]]; then
+		gnutar $@
+	else
+		tar $@
+	fi
+}
+
 unpack_source_in_directory_from_url() {
 	url=$1
 	dir=$2
@@ -81,14 +90,6 @@ unpack_source_in_directory_from_url() {
 	else
 		no_remove=0
 	fi
-
-	# define a gnutar alias to avoid issues with macOS
-	if [[ "$OSTYPE" == "darwin"* ]]; then
-		alias gnutar="gtar"
-	else
-		alias gnutar="tar"
-	fi
-
 	filename=$(basename "$url")
 
 	echo
