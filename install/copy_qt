@@ -68,8 +68,11 @@ case $(uname -s) in
         cp -r -L "$SQTDIR_ALL/mkspecs" "$QTDIR"
         cp -r -L "$SQTDIR_ALL/plugins" "$QTDIR"
 
+    	strip --remove-section=.note.ABI-tag $QTDIR/lib/libQt5Core.so.5
+
         echo "$magenta > QT Libraries / Includes copy completed.$reset"
         echo " Content of $QTDIR:"
+
   	    ls -l "$QTDIR"
        ;;
 
