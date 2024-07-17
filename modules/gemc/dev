@@ -1,4 +1,5 @@
 #%Module
+module-whatis GEMC for CLAS12, https://github.com/gemc/clas12Tags
 
 set version [file tail [module-info version [module-info name]]]
 set which clas12tags

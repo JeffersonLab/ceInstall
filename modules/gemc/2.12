@@ -8,7 +8,6 @@ prereq .scons_bm/1.12
 prereq .evio/5.1
 prereq .mlibrary/1.8
 prereq ccdb/1.99.2
-prereq --optional banks/1.9
 prereq hipo
 prereq .cmag/1.1
 
