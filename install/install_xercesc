@@ -26,5 +26,7 @@ unpack_source_in_directory_from_url "$grepo" "$source_dir" "$tar_strip"
 cmake_build_and_install "$source_dir" "$build_dir" "$base_dir" "$cmake_options"
 
 echo "$magenta > $what installation completed.$reset"
-echo
+module test .xercesc/$what_version
+exit $?
+
 

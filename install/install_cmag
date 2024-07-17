@@ -22,5 +22,7 @@ cd $what_version/src || exit
 make -j "$n_cpu" || exit
 
 echo "$magenta > $what installation completed.$reset"
-echo
+module test .cmag/$what_version
+exit $?
+
 

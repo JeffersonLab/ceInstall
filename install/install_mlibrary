@@ -30,5 +30,7 @@ rm -f .sconsign.dblite # for some reason this still linger
 find ./ -name "*.o" -delete
 
 echo "$magenta > $what installation completed.$reset"
-echo
+module test .mlibrary/$what_version
+exit $?
+
 

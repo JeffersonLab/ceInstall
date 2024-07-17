@@ -54,4 +54,4 @@ echo " > Done with geant4 data, now fetching and compiling geant4 source code"
 
 echo " > Now testing geant4 installation:"
 module test geant4/$geant4_version
-echo
+exit $?

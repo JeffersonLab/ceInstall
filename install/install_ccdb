@@ -36,4 +36,6 @@ cd $base_dir/include
 cp -r ccdb/CCDB .
 
 echo "$magenta > $what installation completed.$reset"
-echo
+module test ccdb/$what_version
+exit $?
+

@@ -49,4 +49,6 @@ if [[ -n "$AUTOBUILD" ]]; then
 fi
 
 echo "$magenta > $what installation completed.$reset"
-echo
+module test hipo/$what_version
+exit $?
+

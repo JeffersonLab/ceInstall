@@ -19,5 +19,6 @@ log_general "$what" "$what_version" "$grepo" "$base_dir"
 unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
 
 echo "$magenta > $what installation completed.$reset"
-echo
+module test .scons_bm/$what_version
+exit $?
 

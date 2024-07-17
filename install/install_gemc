@@ -57,3 +57,6 @@ else
 fi
 
 [ "$(moduleTestResult gemc   $gemc_version)"     -eq 0 ] && echo " > gemc is installed"      || install_gemc_source $gemc_version
+
+module gemc/$gemc_version
+exit $?
