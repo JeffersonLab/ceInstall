@@ -110,10 +110,11 @@ unpack_source_in_directory_from_url() {
 
 	echo "$magenta > Fetching source from $url onto $filename$reset"
 	rm -f "$filename"
-	#	wget "$url" || whine_and_quit "wget $url"
-	curl -S --location-trusted --progress-bar --retry 4 "$url" -O || whine_and_quit "wget $url"
+	curl -S --location-trusted --progress-bar --retry 4 "$url" -O || whine_and_quit "curl -S --location-trusted --progress-bar --retry 4 $url"
+	ls -lrt
 	echo "$magenta > gnutar Unpacking $filename in $dir$reset"
 	gnutar -zxpf "$filename" --strip-components="$tar_strip"
+	ls -lrt "$dir"
 	rm -f "$filename"
 	echo " > Done with unpacking $filename"
 	echo
