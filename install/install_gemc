@@ -5,7 +5,6 @@
 # also checking for container env setup in /app
 [[ -f /usr/share/Modules/init/zsh ]] && . /usr/share/Modules/init/zsh
 [[ -f /usr/share/modules/init/zsh ]] && . /usr/share/modules/init/zsh
-[[ -f /app/localSetup.sh ]]          && . /app/localSetup.sh
 
 . "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
