@@ -74,7 +74,7 @@ unpack_source_in_directory_from_jlab_repo() {
 # run tar options if not macos, otherwise use gnutar
 gnutar() {
 	if [[ "$OSTYPE" == "darwin"* ]]; then
-		gnutar $@
+		gtar $@
 	else
 		tar $@
 	fi

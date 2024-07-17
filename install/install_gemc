@@ -30,8 +30,8 @@ fi
 echo
 echo
 echo " > Checking / Installing missing dependencies for gemc version $gemc_version"
-[ "$(moduleTestResult     geant4    $G4_VERSION)"       -eq 0 ] && echo " > geant4 is installed"    || install_geant4
-[ "$(moduleTestResult     ccdb      $CCDB_VERSION)"     -eq 0 ] && echo " > ccdb is installed"      || install_ccdb
+[ "$(moduleTestResult     geant4    $G4_VERSION)"       -eq 0 ] && echo " > geant4 $G4_VERSION is installed" || install_geant4 $G4_VERSION
+[ "$(moduleTestResult     ccdb      $CCDB_VERSION)"     -eq 0 ] && echo " > ccdb $CCDB_VERSION is installed" || install_ccdb
 
 # GEMC 2 line
 if [[ $gemc_version == 2* ]] || [[ $gemc_version == 4* ]] || [[ $gemc_version == 5* ]] || [[ $gemc_version == "dev" ]]; then
