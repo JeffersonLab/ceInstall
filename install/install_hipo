@@ -11,6 +11,7 @@ what_version="$HIPO_VERSION"
 base_dir="$HIPO"
 grepo="https://github.com/gavalian/hipo"
 source_dir=hipo_source
+tmp_root_dir=/root
 
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 log_general "$what" "$what_version" "$grepo" "$base_dir"
@@ -19,7 +20,7 @@ log_general "$what" "$what_version" "$grepo" "$base_dir"
 # if we are in a docker container temp hiding root
 if [[ -n "$AUTOBUILD" ]]; then
 	echo "$magenta > Running in a docker container. Temp hiding /usr/share/root by moving it $reset"
-	mv /usr/share/root/ $SIM_INSTALLATION_DIR
+	mv /usr/share/root/ $tmp_root_dir
 fi
 
 git clone --recurse-submodules --single-branch -b $what_version "$grepo" $source_dir
@@ -44,7 +45,7 @@ cp $base_dir/include/*.h $base_dir/hipo4
 # if we are in a docker container restoring root
 if [[ -n "$AUTOBUILD" ]]; then
 	echo "$magenta > Running in a docker container. Restoring /usr/share/root $reset"
-	mv $SIM_INSTALLATION_DIR/root /usr/share/root/
+	mv $tmp_root_dir/root /usr/share/root/
 fi
 
 echo "$magenta > $what installation completed.$reset"
