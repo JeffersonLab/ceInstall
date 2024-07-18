@@ -80,6 +80,19 @@ gnutar() {
 	fi
 }
 
+# contains the container certificate if the installation is done in a container
+# notice: both the cacert and the -k option are given here. For some reason the cacert option
+# was not enough on fedora line OSes
+curl_command() {
+	certificate=""
+	if [[ -n "$AUTOBUILD" ]]; then
+		certificate="--cacert /etc/ssl/certs/JLabCA.crt -k"
+	fi
+
+	curl -S --location-trusted --progress-bar --retry 4 $certificate "$1" -O
+}
+
+
 unpack_source_in_directory_from_url() {
 	url=$1
 	dir=$2
@@ -110,7 +123,7 @@ unpack_source_in_directory_from_url() {
 
 	echo "$magenta > Fetching source from $url onto $filename$reset"
 	rm -f "$filename"
-	curl -S --location-trusted --progress-bar --retry 4 "$url" -O || whine_and_quit "curl -S --location-trusted --progress-bar --retry 4 $url"
+	curl_command $url || whine_and_quit "curl failed $url"
 	ls -lrt
 	echo "$magenta > gnutar Unpacking $filename in $dir$reset"
 	gnutar -zxpf "$filename" --strip-components="$tar_strip"
