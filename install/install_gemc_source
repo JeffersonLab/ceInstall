@@ -47,6 +47,11 @@ if [[ $what_version != 3* ]]; then
 	rm -f .sconsign.dblite # for some reason this still linger
 	find ./ -name "*.o" -delete
 
+	# install api if version is 'dev'
+	if [[ $what_version == "dev" ]]; then
+		cd $GEMC
+		git clone https://github.com/gemc/api
+	fi
 else
 
 	clone_tag "$srepo" "$what_version" "$source_dir"
