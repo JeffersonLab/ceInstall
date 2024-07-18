@@ -83,6 +83,7 @@ gnutar() {
 # contains the container certificate if the installation is done in a container
 # notice: both the cacert and the -k option are given here. For some reason the cacert option
 # was not enough on fedora line OSes
+# see also https://curl.se/docs/sslcerts.html
 curl_command() {
 	certificate=""
 	if [[ -n "$AUTOBUILD" ]]; then
