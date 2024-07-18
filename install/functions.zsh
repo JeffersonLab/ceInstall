@@ -91,7 +91,7 @@ curl_command() {
 	fi
 	curl_options="-S --location-trusted --progress-bar --retry 4 -k $certificate $1 -O"
 	echo
-	ech curl options passed: $curl_options
+	echo curl options passed: $curl_options
 	curl "$curl_options"
 }
 
@@ -126,7 +126,7 @@ unpack_source_in_directory_from_url() {
 
 	echo "$magenta > Fetching source from $url onto $filename$reset"
 	rm -f "$filename"
-	curl_command $url || whine_and_quit "curl failed $url"
+	curl_command "$url" || whine_and_quit "curl failed on $url"
 	ls -lrt
 	echo "$magenta > gnutar Unpacking $filename in $dir$reset"
 	gnutar -zxpf "$filename" --strip-components="$tar_strip"
