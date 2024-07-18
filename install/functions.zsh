@@ -86,10 +86,9 @@ gnutar() {
 curl_command() {
 	certificate=""
 	if [[ -n "$AUTOBUILD" ]]; then
-		certificate="--cacert /etc/ssl/certs/JLabCA.crt -k"
+		certificate="--cacert /etc/ssl/certs/JLabCA.crt"
 	fi
-
-	curl -S --location-trusted --progress-bar --retry 4 $certificate "$1" -O
+	curl -S --location-trusted --progress-bar --retry 4 -k $certificate "$1" -O
 }
 
 
