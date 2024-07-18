@@ -92,7 +92,7 @@ curl_command() {
 	curl_options=" -S --location-trusted --progress-bar --retry 4 $certificate $1 -k -O"
 	echo
 	echo curl options passed: $curl_options
-	curl $curl_options
+	curl $=curl_options
 }
 
 
