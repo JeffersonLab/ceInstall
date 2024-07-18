@@ -88,12 +88,11 @@ curl_command() {
 	certificate=""
 	if [[ -n "$AUTOBUILD" ]]; then
 		certificate=" --cacert /etc/pki/ca-trust/source/anchors/JLabCA.crt "
-		certificate=""
 	fi
 	curl_options=" -S --location-trusted --progress-bar --retry 4 $certificate $1 -k -O"
 	echo
 	echo curl options passed: $curl_options
-	curl "$curl_options"
+	curl $curl_options
 }
 
 
