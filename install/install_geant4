@@ -5,9 +5,8 @@
 # also checking for container env setup in /app
 [[ -f /usr/share/Modules/init/zsh ]] && . /usr/share/Modules/init/zsh
 [[ -f /usr/share/modules/init/zsh ]] && . /usr/share/modules/init/zsh
-[[ -f /app/localSetup.sh ]]          && . /app/localSetup.sh
 
-.  "$(dirname "$(readlink -f "$0")")"/functions.zsh
+. "$(dirname "$(readlink -f "$0")")"/functions.zsh
 
 if [[ $# -eq 1 ]]; then
 	geant4_version=$1
@@ -17,7 +16,7 @@ else
 	exit 1
 fi
 
-echo " > geant4_version: $geant4_version"
+echo " > Installing geant4 version $geant4_version"
 echo
 
 module purge
@@ -29,7 +28,6 @@ if [[ $? -ne 0 ]]; then
 fi
 echo
 
-echo
 echo " > Checking / Installing missing dependencies for geant4 version $geant4_version"
 [ "$(moduleTestResult .clhep   $CLHEP_VERSION)"   -eq 0 ] && echo " > clhep $CLHEP_VERSION is installed"     || install_clhep
 [ "$(moduleTestResult .xercesc $XERCESC_VERSION)" -eq 0 ] && echo " > xercesc $XERCESC_VERSION is installed" || install_xercesc

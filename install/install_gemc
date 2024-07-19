@@ -16,19 +16,18 @@ else
 	exit 1
 fi
 
-echo " > gemc_version: $gemc_version"
+echo " > Installing gemc version $gemc_version"
 echo
 
 module purge
 module load sim_system
-module unload gemc
 module load gemc/$gemc_version
 if [[ $? -ne 0 ]]; then
 	echo " > ERROR: module load gemc/$gemc_version failed. Probably $gemc_version is not supported. Exiting."
 	exit 1
 fi
 echo
-echo
+
 echo " > Checking / Installing missing dependencies for gemc version $gemc_version"
 [ "$(moduleTestResult     geant4    $G4_VERSION)"       -eq 0 ] && echo " > geant4 $G4_VERSION is installed" || install_geant4 $G4_VERSION
 [ "$(moduleTestResult     ccdb      $CCDB_VERSION)"     -eq 0 ] && echo " > ccdb $CCDB_VERSION is installed" || install_ccdb
@@ -42,7 +41,7 @@ if [[ $gemc_version == 2* ]] || [[ $gemc_version == 4* ]] || [[ $gemc_version ==
 		[ "$(moduleTestResult .evio $EVIO_VERSION)" -eq 0 ] && echo " > evio is installed" || install_evio
 	fi
 	if [[ $gemc_version == 2* ]] || [[ $gemc_version == 5* ]]; then
-		[ "$(moduleTestResult hipo $HIPO_VERSION)" -eq 0 ] && echo " > hipo is installed"  || install_hipo
+		[ "$(moduleTestResult hipo $HIPO_VERSION)" -eq 0 ] && echo " > hipo is installed" || install_hipo
 		[ "$(moduleTestResult .cmag $CMAG_VERSION)" -eq 0 ] && echo " > cmag is installed" || install_cmag
 	fi
 	[ "$(moduleTestResult .mlibrary $MLIBRARY_VERSION)" -eq 0 ] && echo " > mlibrary is installed" || install_mlibrary
