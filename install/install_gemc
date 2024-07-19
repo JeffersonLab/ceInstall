@@ -40,7 +40,7 @@ if [[ $gemc_version == 2* ]] || [[ $gemc_version == 4* ]] || [[ $gemc_version ==
 	if [[ $gemc_version == 2* ]] || [[ $gemc_version == 4* ]]; then
 		[ "$(moduleTestResult .evio $EVIO_VERSION)" -eq 0 ] && echo " > evio is installed" || install_evio
 	fi
-	if [[ $gemc_version == 2* ]] || [[ $gemc_version == 5* ]]; then
+	if [[ $gemc_version == 2* ]] || [[ $gemc_version == 5* ]] || [[ $gemc_version == "dev" ]]; then
 		[ "$(moduleTestResult hipo $HIPO_VERSION)" -eq 0 ] && echo " > hipo is installed" || install_hipo
 		[ "$(moduleTestResult .cmag $CMAG_VERSION)" -eq 0 ] && echo " > cmag is installed" || install_cmag
 	fi
