@@ -13,7 +13,8 @@ prepend-ldpath $ilib
 prepend-path   PATH            $dir/bin
 prepend-path   PKG_CONFIG_PATH $ilib/pkgconfig
 
-setenv GEMC       $dir
+setenv GEMC           $dir
+setenv GEMC_DATA_DIR  $dir
 setenv FIELD_DIR  [home]/noarch/data/magfield
 
 

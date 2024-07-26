@@ -33,7 +33,8 @@ log_general "$what" "$what_version" "$grepo" "$base_dir"
 if [[ $what_version != 3* ]]; then
 
 	# in gemc2 series the scons will be installed in the same directory as the source (yuck)
-	mkdir -p $base_dir ; cd $base_dir
+	mkdir -p $base_dir
+	cd                    $base_dir
 	clone_tag "$srepo" "$twhat_version" "$what_version"
 
 	cd $what_version/$source_dir || exit
@@ -44,8 +45,10 @@ if [[ $what_version != 3* ]]; then
 	mv lib $GEMC
 
 	# cleaning up
-	rm -f .sconsign.dblite # for some reason this still linger
+	rm -f .sconsign.dblite
 	find ./ -name "*.o" -delete
+	cd ..
+	rm -rf ci diff.sh release_notes check_copy_config.sh
 
 	# install api if version is 'dev'
 	if [[ $what_version == "dev" ]]; then
