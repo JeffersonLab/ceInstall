@@ -21,7 +21,7 @@ for map in $maps; do
 		wget -q -P $base_dir $field
 	fi
 done
-
+mv $base_dir/Full_transsolenoid_x321_y161_z321_March2021_April2024.dat $base_dir/Full_transsolenoid_x321_y161_z321_April2024.dat
 
 # ASCII files fields
 brepo="https://clasweb.jlab.org/12gev/field_maps"

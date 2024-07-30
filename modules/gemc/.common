@@ -7,11 +7,15 @@ prereq geant4/${g4_version}
 source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
 
 set dir [home]/[osrelease]/$which/${version}
-set ilib [choose_dir $dir/lib $dir/lib64]
 
-prepend-ldpath $ilib
+# on some system both lib and lib64 are created by dependencies during gemc installation
+prepend-ldpath $dir/lib
+prepend-ldpath $dir/lib64
+
 prepend-path   PATH            $dir/bin
-prepend-path   PKG_CONFIG_PATH $ilib/pkgconfig
+prepend-path   PKG_CONFIG_PATH $dir/lib/pkgconfig
+prepend-path   PKG_CONFIG_PATH $dir/lib64/pkgconfig
+prepend-path   PYTHONPATH      $dir/api
 
 setenv GEMC           $dir
 setenv GEMC_DATA_DIR  $dir
