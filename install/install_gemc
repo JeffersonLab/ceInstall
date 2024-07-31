@@ -50,9 +50,6 @@ if [[ $gemc_version == 2* ]] || [[ $gemc_version == 4* ]] || [[ $gemc_version ==
 		install_fields
 	fi
 	echo " > Field maps are installed."
-# GEMC 3 line
-else
-	[ "$(moduleTestResult .scig $SCIG_VERSION)" -eq 0 ] && echo " > scig is installed" || install_scig
 fi
 
 [ "$(moduleTestResult gemc   $gemc_version)"     -eq 0 ] && echo " > gemc is installed"      || install_gemc_source $gemc_version
