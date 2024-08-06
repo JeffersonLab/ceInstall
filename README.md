@@ -1,6 +1,5 @@
 #  QuickStart
 
-
 The environment variable SIM_HOME must be set and point at an existing installation location (for example: `/opt/sim` )
 
 #### First time only: clone ceInstall
@@ -12,8 +11,7 @@ git clone https://github.com/jeffersonlab/ceInstall
 
 #### To set up the environment, run the following command:
 ```
-export SIM_HOME=<your_installation_path>
-module use "${SIM_HOME}"/ceInstall/modulefiles
+module use "${SIM_HOME}"/ceInstall/modules
 ```
 
 ___
@@ -245,6 +243,12 @@ To enable modules, the following line should be added to your `.bashrc` or `.zsh
 
 `. /usr/share/Modules/init/zsh` or `. /usr/share/Modules/init/bash`
 
+
+## compatibility issues: 
+
+- mlibrary 1.7 is associated with geant4 10.6.2 and clhep 2.4.1.3
+- mlibrary 1.8 is associated with geant4 10.7.4 and clhep 2.4.4.2
+- gemc 5.9 is deprecated because of the above reason (cannot mix different mlibrary and geant4 versions)
 
 
 ___

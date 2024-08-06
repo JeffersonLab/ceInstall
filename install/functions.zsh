@@ -71,6 +71,31 @@ unpack_source_in_directory_from_jlab_repo() {
 	rm -f "$filename"
 }
 
+# run tar options if not macos, otherwise use gnutar
+gnutar() {
+	if [[ "$OSTYPE" == "darwin"* ]]; then
+		gtar $@
+	else
+		tar $@
+	fi
+}
+
+# contains the container certificate if the installation is done in a container
+# notice: both the cacert and the -k option are given here. For some reason the cacert option
+# was not enough on fedora line OSes
+# see also https://curl.se/docs/sslcerts.html
+curl_command() {
+	certificate=""
+	if [[ -n "$AUTOBUILD" ]]; then
+		certificate=" --cacert /etc/pki/ca-trust/source/anchors/JLabCA.crt "
+	fi
+	curl_options=" -S --location-trusted --progress-bar --retry 4 $certificate $1 -k -O"
+	echo
+	echo curl options passed: $curl_options
+	curl $=curl_options
+}
+
+
 unpack_source_in_directory_from_url() {
 	url=$1
 	dir=$2
@@ -81,11 +106,9 @@ unpack_source_in_directory_from_url() {
 	else
 		no_remove=0
 	fi
-
 	filename=$(basename "$url")
 
 	echo
-	echo " > unpack_source_in_directory_from_url: "
 	echo " > url: $url"
 	echo " > dir: $dir"
 	echo " > tar_strip: $tar_strip"
@@ -103,29 +126,27 @@ unpack_source_in_directory_from_url() {
 
 	echo "$magenta > Fetching source from $url onto $filename$reset"
 	rm -f "$filename"
-	#	wget "$url" || whine_and_quit "wget $url"
-	curl -S --location-trusted --progress-bar --retry 4 "$url" -O || whine_and_quit "wget $url"
-	echo "Downloaded file:"
-	ls -lrt $filename
-
-	echo "$magenta > Unpacking $filename in $dir$reset"
-	echo
-
-	tar -zxpf "$filename" --strip-components="$tar_strip"
+	curl_command "$url" || whine_and_quit "curl failed on $url"
+	ls -lrt
+	echo "$magenta > gnutar Unpacking $filename in $dir$reset"
+	gnutar -zxpf "$filename" --strip-components="$tar_strip"
+	ls -lrt "$dir"
 	rm -f "$filename"
+	echo " > Done with unpacking $filename"
+	echo
 }
 
 clone_tag() {
 	url=$1
 	version=$2
-	source_dir=$3
+	destination_dir=$3
 
 	echo
 	echo " > url: $url"
 	echo " > clone_tag: " $version
 	echo " > in directory: $install_dir"
 
-	git clone -c advice.detachedHead=false --recurse-submodules --single-branch -b $version "$url" "$source_dir"
+	git clone -c advice.detachedHead=false --recurse-submodules --single-branch -b $version "$url" "$destination_dir"
 	echo
 }
 
@@ -158,18 +179,16 @@ cmake_build_and_install() {
 	cd "$build_dir" || whine_and_quit "cd $build_dir"
 
 	echo
-	echo "$magenta > Configuring cmake with: $=cmake_options$reset"
-	echo
-
+	echo "$magenta > Configuring cmake...$reset"
 	cmake "$source_dir" -DCMAKE_INSTALL_PREFIX="$install_dir" $=cmake_options 2>"$install_dir/cmake_err.txt" 1>"$install_dir/cmake_log.txt" || whine_and_quit "cmake $source_dir -DCMAKE_INSTALL_PREFIX=$install_dir $=cmake_options"
 
-	echo "$magenta > Building$reset"
+	echo "$magenta > Done, now building...$reset"
 	make -j "$n_cpu" 2>$install_dir/build_err.txt 1>"$install_dir/build_log.txt" || whine_and_quit "make -j $n_cpu"
 
-	echo "$magenta > Installing$reset"
+	echo "$magenta > Done, now installing...$reset"
 	make install 2>$install_dir/install_err.txt 1>"$install_dir/install_log.txt" || whine_and_quit "make install"
 
-	echo " Content of $install_dir:"
+	echo " Content of $install_dir after installation:"
 	ls -l "$install_dir"
 	if [[ -d "$install_dir/lib" ]]; then
 		echo " Content of $install_dir/lib:"
@@ -192,44 +211,7 @@ cmake_build_and_install() {
 	echo "$magenta > Compilation and installation completed in $elapsed seconds.$reset"
 }
 
-scons_build_and_install() {
 
-	install_dir=$1
-
-	build_shared=''
-	# if a second argument is given to this function, set build_shared to it
-	if [ -n "$2" ]; then
-		build_shared=$2
-		echo " > build_shared:  $build_shared"
-	fi
-
-	echo " > install_dir:   $install_dir"
-
-	local cmd_start="$SECONDS"
-	cd "$install_dir" || whine_and_quit "cd $install_dir"
-
-	scons_options=" -j$n_cpu OPT=1 $build_shared"
-	echo "$magenta > Building using scons options: > $=scons_options < $reset"
-	rm -f .sconsign.dblite # for some reason this still linger
-	#	\scons "$scons_options" 2>"$install_dir/build_err.txt" 1>"$install_dir/build_log.txt" || whine_and_quit "\scons $scons_options"
-	\scons "$=scons_options"
-
-	# cleanup
-	echo "$magenta > Cleaning up...$reset"
-	find ./ -name "*.o" -delete
-	local cmd_end="$SECONDS"
-	elapsed=$((cmd_end - cmd_start))
-
-	echo " Content of this dir:"
-	ls -l
-
-	if [[ -d "lib" ]]; then
-		echo " Content of lib:"
-		ls -l lib/
-	fi
-
-	echo "$magenta > Compilation and installation completed in $elapsed seconds.$reset"
-}
 
 function moduleTestResult() {
 	library=$1

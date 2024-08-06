@@ -3,3 +3,5 @@
 *.swp
 *.swo
 .DS_Store
+macosx14-clang15
+noarch

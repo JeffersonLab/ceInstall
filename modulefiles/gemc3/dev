@@ -1,9 +1,0 @@
-#%Module4.5
-
-set version dev
-setenv SIM_VERSION 1.2
-
-set scig_version           dev
-
-set moduledir [file dirname $ModulesCurrentModulefile]
-source $moduledir/.common

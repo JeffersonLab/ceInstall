@@ -1,0 +1,33 @@
+# Common modulefile
+
+conflict gemc
+prereq sim_system
+prereq geant4/${g4_version}
+
+source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
+
+set dir [home]/[osrelease]/$which/${version}
+
+# on some system both lib and lib64 are created by dependencies during gemc installation
+prepend-ldpath $dir/lib
+prepend-ldpath $dir/lib64
+
+prepend-path   PATH            $dir/bin
+prepend-path   PKG_CONFIG_PATH $dir/lib/pkgconfig
+prepend-path   PKG_CONFIG_PATH $dir/lib64/pkgconfig
+prepend-path   PYTHONPATH      $dir/api
+
+setenv GEMC           $dir
+setenv GEMC_DATA_DIR  $dir
+setenv FIELD_DIR  [home]/noarch/data/magfield
+
+
+proc ModulesTest { } {
+
+	set retcode 1
+
+	if { [warnfile [ getenv GEMC ]/bin/gemc "gemc executable is not installed" err] eq 0 } { set retcode 0 }
+
+	return $retcode
+}
+

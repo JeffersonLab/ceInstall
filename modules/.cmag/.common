@@ -1,0 +1,29 @@
+# Common modulefile
+
+conflict .cmag
+
+module-whatis Utility libraries for GEMC, https://github.com/gemc/mlibrary
+source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
+
+set dir [home]/[osrelease]/clas12_cmag/${version}
+set ilib [choose_dir $dir/lib $dir/lib64]
+
+prepend-ldpath $ilib
+
+setenv CMAG_VERSION $version
+setenv CLAS12_CMAG  $dir
+prepend-path PATH   $dir/bin
+# backward compatibility of scons
+setenv C12BFIELDS   $dir
+
+
+proc ModulesTest { } {
+	
+	set retcode 1
+
+	if { [warnfile [ getenv CLAS12_CMAG ]/bin/cMagTest "CLAS12_CMAG is not installed" err] eq 0 } { set retcode 0 }
+
+	return $retcode
+
+}
+

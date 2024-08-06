@@ -1,8 +1,0 @@
-#%Module4.5
-
-prereq .ccdb/1.07.01
-
-set version dev
-
-set moduledir [file dirname $ModulesCurrentModulefile]
-source $moduledir/.common

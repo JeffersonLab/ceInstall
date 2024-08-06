@@ -1,0 +1,13 @@
+#%Module
+module-whatis Geant4 Monte-Carlo (GEMC), https://gemc.github.io/home
+
+set version [file tail [module-info version [module-info name]]]
+set which gemc
+
+# optional only works modules 5.something or later
+# prereq --optional ccdb/1.99.2
+
+set g4_version  11.2.2
+
+source [file dirname $ModulesCurrentModulefile]/.common
+

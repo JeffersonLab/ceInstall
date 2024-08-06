@@ -1,0 +1,24 @@
+# Common modulefile
+
+conflict .mlibrary
+
+module-whatis Utility libraries for GEMC, https://github.com/gemc/mlibrary
+source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
+
+set dir [home]/[osrelease]/mlibrary/${version}
+set ilib [choose_dir $dir/lib $dir/lib64]
+
+prepend-ldpath $ilib
+
+setenv MLIBRARY_VERSION  $version
+setenv MLIBRARY          $dir
+
+proc ModulesTest { } {
+
+	set retcode 1
+
+	if { [warndir [ getenv MLIBRARY ]/lib/pkgconfig "MLIBRARY cadmesh is not installed" err ] eq 0 } { set retcode 0 }
+
+	return $retcode
+}
+

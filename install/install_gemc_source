@@ -1,0 +1,80 @@
+#!/bin/zsh
+
+# if the environment variables GEMC is not set, exit
+if [[ -z "$GEMC" ]]; then
+	echo "$red > $GEMC is not set. Exiting.$reset"
+	exit 1
+fi
+
+what="gemc"
+what_version="$1"
+twhat_version="$what_version"
+
+# if major $what_version is 2, repo is gemc/source, if it's 4 or 5 it's gemc/clas12Tags
+if [[ $what_version == 2* ]]; then
+	twhat_version="v$what_version"
+	source_dir='.'
+	srepo="https://github.com/gemc/source"
+elif [[ $what_version == 4* ]] || [[ $what_version == 5* ]] || [[ $what_version == dev ]]; then
+	what="clas12Tags"
+	source_dir='source'
+	srepo="https://github.com/gemc/clas12Tags"
+elif [[ $what_version == 3* ]] || [[ $what_version == "dev3" ]]; then
+	source_dir="gemc3_source"
+	srepo="https://github.com/gemc/src"
+fi
+
+tar_strip=1  # tarball number of subdirs to strip
+base_dir="$SIM_HOME/$what"
+
+source "$(dirname "$(readlink -f "$0")")"/functions.zsh
+log_general "$what" "$what_version" "$grepo" "$base_dir"
+
+if [[ $what_version != 3* ]]; then
+
+	# in gemc2 series the scons will be installed in the same directory as the source (yuck)
+	mkdir -p $base_dir
+	cd                    $base_dir
+	clone_tag "$srepo" "$twhat_version" "$what_version"
+
+	cd $what_version/$source_dir || exit
+	scons -j "$n_cpu" || exit
+
+	mkdir -p $GEMC/bin
+	mv gemc $GEMC/bin
+	mv lib $GEMC
+
+	# cleaning up
+	rm -f .sconsign.dblite
+	find ./ -name "*.o" -delete
+	cd ..
+	rm -rf ci diff.sh release_notes check_copy_config.sh
+
+	# install api if version is 'dev'
+	if [[ $what_version == "dev" ]]; then
+		cd $GEMC
+		git clone https://github.com/gemc/api
+	fi
+else
+
+	clone_tag "$srepo" "$what_version" "$source_dir"
+	cd $source_dir
+
+	meson setup build --native-file=release.ini -Duse_root=true --wipe
+	cd build
+	dir_remove_and_create "$GEMC"
+	meson configure "-Dprefix=$GEMC"
+	meson install
+
+	# why?
+	# export DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH
+	meson test -v
+
+	cd ..
+	rm -rf $source_dir
+	echo
+
+fi
+
+echo "$magenta > $what installation completed.$reset"
+echo

@@ -1,0 +1,27 @@
+# Common modulefile
+
+# no conflicts by design as it can also be installed by CLAS12
+
+module-whatis High Performance Output (HIPO) data format for experimental Physics, https://github.com/gavalian/hipo
+source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
+
+set dir [home]/[osrelease]/hipo/${version}
+set ilib [choose_dir $dir/lib $dir/lib64]
+
+prepend-ldpath $ilib
+prepend-path PATH            $dir/bin
+append-path  LD_LIBRARY_PATH $dir/slib
+append-path  PYTHONPATH      $dir/extensions/python
+
+setenv HIPO_VERSION $version
+setenv HIPO $dir
+
+proc ModulesTest { } {
+
+	set retcode 1
+
+	if { [warndir [ getenv HIPO ]/include/hipo4 "HIPO /include/hipo4 does not exist" err] eq 0 } { set retcode 0 }
+
+	return $retcode
+}
+

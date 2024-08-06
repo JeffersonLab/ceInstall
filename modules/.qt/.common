@@ -1,0 +1,37 @@
+# Common modulefile
+
+conflict .qt
+
+module-whatis Cross platform C++ graphical framework, https://www.qt.io/developers
+source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
+
+# set QTSYSTEM based on uname
+if { [uname sysname] == "Linux" } {
+	set QTSYSTEM gcc_64
+} elseif { [uname sysname] == "Darwin" } {
+	set QTSYSTEM clang_64
+} else {
+	puts stderr "Unknown system type"
+	exit 1
+}
+
+set dir [home]/[osrelease]/qt/${version}/$QTSYSTEM
+set ilib [choose_dir $dir/lib $dir/lib64]
+
+prepend-ldpath $ilib
+prepend-path PKG_CONFIG_PATH $ilib/pkgconfig
+prepend-path PATH $dir/bin
+
+setenv QT_VERSION $version
+setenv QTDIR $dir
+
+proc ModulesTest { } {
+
+	set retcode 1
+
+	if { [warndir [ getenv QTDIR ]/include/QtWidgets "QTDIR does not have QtWidgets in the include directory" err] eq 0 } {	set retcode 0 }
+
+	return $retcode
+
+}
+

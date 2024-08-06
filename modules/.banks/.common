@@ -1,0 +1,25 @@
+# Common modulefile
+
+conflict .banks
+
+module-whatis C++ utility to convert EVIO to ROOT, https://github.com/maureeungaro/banks
+source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
+
+set dir [home]/[osrelease]/banks/${version}
+set ilib [choose_dir $dir/lib $dir/lib64]
+
+prepend-ldpath $ilib
+prepend-path PATH $dir/bin
+
+setenv BANKS_VERSION $version
+setenv BANKS $dir
+
+proc ModulesTest { } {
+	
+	set retcode 1
+
+	if { [warndir [ getenv BANKS ] "BANKS does not exist" err] eq 0 } { set retcode 0 }
+
+	return $retcode
+}
+

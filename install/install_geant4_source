@@ -1,0 +1,76 @@
+#!/bin/zsh
+
+# this legacy geant4 install script still uses source code and data on the jlab repo
+
+# if the environment variables G4INSTALL and G4_VERSION are not set, exit
+if [[ -z "$G4INSTALL" || -z "$G4_VERSION" ]]; then
+	echo "$red > G4INSTALL or $G4_VERSION environment variables are not set. Exiting.$reset"
+	exit 1
+fi
+
+source_dir=$G4INSTALL/source
+build_dir=$G4INSTALL/build
+base_dir=$G4INSTALL
+filename="https://gitlab.cern.ch/geant4/geant4/-/archive/v$G4_VERSION/geant4-v$G4_VERSION.tar.gz"
+tar_strip=1 # in the tarball, the source is inside VERSION/CLHEP
+
+# notice DGEANT4_BUILD_BUILTIN_BACKTRACE and DGEANT4_INSTALL_DATA are OFF
+# also notice DCMAKE_INSTALL_DATAROOTDIR is not exactly $G4DATA_DIR but $G4INSTALL/data
+cmake_options1="-DGEANT4_USE_GDML=ON -DXERCESC_ROOT_DIR=$XERCESCROOT -DGEANT4_USE_QT=ON"
+cmake_options2=" -DQT_QMAKE_EXECUTABLE=$QTDIR/bin/qmake -DCLHEP_ROOT_DIR=$CLHEP_BASE_DIR"
+cmake_options3=" -DCMAKE_INSTALL_DATAROOTDIR=$G4INSTALL/data -DGEANT4_INSTALL_DATA=OFF"
+cmake_options4=" -DGEANT4_BUILD_MULTITHREADED=ON  -DGEANT4_BUILD_BUILTIN_BACKTRACE=OFF "
+
+# add cmake_options4 if G4_VERSION is 11.0 or higher
+if [[ $G4_VERSION == 11.* ]]; then
+	cmake_options="$cmake_options1 $cmake_options2 $cmake_options3 $cmake_options4"
+else
+	cmake_options="$cmake_options1 $cmake_options2 $cmake_options3"
+fi
+
+case $(uname -s) in
+Linux)
+	x11_option="-DGEANT4_USE_OPENGL_X11=ON"
+
+	opt1=" -I$QTDIR/include -I$QTDIR/include/QtOpenGL -I$QTDIR/include/QtWidgets"
+	opt2=" -I$QTDIR/include/QtGui -I$QTDIR/include/QtCore -I$QTDIR/include/QtPrintSupport"
+	opt3=" -Wall -pedantic -Wno-non-virtual-dtor -Wno-long-long -Wwrite-strings -Wpointer-arith -Woverloaded-virtual -pipe"
+
+	# need to check if QtPrintSupport is needed
+	set conf_options = "$x11_option $opt1 $opt2 $opt3"
+	cmake_options="$cmake_options $conf_options"
+	;;
+Darwin) ;;
+
+*)
+	echo "Unsupported OS: $(uname -s)"
+	exit 1
+	;;
+esac
+
+source "$(dirname "$(readlink -f "$0")")"/functions.zsh
+log_general geant4 "$G4_VERSION" "$filename" "$base_dir"
+
+unpack_source_in_directory_from_url "$filename" "$source_dir" "$tar_strip"
+
+# change fsqrt definition if geant4 version < 10.7
+if [[ $G4_VERSION == "10.6.2" ]]; then
+	echo
+	echo " > Geant4 version is $G4_VERSION, applying fsqrt patch to $source_dir/source/persistency/ascii/src/G4tgrEvaluator.cc"
+	echo
+	case $(uname -s) in
+	Linux)
+		sed -i s/fsqrt/fltsqrt/ "$source_dir/source/persistency/ascii/src/G4tgrEvaluator.cc"
+		;;
+	Darwin)
+		/usr/bin/sed -i '' s/fsqrt/fltsqrt/ "$source_dir/source/persistency/ascii/src/G4tgrEvaluator.cc"
+		;;
+	*)
+		echo "Unsupported OS: $(uname -s)"
+		exit 1
+		;;
+	esac
+
+fi
+
+cmake_build_and_install "$source_dir" "$build_dir" "$base_dir" "$cmake_options" "do_not_delete_source"

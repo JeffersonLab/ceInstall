@@ -1,0 +1,23 @@
+#%Module
+
+set version [file tail [module-info version [module-info name]]]
+
+set clhep_version   2.4.7.1
+set xercesc_version 3.2.5
+set qt_version      system
+
+# datasets. must be env variable for install_geant4 data to work properly
+setenv g4ndl_version               4.6
+setenv g4emlow_version             7.13
+setenv g4photonevaporation_version 5.7
+setenv g4radioactivedecay_version  5.6
+setenv g4particlexs_version        3.1.1
+setenv g4pii_version               1.3
+setenv g4real_surface_version      2.2
+setenv g4saidata_version           2.0
+setenv g4abla_version              3.1
+setenv g4incl_version              1.0
+setenv g4ensdfstate_version        2.3
+setenv g4tendl_version             1.3.2
+
+source [file dirname $ModulesCurrentModulefile]/.common

@@ -1,0 +1,59 @@
+# Common modulefile
+
+conflict geant4
+prereq .clhep/${clhep_version}
+prereq .xercesc/${xercesc_version}
+prereq .qt/${qt_version}
+
+module-whatis geant4 framework, https://geant4.web.cern.ch
+source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
+
+set dir [home]/[osrelease]/geant4/${version}
+set ilib [choose_dir $dir/lib $dir/lib64]
+
+prepend-path PATH $dir/bin
+prepend-ldpath    $ilib
+prepend-path      PKG_CONFIG_PATH $ilib/pkgconfig
+
+setenv G4_VERSION $version
+setenv G4INSTALL  $dir
+setenv G4LIB      $ilib
+setenv G4DATA_DIR $dir/data/Geant4-$version/data
+
+# datasets
+setenv G4NEUTRONHPDATA   $env(G4DATA_DIR)/G4NDL$env(g4ndl_version)
+setenv G4LEDATA          $env(G4DATA_DIR)/G4EMLOW$env(g4emlow_version)
+setenv G4LEVELGAMMADATA  $env(G4DATA_DIR)/PhotonEvaporation$env(g4photonevaporation_version)
+setenv G4RADIOACTIVEDATA $env(G4DATA_DIR)/RadioactiveDecay$env(g4radioactivedecay_version)
+setenv G4PARTICLEXSDATA  $env(G4DATA_DIR)/G4PARTICLEXS$env(g4particlexs_version)
+setenv G4PIIDATA         $env(G4DATA_DIR)/G4PII$env(g4pii_version)
+setenv G4REALSURFACEDATA $env(G4DATA_DIR)/RealSurface$env(g4real_surface_version)
+setenv G4SAIDXSDATA      $env(G4DATA_DIR)/G4SAIDDATA$env(g4saidata_version)
+setenv G4ABLADATA        $env(G4DATA_DIR)/G4ABLA$env(g4abla_version)
+setenv G4INCLDATA        $env(G4DATA_DIR)/G4INCL$env(g4incl_version)
+setenv G4ENSDFSTATEDATA  $env(G4DATA_DIR)/G4ENSDFSTATE$env(g4ensdfstate_version)
+setenv G4TENDLDATA       $env(G4DATA_DIR)/G4TENDL$env(g4tendl_version)
+
+
+proc ModulesTest { } {
+	set retcode 1
+
+	if { [warndir [ getenv G4LIB ] "G4LIB is not available" err] eq 0 } {	set retcode 0 }
+
+	# datasets tests
+	if { [warndir [ getenv G4NEUTRONHPDATA ]   "Dataset for G4NEUTRONHPDATA is not available" err]   eq 0 } { set retcode 0 }
+	if { [warndir [ getenv G4LEDATA ]          "Dataset for G4LEDATA is not available" err]          eq 0 } { set retcode 0 }
+	if { [warndir [ getenv G4LEVELGAMMADATA ]  "Dataset for G4LEVELGAMMADATA is not available" err]  eq 0 } { set retcode 0 }
+	if { [warndir [ getenv G4RADIOACTIVEDATA ] "Dataset for G4RADIOACTIVEDATA is not available" err] eq 0 } { set retcode 0 }
+	if { [warndir [ getenv G4PARTICLEXSDATA ]  "Dataset for G4PARTICLEXSDATA is not available" err]  eq 0 } { set retcode 0 }
+	if { [warndir [ getenv G4PIIDATA ]         "Dataset for G4PIIDATA is not available" err]         eq 0 } { set retcode 0 }
+	if { [warndir [ getenv G4REALSURFACEDATA ] "Dataset for G4REALSURFACEDATA is not available" err] eq 0 } { set retcode 0 }
+	if { [warndir [ getenv G4SAIDXSDATA ]      "Dataset for G4SAIDXSDATA is not available" err]      eq 0 } { set retcode 0 }
+	if { [warndir [ getenv G4ABLADATA ]        "Dataset for G4ABLADATA is not available" err]        eq 0 } { set retcode 0 }
+	if { [warndir [ getenv G4INCLDATA ]        "Dataset for G4INCLDATA is not available" err]        eq 0 } { set retcode 0 }
+	if { [warndir [ getenv G4ENSDFSTATEDATA ]  "Dataset for G4ENSDFSTATEDATA is not available" err]  eq 0 } { set retcode 0 }
+
+	return $retcode
+
+}
+

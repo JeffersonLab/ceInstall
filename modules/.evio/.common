@@ -1,0 +1,27 @@
+# Common modulefile
+
+conflict .evio
+
+module-whatis Event IO library for JLab, modified by CLAS12, https://github.com/JeffersonLab/evio_clas12
+source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
+
+set dir [home]/[osrelease]/evio/${version}
+set ilib [choose_dir $dir/lib $dir/lib64]
+
+prepend-ldpath $ilib
+prepend-path PKG_CONFIG_PATH $ilib/pkgconfig
+prepend-path PATH            $dir/bin
+
+setenv EVIO_VERSION  $version
+setenv EVIO          $dir
+
+proc ModulesTest { } {
+	
+	set retcode 1
+
+	if { [warnfile [ getenv EVIO ]/bin/evio2xml "evio2xml is not installed" err ] eq 0 } { set retcode 0 }
+
+	return $retcode
+
+}
+

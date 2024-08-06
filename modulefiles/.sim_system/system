@@ -1,8 +1,0 @@
-#%Module4.5
-
-
-setenv SIM_OSRELEASE [ exec $env(SIM_HOME)/ceInstall/sim_osrelease.py ]
-setenv SIM_INSTALLATION_DIR $env(SIM_HOME)/$env(SIM_VERSION)/$env(SIM_OSRELEASE)
-
-# add the installation directory to the PATH
-prepend-path PATH $env(SIM_HOME)/ceInstall/install
