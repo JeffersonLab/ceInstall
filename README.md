@@ -1,18 +1,56 @@
-#  QuickStart
+# Quickstart: @JLAB
 
-The environment variable SIM_HOME must be set and point at an existing installation location (for example: `/opt/sim` )
-
-#### First time only: clone ceInstall
+```bash
+module use /scigroup/cvmfs/geant4/modules
+module  load gemc/5.10
 ```
-cd $SIM_HOME
+
+See below for other `module` options.
+Note: the above commands are automatically executed if you load the `clas12` module.
+
+# Quickstart: local installation on a supported OS, with CVMFS
+
+We distribute releases of Geant4 on CVMFS for the following platforms:
+
+- Linux: Fedora 36, AlmaLinux 9, Ubuntu24
+- MacOS: macOS 14.5 (Sonoma)
+
+If you have access to a CVMFS client and your OS is supported,
+you can load Geant4 with the following commands:
+
+```bash
+module use /cvmfs/oasis.opensciencegrid.org/jlab/geant4/modules 
+module  load gemc/5.10
+```
+
+Note: the above commands are automatically executed if you load the `clas12` module through CVMFS.
+
+# Local installation
+
+To download and compile Geant4 and gemc on your local machine, follow these instructions.
+
+Below we''ll use `/opt/software` as the installation location, but it can be any directory of your choice.
+Make sure you have write permissions on the directory you choose. You can always change permissions like this:
+`chown -R $USER /opt/software`
+
+### Clone the repo:
+
+Do this only once. If you have already cloned the repo, skip this step.
+
+```
+cd /opt/software
 git clone https://github.com/jeffersonlab/ceInstall
 ```
 
+### Setup the environment:
 
-#### To set up the environment, run the following command:
 ```
-module use "${SIM_HOME}"/ceInstall/modules
+module use /opt/software/ceInstall/modules
+module  load gemc/5.10
 ```
+
+We suggest to add the commands above to your shell login file to have them
+available every time you log in.
 
 ___
 
@@ -20,13 +58,9 @@ ___
 
 `module avail`: shows available modules
 
-`module load sim/1.2`: loads standalone geant4 libraries, version 1.2 (geant4 11.2.2)
+`module load geant4/11.2.2`: loads standalone geant4 libraries 11.2.2
 
-`module load gemc/5.10`: loads gemc (clas12Tags) version 5.10, that uses geant4 10.7.4
-
-`module load gemc/2.12`: loads gemc version 2.10, that uses geant4 10.7.4
-
-`module load gemc3/1.1`: loads gemc3 version 1.1, that uses geant4 11.2.2
+`module switch gemc/dev`: switch to gemc (clas12Tags) dev version
 
 `module show <module>/<version>`: shows what is loaded by a module
 
@@ -34,79 +68,28 @@ ___
 
 ___
 
-
 # Libraries installation
 
-Make sure the [__requirements__](#requirements) for the libraries / environment installation 
+Make sure the [__requirements__](#requirements) for the libraries / environment installation
 listed at the bottom of this page are met.
 
-Make sure you have write and execute permissions on $SIM_HOME:
+After the steps above:  `module load sim_system` will load the installation scripts location.
 
-```
-chmod -R 755 $SIM_HOME
-```
+- `install_geant4 11.2.2` will install geant4
+- `install_gemc 5.10` will install gemc. This can be run standalone or after the geant4 installation.
 
-Add the installation scripts location to your path `module load sim`
+Both installation scripts will check for existing installations and will not overwrite them. 
 
-### Standalone Geant4 Simulation Software Installation
-
-Run `install_sim`  to install the libraries needed by geant4.
-Example:
-
-```install_sim 1.2```
-
-The argument, that specifies the versions of geant4 and the dependencies, 
-can be:
-
-- `1.0`: for `geant4` `10.6.2`
-- `1.1`: for `geant4` `10.7.4`
-- `1.2`: for `geant4` `11.2.2`
-
-The script will test for the existence of the libraries and 
-will not install what is already present.
-
-
+`moule avail geant4` or `module avail gemc` will show the versions available for installation.
 
 
 ___
-
-### Gemc Installation
-
-Run `install_gemc` with the option `<gemc_version>` to install 
-the software needed to run clas12 simulations with gemc.
-
-` <gemc_version>` is the gemc or clas12Tag version. 
-
-- `4.4.2`: uses `geant4 10.6.2` and clas12Tags `4.4.2` 
-- `5.7`: uses `geant4 10.6.2` and clas12Tags `5.7`
-- `5.8`: uses `geant4 10.7.4` and clas12Tags `5.8`
-- `2.12`: uses `geant4 10.7.4` and gemc `2.12`
-
-`install_gemc` will install, if not present already, the libraries needed for Geant4 simulations. 
-
-
-___
-
-### Gemc3 Installation
-
-Run `install_gemc3` with the option `<gemc_version>` to install 
-the software needed to run clas12 simulations with gemc.
-
-` <gemc_version>` is the clas12Tag containing gemc and the clas12 geometry database.
-
-- `1.1`: uses `geant4 11.2`` 
-
-`install_gemc3` will install, if not present already, the libraries needed for Geant4 simulations. 
-
-___ 
-
-
 
 ### Compiling geant4 examples
 
 The source code of the geant4 examples is in `$G4INSTALL/source/examples/`.
-To compile one of the examples, create a build directory and run cmake using 
-the  syntax below, where `$G4INSTALL/source/examples/basic/B3` is selected 
+To compile one of the examples, create a build directory and run cmake using
+the syntax below, where `$G4INSTALL/source/examples/basic/B3` is selected
 as an example, in a machine with 4 cores (`-j4`)
 
 ```
@@ -117,36 +100,33 @@ make -j4
 
 ---
 
-
 # Installation Tree
 
-**Software based on compiled code** (C++, fortran, etc) is organized in the `SIM_OSRELEASE` 
-directory. `SIM_OSRELEASE`, set by the modules, is a  string is composed by the OS name and the compiler major version. 
+**Software based on compiled code** (C++, fortran, etc) is organized in the `SIM_OSRELEASE`
+directory. `SIM_OSRELEASE`, set by the modules, is a string is composed by the OS name and the compiler major version.
 For example: `macosx14-clang15`, `fedora34-gcc12`.
 
 **Architecture-independent stuff** (python, JAVA, etc) is organized in then `noarch` directory.
 
 ```
-- SIM_HOME
+- /opt/software
      ⋮
-     ∟ OSRELEASE
-     ⋮     ∟ 1.0
-     ⋮     ⋮     ⊢ package 1
-     ⋮     ⋮     ⋮    ⊢  package1_version
-     ⋮     ⋮     ⋮    ⋮    ⊢  libraries and includes  
-     ⋮     ⋮     ⊢ package 2
-     ⋮     ⋮     ⋮    ⊢  package2_version
-     ⋮    ⋮     ⋮    ⋮    ⊢  libraries and includes  
-     ⋮     ⊢ 1.1
-     ⋮     ⋮     ⊢ package 1
-     ⋮     ⋮     ⋮    ⊢  package1_version
-     ⋮     ⋮     ⋮    ⋮    ⊢  libraries and includes  
-     ⋮     ⋮     ⊢ package 2
-     ⋮     ⋮     ⋮    ⊢  package2_version
-     ⋮     ⋮     ⋮    ⋮    ⊢  libraries and includes  
+     ∟ OSRELEASE (for example: macosx14-clang15)
+     ⋮     ⊢ package 1
+     ⋮     ⋮    ⊢  package1_version
+     ⋮     ⋮    ⋮    ⊢  libraries and includes  
+     ⋮     ⊢ package 2
+     ⋮     ⋮    ⊢  package2_version
+     ⋮     ⋮    ⋮    ⊢  libraries and includes  
+     ⋮     ⊢ package 1
+     ⋮     ⋮    ⊢  package1_version
+     ⋮     ⋮    ⋮    ⊢  libraries and includes  
+     ⋮     ⊢ package 2
+     ⋮     ⋮    ⊢  package2_version
+     ⋮     ⋮    ⋮    ⊢  libraries and includes  
      ∟ noarch
         ⋮
-        ⋮     ⊢ noarch library
+        ⋮     ⊢ noarch library 1
         ⋮     ⋮    ⊢  lib_version
             
 ```
@@ -161,14 +141,16 @@ For example: `macosx14-clang15`, `fedora34-gcc12`.
 ## Requirements
 
 - `environment modules` > 4.5
-- `gcc/clang` >= 8 (for c++17) 
+- `gcc/clang` >= 8 (for c++17)
 - `cmake` >= 3.16
 - `pyton` >= 3.6
 - `qt5`
 - `scons` >= 4.2
-- `modules` >= 4.5 
+- `modules` >= 4.5
 - `zsh`
 - `wget`
+- `gnu tar`
+- `pkg-config`
 
 The following qt packages must be installed:
 
@@ -178,54 +160,51 @@ The following qt packages must be installed:
 - Qt5OpenGL
 - Qt5PrintSupport
 
-Unfortunately different Linux distro have different package names for these. 
 
 ### Optional:
 
-- `root`: for gemc3 root plugin and gemc2 evio2root converter
+- `root`: for gemc3 root plugin
 
 Find below the commands to install these requirements. Please email any corrections to
 [Maurizio](mailto:ungaro@jlab.org?subject=CeInstall Requirements Corrections).
 
 ___
 
-
 ## Mac installation of requirements (brew):
 
-```brew install wget cmake mysql qt@5 scons freeglut modules sqlite```
+```brew install gnu-tar wget cmake mysql qt@5 scons freeglut modules sqlite ```
 
+Note: As of 8/2024: the mysql_native_password authentication plugin has been removed in mysql v9 and CCDB will not work w/o it.
+So, for now, we need to install mysql v8.4:
 
-#### Bash, zsh
+```
+brew install mysql-client@8.4
+export PATH="/opt/homebrew/opt/mysql-client@8.4/bin:$PATH"
+export DYLD_LIBRARY_PATH="/opt/homebrew/opt/mysql-client@8.4/lib:$DYLD_LIBRARY_PATH"
+```
 
-To enable modules you can use the following commands:
+#### Enable modules in Bash, zsh
 
 ```
 brewDir=$(brew --prefix)
 source $brewDir/opt/modules/init/zsh` or `. $brewDir/opt/modules/init/bash
 ```
 
-In order to avoid re-typing them every time, the lines could be added to the files `.bashrc` or `.zshrc` 
-in your home directory, so they will be executed every time you open a new terminal.
-You can create the file if it does not exist. 
-
-#### Tcsh, csh
-
-To enable modules you can use the following commands:
+#### Enable modules in Tcsh, csh
 
 ```
 set brewDir=`brew --prefix`
 source $brewDir/opt/modules/init/tcsh
 ```
 
-In order to avoid re-typing them every time, the lines could be added to the files `.tcshrc` or `.cshrc` 
+---
+
+In order to avoid re-typing them every time, the lines could be added to the files `.tcshrc` or `.cshrc`
 in your home directory, so they will be executed every time you open a new terminal.
-You can create the file if it does not exist. 
+You can create the file if it does not exist.
 
 ---
 
-
-Notice that this will enable the use of modules, but to use the `install_sim` or `install_gemc` scripts you need to add the lines to the `.zshrc`
-script as described above.
 
 ## Linux Fedora line one-liner installation of requirements[^1]:
 
@@ -237,19 +216,17 @@ To enable modules, the following line should be added to your `.bashrc` or `.zsh
 
 ## Linux Ubuntu one-liner installation of requirements[^2]:
 
-```apt-get install cmake  make g++     gfortran expat libexpat1-dev libpython3-dev scons libglu1-mesa-dev   libx11-dev   libxpm-dev   libxft-dev   libxt-dev   libxmu-dev   libxrender-dev bzip2 wget curl nano git bash tcsh zsh hostname gedit environment-modules psmisc procps mailcap net-tools libcpandb-perl xterm qtbase5-dev libqt5widgets5 libqt5opengl5-dev libqt5printsupport5```
+```apt-get install cmake  make g++ gfortran expat libexpat1-dev libpython3-dev scons libglu1-mesa-dev   libx11-dev   libxpm-dev   libxft-dev   libxt-dev   libxmu-dev   libxrender-dev bzip2 wget curl nano git bash tcsh zsh hostname gedit environment-modules psmisc procps mailcap net-tools libcpandb-perl xterm qtbase5-dev libqt5widgets5 libqt5opengl5-dev libqt5printsupport5```
 
 To enable modules, the following line should be added to your `.bashrc` or `.zshrc`:
 
 `. /usr/share/Modules/init/zsh` or `. /usr/share/Modules/init/bash`
 
-
-## compatibility issues: 
+## compatibility issues:
 
 - mlibrary 1.7 is associated with geant4 10.6.2 and clhep 2.4.1.3
 - mlibrary 1.8 is associated with geant4 10.7.4 and clhep 2.4.4.2
 - gemc 5.9 is deprecated because of the above reason (cannot mix different mlibrary and geant4 versions)
-
 
 ___
 
