@@ -5,8 +5,7 @@ module use /scigroup/cvmfs/geant4/modules
 module  load gemc/5.10
 ```
 
-See below for other `module` options.
-Note: the above commands are automatically executed if you load the `clas12` module.
+Note: the above commands are not needed if load the `clas12` module.
 
 # Quickstart: on a supported OS, with CVMFS
 
@@ -23,7 +22,7 @@ module use /cvmfs/oasis.opensciencegrid.org/jlab/geant4/modules
 module  load gemc/5.10
 ```
 
-Note: the above commands are automatically executed if you load the `clas12` module through CVMFS.
+Note: the above commands are not needed if load the `clas12` module.
 
 ___
 
