@@ -28,7 +28,7 @@ ___
 
 ## Modules Utilities
 
-`module avail`: shows available modules
+`module avail gemc`: shows available gemc modules
 
 `module load geant4/11.2.2`: loads standalone geant4 libraries 11.2.2
 
