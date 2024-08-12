@@ -8,7 +8,7 @@ module  load gemc/5.10
 See below for other `module` options.
 Note: the above commands are automatically executed if you load the `clas12` module.
 
-# Quickstart: local installation on a supported OS, with CVMFS
+# Quickstart: on a supported OS, with CVMFS
 
 We distribute releases of Geant4 on CVMFS for the following platforms:
 
@@ -25,9 +25,25 @@ module  load gemc/5.10
 
 Note: the above commands are automatically executed if you load the `clas12` module through CVMFS.
 
+___
+
+## Modules Utilities
+
+`module avail`: shows available modules
+
+`module load geant4/11.2.2`: loads standalone geant4 libraries 11.2.2
+
+`module switch gemc/dev`: switch to gemc (clas12Tags) dev version
+
+`module show <module>/<version>`: shows what is loaded by a module
+
+
+---
+
+
 # Local installation
 
-To download and compile Geant4 and gemc on your local machine, follow these instructions.
+To download and compile Geant4 and/or Gemc on your local machine, follow these instructions.
 
 Below we''ll use `/opt/software` as the installation location, but it can be any directory of your choice.
 Make sure you have write permissions on the directory you choose. You can always change permissions like this:
@@ -52,23 +68,7 @@ module  load gemc/5.10
 We suggest to add the commands above to your shell login file to have them
 available every time you log in.
 
-___
-
-## Modules Utilities
-
-`module avail`: shows available modules
-
-`module load geant4/11.2.2`: loads standalone geant4 libraries 11.2.2
-
-`module switch gemc/dev`: switch to gemc (clas12Tags) dev version
-
-`module show <module>/<version>`: shows what is loaded by a module
-
-
-
-___
-
-# Libraries installation
+### Compilation
 
 Make sure the [__requirements__](#requirements) for the libraries / environment installation
 listed at the bottom of this page are met.
