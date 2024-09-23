@@ -12,6 +12,7 @@ prepend-ldpath $ilib
 prepend-path PATH            $dir/bin
 append-path  LD_LIBRARY_PATH $dir/slib
 append-path  PYTHONPATH      $dir/extensions/python
+prepend-path PKG_CONFIG_PATH $ilib/pkgconfig
 
 setenv HIPO_VERSION $version
 setenv HIPO $dir
