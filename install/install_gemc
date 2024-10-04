@@ -45,7 +45,7 @@ if [[ $gemc_version == 2* ]] || [[ $gemc_version == 4* ]] || [[ $gemc_version ==
 		[ "$(moduleTestResult .cmag $CMAG_VERSION)" -eq 0 ] && echo " > cmag is installed" || install_cmag
 	fi
 	[ "$(moduleTestResult .mlibrary $MLIBRARY_VERSION)" -eq 0 ] && echo " > mlibrary is installed" || install_mlibrary
-	if [[ ! -f "$FIELD_DIR/Full_transsolenoid_x321_y161_z321_April2024" ]]; then
+	if [[ ! -f "$FIELD_DIR/Full_transsolenoid_x321_y161_z321_April2024.dat" ]]; then
 		echo " > Field map does not exist. Installing field map."
 		install_fields
 	fi
