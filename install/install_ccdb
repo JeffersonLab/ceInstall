@@ -40,6 +40,11 @@ rm  -rf $source_dir
 cd $base_dir/include
 cp -r ccdb/CCDB .
 
+# removing dynamic libraries so gemc can link statically
+cd $base_dir/lib
+rm -f *.dylib
+rm -f *.so
+
 echo "$magenta > $what installation completed.$reset"
 module test ccdb/$what_version
 exit $?

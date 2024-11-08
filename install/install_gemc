@@ -22,6 +22,10 @@ echo
 module purge
 module load sim_system
 module load gemc/$gemc_version
+# ccdb and hipo needed for compilation of gemc, but are linked statically
+# so they are not needed at runtime. This is done to avoid any possible conflict with the CLAS12 ccdb and hipo.
+module load hipo
+module load ccdb
 if [[ $? -ne 0 ]]; then
 	echo " > ERROR: module load gemc/$gemc_version failed. Probably $gemc_version is not supported. Exiting."
 	exit 1

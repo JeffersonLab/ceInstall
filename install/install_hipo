@@ -42,6 +42,11 @@ rm -rf $source_dir
 cp -r $base_dir/include/hipo4 $base_dir
 cp $base_dir/include/*.h $base_dir/hipo4
 
+# removing dynamic libraries so gemc can link statically
+cd $base_dir/lib
+rm -f *.dylib
+rm -f *.so
+
 # if we are in a docker container restoring root
 if [[ -n "$AUTOBUILD" ]]; then
 	echo "$magenta > Running in a docker container. Restoring /usr/share/root $reset"

@@ -5,10 +5,8 @@ set version [file tail [module-info version [module-info name]]]
 set which clas12Tags
 
 prereq .scons_bm/1.12
-prereq .mlibrary/1.8
-prereq ccdb
-prereq hipo
 prereq .cmag/1.1
+prereq .mlibrary/1.8
 
 set g4_version 10.7.4
 

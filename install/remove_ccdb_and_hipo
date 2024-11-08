@@ -1,0 +1,12 @@
+#!/bin/zsh -i
+# shell has to be interactive to load modules
+
+# on fedora and ubuntu installation dir is different for modules
+# also checking for container env setup in /app
+[[ -f /usr/share/Modules/init/zsh ]] && . /usr/share/Modules/init/zsh
+[[ -f /usr/share/modules/init/zsh ]] && . /usr/share/modules/init/zsh
+
+module load sim_system
+rm -rf $SIM_HOME/ccdb
+rm -rf $SIM_HOME/hipo
+
