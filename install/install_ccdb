@@ -37,8 +37,8 @@ cd  ../../ || exit
 rm  -rf $source_dir
 
 # backward compatibility: linking includes
-cd $base_dir/include
-cp -r ccdb/CCDB .
+#cd $base_dir/include
+#cp -r ccdb/CCDB .
 
 # removing dynamic libraries so gemc can link statically
 cd $base_dir/lib
