@@ -150,6 +150,7 @@ For example: `macosx14-clang15`, `fedora34-gcc12`.
 - `wget`
 - `gnu tar`
 - `pkg-config`
+- `meson and ninja` (for hipo installation)
 
 The following qt packages must be installed:
 
@@ -171,7 +172,7 @@ ___
 
 ## Mac installation of requirements (brew):
 
-```brew install gnu-tar wget cmake mysql qt@5 scons freeglut modules sqlite ```
+```brew install gnu-tar wget cmake mysql qt@5 scons freeglut modules sqlite meson ninja ```
 
 Note: As of 8/2024: the mysql_native_password authentication plugin has been removed in mysql v9 and CCDB will not work w/o it.
 So, for now, we need to install mysql v8.4:

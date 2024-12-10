@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/zsh -i
 
 # if the environment variables HIPO and HIPO_VERSION are not set, exit
 if [[ -z "$HIPO" || -z "$HIPO_VERSION" ]]; then
@@ -23,29 +23,37 @@ if [[ -n "$AUTOBUILD" ]]; then
 	mv /usr/share/root/ $tmp_root_dir
 fi
 
+rm -rf $source_dir
 git clone --recurse-submodules --single-branch -b $what_version "$grepo" $source_dir
 cd $source_dir || exit
 
-cd  lz4
-make  PREFIX=$base_dir CFLAGS='-fPIC' install || exit
-cd  ..
-
-mkdir build
-cd build || exit
-
-cmake -DCMAKE_INSTALL_PREFIX=$base_dir ../
-make -j "$n_cpu" install || exit
-cd ../../ || exit
-rm -rf $source_dir
+#cd  lz4
+#make  PREFIX=$base_dir CFLAGS='-fPIC' install || exit
+#cd  ..
+#
+#mkdir build
+#cd build || exit
+#
+#cmake -DCMAKE_INSTALL_PREFIX=$base_dir ../
+#make -j "$n_cpu" install || exit
+#cd ../../ || exit
+#rm -rf $source_dir
 
 # backward compatibility: copying includes
 # cp -r $base_dir/include/hipo4 $base_dir
 # cp $base_dir/include/*.h $base_dir/hipo4
 
+meson setup build --prefix="$base_dir"
+cd build
+ninja           # compiles
+ninja install   # installs to your specified prefix (../install/, in the example)
+
+
 # removing dynamic libraries so gemc can link statically
 cd $base_dir/lib
-rm -f *.dylib
-rm -f *.so
+find . -name '*.dylib' -delete
+find . -name '*.so' -delete
+
 
 # if we are in a docker container restoring root
 if [[ -n "$AUTOBUILD" ]]; then
