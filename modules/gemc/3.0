@@ -7,7 +7,7 @@ set which gemc
 # optional only works modules 5.something or later
 # prereq --optional ccdb/1.99.2
 
-set g4_version  11.2.2
+set g4_version  11.3.0
 
 source [file dirname $ModulesCurrentModulefile]/.common
 

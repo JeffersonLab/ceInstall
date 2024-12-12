@@ -2,7 +2,6 @@
 
 conflict gemc
 prereq sim_system
-prereq geant4/${g4_version}
 
 source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
 

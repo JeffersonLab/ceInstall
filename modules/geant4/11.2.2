@@ -2,9 +2,9 @@
 
 set version [file tail [module-info version [module-info name]]]
 
-set clhep_version   2.4.7.1
-set xercesc_version 3.2.5
-set qt_version      system
+prereq .clhep/2.4.7.1
+prereq .xercesc/3.2.5
+prereq .qt/system
 
 # datasets. must be env variable for install_geant4 data to work properly
 setenv g4ndl_version               4.7.1
