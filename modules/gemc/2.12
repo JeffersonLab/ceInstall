@@ -8,8 +8,6 @@ prereq geant4/10.7.4
 prereq .scons_bm/1.12
 prereq .evio/5.1
 prereq .mlibrary/1.8
-prereq ccdb/1.99.2
-prereq hipo/4.0.1
 prereq .cmag/1.1
 
 source [file dirname $ModulesCurrentModulefile]/.common
