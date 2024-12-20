@@ -5,7 +5,7 @@ set version [file tail [module-info version [module-info name]]]
 set which gemc
 
 prereq geant4/10.7.4
-prereq .scons_bm/1.12
+prereq .scons_bm/1.11
 prereq .evio/5.1
 prereq .mlibrary/1.8
 prereq .cmag/1.1
