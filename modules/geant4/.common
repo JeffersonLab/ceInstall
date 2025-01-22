@@ -1,7 +1,7 @@
 # Common modulefile
 
 conflict geant4
-
+prereq sim_system
 
 module-whatis geant4 framework, https://geant4.web.cern.ch
 source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl

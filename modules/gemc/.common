@@ -5,7 +5,7 @@ prereq sim_system
 
 source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl
 
-set dir [home]/[osrelease]/$which/${version}
+set dir [home]/[osrelease]/$gname/${version}
 
 # on some system both lib and lib64 are created by dependencies during gemc installation
 prepend-ldpath $dir/lib

@@ -1,7 +1,6 @@
 # Common modulefile
 
 conflict .scons_bm
-prereq sim_system
 
 module-whatis scons build system for gemc, to be replaced in future versions by meson
 source [file dirname $ModulesCurrentModulefile]/../util/functions.tcl

@@ -2,7 +2,7 @@
 module-whatis Geant4 Monte-Carlo (GEMC), https://gemc.jlab.org/gemc/html/index.html
 
 set version [file tail [module-info version [module-info name]]]
-set which gemc
+set gname gemc
 
 prereq geant4/10.7.4
 prereq .scons_bm/1.11

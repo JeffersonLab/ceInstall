@@ -2,7 +2,7 @@
 module-whatis Geant4 Monte-Carlo (GEMC), https://gemc.github.io/home
 
 set version [file tail [module-info version [module-info name]]]
-set which gemc
+set gname gemc
 
 # optional only works modules 5.something or later
 # prereq --optional ccdb/1.99.2
