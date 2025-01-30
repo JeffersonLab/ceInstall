@@ -20,12 +20,13 @@ cmake_options1="-DGEANT4_USE_GDML=ON -DXERCESC_ROOT_DIR=$XERCESCROOT -DGEANT4_US
 cmake_options2=" -DQT_QMAKE_EXECUTABLE=$QTDIR/bin/qmake -DCLHEP_ROOT_DIR=$CLHEP_BASE_DIR"
 cmake_options3=" -DCMAKE_INSTALL_DATAROOTDIR=$G4INSTALL/data -DGEANT4_INSTALL_DATA=OFF"
 cmake_options4=" -DGEANT4_BUILD_MULTITHREADED=ON  -DGEANT4_BUILD_BUILTIN_BACKTRACE=OFF "
+cmake_options5=" -DBUILD_STATIC_LIBS=ON"
 
 # add cmake_options4 if G4_VERSION is 11.0 or higher
 if [[ $G4_VERSION == 11.* ]]; then
-	cmake_options="$cmake_options1 $cmake_options2 $cmake_options3 $cmake_options4"
+	cmake_options="$cmake_options1 $cmake_options2 $cmake_options3 $cmake_options4 $cmake_options5"
 else
-	cmake_options="$cmake_options1 $cmake_options2 $cmake_options3"
+	cmake_options="$cmake_options1 $cmake_options2 $cmake_options3 $cmake_options5"
 fi
 
 case $(uname -s) in
@@ -35,9 +36,10 @@ Linux)
 	opt1=" -I$QTDIR/include -I$QTDIR/include/QtOpenGL -I$QTDIR/include/QtWidgets"
 	opt2=" -I$QTDIR/include/QtGui -I$QTDIR/include/QtCore -I$QTDIR/include/QtPrintSupport"
 	opt3=" -Wall -pedantic -Wno-non-virtual-dtor -Wno-long-long -Wwrite-strings -Wpointer-arith -Woverloaded-virtual -pipe"
+	opt4=" -DBUILD_STATIC_LIBS=ON"
 
 	# need to check if QtPrintSupport is needed
-	set conf_options = "$x11_option $opt1 $opt2 $opt3"
+	set conf_options = "$x11_option $opt1 $opt2 $opt3 $opt4"
 	cmake_options="$cmake_options $conf_options"
 	;;
 Darwin) ;;

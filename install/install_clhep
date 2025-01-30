@@ -11,7 +11,7 @@ what_version="$CLHEP_VERSION"
 base_dir="$CLHEP_BASE_DIR"
 source_dir=$CLHEP_BASE_DIR/../source
 build_dir=$CLHEP_BASE_DIR/../build
-cmake_options="-Wno-dev"
+cmake_options="-Wno-dev -DBUILD_STATIC_LIBS=ON"
 grepo="https://proj-clhep.web.cern.ch/proj-clhep/dist1/clhep-$what_version.tgz"
 tar_strip=2  # tarball number of subdirs to strip
 
