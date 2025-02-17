@@ -50,11 +50,6 @@ if [[ $what_version != 3* ]]; then
 	cd ..
 	rm -rf ci diff.sh release_notes check_copy_config.sh
 
-	# install api if version is 'dev'
-	if [[ $what_version == "dev" ]]; then
-		cd $GEMC
-		git clone https://github.com/gemc/api
-	fi
 else
 
 	clone_tag "$srepo" "$what_version" "$source_dir"
