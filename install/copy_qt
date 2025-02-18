@@ -1,5 +1,9 @@
 #!/bin/zsh
 
+# this installation of qt is a straight copy of the system qt
+# it is only needed because scons loads things from $SQTDIR
+# This may be deprecated with meson
+
 magenta=`tput setaf 5`
 reset=`tput sgr0`
 
