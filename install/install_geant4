@@ -31,7 +31,12 @@ echo
 echo " > Checking / Installing missing dependencies for geant4 version $geant4_version"
 [ "$(moduleTestResult .clhep   $CLHEP_VERSION)"   -eq 0 ] && echo " > clhep $CLHEP_VERSION is installed"     || install_clhep
 [ "$(moduleTestResult .xercesc $XERCESC_VERSION)" -eq 0 ] && echo " > xercesc $XERCESC_VERSION is installed" || install_xercesc
-[ "$(moduleTestResult .qt      $QT_VERSION)"      -eq 0 ] && echo " > qt $QT_VERSION is installed"           || copy_qt
+
+# copy qt if geant4 is not 11
+if ! [[ $geant4_version == 11.* ]]; then
+	[ "$(moduleTestResult .qt      $QT_VERSION)"      -eq 0 ] && echo " > qt $QT_VERSION is installed"           || copy_qt
+fi
+
 echo " > Done with dependencies, now checking / installing geant4 data"
 if [ ! -d "$G4NEUTRONHPDATA" ] ||
 	[ ! -d "$G4LEDATA" ] ||

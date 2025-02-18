@@ -4,7 +4,7 @@ set version [file tail [module-info version [module-info name]]]
 
 prereq .clhep/2.4.7.1
 prereq .xercesc/3.2.5
-prereq .qt/system
+#prereq .qt/system # not needed as long as Qt5_DIR is set to where the Qt5Config.cmake is
 
 # datasets. must be env variable for install_geant4 data to work properly
 setenv g4ndl_version               4.7.1
