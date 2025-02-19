@@ -24,7 +24,7 @@ cmake_clhep=" -DCLHEP_ROOT_DIR=$CLHEP_BASE_DIR"
 cmake_qt5="   -DQT_QMAKE_EXECUTABLE=$qmake_path             -DGEANT4_USE_QT=ON"
 cmake_qt6="   -DQT_QMAKE_EXECUTABLE=$qmake_path  -DGEANT4_USE_QT=ON -DGEANT4_USE_QT_QT6=ON"
 cmake_data="  -DCMAKE_INSTALL_DATAROOTDIR=$G4INSTALL/data -DGEANT4_INSTALL_DATA=OFF"
-cmake_pack="  -DBUILD_STATIC_LIBS=ON -DBUILD_SHARED_LIBS=OFF -DGEANT4_INSTALL_PACKAGE_CACHE=OFF"
+cmake_pack="  -DBUILD_STATIC_LIBS=ON -DBUILD_SHARED_LIBS=OFF -DGEANT4_USE_SYSTEM_EXPAT=ON"
 cmake_mt="    -DGEANT4_BUILD_MULTITHREADED=ON  -DGEANT4_BUILD_BUILTIN_BACKTRACE=OFF "
 
 #  not used
@@ -32,6 +32,8 @@ cmake_mt="    -DGEANT4_BUILD_MULTITHREADED=ON  -DGEANT4_BUILD_BUILTIN_BACKTRACE=
 # -DGEANT4_USE_SYSTEM_ZLIB=ON
 # -DBUILD_SHARED_LIBS=OFF
 # -DDGEANT4_USE_USOLIDS=ON, requires vecgeom installed
+# -DGEANT4_INSTALL_PACKAGE_CACHE=OFF
+
 
 # add cmake_mt if G4_VERSION is 11.0 or higher
 if [[ $G4_VERSION == 11.* ]]; then
@@ -64,7 +66,7 @@ esac
 source "$(dirname "$(readlink -f "$0")")"/functions.zsh
 log_general geant4 "$G4_VERSION" "$filename" "$base_dir"
 
-# unpack_source_in_directory_from_url "$filename" "$source_dir" "$tar_strip"
+unpack_source_in_directory_from_url "$filename" "$source_dir" "$tar_strip"
 
 # change fsqrt definition if geant4 version < 10.7
 if [[ $G4_VERSION == "10.6.2" ]]; then
