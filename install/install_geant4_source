@@ -24,7 +24,7 @@ cmake_clhep=" -DCLHEP_ROOT_DIR=$CLHEP_BASE_DIR"
 cmake_qt5="   -DQT_QMAKE_EXECUTABLE=$qmake_path             -DGEANT4_USE_QT=ON"
 cmake_qt6="   -DQT_QMAKE_EXECUTABLE=$qmake_path  -DGEANT4_USE_QT=ON -DGEANT4_USE_QT_QT6=ON"
 cmake_data="  -DCMAKE_INSTALL_DATAROOTDIR=$G4INSTALL/data -DGEANT4_INSTALL_DATA=OFF"
-cmake_pack="  -DBUILD_STATIC_LIBS=ON -DBUILD_SHARED_LIBS=OFF -DGEANT4_USE_SYSTEM_EXPAT=ON"
+cmake_pack="  -DBUILD_STATIC_LIBS=ON -DGEANT4_USE_SYSTEM_EXPAT=ON"
 cmake_mt="    -DGEANT4_BUILD_MULTITHREADED=ON  -DGEANT4_BUILD_BUILTIN_BACKTRACE=OFF "
 
 #  not used
@@ -33,7 +33,7 @@ cmake_mt="    -DGEANT4_BUILD_MULTITHREADED=ON  -DGEANT4_BUILD_BUILTIN_BACKTRACE=
 # -DBUILD_SHARED_LIBS=OFF
 # -DDGEANT4_USE_USOLIDS=ON, requires vecgeom installed
 # -DGEANT4_INSTALL_PACKAGE_CACHE=OFF
-
+# -DBUILD_SHARED_LIBS=OFF
 
 # add cmake_mt if G4_VERSION is 11.0 or higher
 if [[ $G4_VERSION == 11.* ]]; then
@@ -44,15 +44,7 @@ fi
 
 case $(uname -s) in
 Linux)
-	x11_option="-DGEANT4_USE_OPENGL_X11=ON"
-
-	#opt1=" -I$QTDIR/include -I$QTDIR/include/QtOpenGL -I$QTDIR/include/QtWidgets"
-	#opt2=" -I$QTDIR/include/QtGui -I$QTDIR/include/QtCore -I$QTDIR/include/QtPrintSupport"
-	#opt3=" -Wall -pedantic -Wno-non-virtual-dtor -Wno-long-long -Wwrite-strings -Wpointer-arith -Woverloaded-virtual -pipe"
-	#opt4=" -DBUILD_STATIC_LIBS=ON"
-
-	# need to check if QtPrintSupport is needed
-	# set conf_options = "$x11_option $opt1 $opt2 $opt3 $opt4"
+	additional_options=" -DGEANT4_USE_OPENGL_X11=ON"
 	cmake_options="$cmake_options $x11_option"
 	;;
 Darwin) ;;
