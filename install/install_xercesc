@@ -14,7 +14,7 @@ what_version="$XERCESC_VERSION"
 base_dir="$XERCESCROOT"
 source_dir=$XERCESCROOT/source
 build_dir=$XERCESCROOT/build
-cmake_options="-Wno-dev -DBUILD_STATIC_LIBS=ON"
+cmake_options="-Wno-dev -DBUILD_STATIC_LIBS=ON -DCMAKE_POSITION_INDEPENDENT_CODE=ON"
 grepo="https://github.com/apache/xerces-c/archive/refs/tags/v$what_version.tar.gz"
 tar_strip=1  # tarball number of subdirs to strip
 
