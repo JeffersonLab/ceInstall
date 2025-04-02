@@ -122,17 +122,18 @@ unpack_source_in_directory_from_url() {
 		mkdir -p "$dir"
 	fi
 
-	cd "$dir" || whine_and_quit "cd $dir"
+	cd "$dir/.." || whine_and_quit "cd $dir"
 
 	echo "$magenta > Fetching source from $url onto $filename$reset"
 	rm -f "$filename"
 	curl_command "$url" || whine_and_quit "curl failed on $url"
 	ls -lrt
-	echo "$magenta > gnutar Unpacking $filename in $dir$reset"
-	gnutar -zxpf "$filename" --strip-components="$tar_strip"
+	cd "$dir" || whine_and_quit "cd $dir"
+	echo "$magenta > gnutar Unpacking ../$filename in $dir$reset"
+	gnutar -zxpf "../$filename" --strip-components="$tar_strip"
 	ls -lrt "$dir"
-	rm -f "$filename"
-	echo " > Done with unpacking $filename"
+	#rm -f "$filename"
+	echo "$magenta > Done with unpacking $filename"
 	echo
 }
 
