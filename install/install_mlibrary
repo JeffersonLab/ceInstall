@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+[[ -f /usr/share/Modules/init/zsh ]] && . /usr/share/Modules/init/zsh
+[[ -f /usr/share/modules/init/zsh ]] && . /usr/share/modules/init/zsh
+
 # if the environment variables MLIBRARY and MLIBRARY_VERSION are not set, exit
 if [[ -z "$MLIBRARY" || -z "$MLIBRARY_VERSION" ]]; then
 	echo "$red > MLIBRARY or MLIBRARY_VERSION environment variables are not set. Exiting.$reset"

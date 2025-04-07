@@ -7,7 +7,7 @@ set gname gemc
 # optional only works modules 5.something or later
 # prereq --optional ccdb/1.99.2
 
-prereq geant4/11.3.0
+prereq geant4/11.3.1
 
 source [file dirname $ModulesCurrentModulefile]/.common
 
