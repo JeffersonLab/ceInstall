@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/zsh -i
 
 [[ -f /usr/share/Modules/init/zsh ]] && . /usr/share/Modules/init/zsh
 [[ -f /usr/share/modules/init/zsh ]] && . /usr/share/modules/init/zsh
