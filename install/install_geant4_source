@@ -97,4 +97,4 @@ elif [[ $G4_VERSION == "10.7.4" ]]; then
 	esac
 fi
 
-cmake_build_and_install "$source_dir" "$build_dir" "$base_dir" "$cmake_options" "do_not_delete_source"
+cmake_build_and_install "$source_dir" "$build_dir" "$base_dir" "$cmake_options"

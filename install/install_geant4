@@ -55,6 +55,10 @@ fi
 echo " > Done with geant4 data, now fetching and compiling geant4 source code"
 [ "$(moduleTestResult geant4 $G4_VERSION)" -eq 0 ] && echo " > Done with geant4 source" || install_geant4_source
 
+cd $G4INSTALL
+find ./ -type f -name "*.tgz" -exec rm -rf {} +
+find ./ -type f -name "*.tar.gz" -exec rm -rf {} +
+
 echo " > Now testing geant4 installation:"
 module test geant4/$geant4_version
 exit $?

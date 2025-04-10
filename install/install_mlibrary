@@ -31,6 +31,8 @@ scons  -j "$n_cpu" || exit
 # cleaning up
 rm -f .sconsign.dblite # for some reason this still linger
 find ./ -name "*.o" -delete
+cd ..
+find ./ -type f -name "*.tar.gz" -exec rm -rf {} +
 
 echo "$magenta > $what installation completed.$reset"
 module test .mlibrary/$what_version
