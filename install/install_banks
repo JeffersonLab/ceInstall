@@ -1,4 +1,5 @@
-#!/bin/zsh
+#!/bin/zsh -i
+# shell has to be interactive to load modules below
 
 # if the environment variables BANKS and BANKS_VERSION are not set, exit
 if [[ -z "$BANKS" || -z "$BANKS_VERSION" ]]; then

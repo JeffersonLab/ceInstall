@@ -1,7 +1,5 @@
 #!/bin/zsh -i
-
-[[ -f /usr/share/Modules/init/zsh ]] && . /usr/share/Modules/init/zsh
-[[ -f /usr/share/modules/init/zsh ]] && . /usr/share/modules/init/zsh
+# shell has to be interactive to load modules
 
 # if the environment variables MLIBRARY and MLIBRARY_VERSION are not set, exit
 if [[ -z "$MLIBRARY" || -z "$MLIBRARY_VERSION" ]]; then
@@ -36,6 +34,12 @@ find ./ -type f -name "*.tar.gz" -exec rm -rf {} +
 
 echo "$magenta > $what installation completed.$reset"
 module test .mlibrary/$what_version
+if [[ $? == 0 ]]; then
+  echo "$magenta > $what module tested successfully.$reset"
+else
+  echo "$red > $what module test failed.$reset"
+  cat $base_dir/*.err
+fi
 exit $?
 
 

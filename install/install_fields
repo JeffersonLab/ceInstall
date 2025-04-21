@@ -1,4 +1,5 @@
-#!/bin/zsh
+#!/bin/zsh -i
+# shell has to be interactive to load modules below
 
 # if the environment variables EVIO and EVIO_VERSION are not set, exit
 if [[ -z "$FIELD_DIR" ]]; then

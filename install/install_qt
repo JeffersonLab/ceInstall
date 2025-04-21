@@ -1,4 +1,5 @@
-#!/bin/zsh
+#!/bin/zsh -i
+# shell has to be interactive to load modules below
 
 
 

@@ -1,4 +1,5 @@
 #!/bin/zsh -i
+# shell has to be interactive to load modules
 
 # if the environment variables HIPO and HIPO_VERSION are not set, exit
 if [[ -z "$HIPO" || -z "$HIPO_VERSION" ]]; then

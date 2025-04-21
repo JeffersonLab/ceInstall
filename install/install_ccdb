@@ -1,9 +1,5 @@
 #!/bin/zsh -i
-
-# on fedora and ubuntu installation dir is different for modules
-# also checking for container env setup in /app
-[[ -f /usr/share/Modules/init/zsh ]] && . /usr/share/Modules/init/zsh
-[[ -f /usr/share/modules/init/zsh ]] && . /usr/share/modules/init/zsh
+# shell has to be interactive to load modules
 
 # if the environment variables CCDB_HOME and CCDB_VERSION are not set, exit
 if [[ -z "$CCDB_HOME" || -z "$CCDB_VERSION" ]]; then

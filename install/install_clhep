@@ -1,4 +1,5 @@
-#!/bin/zsh
+#!/bin/zsh -i
+# shell has to be interactive to load modules below
 
 # if the environment variables CLHEP_BASE_DIR and CLHEP_VERSION are not set, exit
 if [[ -z "$CLHEP_BASE_DIR" || -z "$CLHEP_VERSION" ]]; then

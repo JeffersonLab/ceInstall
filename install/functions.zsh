@@ -1,5 +1,11 @@
 #!/bin/zsh
 
+# on fedora and ubuntu installation dir is different for modules
+# also checking for container env setup in /app
+[[ -f /usr/share/Modules/init/zsh ]] && . /usr/share/Modules/init/zsh
+[[ -f /usr/share/modules/init/zsh ]] && . /usr/share/modules/init/zsh
+
+
 red=$(   tput setaf 1)
 green=$( tput setaf 2)
 yellow=$(tput setaf 3)

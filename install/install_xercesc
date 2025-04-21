@@ -1,4 +1,5 @@
-#!/bin/zsh
+#!/bin/zsh -i
+# shell has to be interactive to load modules below
 
 # note: releases are now gihutb releases: https://github.com/apache/xerces-c/tags
 # the direct link points to https://github.com/apache/xerces-c/archive/refs/tags/v$version.tar.gz

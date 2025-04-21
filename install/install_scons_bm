@@ -1,4 +1,5 @@
-#!/bin/zsh
+#!/bin/zsh -i
+# shell has to be interactive to load modules below
 
 # if the environment variables SCONS_BM and SCONS_BM_VERSION are not set, exit
 if [[ -z "$SCONS_BM" || -z "$SCONS_BM_VERSION" ]]; then
