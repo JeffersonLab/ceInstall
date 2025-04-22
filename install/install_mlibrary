@@ -38,7 +38,7 @@ if [[ $? == 0 ]]; then
   echo "$magenta > $what module tested successfully.$reset"
 else
   echo "$red > $what module test failed.$reset"
-  cat $base_dir/*.err
+  cat $base_dir/*.txt
 fi
 exit $?
 
