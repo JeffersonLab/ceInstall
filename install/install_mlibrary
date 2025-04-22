@@ -20,7 +20,13 @@ unpack_source_in_directory_from_url "$grepo" "$base_dir" "$tar_strip"
 
 echo > Compiling cadmesh
 cd $base_dir
-./compileCmesh 2>"cmesh_build_err.txt" 1>"cmesh_build_log.txt" || exit
+./compileCmesh  || exit
+echo
+echo Done, now copying assimp and tetgen libs
+echo
+[[ -d $cadmeshBuild/lib/ ]] && cp -v cadmeshBuild/lib/* lib/
+[[ -d $cadmeshBuild/lib64/ ]] && cp -v cadmeshBuild/lib64/* lib/
+
 echo > Compiling mlibrary
 cd $base_dir
 
