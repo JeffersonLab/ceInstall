@@ -27,6 +27,9 @@ echo
 [[ -d $cadmeshBuild/lib/ ]] && cp -v cadmeshBuild/lib/* lib/
 [[ -d $cadmeshBuild/lib64/ ]] && cp -v cadmeshBuild/lib64/* lib/
 
+# clean up, these are not needed
+rm -rf cadmeshBuild cadmesh
+
 echo > Compiling mlibrary
 cd $base_dir
 
