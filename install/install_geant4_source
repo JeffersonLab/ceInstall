@@ -44,11 +44,11 @@ fi
 
 case $(uname -s) in
 Linux)
-	additional_options=" -DGEANT4_USE_OPENGL_X11=ON"
+	additional_options=" -DGEANT4_USE_OPENGL_X11=ON -DGEANT4_USE_RAYTRACER_X11=ON"
 	cmake_options="$cmake_options $x11_option"
 	;;
-Darwin) ;;
-
+Darwin)
+	;;
 *)
 	echo "Unsupported OS: $(uname -s)"
 	exit 1
