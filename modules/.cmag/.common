@@ -9,6 +9,7 @@ set dir [home]/[osrelease]/clas12_cmag/${version}
 set ilib [choose_dir $dir/lib $dir/lib64]
 
 prepend-ldpath $ilib
+prepend-path PKG_CONFIG_PATH $ilib/pkgconfig
 
 setenv CMAG_VERSION $version
 setenv CLAS12_CMAG  $dir

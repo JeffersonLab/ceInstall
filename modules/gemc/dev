@@ -4,10 +4,10 @@ module-whatis GEMC for CLAS12, https://github.com/gemc/clas12Tags
 set version [file tail [module-info version [module-info name]]]
 set gname clas12Tags
 
-prereq geant4/10.7.4
-prereq .scons_bm/dev
+prereq geant4/11.3.1
+#prereq .scons_bm/dev
 prereq .cmag/1.1
-prereq .mlibrary/dev
+#prereq .mlibrary/dev
 
 source [file dirname $ModulesCurrentModulefile]/.common
 
