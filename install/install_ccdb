@@ -27,7 +27,7 @@ if  [[ "$OSTYPE" == "darwin"* ]]; then
 	export LDFLAGS="-L$(brew --prefix zstd)/lib -L$(brew --prefix openssl)/lib"
 fi
 
-cmake  -DCMAKE_INSTALL_PREFIX=$base_dir ../
+cmake  -DCMAKE_INSTALL_PREFIX=$base_dir -DCMAKE_POLICY_VERSION_MINIMUM=3.5 ../
 make  -j "$n_cpu" install || exit
 cd  ../../ || exit
 rm  -rf $source_dir
