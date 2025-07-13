@@ -9,5 +9,6 @@ prereq geant4/11.3.1
 source [file dirname $ModulesCurrentModulefile]/.common
 
 # we got away from these in gemc3
-unsetenv GEMC
+# we still use $GEMC as a convenience to set prefix
+unsetenv GEMC_DATA_DIR
 unsetenv FIELD_DIR
