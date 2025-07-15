@@ -203,6 +203,7 @@ cmake_build_and_install() {
 	fi
 
 	# cleanup
+	cd # so that we do not delete pwd
 	echo "$magenta > Cleaning up...$reset"
 	rm -rf "$build_dir"
 
