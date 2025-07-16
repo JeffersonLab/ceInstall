@@ -24,6 +24,16 @@ log_general "$what" "$what_version" "$grepo" "$base_dir"
 
 unpack_source_in_directory_from_url "$grepo" "$source_dir" "$tar_strip"
 
+cmake_build_and_install "$source_dir" "$build_dir" "$base_dir" "$cmake_options" "nodelete"
+
+# looks like the code below is not needed anymore, the pc files are identical
+#cd "$base_dir"
+#pc_file="$(find ./ -name xerces-c.pc )"
+#pc_file_dir=$(dirname "$pc_file")
+#mv $pc_file $pc_file_dir/xercesc-c-static.pc
+#cd-
+
+cmake_options="-Wno-dev -DCMAKE_POSITION_INDEPENDENT_CODE=ON"
 cmake_build_and_install "$source_dir" "$build_dir" "$base_dir" "$cmake_options"
 
 echo "$magenta > $what installation completed.$reset"
