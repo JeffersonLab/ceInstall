@@ -4,7 +4,7 @@ module-whatis Geant4 Monte-Carlo (GEMC), https://gemc.github.io/home
 set version [file tail [module-info version [module-info name]]]
 set gname gemc
 
-prereq geant4/11.3.1
+prereq geant4/11.3.2
 
 source [file dirname $ModulesCurrentModulefile]/.common
 
