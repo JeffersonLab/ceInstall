@@ -13,6 +13,7 @@ prepend-ldpath $ilib
 prepend-path   PKG_CONFIG_PATH $ilib/pkgconfig
 
 prepend-path   PATH            $dir/bin
+prepend-path   PATH            $dir/api
 prepend-path   PYTHONPATH      $dir/api
 
 setenv GEMC           $dir
