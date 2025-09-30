@@ -59,13 +59,20 @@ git clone https://github.com/jeffersonlab/ceInstall
 
 ### Setup the environment:
 
+We suggest to add this line to your shell login file (`.bashrc`, `.zshrc`, etc):
+
 ```
 module use /opt/software/ceInstall/modules
-module  load gemc/5.10
 ```
 
-We suggest to add the commands above to your shell login file to have them
-available every time you log in.
+The command `module load gemc/<version>` will load the environment variables needed for gemc.
+We suggest to NOT add this line to your shell login file but to load gemc manually when needed. For example:
+
+```
+module load gemc/5.11
+```
+
+
 
 ### Compilation
 
@@ -74,8 +81,9 @@ listed at the bottom of this page are met.
 
 After the steps above:  `module load sim_system` will load the installation scripts location.
 
-- `install_geant4 11.2.2` will install geant4
-- `install_gemc 5.10` will install gemc. This can be run standalone or after the geant4 installation.
+- `install_gemc 5.11` will install clhep, geant4, hipo, ccdb, cmag and gemc. Notice that their versions 
+   are fixed to the ones compatible with the gemc version chosen.
+- `install_geant4 11.3.2` will install geant4 only. 
 
 Both installation scripts will check for existing installations and will not overwrite them. 
 
@@ -180,7 +188,7 @@ So, for now, we need to install mysql v8.4:
 ```
 brew install mysql-client@8.4
 export PATH="/opt/homebrew/opt/mysql-client@8.4/bin:$PATH"
-export DYLD_LIBRARY_PATH="/opt/homebrew/opt/mysql-client@8.4/lib:$DYLD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="/opt/homebrew/opt/mysql-client@8.4/lib:$LD_LIBRARY_PATH"
 ```
 
 #### Enable modules in Bash, zsh

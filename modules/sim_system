@@ -3,9 +3,21 @@
 module-whatis core environment variables for Geant4 Simulations
 source [file dirname $ModulesCurrentModulefile]/util/functions.tcl
 
+set sim_home [home]/[osrelease]
 setenv SIM_HOME [home]/[osrelease]
 setenv MODULES_CONFLICT_UNLOAD 1
-warndir $env(SIM_HOME) "[osrelease] is currently not supported." warn
+
+# If the path exists but isn't a directory, warn and bail early
+if {[file exists $sim_home] && ![file isdirectory $sim_home]} {
+    puts stderr "SIM_HOME path '$sim_home' exists but is not a directory. Please fix it."
+    break
+}
+
+# Create the directory if it doesn't exist
+warndir $env(SIM_HOME) "[osrelease] directory does not exist. Creating it. " warn
+if {![file isdirectory $sim_home]} {
+    file mkdir $sim_home
+}
 
 # add the script installation directory to the PATH
 prepend-path PATH [home]/install
