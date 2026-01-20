@@ -2,7 +2,7 @@
 
 ```bash
 module use /scigroup/cvmfs/geant4/modules
-module  load gemc/5.10
+module  load gemc/5.11
 ```
 
 Note: the above commands are not needed if load the `clas12` module.
@@ -11,15 +11,15 @@ Note: the above commands are not needed if load the `clas12` module.
 
 We distribute releases of Geant4 on CVMFS for the following platforms:
 
-- Linux: Fedora 36, AlmaLinux 9, Ubuntu24
-- MacOS: macOS 14.5 (Sonoma)
+- Linux: Fedora 36, AlmaLinux 9
+- MacOS: macOS 15.7 (Sequoiua) on silicon CPUs
 
 If you have access to a CVMFS client and your OS is supported,
 you can load Geant4 with the following commands:
 
 ```bash
 module use /cvmfs/oasis.opensciencegrid.org/jlab/geant4/modules 
-module  load gemc/5.10
+module  load gemc/5.11
 ```
 
 Note: the above commands are not needed if load the `clas12` module.
