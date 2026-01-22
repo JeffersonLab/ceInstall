@@ -1,5 +1,20 @@
 #!/bin/zsh -i
-# shell has to be interactive to load modules
+. "$(dirname "$(readlink -f "$0")")"/functions.zsh
+
+if [[ $# -eq 1 ]]; then
+	ml_version=$1
+else
+	# error
+	echo " > ERROR: No gemc version given. Exiting."
+	exit 1
+fi
+
+echo " > Installing mlibrary version $ml_version"
+echo
+
+module purge
+module load sim_system
+module load .mlibrary/$ml_version
 
 # if the environment variables MLIBRARY and MLIBRARY_VERSION are not set, exit
 if [[ -z "$MLIBRARY" || -z "$MLIBRARY_VERSION" ]]; then
