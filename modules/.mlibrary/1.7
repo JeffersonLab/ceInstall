@@ -1,1 +1,7 @@
-.generic
+#%Module
+
+set version [file tail [module-info version [module-info name]]]
+source [file dirname $ModulesCurrentModulefile]/.common
+
+prereq geant4/10.7.4
+prereq .scons_bm/1.11
