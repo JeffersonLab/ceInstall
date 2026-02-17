@@ -7,7 +7,7 @@ set gname clas12Tags
 prereq geant4/10.7.4
 prereq .scons_bm/1.14
 prereq .cmag/1.1
-prereq .mlibrary/1.10
+prereq .mlibrary/1.11
 
 source [file dirname $ModulesCurrentModulefile]/.common
 
