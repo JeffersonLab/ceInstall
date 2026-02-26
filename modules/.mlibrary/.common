@@ -15,10 +15,41 @@ setenv MLIBRARY          $dir
 
 proc ModulesTest { } {
 
-	set retcode 1
+	# Convention: 1 = PASS, 0 = FAIL
+	set ok 1
 
-	if { [warndir [ getenv MLIBRARY ]/lib/pkgconfig "MLIBRARY cadmesh is not installed" err ] eq 0 } { set retcode 0 }
+	# Get MLIBRARY safely
+	set mlib ""
+	if { [catch { set mlib [getenv MLIBRARY] }] || $mlib eq "" } {
+		if { [module-info mode load] || [module-info mode test] } {
+			err "MLIBRARY is not set"
+		}
+		return 0
+	}
 
-	return $retcode
+	set libdir [file join $mlib lib]
+
+	# If libdir doesn't exist, warn and fail
+	if { [warndir $libdir "MLIBRARY lib directory is missing: $libdir" err] eq 0 } {
+		return 0
+	}
+
+	# cadmesh lib name depends on platform
+	set cadmesh_lib "libcadmesh.so"
+	if { $::tcl_platform(os) eq "Darwin" } {
+		set cadmesh_lib "libcadmesh.dylib"
+	}
+
+	set cadmesh_path  [file join $libdir $cadmesh_lib]
+	set goptions_path [file join $libdir libgoptions.a]
+
+	# Missing files => warn and fail
+	if { [warnfile $cadmesh_path  "MLIBRARY cadmesh is not installed (missing $cadmesh_path)" err] eq 0 } {
+		set ok 0
+	}
+	if { [warnfile $goptions_path "MLIBRARY goptions is not installed (missing $goptions_path)" err] eq 0 } {
+		set ok 0
+	}
+
+	return $ok
 }
-
