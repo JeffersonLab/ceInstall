@@ -10,4 +10,6 @@ prereq .cmag/1.1
 prereq .mlibrary/1.9
 
 source [file dirname $ModulesCurrentModulefile]/.common
-
+if {[module-info mode load] && $version eq "5.12"} {
+    warn "GEMC 5.12 has bad ECAL timing"
+}
