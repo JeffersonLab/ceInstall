@@ -5,7 +5,7 @@ set version [file tail [module-info version [module-info name]]]
 set gname clas12Tags
 
 prereq geant4/10.7.4
-prereq .scons_bm/1.14
+prereq .scons_bm/1.15
 prereq .cmag/1.1
 prereq .mlibrary/1.11
 
