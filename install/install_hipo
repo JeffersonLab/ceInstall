@@ -10,7 +10,7 @@ fi
 what="hipo"
 what_version="$HIPO_VERSION"
 base_dir="$HIPO"
-grepo="https://github.com/gavalian/hipo"
+grepo="https://code.jlab.org/hallb/clas12/hipo-cpp"
 source_dir=hipo_source
 tmp_root_dir=/root
 
