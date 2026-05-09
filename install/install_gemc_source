@@ -15,7 +15,7 @@ if [[ $what_version == 2* ]]; then
 	twhat_version="v$what_version"
 	source_dir='.'
 	srepo="https://github.com/gemc/source"
-elif [[ $what_version == 4* ]] || [[ $what_version == 5* ]] || [[ $what_version == dev ]]; then
+elif [[ $what_version == 4* ]] || [[ $what_version == 5* ]] || [[ $what_version == 6* ]] || [[ $what_version == dev ]]; then
 	what="clas12Tags"
 	source_dir='source'
 	srepo="https://github.com/gemc/clas12Tags"
