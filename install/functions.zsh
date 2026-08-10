@@ -153,7 +153,14 @@ clone_tag() {
 	echo " > clone_tag: " $version
 	echo " > in directory: $install_dir"
 
-	git clone -c advice.detachedHead=false --recurse-submodules --single-branch -b $version "$url" "$destination_dir"
+	if [[ -d "$destination_dir" ]]; then
+		git -C "$destination_dir" rev-parse --verify HEAD &>/dev/null ||
+			whine_and_quit "destination $destination_dir exists but is not a valid Git checkout"
+		echo " > Reusing existing source checkout: $destination_dir"
+	else
+		git clone -c advice.detachedHead=false --recurse-submodules --single-branch \
+			-b "$version" "$url" "$destination_dir" || whine_and_quit "git clone $url"
+	fi
 	echo
 }
 
