@@ -27,6 +27,14 @@ rm -rf $source_dir
 git clone --recurse-submodules --single-branch -b $what_version "$grepo" $source_dir
 cd $source_dir || exit
 
+# ROOT 6.40's RVec.hxx pulls in <vdt/vdtMath.h>. On Homebrew vdt is a separate keg exposed only through
+# /opt/homebrew/include/vdt, which is not on rootcling's default include path, so the dataframes
+# extension's dictionary generation fails. Point ROOT_INCLUDE_PATH at Homebrew's include dir (no-op when
+# brew is absent, e.g. the Linux/docker build where vdt is already on the default path).
+if command -v brew >/dev/null 2>&1; then
+	export ROOT_INCLUDE_PATH="$(brew --prefix)/include${ROOT_INCLUDE_PATH:+:$ROOT_INCLUDE_PATH}"
+fi
+
 meson setup build --prefix="$base_dir"
 cd build
 ninja           # compiles
